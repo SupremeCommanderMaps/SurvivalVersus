@@ -1,8 +1,7 @@
+<img align="right" src="preview.jpg">
 # Final Rush Pro 5
 
 A survival map for [Supreme Commander: Forged Alliance Forever](http://www.faforever.com).
-
-<img align="right" src="preview.jpg">
 
 ## New in version 5
 
