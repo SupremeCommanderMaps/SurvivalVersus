@@ -33,6 +33,13 @@ of the Vampire mod.
 You can find the latest version of the map on the [Final Rush Pro 5 GitHub project][GitHub], which is
 also the place where you can file issues, post feature request, and submit patches.
 
+## Authors
+
+The authors of the original map are Commander-Chronicles, TV-Nobby and Diegobah. Fixes where later
+made by ozonex.
+
+Changes in version 5.x are by Jeroen De Dauw. The version 5 preview image was created by JuiceBoy.
+
 [FAF]: http://www.faforever.com/
 [download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5
