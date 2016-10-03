@@ -89,10 +89,10 @@ bp.Economy.BuildTime = 800
 
 function OnPopulate()
 	ScenarioUtils.InitializeArmies()
-    if (ScenarioInfo.Options.opt_tents == nil) then
+	if (ScenarioInfo.Options.opt_tents == nil) then
 		ScenarioInfo.Options.opt_tents = 0;
 	end
-    if (ScenarioInfo.Options.opt_transcount == nil) then
+	if (ScenarioInfo.Options.opt_transcount == nil) then
 		ScenarioInfo.Options.opt_transcount = 0;
 	end
 	if (ScenarioInfo.Options.opt_timeunlocked == nil) then
@@ -145,16 +145,16 @@ end
 
 --spawns the civilian lighthouse
 spawnlighthouse = function()
-    local light1 = CreateUnitHPR( "urc1901", "NEUTRAL_CIVILIAN", 13.816323, 25.730654, 500.078125, 0,0,0)
-    local light2 = CreateUnitHPR( "urc1901", "ARMY_9", 498.060150, 25.724628, 12.122614, 0,0,0)
-    light1:SetReclaimable(false);
-    light1:SetCanTakeDamage(false);
+	local light1 = CreateUnitHPR( "urc1901", "NEUTRAL_CIVILIAN", 13.816323, 25.730654, 500.078125, 0,0,0)
+	local light2 = CreateUnitHPR( "urc1901", "ARMY_9", 498.060150, 25.724628, 12.122614, 0,0,0)
+	light1:SetReclaimable(false);
+	light1:SetCanTakeDamage(false);
 	light1:SetDoNotTarget(true);
-    light1:SetCanBeKilled(false);
-    light2:SetReclaimable(false);
-    light2:SetCanTakeDamage(false);
+	light1:SetCanBeKilled(false);
+	light2:SetReclaimable(false);
+	light2:SetCanTakeDamage(false);
 	light2:SetDoNotTarget(true);
-    light2:SetCanBeKilled(false);
+	light2:SetCanBeKilled(false);
 
 	light2:SetCustomName("Vision Center")
 	light1:SetCustomName("Vision Center")
@@ -179,8 +179,8 @@ end
 
 --spawns tents, checks if army exists before inserting, otherwise
 spawntents = function()
-local tent = "xrb0304"
-local tentnum = ScenarioInfo.Options.opt_tents
+	local tent = "xrb0304"
+	local tentnum = ScenarioInfo.Options.opt_tents
 
 	if(StartingPlayersExistance.ARMY_1 == true) then
 		if tentnum > 0 then
@@ -422,11 +422,11 @@ getUsername = function(army)
 end
 
 transportscoutonly = function()
-if (ScenarioInfo.Options.opt_transcount == 1) then
-	local tblArmies = ListArmies()
-        for index, name in tblArmies do
+	if (ScenarioInfo.Options.opt_transcount == 1) then
+		local tblArmies = ListArmies()
+		for index, name in tblArmies do
 			RemoveBuildRestriction(index, categories.AIR)
-            AddBuildRestriction(index, categories.uea0103) --UEF T1 Attack Bomber: Scorcher
+			AddBuildRestriction(index, categories.uea0103) --UEF T1 Attack Bomber: Scorcher
 			AddBuildRestriction(index, categories.uea0102) --UEF T1 Interceptor: Cyclone
 			AddBuildRestriction(index, categories.dea0202) --UEF T2 Fighter/Bomber: Janus
 			AddBuildRestriction(index, categories.uea0203) --UEF T2 Gunship: Stinger
@@ -466,16 +466,16 @@ if (ScenarioInfo.Options.opt_transcount == 1) then
 			AddBuildRestriction(index, categories.uaa0304) --Aeon T3 Strategic Bomber: Shocker
 			AddBuildRestriction(index, categories.xaa0306) --Aeon T3 Torpedo Bomber: Solace
 			AddBuildRestriction(index, categories.uaa0310) --Aeon EX Experimental Aircraft Carrier: CZAR
-        end
+		end
 	end
 end
 
 unlockovertime = function()
-if (ScenarioInfo.Options.opt_timeunlocked == 0) then
+	if (ScenarioInfo.Options.opt_timeunlocked == 0) then
 	else
 		local tblArmies = ListArmies()
-        for index, name in tblArmies do
-            AddBuildRestriction(index, categories.TECH3)
+		for index, name in tblArmies do
+			AddBuildRestriction(index, categories.TECH3)
 			AddBuildRestriction(index, categories.TECH2)
 			AddBuildRestriction(index, categories.EXPERIMENTAL)
 		end
@@ -487,86 +487,86 @@ if (ScenarioInfo.Options.opt_timeunlocked == 0) then
 end
 
 enableT2 = function()
-    LOG("Waiting for T2 - ", ScenarioInfo.Options.opt_timeunlocked)
-    WaitSeconds(ScenarioInfo.Options.opt_timeunlocked)
-    local tblArmies = ListArmies()
-        for index, name in tblArmies do
-            RemoveBuildRestriction(index, categories.TECH2)
-		end
-		transportscoutonly()
-		ResetStartingRestrictions()
+	LOG("Waiting for T2 - ", ScenarioInfo.Options.opt_timeunlocked)
+	WaitSeconds(ScenarioInfo.Options.opt_timeunlocked)
+	local tblArmies = ListArmies()
+	for index, name in tblArmies do
+		RemoveBuildRestriction(index, categories.TECH2)
+	end
+	transportscoutonly()
+	ResetStartingRestrictions()
 	PrintText("Tech 2 Enabled", 20, "ffffffff", 5, 'center');
 end
 
 enableT3 = function()
-    LOG("Waiting for t3 - ", ScenarioInfo.Options.opt_timeunlocked * 2)
-    WaitSeconds(ScenarioInfo.Options.opt_timeunlocked * 2)
-    local tblArmies = ListArmies()
-        for index, name in tblArmies do
-            RemoveBuildRestriction(index, categories.TECH3)
-		end
+	LOG("Waiting for t3 - ", ScenarioInfo.Options.opt_timeunlocked * 2)
+	WaitSeconds(ScenarioInfo.Options.opt_timeunlocked * 2)
+	local tblArmies = ListArmies()
+	for index, name in tblArmies do
+		RemoveBuildRestriction(index, categories.TECH3)
+	end
 	transportscoutonly()
 	ResetStartingRestrictions()
 	PrintText("Tech 3 Enabled", 20, "ffffffff", 5, 'center');
 end
 
 enableEXP = function()
-    LOG("Waiting for t4 - ", ScenarioInfo.Options.opt_timeunlocked * 3)
-    WaitSeconds(ScenarioInfo.Options.opt_timeunlocked * 3)
-    local tblArmies = ListArmies()
-        for index, name in tblArmies do
-            RemoveBuildRestriction(index, categories.EXPERIMENTAL)
-		end
+	LOG("Waiting for t4 - ", ScenarioInfo.Options.opt_timeunlocked * 3)
+	WaitSeconds(ScenarioInfo.Options.opt_timeunlocked * 3)
+	local tblArmies = ListArmies()
+	for index, name in tblArmies do
+		RemoveBuildRestriction(index, categories.EXPERIMENTAL)
+	end
 	transportscoutonly()
 	ResetStartingRestrictions()
 	PrintText("Experimentals Enabled", 20, "ffffffff", 5, 'center');
 end
 
 createmiddleciv = function()
-    if (ScenarioInfo.Options.opt_gamemode == 1) then
+	if (ScenarioInfo.Options.opt_gamemode == 1) then
 		local T2DefenceCount = 0
 		local T1DefenceCount = 0
 		local T3DefenceAACount = 0
 		local T3DefenceShieldCount = 0
 		local T3PowerCount = 0
 
-       --uab1301 AEON T3 POWER
-	   --uab2301 AEON T2 PD
-	   --uab2101 AEON T1 PD
-	   --uab4301 AEON T3 shield
-	   --uac1901 paragon activator
-	   --ueb2304 aeon t3 aa
-	   --uab3104 aeon t3 radar
+		--uab1301 AEON T3 POWER
+		--uab2301 AEON T2 PD
+		--uab2101 AEON T1 PD
+		--uab4301 AEON T3 shield
+		--uac1901 paragon activator
+		--ueb2304 aeon t3 aa
+		--uab3104 aeon t3 radar
 
 		while T2DefenceCount < Random(8,16) do
 			CreateUnitHPR("uab2301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T2 PD
-		    T2DefenceCount = T2DefenceCount + 1
+			T2DefenceCount = T2DefenceCount + 1
 		end
 		while T1DefenceCount < Random(8,16) do
 			CreateUnitHPR("uab2101", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T1 PD
-		    T1DefenceCount = T1DefenceCount + 1
+			T1DefenceCount = T1DefenceCount + 1
 		end
 		while T3DefenceAACount < Random(8,16) do
 			CreateUnitHPR("ueb2304", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T3 Anti Air
-		    T3DefenceAACount = T3DefenceAACount + 1
+			T3DefenceAACount = T3DefenceAACount + 1
 		end
 		while T3DefenceShieldCount < Random(2,4) do
 			CreateUnitHPR("uab4301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T3 Shield
-		    T3DefenceShieldCount = T3DefenceShieldCount + 1
+			T3DefenceShieldCount = T3DefenceShieldCount + 1
 		end
 		while T3PowerCount < Random(2,4) do
 			CreateUnitHPR("uab1301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)  --T3 Power
-		    T3PowerCount = T3PowerCount + 1
+			T3PowerCount = T3PowerCount + 1
 		end
 		CreateUnitHPR("uab3104", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --Radar
 
 		local paraactivator = CreateUnitHPR("uac1901", "NEUTRAL_CIVILIAN", Random(245,265), 25.984375, Random(245,265), 0,0,0) --Paragon Activator
 		paraactivator:SetReclaimable(false);
-        paraactivator:SetCanTakeDamage(false);
+		paraactivator:SetCanTakeDamage(false);
 
 		paraactivator.OldOnCaptured = paraactivator.OnCaptured;
 
-	    paraactivator.OnCaptured = function(self, captor)
+		paraactivator.OnCaptured = function(self, captor)
 			local newunit = ChangeUnitArmy(self,captor:GetArmy())
 			ForkThread(createparagon,captor:GetArmy())
 		end
@@ -580,19 +580,19 @@ createmiddleciv = function()
 			SetAlliance("NEUTRAL_CIVILIAN","ARMY_3","Enemy")
 		end
 		if(StartingPlayersExistance.ARMY_4 == true) then
-		 SetAlliance("NEUTRAL_CIVILIAN","ARMY_4","Enemy")
+			SetAlliance("NEUTRAL_CIVILIAN","ARMY_4","Enemy")
 		end
 		if(StartingPlayersExistance.ARMY_5 == true) then
-		 SetAlliance("NEUTRAL_CIVILIAN","ARMY_5","Enemy")
+			SetAlliance("NEUTRAL_CIVILIAN","ARMY_5","Enemy")
 		end
 		if(StartingPlayersExistance.ARMY_6 == true) then
-		 SetAlliance("NEUTRAL_CIVILIAN","ARMY_6","Enemy")
+			SetAlliance("NEUTRAL_CIVILIAN","ARMY_6","Enemy")
 		end
 		if(StartingPlayersExistance.ARMY_7 == true) then
-		 SetAlliance("NEUTRAL_CIVILIAN","ARMY_7","Enemy")
+			SetAlliance("NEUTRAL_CIVILIAN","ARMY_7","Enemy")
 		end
 		if(StartingPlayersExistance.ARMY_8 == true) then
-		 SetAlliance("NEUTRAL_CIVILIAN","ARMY_8","Enemy")
+			SetAlliance("NEUTRAL_CIVILIAN","ARMY_8","Enemy")
 		end
 	end
 end
@@ -670,7 +670,7 @@ DestroyMid = function()
 	local ExplosionCount = 0
 	while ExplosionCount< Random(10,20) do
 		local killit = CreateUnitHPR("ual0001", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
-	    killit:Kill()
+		killit:Kill()
 		WaitSeconds(Random(1,3))
 		ExplosionCount = ExplosionCount + 1
 	end
@@ -770,45 +770,45 @@ canttouchthis = function(unit)
 	unit:SetReclaimable(false);
 	unit:SetCanTakeDamage(false);
 	unit:SetDoNotTarget(true);
-    unit:SetCanBeKilled(false);
-    unit:SetCapturable(false);
-    unit:SetReclaimable(false);
+	unit:SetCanBeKilled(false);
+	unit:SetCapturable(false);
+	unit:SetReclaimable(false);
 end
 
 Survival = function()
 	if ScenarioInfo.Options.opt_gamemode == 2 then  --versus survival
-		local tblArmies = ListArmies()
-		for index, name in tblArmies do
-			if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
-				SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
-				SetAlliance(index, "ARMY_9", 'Ally')
-			elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
-				SetAlliance(index, "ARMY_9", 'Enemy')
-				SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
-			end
-			AddBuildRestriction(index, categories.AIR)
-			AddBuildRestriction(index, categories.WALL)
-			transportscoutonly()
+	local tblArmies = ListArmies()
+	for index, name in tblArmies do
+		if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
+			SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
+			SetAlliance(index, "ARMY_9", 'Ally')
+		elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
+			SetAlliance(index, "ARMY_9", 'Enemy')
+			SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
 		end
-		SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
-		createcivpararadar()
-		ForkThread(RunBattle)
+		AddBuildRestriction(index, categories.AIR)
+		AddBuildRestriction(index, categories.WALL)
+		transportscoutonly()
+	end
+	SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
+	createcivpararadar()
+	ForkThread(RunBattle)
 	end
 
 	if ScenarioInfo.Options.opt_gamemode > 2 then  --easy, normal, hard and insane survival
-		local tblArmies = ListArmies()
-		for index, name in tblArmies do
-			SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
-			SetAlliance(index, "ARMY_9", 'Enemy')
-			AddBuildRestriction(index, categories.AIR)
-			AddBuildRestriction(index, categories.WALL)
-		end
-		transportscoutonly()
-		SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
-		createcivpararadar()
-		ForkThread(RunBattle)
-		ForkThread(CommanderWaterPain)
-		ForkThread(NoHillsClimbingBitches)
+	local tblArmies = ListArmies()
+	for index, name in tblArmies do
+		SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
+		SetAlliance(index, "ARMY_9", 'Enemy')
+		AddBuildRestriction(index, categories.AIR)
+		AddBuildRestriction(index, categories.WALL)
+	end
+	transportscoutonly()
+	SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
+	createcivpararadar()
+	ForkThread(RunBattle)
+	ForkThread(CommanderWaterPain)
+	ForkThread(NoHillsClimbingBitches)
 	end
 end
 
@@ -955,8 +955,8 @@ SpawnerGroup2 = function(delay,frequency)
 	WaitSeconds(delay)
 	PrintText("Tech 2 inbound", 20, "ffffffff", 5, 'center')
 	while true do  --never gonna stop
-		ForkThread(Round2,delay)
-		WaitSeconds(frequency)
+	ForkThread(Round2,delay)
+	WaitSeconds(frequency)
 	end
 end
 
@@ -964,8 +964,8 @@ SpawnerGroup3 = function(delay,frequency)
 	WaitSeconds(delay)
 	PrintText("Tech 3 inbound", 20, "ffffffff", 5, 'center')
 	while true do  --never gonna stop
-		ForkThread(Round3,delay)
-		WaitSeconds(frequency)
+	ForkThread(Round3,delay)
+	WaitSeconds(frequency)
 	end
 end
 
@@ -973,8 +973,8 @@ SpawnerGroup4 = function(delay,frequency)
 	WaitSeconds(delay)
 	PrintText("Experimentals inbound", 20, "ffffffff", 5, 'center')
 	while true do  --never gonna stop
-		ForkThread(Round4,delay)
-		WaitSeconds(frequency)
+	ForkThread(Round4,delay)
+	WaitSeconds(frequency)
 	end
 end
 
@@ -982,8 +982,8 @@ SpawnerHunters = function(delay,frequency)
 	WaitSeconds(delay)
 	PrintText("Hunters inbound", 20, "ffffffff", 5, 'center')
 	while true do  --never gonna stop
-		ForkThread(Hunters,delay)
-		WaitSeconds(frequency)
+	ForkThread(Hunters,delay)
+	WaitSeconds(frequency)
 	end
 end
 
@@ -1070,8 +1070,8 @@ GetNearestCommander = function(unitgroup,range)
 	for index,unitattacker in unitgroup do
 		if not unitattacker:IsDead() then
 			unitattackerpos = unitattacker:GetPosition()
-            local brain = unitattacker:GetAIBrain()
-            CommandersInRange = brain:GetUnitsAroundPoint( categories.COMMAND, unitattackerpos, range, 'Enemy' )
+			local brain = unitattacker:GetAIBrain()
+			CommandersInRange = brain:GetUnitsAroundPoint( categories.COMMAND, unitattackerpos, range, 'Enemy' )
 		end
 	end
 	if CommandersInRange then
@@ -1395,9 +1395,9 @@ SpawnARTY = function(hpincreasedelay)
 	local transport
 
 	if TeamToAttack == 1 then --ARMY_9
-		TransportEnd = TransportDestinations.SouthernAttackerEnd
-		AttackerARMY = "ARMY_9"
-		transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
+	TransportEnd = TransportDestinations.SouthernAttackerEnd
+	AttackerARMY = "ARMY_9"
+	transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
 	elseif TeamToAttack == 2 then
 		TransportEnd = TransportDestinations.NorthernAttackerEnd
 		AttackerARMY = "NEUTRAL_CIVILIAN"
@@ -1452,9 +1452,9 @@ SpawnYthotha = function(hpincreasedelay)
 	local transport
 
 	if TeamToAttack == 1 then --ARMY_9
-		TransportEnd = TransportDestinations.SouthernAttackerEnd
-		AttackerARMY = "ARMY_9"
-		transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
+	TransportEnd = TransportDestinations.SouthernAttackerEnd
+	AttackerARMY = "ARMY_9"
+	transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
 	elseif TeamToAttack == 2 then
 		TransportEnd = TransportDestinations.NorthernAttackerEnd
 		AttackerARMY = "NEUTRAL_CIVILIAN"
@@ -1511,15 +1511,15 @@ SpawnBombers = function(hpincreasedelay)
 	local unit8
 
 	if TeamToAttack == 1 then --ARMY_9
-		AttackerARMY = "ARMY_9"
-		unit1 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit2 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit3 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit4 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit5 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit6 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit7 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit8 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	AttackerARMY = "ARMY_9"
+	unit1 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit2 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit3 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit4 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit5 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit6 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit7 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit8 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
 	elseif TeamToAttack == 2 then
 		AttackerARMY = "NEUTRAL_CIVILIAN"
 		unit1 = CreateUnitHPR("uea0103", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
@@ -1562,15 +1562,15 @@ SpawnT1Gunships = function(hpincreasedelay)
 	local unit8
 
 	if TeamToAttack == 1 then --ARMY_9
-		AttackerARMY = "ARMY_9"
-		unit1 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit2 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit3 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit4 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit5 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit6 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit7 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit8 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	AttackerARMY = "ARMY_9"
+	unit1 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit2 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit3 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit4 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit5 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit6 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit7 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit8 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
 	elseif TeamToAttack == 2 then
 		AttackerARMY = "NEUTRAL_CIVILIAN"
 		unit1 = CreateUnitHPR("xra0105", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
@@ -1613,15 +1613,15 @@ SpawnT2Bombers = function(hpincreasedelay)
 	local unit8
 
 	if TeamToAttack == 1 then --ARMY_9
-		AttackerARMY = "ARMY_9"
-		unit1 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit2 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit3 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit4 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit5 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit6 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit7 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit8 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	AttackerARMY = "ARMY_9"
+	unit1 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit2 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit3 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit4 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit5 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit6 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit7 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit8 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
 	elseif TeamToAttack == 2 then
 		AttackerARMY = "NEUTRAL_CIVILIAN"
 		unit1 = CreateUnitHPR("dea0202", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
@@ -1664,15 +1664,15 @@ SpawnT3Bombers = function(hpincreasedelay)
 	local unit8
 
 	if TeamToAttack == 1 then --ARMY_9
-		AttackerARMY = "ARMY_9"
-		unit1 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit2 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit3 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit4 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit5 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit6 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit7 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit8 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	AttackerARMY = "ARMY_9"
+	unit1 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit2 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit3 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit4 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit5 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit6 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit7 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit8 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
 	elseif TeamToAttack == 2 then
 		AttackerARMY = "NEUTRAL_CIVILIAN"
 		unit1 = CreateUnitHPR("uea0304", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
@@ -1715,15 +1715,15 @@ SpawnT3Gunships = function(hpincreasedelay)
 	local unit8
 
 	if TeamToAttack == 1 then --ARMY_9
-		AttackerARMY = "ARMY_9"
-		unit1 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit2 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit3 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit4 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit5 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit6 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit7 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-		unit8 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	AttackerARMY = "ARMY_9"
+	unit1 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit2 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit3 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit4 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit5 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit6 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit7 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+	unit8 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
 	elseif TeamToAttack == 2 then
 		AttackerARMY = "NEUTRAL_CIVILIAN"
 		unit1 = CreateUnitHPR("uea0305", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
@@ -1767,15 +1767,15 @@ SpawnT2Destroyers = function(hpincreasedelay)
 	local unit8
 
 	if TeamToAttack == 1 then --ARMY_9
-		AttackerARMY = "ARMY_9"
-		unit1 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
-		unit2 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
-		unit3 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
-		unit4 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
-		unit5 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
-		unit6 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
-		unit7 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
-		unit8 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
+	AttackerARMY = "ARMY_9"
+	unit1 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
+	unit2 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
+	unit3 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
+	unit4 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
+	unit5 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
+	unit6 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
+	unit7 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
+	unit8 = CreateUnitHPR("urs0201", AttackerARMY, Random(480,490), 25.9844, Random(20,30),0,0,0)
 	elseif TeamToAttack == 2 then
 		AttackerARMY = "NEUTRAL_CIVILIAN"
 		unit1 = CreateUnitHPR("urs0201", AttackerARMY, Random(20,30), 25.9844, Random(480,490),0,0,0)
@@ -1910,16 +1910,16 @@ Hunters = function(hpincreasedelay)
 	end
 
 	if AttackCommander == false then --team has no commander
-		WaitSeconds(3)
-		for index, unit in unit_list do
-			ForkThread(spawnOutEffect,unit)
-		end
+	WaitSeconds(3)
+	for index, unit in unit_list do
+		ForkThread(spawnOutEffect,unit)
+	end
 	else
 		IssueAttack(unit_list,AttackCommander)
 
 
 		while not AttackCommander:IsDead() do
-		WaitSeconds(3)
+			WaitSeconds(3)
 		end
 		PrintText("Bounty " .. getUsername(AttackTeam) .. " Collected" , 20, "ffffffff", 5, 'center');
 		WaitSeconds(6)
@@ -1931,83 +1931,83 @@ end
 
 CommanderUpgrades = function(unit)
 	local unitid = unit:GetUnitId()
-		if unitid == "ual0001" then 							--Aeon Armored Command Unit
-			unit:CreateEnhancement("Shield")
-			unit:CreateEnhancement("ShieldHeavy")
-			unit:CreateEnhancement("HeatSink")
-			unit:CreateEnhancement("CrysalisBeam")
-		elseif unitid == "url0001" then 						--Cybran Armored Command Unit
-			unit:CreateEnhancement("StealthGenerator")
-			unit:CreateEnhancement("CloakingGenerator")
-			unit:CreateEnhancement("CoolingUpgrade")
-			unit:CreateEnhancement("MicrowaveLaserGenerator")
-		elseif unitid == "uel0001" then 						--UEF Armored Command Unit
-			unit:CreateEnhancement("DamageStablization")
-			unit:CreateEnhancement("HeavyAntiMatterCannon")
-			unit:CreateEnhancement("Shield")
-		elseif unitid == "xsl0001" then 						--Seraphim Armored Command Unit
-			unit:CreateEnhancement("BlastAttack")
-			unit:CreateEnhancement("DamageStabilization")
-			unit:CreateEnhancement("DamageStabilizationAdvanced")
-			unit:CreateEnhancement("RateOfFire")
-		elseif unitid == "eal0001" then 						--Aeon Blackops Armored Command Unit
-			unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-			unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-			unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-			unit:CreateEnhancement("EXBeamPhason")
-			unit:CreateEnhancement("EXImprovedCoolingSystem")
-			unit:CreateEnhancement("EXPowerBooster")
-			unit:CreateEnhancement("EXShieldBattery")
-			unit:CreateEnhancement("EXActiveShielding")
-			unit:CreateEnhancement("EXImprovedShieldBattery")
-		elseif unitid == "erl0001" then 						--Cybran Blackops Armored Command Unit
-			unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-			unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-			unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-			unit:CreateEnhancement("EXMasor")
-			unit:CreateEnhancement("EXImprovedCoolingSystem")
-			unit:CreateEnhancement("EXAdvancedEmitterArray")
-			unit:CreateEnhancement("EXArmorPlating")
-			unit:CreateEnhancement("EXStructuralIntegrity")
-			unit:CreateEnhancement("EXCompositeMaterials")
-		elseif unitid == "eel0001" then 						--UEF Blackops Armored Command Unit
-			unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-			unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-			unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-			unit:CreateEnhancement("EXAntiMatterCannon")
-			unit:CreateEnhancement("EXImprovedContainmentBottle")
-			unit:CreateEnhancement("EXPowerBooster")
-			unit:CreateEnhancement("EXShieldBattery")
-			unit:CreateEnhancement("EXActiveShielding")
-			unit:CreateEnhancement("EXImprovedShieldBattery")
-		elseif unitid == "esl0001" then 						--Seraphim Blackops Armored Command Unit
-			unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-			unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-			unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-			unit:CreateEnhancement("EXCannonBigBall")
-			unit:CreateEnhancement("EXImprovedContainmentBottle")
-			unit:CreateEnhancement("EXPowerBooster")
-			unit:CreateEnhancement("EXL1Lambda")
-			unit:CreateEnhancement("EXL2Lambda")
-			unit:CreateEnhancement("EXL3Lambda")
-		elseif unitid == "ual0301" then 						--Aeon T3 Support Armored Command Unit
-		unit:CreateEnhancement("Shield") 	 					--back
-		unit:CreateEnhancement("ShieldHeavy") 	 				--back
-		unit:CreateEnhancement("StabilitySuppressant")  		--right
-		unit:CreateEnhancement("EngineeringFocusingModule")  	--left
+	if unitid == "ual0001" then 							--Aeon Armored Command Unit
+	unit:CreateEnhancement("Shield")
+	unit:CreateEnhancement("ShieldHeavy")
+	unit:CreateEnhancement("HeatSink")
+	unit:CreateEnhancement("CrysalisBeam")
+	elseif unitid == "url0001" then 						--Cybran Armored Command Unit
+	unit:CreateEnhancement("StealthGenerator")
+	unit:CreateEnhancement("CloakingGenerator")
+	unit:CreateEnhancement("CoolingUpgrade")
+	unit:CreateEnhancement("MicrowaveLaserGenerator")
+	elseif unitid == "uel0001" then 						--UEF Armored Command Unit
+	unit:CreateEnhancement("DamageStablization")
+	unit:CreateEnhancement("HeavyAntiMatterCannon")
+	unit:CreateEnhancement("Shield")
+	elseif unitid == "xsl0001" then 						--Seraphim Armored Command Unit
+	unit:CreateEnhancement("BlastAttack")
+	unit:CreateEnhancement("DamageStabilization")
+	unit:CreateEnhancement("DamageStabilizationAdvanced")
+	unit:CreateEnhancement("RateOfFire")
+	elseif unitid == "eal0001" then 						--Aeon Blackops Armored Command Unit
+	unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
+	unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
+	unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
+	unit:CreateEnhancement("EXBeamPhason")
+	unit:CreateEnhancement("EXImprovedCoolingSystem")
+	unit:CreateEnhancement("EXPowerBooster")
+	unit:CreateEnhancement("EXShieldBattery")
+	unit:CreateEnhancement("EXActiveShielding")
+	unit:CreateEnhancement("EXImprovedShieldBattery")
+	elseif unitid == "erl0001" then 						--Cybran Blackops Armored Command Unit
+	unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
+	unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
+	unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
+	unit:CreateEnhancement("EXMasor")
+	unit:CreateEnhancement("EXImprovedCoolingSystem")
+	unit:CreateEnhancement("EXAdvancedEmitterArray")
+	unit:CreateEnhancement("EXArmorPlating")
+	unit:CreateEnhancement("EXStructuralIntegrity")
+	unit:CreateEnhancement("EXCompositeMaterials")
+	elseif unitid == "eel0001" then 						--UEF Blackops Armored Command Unit
+	unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
+	unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
+	unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
+	unit:CreateEnhancement("EXAntiMatterCannon")
+	unit:CreateEnhancement("EXImprovedContainmentBottle")
+	unit:CreateEnhancement("EXPowerBooster")
+	unit:CreateEnhancement("EXShieldBattery")
+	unit:CreateEnhancement("EXActiveShielding")
+	unit:CreateEnhancement("EXImprovedShieldBattery")
+	elseif unitid == "esl0001" then 						--Seraphim Blackops Armored Command Unit
+	unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
+	unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
+	unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
+	unit:CreateEnhancement("EXCannonBigBall")
+	unit:CreateEnhancement("EXImprovedContainmentBottle")
+	unit:CreateEnhancement("EXPowerBooster")
+	unit:CreateEnhancement("EXL1Lambda")
+	unit:CreateEnhancement("EXL2Lambda")
+	unit:CreateEnhancement("EXL3Lambda")
+	elseif unitid == "ual0301" then 						--Aeon T3 Support Armored Command Unit
+	unit:CreateEnhancement("Shield") 	 					--back
+	unit:CreateEnhancement("ShieldHeavy") 	 				--back
+	unit:CreateEnhancement("StabilitySuppressant")  		--right
+	unit:CreateEnhancement("EngineeringFocusingModule")  	--left
 	elseif unitid == "url0301" then --Cybran T3 Support Armored Command Unit
-		unit:CreateEnhancement("StealthGenerator")  			--back
-		unit:CreateEnhancement("CloakingGenerator")  			--back
-		unit:CreateEnhancement("EMPCharge")						--left
-		unit:CreateEnhancement("FocusConvertor")				--right
+	unit:CreateEnhancement("StealthGenerator")  			--back
+	unit:CreateEnhancement("CloakingGenerator")  			--back
+	unit:CreateEnhancement("EMPCharge")						--left
+	unit:CreateEnhancement("FocusConvertor")				--right
 	elseif unitid == "uel0301" then --UEF T3 Support Armored Command Unit
-		unit:CreateEnhancement("AdvancedCoolingUpgrade")		--left
-		unit:CreateEnhancement("HighExplosiveOrdnance")			--right
-		unit:CreateEnhancement("Shield")						--back
+	unit:CreateEnhancement("AdvancedCoolingUpgrade")		--left
+	unit:CreateEnhancement("HighExplosiveOrdnance")			--right
+	unit:CreateEnhancement("Shield")						--back
 	elseif unitid == "xsl0301" then --Seraphim T3 Support Armored Command Unit
-		unit:CreateEnhancement("DamageStabilization")			--left
-		unit:CreateEnhancement("Shield")						--back
-		unit:CreateEnhancement("Overcharge")					--right
+	unit:CreateEnhancement("DamageStabilization")			--left
+	unit:CreateEnhancement("Shield")						--back
+	unit:CreateEnhancement("Overcharge")					--right
 	end
 end
 
@@ -2047,16 +2047,16 @@ HeathMulti = function(unitgroup,hpincreasedelay)
 	local vetlevel
 
 
-		if ScenarioInfo.Options.opt_gamemode == 4 then --normal
-			difficulty_multi = 0.25
-			vetlevel = 1
-		elseif ScenarioInfo.Options.opt_gamemode == 5 then --hard
-			difficulty_multi = 1
-			vetlevel = 3
-		elseif ScenarioInfo.Options.opt_gamemode == 6 then --insane
-			difficulty_multi = 4
-			vetlevel = 5
-		end
+	if ScenarioInfo.Options.opt_gamemode == 4 then --normal
+	difficulty_multi = 0.25
+	vetlevel = 1
+	elseif ScenarioInfo.Options.opt_gamemode == 5 then --hard
+	difficulty_multi = 1
+	vetlevel = 3
+	elseif ScenarioInfo.Options.opt_gamemode == 6 then --insane
+	difficulty_multi = 4
+	vetlevel = 5
+	end
 
 	if tvEn == false then
 		hp_multi = (current_time - hpincreasedelay) / 100 * difficulty_multi
@@ -2078,37 +2078,37 @@ HeathMulti = function(unitgroup,hpincreasedelay)
 end
 
 allUnits = function()
-     local xmapsize = ScenarioInfo.size[1]
-     local ymapsize = ScenarioInfo.size[2]
-     local mapRect = {x0 = 0, x1 = xmapsize, y0 = 0, y1 = ymapsize}
-     units = GetUnitsInRect(mapRect)
-    return units
+	local xmapsize = ScenarioInfo.size[1]
+	local ymapsize = ScenarioInfo.size[2]
+	local mapRect = {x0 = 0, x1 = xmapsize, y0 = 0, y1 = ymapsize}
+	units = GetUnitsInRect(mapRect)
+	return units
 end
 
 killUnitsOnLayer = function(layers)
-   --get all units on the map
-   local units = allUnits()
-   --if there are units on the map
-   if units and table.getn(units) > 0 then
-      for index,unit in units do
-         local delete = false
+	--get all units on the map
+	local units = allUnits()
+	--if there are units on the map
+	if units and table.getn(units) > 0 then
+		for index,unit in units do
+			local delete = false
 
-         --is the unit on one of the specified layers?
-         for index,layer in layers do
-            if unit:GetCurrentLayer() == layer and EntityCategoryContains(categories.COMMAND, unit) then
-               delete = true
-            end
-         end
-
-         if  delete == true then
-            if unit and not unit:IsDead() then
-				local pos = unit:GetPosition()
-				unit:SetHealth(unit ,unit:GetHealth() - (unit:GetMaxHealth() / 10))
-				if unit:GetHealth() < 10 then
-					unit:Kill()
+			--is the unit on one of the specified layers?
+			for index,layer in layers do
+				if unit:GetCurrentLayer() == layer and EntityCategoryContains(categories.COMMAND, unit) then
+					delete = true
 				end
-            end
-        end
+			end
+
+			if  delete == true then
+				if unit and not unit:IsDead() then
+					local pos = unit:GetPosition()
+					unit:SetHealth(unit ,unit:GetHealth() - (unit:GetMaxHealth() / 10))
+					if unit:GetHealth() < 10 then
+						unit:Kill()
+					end
+				end
+			end
 		end
 	end
 end
@@ -2116,7 +2116,7 @@ end
 CommanderWaterPain = function()
 	while true do
 		WaitSeconds(2)
-        killUnitsOnLayer({'Water','Seabed','Sub'})
+		killUnitsOnLayer({'Water','Seabed','Sub'})
 	end
 end
 
@@ -2162,48 +2162,48 @@ end
 
 --given a unit returns the army
 scnArmy = function(unit)
-   local armyIndex = unit:GetArmy()
-   return indexToArmy(armyIndex)
+	local armyIndex = unit:GetArmy()
+	return indexToArmy(armyIndex)
 end
 
 --given an army index returns an army
 indexToArmy = function(armyIndex)
-   local army = ListArmies()[armyIndex]
-   return army
+	local army = ListArmies()[armyIndex]
+	return army
 end
 
 spawnEffect = function(unit)
-   unit:PlayUnitSound('TeleportStart')
-   unit:PlayUnitAmbientSound('TeleportLoop')
-   WaitSeconds( 0.1 )
-   unit:PlayTeleportInEffects()
-   WaitSeconds( 0.1 )
-   unit:StopUnitAmbientSound('TeleportLoop')
-   unit:PlayUnitSound('TeleportEnd')
+	unit:PlayUnitSound('TeleportStart')
+	unit:PlayUnitAmbientSound('TeleportLoop')
+	WaitSeconds( 0.1 )
+	unit:PlayTeleportInEffects()
+	WaitSeconds( 0.1 )
+	unit:StopUnitAmbientSound('TeleportLoop')
+	unit:PlayUnitSound('TeleportEnd')
 end
 
 spawnOutEffect = function(unit)
-   unit:PlayUnitSound('TeleportStart')
-   unit:PlayUnitAmbientSound('TeleportLoop')
-   WaitSeconds( 0.1 )
-   unit:PlayTeleportInEffects()
-   WaitSeconds( 0.1 )
-   unit:StopUnitAmbientSound('TeleportLoop')
-   unit:PlayUnitSound('TeleportEnd')
-   unit:Destroy()
+	unit:PlayUnitSound('TeleportStart')
+	unit:PlayUnitAmbientSound('TeleportLoop')
+	WaitSeconds( 0.1 )
+	unit:PlayTeleportInEffects()
+	WaitSeconds( 0.1 )
+	unit:StopUnitAmbientSound('TeleportLoop')
+	unit:PlayUnitSound('TeleportEnd')
+	unit:Destroy()
 end
 
 function IsTotalVetEnabled()
-    local ai = GetArmyBrain("ARMY_9")
-	    for k,unit  in ai:GetListOfUnits( categories.STRUCTURE, false ) do
-        if unit:GetBlueprint().Economy.xpValue == nil then
-            LOG('TVG Disabled')
-            return false
-        else
+	local ai = GetArmyBrain("ARMY_9")
+	for k,unit  in ai:GetListOfUnits( categories.STRUCTURE, false ) do
+		if unit:GetBlueprint().Economy.xpValue == nil then
+			LOG('TVG Disabled')
+			return false
+		else
 			LOG('TVG Enabled')
 			return true
 		end
-    end
+	end
 end
 
 function IsBLackOpsAcusEnabled()
@@ -2211,7 +2211,7 @@ function IsBLackOpsAcusEnabled()
 	if bobp.Economy.BuildTime  == nil then
 		LOG('Blackops Disabled')
 		return false
-    else
+	else
 		LOG('Blackops Enabled')
 		return true
 	end
@@ -2219,7 +2219,7 @@ end
 
 function NoHillsClimbingBitches()
 	local police1 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 493.739227, 65.536545, 493.537750, 0.000000, 0.671952, 0.000000)
-    local police2 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 477.215668, 65.875885, 477.170502, 0.000000, 0.733038, 0.000000)
+	local police2 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 477.215668, 65.875885, 477.170502, 0.000000, 0.733038, 0.000000)
 	local police3 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 438.233734, 63.601822, 494.937134, 0.000000, -0.497419, 0.000000)
 	local police4 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 495.536011, 62.919582, 438.201752, 0.000000, 2.487095, 0.000000)
 
@@ -2314,9 +2314,9 @@ SendUnitsToPlayer = function(unit, team, player, hpincreasedelay)
 	local transport
 
 	if TeamToAttack == 1 then --ARMY_9
-		TransportEnd = TransportDestinations.SouthernAttackerEnd
-		AttackerARMY = "ARMY_9"
-		transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
+	TransportEnd = TransportDestinations.SouthernAttackerEnd
+	AttackerARMY = "ARMY_9"
+	transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
 	elseif TeamToAttack == 2 then
 		TransportEnd = TransportDestinations.NorthernAttackerEnd
 		AttackerARMY = "NEUTRAL_CIVILIAN"
@@ -2377,7 +2377,7 @@ function PlayerToLoc(team, player)
 			return AttackLocations.Team1.Player4
 		end
 	elseif team == 2 then
-			if player == 1 then
+		if player == 1 then
 			return AttackLocations.Team2.Player1
 		elseif player == 2 then
 			return AttackLocations.Team2.Player2
@@ -2464,20 +2464,20 @@ function ArmyToAggro(army)
 	if army == "ARMY_1" then
 		return Aggro.Team1.Player1
 	elseif army == "ARMY_2" then
-		return Aggro.Team1.Player2 
+		return Aggro.Team1.Player2
 	elseif army == "ARMY_3" then
-		return Aggro.Team1.Player3 
+		return Aggro.Team1.Player3
 	elseif army == "ARMY_4" then
-		return Aggro.Team1.Player4 
+		return Aggro.Team1.Player4
 	elseif army == "ARMY_5" then
-		return Aggro.Team2.Player1 
+		return Aggro.Team2.Player1
 	elseif army == "ARMY_6" then
 		return Aggro.Team2.Player2
 	elseif army == "ARMY_7" then
 		return Aggro.Team2.Player3
 	elseif army == "ARMY_8" then
 		return Aggro.Team2.Player4
-	end 
+	end
 end
 
 function AgressionTimer(aggrolevel)
@@ -2504,7 +2504,7 @@ function AgressionTimer(aggrolevel)
 		timenum = 8
 	elseif aggrolevel > 100 then
 		timenum = 6
-	end	
+	end
 	return timenum
 end
 
@@ -2517,19 +2517,19 @@ function ArmyToPlayerTeam(army)
 	elseif army == "ARMY_3" then
 		data = { Team = 1, Player = 3 }
 	elseif army == "ARMY_4" then
-		data = { Team = 1, Player = 4 } 
+		data = { Team = 1, Player = 4 }
 	elseif army == "ARMY_5" then
-		data = { Team = 2, Player = 1 } 
+		data = { Team = 2, Player = 1 }
 	elseif army == "ARMY_6" then
 		data = { Team = 2, Player = 2 }
 	elseif army == "ARMY_7" then
 		data = { Team = 2, Player = 3 }
 	elseif army == "ARMY_8" then
 		data = { Team = 2, Player = 4 }
-	end 	
+	end
 	return data
 end
-	
+
 function GetRandomUnit(tech)
 	if tech == 1 then
 		return ScenarioFramework.GetRandomEntry(TableUnitID.Tech1)
@@ -2541,9 +2541,9 @@ function GetRandomUnit(tech)
 		end
 	elseif tech == 3 then
 		if (ScenarioInfo.Options.opt_snipers == 0) then
-				return ScenarioFramework.GetRandomEntry(TableUnitID.Tech3)
+			return ScenarioFramework.GetRandomEntry(TableUnitID.Tech3)
 		else
-				return ScenarioFramework.GetRandomEntry(TableUnitID.Tech3NoSniper)
+			return ScenarioFramework.GetRandomEntry(TableUnitID.Tech3NoSniper)
 		end
 	elseif tech == 4 then
 		if (ScenarioInfo.Options.opt_t3arty == 0) then
