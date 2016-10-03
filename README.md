@@ -40,8 +40,9 @@ made by ozonex.
 
 This version of the map includes files from the FinalRushPro3 mod, which was created by CommanderChronicles.
 
-Changes in version 5.x are by Jeroen De Dauw. The version 5 preview image was created by JuiceBoy.
+Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview image was created by JuiceBoy.
 
 [FAF]: http://www.faforever.com/
 [download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5
+[Entropy]: https://entropywins.wtf/
