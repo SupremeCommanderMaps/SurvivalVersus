@@ -1,18 +1,31 @@
 # Final Rush Pro 5
 <img align="right" src="preview.jpg">
-A survival map for [Supreme Commander: Forged Alliance Forever](http://www.faforever.com).
+A survival map for [Supreme Commander: Forged Alliance Forever][FAF].
 
 ## New in version 5
 
 (Changes since version 4.0007)
 
-* Made the Auto Reclaim setting work with recent versions of FAF
-* Added Spawn Delay setting
-* Fixed the MML restriction setting
-* Fixed the T3 Mobile Arty restriction setting
-* Fixed the Sniper Bot restriction setting
-* Added additional possible values to the Auto Reclaim setting
-* Added additional possible values to the Tech Level Delay setting
+* Made the Auto Reclaim option work with recent versions of FAF
+* Added Spawn Delay option
+* Fixed the MML restriction option
+* Fixed the T3 Mobile Arty restriction option
+* Fixed the Sniper Bot restriction option
+* Added additional possible values to the Auto Reclaim option
+* Added additional possible values to the Tech Level Delay option
 * Dropped Final Rush UI and dependence on the FinalRushPro3 mod
-* Fixed descriptions of the 7 and 9 pre-build tent options
-* Improved the wording of all setting titles and descriptions
+* Improved the wording of all option titles and descriptions
+
+## Installation
+
+* Download the [latest version of the map][download]
+* Extract the zip and rename the directory from `FinalRushPro5-master` to `Final Rush Pro 5`
+* Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
+
+Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
+Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
+of the Vampire mod.
+
+[FAF]: http://www.faforever.com/
+[download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
+[GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5
