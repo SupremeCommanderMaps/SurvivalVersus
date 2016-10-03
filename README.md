@@ -4,6 +4,8 @@ A survival map for [Supreme Commander: Forged Alliance Forever][FAF].
 
 ## New in version 5
 
+This is an alpha version, no stable release is available yet.
+
 (Changes since version 4.0007)
 
 * Made the Auto Reclaim option work with recent versions of FAF
@@ -25,6 +27,11 @@ A survival map for [Supreme Commander: Forged Alliance Forever][FAF].
 Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
 Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
 of the Vampire mod.
+
+## Updates and contributing
+
+You can find the latest version of the map on the [Final Rush Pro 5 GitHub project][GitHub], which is
+also the place where you can file issues, post feature request, and submit patches.
 
 [FAF]: http://www.faforever.com/
 [download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
