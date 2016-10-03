@@ -2,6 +2,8 @@
 
 A survival map for [Supreme Commander: Forged Alliance Forever](http://www.faforever.com).
 
+<img align="right" src="preview.jpg">
+
 ## New in version 5
 
 (Changes since version 4.0007)
