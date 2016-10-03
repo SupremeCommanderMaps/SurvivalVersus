@@ -1,6 +1,6 @@
-options = 
+options =
 {
-	{ 
+	{
 		default = 1,
 		label = "Game Mode",
 		help = "Game Mode",
@@ -140,11 +140,11 @@ options =
 		default = 1,
 		label = "Sniper Bots",
 		help = "Sniper Bots",
-		key = 'opt_snipers', 
+		key = 'opt_snipers',
 		pref = 'opt_snipers',
-		values = { 
-			{text = "Enabled", help = "Disabled", key = 0, }, 
+		values = {
+			{text = "Enabled", help = "Disabled", key = 0, },
 			{text = "Disabled", help = "Disabled", key = 1, },
-		}, 
+		},
 	},
 };
