@@ -38,6 +38,8 @@ also the place where you can file issues, post feature request, and submit patch
 The authors of the original map are Commander-Chronicles, TV-Nobby and Diegobah. Fixes where later
 made by ozonex.
 
+This version of the map includes files from the FinalRushPro3 mod, which was created by CommanderChronicles.
+
 Changes in version 5.x are by Jeroen De Dauw. The version 5 preview image was created by JuiceBoy.
 
 [FAF]: http://www.faforever.com/
