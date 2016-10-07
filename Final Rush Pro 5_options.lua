@@ -120,7 +120,7 @@ options =
 	},
 	{
 		default = 1,
-		label = "Tech Level Delay",
+		label = "Player Tech Delay",
 		help = "Players start with only tech 1. Higher tech tiers get unlocked at the specified interval. This does not effect the spawned enemy units.",
 		key = 'opt_timeunlocked',
 		pref = 'opt_timeunlocked',
@@ -138,7 +138,7 @@ options =
 	},
 	{
 		default = 1,
-		label = "T2 MMLs",
+		label = "Enemy T2 MMLs",
 		help = "T2 MMLs",
 		key = 'opt_t2tml',
 		pref = 'opt_t2tml',
@@ -149,7 +149,7 @@ options =
 	},
 	{
 		default = 1,
-		label = "Mobile T3 Artillery",
+		label = "Enemy Mobile T3 Artillery",
 		help = "Mobile T3 Artillery",
 		key = 'opt_t3arty',
 		pref = 'opt_t3arty',
@@ -160,7 +160,7 @@ options =
 	},
 	{
 		default = 1,
-		label = "Sniper Bots",
+		label = "Enemy Sniper Bots",
 		help = "Sniper Bots",
 		key = 'opt_snipers',
 		pref = 'opt_snipers',
