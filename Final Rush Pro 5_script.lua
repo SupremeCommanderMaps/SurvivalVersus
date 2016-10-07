@@ -114,7 +114,11 @@ function OnPopulate()
 	spawnlighthouse()
 	unlockovertime()
 	createmiddleciv()
-	Survival()
+
+	if ScenarioInfo.Options.opt_gamemode > 1 then
+		Survival()
+	end
+
 	applyPlayerAirRestriction()
 	TeleportCheck()
 	ForkThread(Info)
@@ -543,9 +547,7 @@ function applyPlayerAirRestriction()
 end
 
 Survival = function()
-	if ScenarioInfo.Options.opt_gamemode > 1 then  --all survival
-		disableWalls()
-	end
+	disableWalls()
 
 	if ScenarioInfo.Options.opt_gamemode == 2 then  --versus survival
 		local tblArmies = ListArmies()
@@ -560,8 +562,6 @@ Survival = function()
 		end
 
 		SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
-		createcivpararadar()
-		ForkThread(RunBattle)
 	end
 
 	if ScenarioInfo.Options.opt_gamemode > 2 then  --easy, normal, hard and insane survival
@@ -571,11 +571,13 @@ Survival = function()
 			SetAlliance(index, "ARMY_9", 'Enemy')
 		end
 		SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
-		createcivpararadar()
-		ForkThread(RunBattle)
+
 		ForkThread(CommanderWaterPain)
 		ForkThread(NoHillsClimbingBitches)
 	end
+
+	createcivpararadar()
+	ForkThread(RunBattle)
 end
 
 function CreateStartingPlayersExistance()
