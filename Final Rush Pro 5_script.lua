@@ -129,6 +129,7 @@ function OnPopulate()
 	unlockovertime()
 	createmiddleciv()
 	Survival()
+	applyPlayerAirRestriction()
 	TeleportCheck()
 	ForkThread(Info)
 
@@ -778,7 +779,27 @@ canttouchthis = function(unit)
 	unit:SetReclaimable(false);
 end
 
+function disableWalls()
+	for armyIndex, armyName in ListArmies() do
+		AddBuildRestriction(armyIndex, categories.WALL)
+	end
+end
+
+function applyPlayerAirRestriction()
+	if (ScenarioInfo.Options.opt_FinalRushAir == 0) then
+		for armyIndex, armyName in ListArmies() do
+			AddBuildRestriction(armyIndex, categories.AIR)
+		end
+	end
+
+	transportscoutonly()
+end
+
 Survival = function()
+	if ScenarioInfo.Options.opt_gamemode > 1 then  --all survival
+		disableWalls()
+	end
+
 	if ScenarioInfo.Options.opt_gamemode == 2 then  --versus survival
 		local tblArmies = ListArmies()
 		for index, name in tblArmies do
@@ -789,13 +810,6 @@ Survival = function()
 				SetAlliance(index, "ARMY_9", 'Enemy')
 				SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
 			end
-
-			if (ScenarioInfo.Options.opt_FinalRushAir < 2) then
-				AddBuildRestriction(index, categories.AIR)
-			end
-
-			AddBuildRestriction(index, categories.WALL)
-			transportscoutonly()
 		end
 
 		SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
@@ -808,10 +822,7 @@ Survival = function()
 		for index, name in tblArmies do
 			SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
 			SetAlliance(index, "ARMY_9", 'Enemy')
-			AddBuildRestriction(index, categories.AIR)
-			AddBuildRestriction(index, categories.WALL)
 		end
-		transportscoutonly()
 		SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
 		createcivpararadar()
 		ForkThread(RunBattle)
