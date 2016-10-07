@@ -56,7 +56,7 @@ options =
 	},
 	{
 		default = 1,
-		label = "Spawn delay",
+		label = "Spawn Delay",
 		help = "Extra time before the first enemies start spawning",
 		key = 'opt_FinalRushSpawnDelay',
 		pref = 'opt_FinalRushSpawnDelay',
@@ -74,6 +74,17 @@ options =
 		},
 	},
 	{
+		default = 2,
+		label = "Aggression Tracking",
+		help = "Aggressive players get more units, especially artillery if it is on",
+		key = 'opt_FinalRushAggression',
+		pref = 'opt_FinalRushAggression',
+		values = {
+			{text = "Disabled", help = "Disabled", key = 0, },
+			{text = "Enabled", help = "Enabled", key = 1, },
+		},
+	},
+	{
 		default = 1,
 		label = "Air Scouts and Transports",
 		help = "Air is disabled. This option allows enabling just scouts and transports.",
@@ -84,7 +95,6 @@ options =
 			{text = "Enabled", help = "Enabled", key = 1, },
 		},
 	},
-
 	{
 		default = 1,
 		label = "Player Teleportation",

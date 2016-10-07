@@ -101,6 +101,9 @@ function OnPopulate()
 	if (ScenarioInfo.Options.opt_FinalRushSpawnDelay == nil) then
 		ScenarioInfo.Options.opt_FinalRushSpawnDelay = 0;
 	end
+	if (ScenarioInfo.Options.opt_FinalRushAggression == nil) then
+		ScenarioInfo.Options.opt_FinalRushAggression = 1;
+	end
 	if (ScenarioInfo.Options.opt_transcount == nil) then
 		ScenarioInfo.Options.opt_transcount = 0;
 	end
@@ -136,8 +139,13 @@ function OnPopulate()
 		ForkThread(import('/maps/Final Rush Pro 5/lua/SyncData.lua').CollectDataSync)
 	end
 
-	-- This looks like it is not needed; no side effects in file appart from local declarations
-	ForkThread(import('/maps/Final Rush Pro 5/lua/Aggression.lua').Aggression)
+	if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
+		LOG("AGGRO ENABLED");
+		-- This looks like it is not needed; no side effects in file appart from local declarations
+		ForkThread(import('/maps/Final Rush Pro 5/lua/Aggression.lua').Aggression)
+	else
+		LOG("AGGRO DISABLED");
+	end
 end
 
 function OnStart(self)
@@ -926,8 +934,11 @@ RunBattle = function()
 	t4spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + t4spawndelay
 	hunterdelay  = ScenarioInfo.Options.opt_FinalRushSpawnDelay + hunterdelay
 
-	ForkThread(AggressionCheck)
-	AggressionSpawner(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+	if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
+		ForkThread(AggressionCheck)
+		AggressionSpawner(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+	end
+
 	ForkThread(SpawnerGroup1,t1spawndelay,t1frequency / SpawnMulti,t2spawndelay)
 	ForkThread(SpawnerGroup2,t2spawndelay,t2frequency / SpawnMulti)
 	ForkThread(SpawnerGroup3,t3spawndelay,t3frequency / SpawnMulti)
@@ -2391,32 +2402,32 @@ end
 
 function AggressionSpawner(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	if StartingPlayersExistance.ARMY_1 then
-		ForkThread(AggessionWatcher,"ARMY_1",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+		ForkThread(AggressionWatcher,"ARMY_1",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	end
 	if StartingPlayersExistance.ARMY_2 then
-		ForkThread(AggessionWatcher,"ARMY_2",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+		ForkThread(AggressionWatcher,"ARMY_2",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	end
 	if StartingPlayersExistance.ARMY_3 then
-		ForkThread(AggessionWatcher,"ARMY_3",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+		ForkThread(AggressionWatcher,"ARMY_3",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	end
 	if StartingPlayersExistance.ARMY_4 then
-		ForkThread(AggessionWatcher,"ARMY_4",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+		ForkThread(AggressionWatcher,"ARMY_4",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	end
 	if StartingPlayersExistance.ARMY_5 then
-		ForkThread(AggessionWatcher,"ARMY_5",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+		ForkThread(AggressionWatcher,"ARMY_5",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	end
 	if StartingPlayersExistance.ARMY_6 then
-		ForkThread(AggessionWatcher,"ARMY_6",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+		ForkThread(AggressionWatcher,"ARMY_6",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	end
 	if StartingPlayersExistance.ARMY_7 then
-		ForkThread(AggessionWatcher,"ARMY_7",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+		ForkThread(AggressionWatcher,"ARMY_7",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	end
 	if StartingPlayersExistance.ARMY_8 then
-		ForkThread(AggessionWatcher,"ARMY_8",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+		ForkThread(AggressionWatcher,"ARMY_8",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	end
 end
 
-function AggessionWatcher(army,t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+function AggressionWatcher(army,t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	local teamplayer = ArmyToPlayerTeam(army)
 	local unit
 	local hpincreasedelay
