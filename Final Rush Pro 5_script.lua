@@ -104,8 +104,8 @@ function OnPopulate()
 	if (ScenarioInfo.Options.opt_FinalRushAggression == nil) then
 		ScenarioInfo.Options.opt_FinalRushAggression = 1;
 	end
-	if (ScenarioInfo.Options.opt_transcount == nil) then
-		ScenarioInfo.Options.opt_transcount = 0;
+	if (ScenarioInfo.Options.opt_FinalRushAir == nil) then
+		ScenarioInfo.Options.opt_FinalRushAir = 0;
 	end
 	if (ScenarioInfo.Options.opt_timeunlocked == nil) then
 		ScenarioInfo.Options.opt_timeunlocked = 0;
@@ -430,7 +430,7 @@ getUsername = function(army)
 end
 
 transportscoutonly = function()
-	if (ScenarioInfo.Options.opt_transcount == 1) then
+	if (ScenarioInfo.Options.opt_FinalRushAir == 1) then
 		local tblArmies = ListArmies()
 		for index, name in tblArmies do
 			RemoveBuildRestriction(index, categories.AIR)
@@ -794,7 +794,10 @@ Survival = function()
 			SetAlliance(index, "ARMY_9", 'Enemy')
 			SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
 		end
-		AddBuildRestriction(index, categories.AIR)
+		if (ScenarioInfo.Options.opt_FinalRushAir < 2) then
+			AddBuildRestriction(index, categories.AIR)
+		end
+
 		AddBuildRestriction(index, categories.WALL)
 		transportscoutonly()
 	end

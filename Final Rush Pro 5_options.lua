@@ -86,13 +86,14 @@ options =
 	},
 	{
 		default = 1,
-		label = "Air Scouts and Transports",
+		label = "Air",
 		help = "Air is disabled. This option allows enabling just scouts and transports.",
-		key = 'opt_transcount',
-		pref = 'opt_transcount',
+		key = 'opt_FinalRushAir',
+		pref = 'opt_FinalRushAir',
 		values = {
-			{text = "Disabled", help = "Disabled", key = 0, },
-			{text = "Enabled", help = "Enabled", key = 1, },
+			{text = "Disabled", help = "No air units at all", key = 0, },
+			{text = "Scouts and Transports", help = "Scouts and transports only", key = 1, },
+			{text = "Enabled", help = "All air units are enabled", key = 2, },
 		},
 	},
 	{

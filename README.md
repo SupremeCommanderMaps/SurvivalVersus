@@ -10,11 +10,14 @@ This is an alpha version, no stable release is available yet.
 
 * Made the Auto Reclaim option work with recent versions of FAF
 * Added Spawn Delay option
+* Added additional possible values to the Auto Reclaim option
+* Added option that allows turning Aggression tracking off
+* Added option that allows turning all air units on
+* Added additional possible values to the Tech Level Delay option
 * Fixed the MML restriction option
 * Fixed the T3 Mobile Arty restriction option
 * Fixed the Sniper Bot restriction option
-* Added additional possible values to the Auto Reclaim option
-* Added additional possible values to the Tech Level Delay option
+* Changed default values of the lobby options to what most people expect
 * Dropped Final Rush UI and dependence on the FinalRushPro3 mod
 * Improved the wording of all option titles and descriptions
 
