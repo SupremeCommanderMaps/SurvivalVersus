@@ -93,7 +93,7 @@ options =
 		values = {
 			{text = "Disabled", help = "No air units at all", key = 0, },
 			{text = "Scouts and Transports", help = "Scouts and transports only", key = 1, },
-			{text = "Enabled", help = "All air units are enabled", key = 2, },
+			{text = "Enabled", help = "All air units are enabled. NOTE: the incomming waves do NOT contain AA even with this option.", key = 2, },
 		},
 	},
 	{
