@@ -12,7 +12,8 @@ This is an alpha version, no stable release is available yet.
 * Added Spawn Delay option
 * Added additional possible values to the Auto Reclaim option
 * Added option that allows turning Aggression tracking off
-* Added option that allows turning all air units on
+* Added option that allows turning all player air units on
+* Added option that allows turning player navy off
 * Added additional possible values to the Tech Level Delay option
 * Fixed the MML restriction option
 * Fixed the T3 Mobile Arty restriction option

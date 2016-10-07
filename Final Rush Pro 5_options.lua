@@ -76,7 +76,7 @@ options =
 	{
 		default = 2,
 		label = "Aggression Tracking",
-		help = "Aggressive players get more units, especially artillery if it is on",
+		help = "Aggressive players get more units. If artilery is not disabled, the extra units will mainly be artilery. Things that generate agression: reaching tech 2, reaching tech 3, creating your first experimental, building mexes, building massfabs, building nukes, building arty and walking your ACU to the center.",
 		key = 'opt_FinalRushAggression',
 		pref = 'opt_FinalRushAggression',
 		values = {
@@ -86,14 +86,25 @@ options =
 	},
 	{
 		default = 1,
-		label = "Air",
-		help = "Air is disabled. This option allows enabling just scouts and transports.",
+		label = "Player Air",
+		help = "The degree to which air should be enabled for the players",
 		key = 'opt_FinalRushAir',
 		pref = 'opt_FinalRushAir',
 		values = {
 			{text = "Disabled", help = "No air units at all", key = 0, },
 			{text = "Scouts and Transports", help = "Scouts and transports only", key = 1, },
 			{text = "Enabled", help = "All air units are enabled", key = 2, },
+		},
+	},
+	{
+		default = 2,
+		label = "Player Navy",
+		help = "Enable or disable navy building for the players",
+		key = 'opt_FinalRushNavy',
+		pref = 'opt_FinalRushNavy',
+		values = {
+			{text = "Disabled", help = "Disabled", key = 0, },
+			{text = "Enabled", help = "Enabled", key = 1, },
 		},
 	},
 	{

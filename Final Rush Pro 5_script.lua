@@ -107,6 +107,9 @@ function OnPopulate()
 	if (ScenarioInfo.Options.opt_FinalRushAir == nil) then
 		ScenarioInfo.Options.opt_FinalRushAir = 0;
 	end
+	if (ScenarioInfo.Options.opt_FinalRushNavy == nil) then
+		ScenarioInfo.Options.opt_FinalRushNavy = 1;
+	end
 	if (ScenarioInfo.Options.opt_timeunlocked == nil) then
 		ScenarioInfo.Options.opt_timeunlocked = 0;
 	end
@@ -140,11 +143,8 @@ function OnPopulate()
 	end
 
 	if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
-		LOG("AGGRO ENABLED");
 		-- This looks like it is not needed; no side effects in file appart from local declarations
 		ForkThread(import('/maps/Final Rush Pro 5/lua/Aggression.lua').Aggression)
-	else
-		LOG("AGGRO DISABLED");
 	end
 end
 
@@ -783,41 +783,47 @@ end
 
 Survival = function()
 	if ScenarioInfo.Options.opt_gamemode == 2 then  --versus survival
-	local tblArmies = ListArmies()
-	for index, name in tblArmies do
-		if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
-			SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
-			SetAlliance(index, "ARMY_9", 'Ally')
-		elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
-			SetAlliance(index, "ARMY_9", 'Enemy')
-			SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
-		end
-		if (ScenarioInfo.Options.opt_FinalRushAir < 2) then
-			AddBuildRestriction(index, categories.AIR)
+		local tblArmies = ListArmies()
+		for index, name in tblArmies do
+			if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
+				SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
+				SetAlliance(index, "ARMY_9", 'Ally')
+			elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
+				SetAlliance(index, "ARMY_9", 'Enemy')
+				SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
+			end
+
+			if (ScenarioInfo.Options.opt_FinalRushAir < 2) then
+				AddBuildRestriction(index, categories.AIR)
+			end
+
+			if (ScenarioInfo.Options.opt_FinalRushNavy == 0) then
+				AddBuildRestriction(index, categories.NAVAL)
+			end
+
+			AddBuildRestriction(index, categories.WALL)
+			transportscoutonly()
 		end
 
-		AddBuildRestriction(index, categories.WALL)
-		transportscoutonly()
-	end
-	SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
-	createcivpararadar()
-	ForkThread(RunBattle)
+		SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
+		createcivpararadar()
+		ForkThread(RunBattle)
 	end
 
 	if ScenarioInfo.Options.opt_gamemode > 2 then  --easy, normal, hard and insane survival
-	local tblArmies = ListArmies()
-	for index, name in tblArmies do
-		SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
-		SetAlliance(index, "ARMY_9", 'Enemy')
-		AddBuildRestriction(index, categories.AIR)
-		AddBuildRestriction(index, categories.WALL)
-	end
-	transportscoutonly()
-	SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
-	createcivpararadar()
-	ForkThread(RunBattle)
-	ForkThread(CommanderWaterPain)
-	ForkThread(NoHillsClimbingBitches)
+		local tblArmies = ListArmies()
+		for index, name in tblArmies do
+			SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
+			SetAlliance(index, "ARMY_9", 'Enemy')
+			AddBuildRestriction(index, categories.AIR)
+			AddBuildRestriction(index, categories.WALL)
+		end
+		transportscoutonly()
+		SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
+		createcivpararadar()
+		ForkThread(RunBattle)
+		ForkThread(CommanderWaterPain)
+		ForkThread(NoHillsClimbingBitches)
 	end
 end
 
