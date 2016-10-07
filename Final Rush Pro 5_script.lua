@@ -107,9 +107,6 @@ function OnPopulate()
 	if (ScenarioInfo.Options.opt_FinalRushAir == nil) then
 		ScenarioInfo.Options.opt_FinalRushAir = 0;
 	end
-	if (ScenarioInfo.Options.opt_FinalRushNavy == nil) then
-		ScenarioInfo.Options.opt_FinalRushNavy = 1;
-	end
 	if (ScenarioInfo.Options.opt_timeunlocked == nil) then
 		ScenarioInfo.Options.opt_timeunlocked = 0;
 	end
@@ -795,10 +792,6 @@ Survival = function()
 
 			if (ScenarioInfo.Options.opt_FinalRushAir < 2) then
 				AddBuildRestriction(index, categories.AIR)
-			end
-
-			if (ScenarioInfo.Options.opt_FinalRushNavy == 0) then
-				AddBuildRestriction(index, categories.NAVAL)
 			end
 
 			AddBuildRestriction(index, categories.WALL)
