@@ -694,8 +694,6 @@ ResetStartingRestrictions = function()
 		for key, value in ScenarioInfo.Options.RestrictedCategories do
 			local tblArmies = ListArmies()
 			for index, name in tblArmies do
-				--LOG("Value: ", value)
-				--LOG("Index: ", index)
 				if value == "PRODSC1" then
 					AddBuildRestriction(index, categories.PRODUCTSC1)
 				elseif value == "PRODFA" then
@@ -848,12 +846,6 @@ function CreateStartingPlayersExistance()
 	if not ScenarioInfo.ArmySetup["ARMY_8"] == false then
 		StartingPlayersExistance.ARMY_8 = true
 	end
-end
-
-Info = function()
-	--WaitSeconds(5)
-	--LOG("----------------------------")
-	--LOG(Aggression.ReturnAggro())
 end
 
 RunBattle = function()
@@ -1041,31 +1033,23 @@ function GetRandomPlayerExisted(team)
 
 			if selectplayertoattack == 1 and StartingPlayersExistance.ARMY_1 then
 				Units_FinalFight = AttackLocations.Team1.Player1
-				--LOG("Attacking ", getUsername("ARMY_1"))
 			elseif selectplayertoattack == 2 and StartingPlayersExistance.ARMY_2 then
 				Units_FinalFight = AttackLocations.Team1.Player2
-				--LOG("Attacking ", getUsername("ARMY_2"))
 			elseif selectplayertoattack == 3 and StartingPlayersExistance.ARMY_3 then
 				Units_FinalFight = AttackLocations.Team1.Player3
-				--LOG("Attacking ", getUsername("ARMY_3"))
 			elseif selectplayertoattack == 4 and StartingPlayersExistance.ARMY_4 then
 				Units_FinalFight = AttackLocations.Team1.Player4
-				--LOG("Attacking ", getUsername("ARMY_4"))
 			end
 		elseif team == 2 then
 
 			if selectplayertoattack == 1 and StartingPlayersExistance.ARMY_5 then
 				Units_FinalFight = AttackLocations.Team2.Player1
-				--LOG("Attacking ", getUsername("ARMY_5"))
 			elseif selectplayertoattack == 2 and StartingPlayersExistance.ARMY_6 then
 				Units_FinalFight = AttackLocations.Team2.Player2
-				--LOG("Attacking ", getUsername("ARMY_6"))
 			elseif selectplayertoattack == 3 and StartingPlayersExistance.ARMY_7 then
 				Units_FinalFight = AttackLocations.Team2.Player3
-				--LOG("Attacking ", getUsername("ARMY_7"))
 			elseif selectplayertoattack == 4 and StartingPlayersExistance.ARMY_8 then
 				Units_FinalFight = AttackLocations.Team2.Player4
-				--LOG("Attacking ", getUsername("ARMY_8"))
 			end
 		end
 		WaitSeconds(0.1)
@@ -2074,7 +2058,6 @@ HeathMulti = function(unitgroup,hpincreasedelay)
 
 	if tvEn == false then
 		hp_multi = (current_time - hpincreasedelay) / 100 * difficulty_multi
-		--LOG("muli hp: ", hp_multi)
 		for key, value in unitgroup do
 			value:SetVeterancy(vetlevel)
 			value:SetMaxHealth(value:GetMaxHealth() * (hp_multi + 1))
