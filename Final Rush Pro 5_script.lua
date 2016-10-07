@@ -1162,7 +1162,7 @@ Round2 = function(hpincreasedelay)
 	local transport_Civiliana
 	local transport_Civilianb
 
-	transport_AMY9 = CreateUnitHPR("xea0306", "ARMY_9", 500, 80, 10, 0,0,0) --uef t3
+	local transport_AMY9 = CreateUnitHPR("xea0306", "ARMY_9", 500, 80, 10, 0,0,0) --uef t3
 
 	if ScenarioInfo.Options.opt_gamemode > 2 then
 		transport_AMY9:SetCanTakeDamage(false);
@@ -1188,7 +1188,7 @@ Round2 = function(hpincreasedelay)
 	ForkThread(Killgroup,transports_ARMY9)
 	ScenarioFramework.AttachUnitsToTransports(units_ARMY9, transports_ARMY9)
 
-	transport_Civilian = CreateUnitHPR("xea0306", "NEUTRAL_CIVILIAN", 10, 80, 500, 0,0,0) --uef t3
+	local transport_Civilian = CreateUnitHPR("xea0306", "NEUTRAL_CIVILIAN", 10, 80, 500, 0,0,0) --uef t3
 
 
 
@@ -2078,8 +2078,7 @@ allUnits = function()
 	local xmapsize = ScenarioInfo.size[1]
 	local ymapsize = ScenarioInfo.size[2]
 	local mapRect = {x0 = 0, x1 = xmapsize, y0 = 0, y1 = ymapsize}
-	units = GetUnitsInRect(mapRect)
-	return units
+	return GetUnitsInRect(mapRect)
 end
 
 killUnitsOnLayer = function(layers)
