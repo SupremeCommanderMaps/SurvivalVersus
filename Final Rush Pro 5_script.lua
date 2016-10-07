@@ -678,8 +678,6 @@ RunBattle = function()
 		t4frequency = 8
 		hunterfrequency = 90
 		RandomFrequency = 30
-	else
-		LOG("Survival... WTF, who broke it")
 	end
 
 	t1spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + t1spawndelay
@@ -719,36 +717,36 @@ end
 SpawnerGroup2 = function(delay,frequency)
 	WaitSeconds(delay)
 	PrintText("Tech 2 inbound", 20, "ffffffff", 5, 'center')
-	while true do  --never gonna stop
-	ForkThread(Round2,delay)
-	WaitSeconds(frequency)
+	while true do
+		ForkThread(Round2,delay)
+		WaitSeconds(frequency)
 	end
 end
 
 SpawnerGroup3 = function(delay,frequency)
 	WaitSeconds(delay)
 	PrintText("Tech 3 inbound", 20, "ffffffff", 5, 'center')
-	while true do  --never gonna stop
-	ForkThread(Round3,delay)
-	WaitSeconds(frequency)
+	while true do
+		ForkThread(Round3,delay)
+		WaitSeconds(frequency)
 	end
 end
 
 SpawnerGroup4 = function(delay,frequency)
 	WaitSeconds(delay)
 	PrintText("Experimentals inbound", 20, "ffffffff", 5, 'center')
-	while true do  --never gonna stop
-	ForkThread(Round4,delay)
-	WaitSeconds(frequency)
+	while true do
+		ForkThread(Round4,delay)
+		WaitSeconds(frequency)
 	end
 end
 
 SpawnerHunters = function(delay,frequency)
 	WaitSeconds(delay)
 	PrintText("Hunters inbound", 20, "ffffffff", 5, 'center')
-	while true do  --never gonna stop
-	ForkThread(Hunters,delay)
-	WaitSeconds(frequency)
+	while true do
+		ForkThread(Hunters,delay)
+		WaitSeconds(frequency)
 	end
 end
 
@@ -758,7 +756,6 @@ GetRandomPlayer = function(team)
 	local try = 0
 
 	if team == 1 then
-
 		if selectplayertoattack == 1 then
 			Units_FinalFight = AttackLocations.Team1.Player1
 		elseif selectplayertoattack == 2 then
