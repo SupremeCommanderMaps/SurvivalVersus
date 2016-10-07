@@ -20,7 +20,7 @@ ScenarioInfo = {
             }
         }
     },
-    description="Fix by ozonex. The Final Rush me map, a colaboration effort between Commander-Chronicles, TV-Nobby and Diegobah. This map includes selectable options for various game modes. For more information view the forum thread - http://forums.gaspowered.com/viewtopic.php?p=634436",
+    description="Survival supporting multiple game modes. Version 5 fixes a number of bugs and adds some new lobby options. For more information, see https://github.com/JeroenDeDauw/FinalRushPro5",
     map="/maps/Final Rush Pro 5/Final Rush Pro 5.scmap",
     map_version=7,
     name="Final Rush Pro 5",

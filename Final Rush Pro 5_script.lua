@@ -89,20 +89,23 @@ bp.Economy.BuildTime = 800
 
 function OnPopulate()
 	ScenarioUtils.InitializeArmies()
+	if (ScenarioInfo.Options.opt_gamemode == nil) then
+		ScenarioInfo.Options.opt_gamemode = 2;
+	end
 	if (ScenarioInfo.Options.opt_tents == nil) then
-		ScenarioInfo.Options.opt_tents = 0;
+		ScenarioInfo.Options.opt_tents = 9;
+	end
+	if (ScenarioInfo.Options.opt_AutoReclaim == nil) then
+		ScenarioInfo.Options.opt_AutoReclaim = 50;
+	end
+	if (ScenarioInfo.Options.opt_FinalRushSpawnDelay == nil) then
+		ScenarioInfo.Options.opt_FinalRushSpawnDelay = 0;
 	end
 	if (ScenarioInfo.Options.opt_transcount == nil) then
 		ScenarioInfo.Options.opt_transcount = 0;
 	end
 	if (ScenarioInfo.Options.opt_timeunlocked == nil) then
 		ScenarioInfo.Options.opt_timeunlocked = 0;
-	end
-	if (ScenarioInfo.Options.opt_gamemode == nil) then
-		ScenarioInfo.Options.opt_gamemode = 0;
-	end
-	if (ScenarioInfo.Options.opt_AutoReclaim == nil) then
-		ScenarioInfo.Options.opt_AutoReclaim = 0;
 	end
 	if (ScenarioInfo.Options.opt_t2tml == nil) then
 		ScenarioInfo.Options.opt_t2tml = 0;
@@ -112,9 +115,6 @@ function OnPopulate()
 	end
 	if (ScenarioInfo.Options.opt_snipers == nil) then
 		ScenarioInfo.Options.opt_snipers = 0;
-	end
-	if (ScenarioInfo.Options.opt_FinalRushSpawnDelay == nil) then
-		ScenarioInfo.Options.opt_FinalRushSpawnDelay = 0;
 	end
 
 	CreateStartingPlayersExistance()

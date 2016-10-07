@@ -1,7 +1,7 @@
 options =
 {
 	{
-		default = 1,
+		default = 3,
 		label = "Game Mode",
 		help = "Game Mode",
 		key = 'opt_gamemode',
@@ -17,7 +17,7 @@ options =
 		},
 	},
 	{
-		default = 1,
+		default = 10,
 		label = "Prebuilt Tents",
 		help = "Disable or Set the number of Prebuilt Engineering Tents",
 		key = 'opt_tents',
@@ -36,7 +36,7 @@ options =
 		},
 	},
 	{
-		default = 1,
+		default = 7,
 		label = "Auto Reclaim",
 		help = "Auto Reclaim",
 		key = 'opt_AutoReclaim',
