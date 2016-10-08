@@ -21,6 +21,7 @@ This is an alpha version, no stable release is available yet.
 * Dropped Final Rush UI and dependence on the FinalRushPro3 mod
 * Improved the wording of all option titles and descriptions
 * The Player Air restriction option now applies to all game modes
+* Many improvements to the structure of the code
 
 ## Installation
 
