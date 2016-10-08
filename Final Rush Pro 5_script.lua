@@ -5,6 +5,7 @@ local Entity = import('/lua/sim/Entity.lua').Entity;
 local GameCommon = import('/lua/ui/game/gamecommon.lua');
 local Aggression = import('/maps/Final Rush Pro 5/lua/Aggression.lua');
 local PrebuildTents = import('/maps/Final Rush Pro 5/lua/PrebuildTents.lua');
+local ParagonWars = import('/maps/Final Rush Pro 5/lua/ParagonWars.lua');
 -- Global Mod Check
 local tvEn =  false	--Total Veterancy
 local acuEn	= false --Blackops Adv Command Units.
@@ -113,7 +114,10 @@ function OnPopulate()
 	PrebuildTents.spawn(ScenarioInfo.Options.opt_tents, StartingPlayersExistance)
 	spawnlighthouse()
 	unlockovertime()
-	createmiddleciv()
+
+	if ScenarioInfo.Options.opt_gamemode == 1 then
+		ParagonWars.setUp(StartingPlayersExistance)
+	end
 
 	if ScenarioInfo.Options.opt_gamemode > 1 then
 		Survival()
@@ -121,7 +125,6 @@ function OnPopulate()
 
 	applyPlayerAirRestriction()
 	TeleportCheck()
-	ForkThread(Info)
 
 	if ScenarioInfo.Options.opt_AutoReclaim > 0 then
 		ForkThread(import('/maps/Final Rush Pro 5/lua/AutoReclaim.lua').AutoResourceThread)
@@ -277,163 +280,6 @@ enableEXP = function()
 	transportscoutonly()
 	ResetStartingRestrictions()
 	PrintText("Experimentals Enabled", 20, "ffffffff", 5, 'center');
-end
-
-createmiddleciv = function()
-	if (ScenarioInfo.Options.opt_gamemode == 1) then
-		local T2DefenceCount = 0
-		local T1DefenceCount = 0
-		local T3DefenceAACount = 0
-		local T3DefenceShieldCount = 0
-		local T3PowerCount = 0
-
-		--uab1301 AEON T3 POWER
-		--uab2301 AEON T2 PD
-		--uab2101 AEON T1 PD
-		--uab4301 AEON T3 shield
-		--uac1901 paragon activator
-		--ueb2304 aeon t3 aa
-		--uab3104 aeon t3 radar
-
-		while T2DefenceCount < Random(8,16) do
-			CreateUnitHPR("uab2301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T2 PD
-			T2DefenceCount = T2DefenceCount + 1
-		end
-		while T1DefenceCount < Random(8,16) do
-			CreateUnitHPR("uab2101", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T1 PD
-			T1DefenceCount = T1DefenceCount + 1
-		end
-		while T3DefenceAACount < Random(8,16) do
-			CreateUnitHPR("ueb2304", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T3 Anti Air
-			T3DefenceAACount = T3DefenceAACount + 1
-		end
-		while T3DefenceShieldCount < Random(2,4) do
-			CreateUnitHPR("uab4301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T3 Shield
-			T3DefenceShieldCount = T3DefenceShieldCount + 1
-		end
-		while T3PowerCount < Random(2,4) do
-			CreateUnitHPR("uab1301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)  --T3 Power
-			T3PowerCount = T3PowerCount + 1
-		end
-		CreateUnitHPR("uab3104", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --Radar
-
-		local paraactivator = CreateUnitHPR("uac1901", "NEUTRAL_CIVILIAN", Random(245,265), 25.984375, Random(245,265), 0,0,0) --Paragon Activator
-		paraactivator:SetReclaimable(false);
-		paraactivator:SetCanTakeDamage(false);
-
-		paraactivator.OldOnCaptured = paraactivator.OnCaptured;
-
-		paraactivator.OnCaptured = function(self, captor)
-			local newunit = ChangeUnitArmy(self,captor:GetArmy())
-			ForkThread(createparagon,captor:GetArmy())
-		end
-		if(StartingPlayersExistance.ARMY_1 == true) then
-			SetAlliance("NEUTRAL_CIVILIAN","ARMY_1","Enemy")
-		end
-		if(StartingPlayersExistance.ARMY_2 == true) then
-			SetAlliance("NEUTRAL_CIVILIAN","ARMY_2","Enemy")
-		end
-		if(StartingPlayersExistance.ARMY_3 == true) then
-			SetAlliance("NEUTRAL_CIVILIAN","ARMY_3","Enemy")
-		end
-		if(StartingPlayersExistance.ARMY_4 == true) then
-			SetAlliance("NEUTRAL_CIVILIAN","ARMY_4","Enemy")
-		end
-		if(StartingPlayersExistance.ARMY_5 == true) then
-			SetAlliance("NEUTRAL_CIVILIAN","ARMY_5","Enemy")
-		end
-		if(StartingPlayersExistance.ARMY_6 == true) then
-			SetAlliance("NEUTRAL_CIVILIAN","ARMY_6","Enemy")
-		end
-		if(StartingPlayersExistance.ARMY_7 == true) then
-			SetAlliance("NEUTRAL_CIVILIAN","ARMY_7","Enemy")
-		end
-		if(StartingPlayersExistance.ARMY_8 == true) then
-			SetAlliance("NEUTRAL_CIVILIAN","ARMY_8","Enemy")
-		end
-	end
-end
-
-createparagon = function(paragonarmy)
-	if paragonarmy == 1 then
-		local thetemppara = CreateUnitHPR("xab1401", "ARMY_1", Random(312,492), 25.984375, Random(312,492), 0,0,0)   --army 1-4
-		thetemppara:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-		thetemppara.OnCaptured = function(self, captor)
-		end
-		ForkThread(paragontimer,thetemppara,"ARMY_1")
-	elseif paragonarmy == 2 then
-		local thetemppara = CreateUnitHPR("xab1401", "ARMY_2", Random(312,492), 25.984375, Random(312,492), 0,0,0)   --army 1-4
-		thetemppara:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-		thetemppara.OnCaptured = function(self, captor)
-		end
-		ForkThread(paragontimer,thetemppara,"ARMY_2")
-	elseif paragonarmy == 3 then
-		local thetemppara = CreateUnitHPR("xab1401", "ARMY_3", Random(312,492), 25.984375, Random(312,492), 0,0,0)   --army 1-4
-		thetemppara:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-		thetemppara.OnCaptured = function(self, captor)
-		end
-		ForkThread(paragontimer,thetemppara,"ARMY_3")
-	elseif paragonarmy == 4 then
-		local thetemppara = CreateUnitHPR("xab1401", "ARMY_4", Random(312,492), 25.984375, Random(312,492), 0,0,0)   --army 1-4
-		thetemppara:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-		thetemppara.OnCaptured = function(self, captor)
-		end
-		ForkThread(paragontimer,thetemppara,"ARMY_4")
-	elseif paragonarmy == 5 then
-		local thetemppara = CreateUnitHPR("xab1401", "ARMY_5", Random(20,200), 25.984375, Random(20,200), 0,0,0)   --arny 5-8
-		thetemppara:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-		thetemppara.OnCaptured = function(self, captor)
-		end
-		ForkThread(paragontimer,thetemppara,"ARMY_5")
-	elseif paragonarmy == 6 then
-		local thetemppara = CreateUnitHPR("xab1401", "ARMY_6", Random(20,200), 25.984375, Random(20,200), 0,0,0)   --arny 5-8
-		thetemppara:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-		thetemppara.OnCaptured = function(self, captor)
-		end
-		ForkThread(paragontimer,thetemppara,"ARMY_6")
-	elseif paragonarmy == 7 then
-		local thetemppara = CreateUnitHPR("xab1401", "ARMY_7", Random(20,200), 25.984375, Random(20,200), 0,0,0)   --arny 5-8
-		thetemppara:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-		thetemppara.OnCaptured = function(self, captor)
-		end
-		ForkThread(paragontimer,thetemppara,"ARMY_7")
-	elseif paragonarmy == 8 then
-		local thetemppara = CreateUnitHPR("xab1401", "ARMY_8", Random(20,200), 25.984375, Random(20,200), 0,0,0)   --arny 5-8
-		thetemppara:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
-		thetemppara.OnCaptured = function(self, captor)
-		end
-		ForkThread(paragontimer,thetemppara,"ARMY_8")
-	else
-		LOG("WTF")
-	end
-end
-
-paragontimer = function(paraunit,paraowner)
-	local paraname = getUsername(paraowner)
-	PrintText(paraname .. " has a Paragon for 60 Seconds", 20, "ffffffff", 5, 'center');
-
-	WaitSeconds(60)
-	paraunit:Destroy()
-	PrintText("Paragon Removed", 20, "ffffffff", 5, 'center');
-
-	ForkThread(DestroyMid)
-	WaitSeconds(10)
-end
-
-DestroyMid = function()
-	PrintText("Clearing Mid in 10 Seconds. Please clear the area.", 20, "ffffffff", 5, 'center');
-	WaitSeconds(10)
-
-	local ExplosionCount = 0
-	while ExplosionCount< Random(10,20) do
-		local killit = CreateUnitHPR("ual0001", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
-		killit:Kill()
-		WaitSeconds(Random(1,3))
-		ExplosionCount = ExplosionCount + 1
-	end
-	LOG("Boom")
-	WaitSeconds(5)
-	createmiddleciv()
 end
 
 ResetStartingRestrictions = function()
