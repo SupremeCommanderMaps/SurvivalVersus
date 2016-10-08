@@ -373,7 +373,6 @@ canttouchthis = function(unit)
 	unit:SetDoNotTarget(true);
 	unit:SetCanBeKilled(false);
 	unit:SetCapturable(false);
-	unit:SetReclaimable(false);
 end
 
 function disableWalls()

@@ -44,11 +44,10 @@ local createParagon = function(owningArmy)
     }
 
     local armyName = armyNameMap[owningArmy]
-    local paragonBlueprint = "xab1401"
     local randomLowerBound = owningArmy < 5 and 312 or 20
     local randomUpperBound = owningArmy < 5 and 492 or 200
 
-    local paragon = CreateUnitHPR(paragonBlueprint, armyName, Random(randomLowerBound,randomUpperBound), 25.984375, Random(randomLowerBound,randomUpperBound), 0,0,0)
+    local paragon = CreateUnitHPR("xab1401", armyName, Random(randomLowerBound,randomUpperBound), 25.984375, Random(randomLowerBound,randomUpperBound), 0,0,0)
 
     paragon:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
 
@@ -108,14 +107,15 @@ local createRadar = function()
 end
 
 local createParagonActivator = function()
-    local paraactivator = CreateUnitHPR("uac1901", "NEUTRAL_CIVILIAN", Random(245,265), 25.984375, Random(245,265), 0,0,0) --Paragon Activator
-    paraactivator:SetReclaimable(false);
-    paraactivator:SetCanTakeDamage(false);
+    local paragonActivator = CreateUnitHPR("uac1901", "NEUTRAL_CIVILIAN", Random(245,265), 25.984375, Random(245,265), 0,0,0) --Paragon Activator
+    paragonActivator:SetReclaimable(false);
+    paragonActivator:SetCanTakeDamage(false);
+    paragonActivator:SetDoNotTarget(true);
 
-    paraactivator.OldOnCaptured = paraactivator.OnCaptured;
+    paragonActivator.OldOnCaptured = paragonActivator.OnCaptured;
 
-    paraactivator.OnCaptured = function(self, captor)
-        local newunit = ChangeUnitArmy(self,captor:GetArmy())
+    paragonActivator.OnCaptured = function(self, captor)
+        ChangeUnitArmy(self,captor:GetArmy())
         ForkThread(createParagon,captor:GetArmy())
     end
 end
