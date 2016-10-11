@@ -2,6 +2,8 @@
 <img align="right" src="preview.jpg">
 A survival map for [Supreme Commander: Forged Alliance Forever][FAF].
 
+[![Build Status](https://travis-ci.org/JeroenDeDauw/FinalRushPro5.svg?branch=master)](https://travis-ci.org/JeroenDeDauw/FinalRushPro5)
+
 ## New in version 5
 
 This is an alpha version, no stable release is available yet.
