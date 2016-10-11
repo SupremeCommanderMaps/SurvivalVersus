@@ -4,9 +4,7 @@ env:
   global:
     - LUAROCKS=2.3.0
   matrix:
-    - LUA=lua5.1
-    - LUA=lua5.2
-    - LUA=lua5.3
+    - LUA=lua5.1 # FA uses a modded 5.0, but Busted requires 5.1+
 
 install:
   - sudo apt-get install luarocks
