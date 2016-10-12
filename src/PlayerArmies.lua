@@ -25,5 +25,17 @@ return function(indexToNameMap)
         return nameToIndexMap[armyName]
     end
 
+    this.isBottomSideArmy = function(armyNameOrIndex)
+        local bottomArmies = {
+            ["ARMY_1"] = true,
+            ["ARMY_2"] = true,
+            ["ARMY_3"] = true,
+            ["ARMY_4"] = true,
+        }
+
+        local armyName = tonumber(armyNameOrIndex) and indexToNameMap[armyNameOrIndex] or armyNameOrIndex
+        return bottomArmies[armyName] or false
+    end
+
     return this
 end
