@@ -58,7 +58,7 @@ local createT1pd = function()
     local T1DefenceCount = 0
 
     while T1DefenceCount < Random(8,16) do
-        CreateUnitHPR("uab2101", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T1 PD
+        CreateUnitHPR("uab2101", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
         T1DefenceCount = T1DefenceCount + 1
     end
 end
@@ -67,7 +67,7 @@ local createT2pd = function()
     local T2DefenceCount = 0
 
     while T2DefenceCount < Random(8,16) do
-        CreateUnitHPR("uab2301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T2 PD
+        CreateUnitHPR("uab2301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
         T2DefenceCount = T2DefenceCount + 1
     end
 end
@@ -76,7 +76,7 @@ local createAA = function()
     local T3DefenceAACount = 0
 
     while T3DefenceAACount < Random(8,16) do
-        CreateUnitHPR("ueb2304", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T3 Anti Air
+        CreateUnitHPR("ueb2304", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
         T3DefenceAACount = T3DefenceAACount + 1
     end
 end
@@ -85,7 +85,7 @@ local createShields = function()
     local T3DefenceShieldCount = 0
 
     while T3DefenceShieldCount < Random(2,4) do
-        CreateUnitHPR("uab4301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --T3 Shield
+        CreateUnitHPR("uab4301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
         T3DefenceShieldCount = T3DefenceShieldCount + 1
     end
 end
@@ -94,17 +94,17 @@ local createPower = function()
     local T3PowerCount = 0
 
     while T3PowerCount < Random(2,4) do
-        CreateUnitHPR("uab1301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)  --T3 Power
+        CreateUnitHPR("uab1301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
         T3PowerCount = T3PowerCount + 1
     end
 end
 
 local createRadar = function()
-    CreateUnitHPR("uab3104", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0) --Radar
+    CreateUnitHPR("uab3104", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
 end
 
 local createParagonActivator = function()
-    local paragonActivator = CreateUnitHPR("uac1901", "NEUTRAL_CIVILIAN", Random(245,265), 25.984375, Random(245,265), 0,0,0) --Paragon Activator
+    local paragonActivator = CreateUnitHPR("uac1901", "NEUTRAL_CIVILIAN", Random(245,265), 25.984375, Random(245,265), 0,0,0)
     paragonActivator:SetReclaimable(false);
     paragonActivator:SetCanTakeDamage(false);
     paragonActivator:SetDoNotTarget(true);
