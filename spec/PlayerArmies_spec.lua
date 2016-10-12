@@ -80,4 +80,17 @@ describe("PlayerArmies", function()
         end)
     end)
 
+    describe("getNameToIndexMap", function()
+        it("Given empty collection, empty map is returned", function()
+            assert.are.same({}, PlayerArmies({}).getNameToIndexMap())
+        end)
+
+        it("Given map in constructor, it is reversed", function()
+            assert.are.same(
+                {["ARMY_2"] = 1, ["ARMY_7"] = 2},
+                PlayerArmies({[1] = "ARMY_2", [2] = "ARMY_7"}).getNameToIndexMap()
+            )
+        end)
+    end)
+
 end)

@@ -20,6 +20,11 @@ return function(indexToNameMap)
         end
     end
 
+    this.getNameToIndexMap = function()
+        buildNameToIndexMap()
+        return nameToIndexMap
+    end
+
     this.getIndexForName = function(armyName)
         buildNameToIndexMap()
         return nameToIndexMap[armyName]
