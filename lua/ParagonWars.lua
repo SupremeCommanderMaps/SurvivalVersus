@@ -34,8 +34,8 @@ end
 
 local createParagon = function(owningArmy)
     local armyName = playerArmies.getNameForIndex(owningArmy)
-    local randomLowerBound = playerArmies.isBottomSideArmy() and 312 or 20
-    local randomUpperBound = playerArmies.isBottomSideArmy() and 492 or 200
+    local randomLowerBound = playerArmies.isBottomSideArmy(owningArmy) and 312 or 20
+    local randomUpperBound = playerArmies.isBottomSideArmy(owningArmy) and 492 or 200
 
     local paragon = CreateUnitHPR(
         "xab1401",
@@ -118,12 +118,12 @@ local createParagonActivator = function()
 end
 
 createCentralCivilians = function()
-    createT1pd()
-    createT2pd()
-    createAA()
-    createShields()
-    createPower()
-    createRadar()
+--    createT1pd()
+--    createT2pd()
+--    createAA()
+--    createShields()
+--    createPower()
+--    createRadar()
     createParagonActivator()
 end
 

@@ -125,7 +125,8 @@ function OnPopulate()
 	unlockovertime()
 
 	if ScenarioInfo.Options.opt_gamemode == 1 then
-		local PlayerArmies = import('/maps/Final Rush Pro 5/src/PlayerArmies.lua');
+		local PlayerArmies = import('/maps/Final Rush Pro 5/src/PlayerArmies.lua').PlayerArmies;
+		LOG(repr(PlayerArmies))
 		ParagonWars.setUp(PlayerArmies(ListArmies()))
 	end
 
