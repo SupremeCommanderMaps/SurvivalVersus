@@ -21,6 +21,7 @@ This is an alpha version, no stable release is available yet.
 * Fixed the Sniper Bot restriction option
 * Changed default values of the lobby options to what most people expect
 * Dropped Final Rush UI and dependence on the FinalRushPro3 mod
+* Fixed paragon assignment in Paragon Wars when playing with fewer than 8 people
 * Improved the wording of all option titles and descriptions
 * The Player Air restriction option now applies to all game modes
 * Many improvements to the structure of the code
