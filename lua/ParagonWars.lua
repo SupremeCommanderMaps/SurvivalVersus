@@ -2,6 +2,7 @@ import('/lua/SimSync.lua');
 import('/lua/SimPlayerQuery.lua');
 
 local createCentralCivilians
+local playerArmies
 
 local DestroyMid = function()
     PrintText("Clearing Mid in 10 Seconds. Please clear the area.", 20, "ffffffff", 5, 'center');
@@ -32,20 +33,9 @@ local paragonTimer = function(paragon, armyName)
 end
 
 local createParagon = function(owningArmy)
-    local armyNameMap = {
-        [1] = "ARMY_1",
-        [2] = "ARMY_2",
-        [3] = "ARMY_3",
-        [4] = "ARMY_4",
-        [5] = "ARMY_5",
-        [6] = "ARMY_6",
-        [7] = "ARMY_7",
-        [8] = "ARMY_8"
-    }
-
-    local armyName = armyNameMap[owningArmy]
-    local randomLowerBound = owningArmy < 5 and 312 or 20
-    local randomUpperBound = owningArmy < 5 and 492 or 200
+    local armyName = playerArmies.getNameForIndex(owningArmy)
+    local randomLowerBound = playerArmies.isBottomSideArmy() and 312 or 20
+    local randomUpperBound = playerArmies.isBottomSideArmy() and 492 or 200
 
     local paragon = CreateUnitHPR("xab1401", armyName, Random(randomLowerBound,randomUpperBound), 25.984375, Random(randomLowerBound,randomUpperBound), 0,0,0)
 
@@ -130,13 +120,14 @@ createCentralCivilians = function()
     createParagonActivator()
 end
 
-local setCivilianAlliance = function(playerArmies)
+local setCivilianAlliance = function()
     for armyName in playerArmies.getNameToIndexMap() do
         SetAlliance("NEUTRAL_CIVILIAN", armyName, "Enemy")
     end
 end
 
-function setUp(playerArmies)
-    setCivilianAlliance(playerArmies)
+function setUp(playerArmyList)
+    playerArmies = playerArmyList
+    setCivilianAlliance()
     createCentralCivilians()
 end
