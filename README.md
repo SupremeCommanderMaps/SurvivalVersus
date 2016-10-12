@@ -40,6 +40,12 @@ of the Vampire mod.
 You can find the latest version of the map on the [Final Rush Pro 5 GitHub project][GitHub], which is
 also the place where you can file issues, post feature request, and submit patches.
 
+### Running the tests
+
+Some of the code that does not bind to FA(F) directly is tested using the
+[Busted unit testing framework][Busted]. To run the tests on Linux, execute `busted` in the project
+root directory. To run them on Windows, well, I don't know how to work with Windows.
+
 ## Authors
 
 The authors of the original map are Commander-Chronicles, TV-Nobby and Diegobah. Fixes where later
@@ -51,5 +57,6 @@ Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview imag
 
 [FAF]: http://www.faforever.com/
 [download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
-[GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5
+[GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
+[Busted]: http://olivinelabs.com/busted/
 [Entropy]: https://entropywins.wtf/
