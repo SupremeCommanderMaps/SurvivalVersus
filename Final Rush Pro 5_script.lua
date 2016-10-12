@@ -121,12 +121,11 @@ function OnPopulate()
 	ResetStartingRestrictions()
 	transportscoutonly()
 	PrebuildTents.spawn(ScenarioInfo.Options.opt_tents, StartingPlayersExistance)
-	spawnlighthouse()
+	spawnCivilianLighthouses()
 	unlockovertime()
 
 	if ScenarioInfo.Options.opt_gamemode == 1 then
 		local PlayerArmies = import('/maps/Final Rush Pro 5/src/PlayerArmies.lua').PlayerArmies;
-		LOG(repr(PlayerArmies))
 		ParagonWars.setUp(PlayerArmies(ListArmies()))
 	end
 
@@ -140,9 +139,6 @@ function OnPopulate()
 	if ScenarioInfo.Options.opt_AutoReclaim > 0 then
 		ForkThread(import('/maps/Final Rush Pro 5/lua/AutoReclaim.lua').AutoResourceThread)
 	end
-	if ScenarioInfo.Options.opt_gamemode > 1 then
-		ForkThread(import('/maps/Final Rush Pro 5/lua/SyncData.lua').CollectDataSync)
-	end
 
 	if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
 		-- This looks like it is not needed; no side effects in file appart from local declarations
@@ -153,8 +149,7 @@ end
 function OnStart(self)
 end
 
---spawns the civilian lighthouse
-spawnlighthouse = function()
+spawnCivilianLighthouses = function()
 	local light1 = CreateUnitHPR( "urc1901", "NEUTRAL_CIVILIAN", 13.816323, 25.730654, 500.078125, 0,0,0)
 	local light2 = CreateUnitHPR( "urc1901", "ARMY_9", 498.060150, 25.724628, 12.122614, 0,0,0)
 	light1:SetReclaimable(false);
@@ -184,7 +179,6 @@ spawnlighthouse = function()
 		newunit:SetCanTakeDamage(false);
 		newunit:SetDoNotTarget(true);
 	end
-
 end
 
 --given a player returns a proper username
