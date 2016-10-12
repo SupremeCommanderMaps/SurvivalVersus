@@ -37,7 +37,14 @@ local createParagon = function(owningArmy)
     local randomLowerBound = playerArmies.isBottomSideArmy() and 312 or 20
     local randomUpperBound = playerArmies.isBottomSideArmy() and 492 or 200
 
-    local paragon = CreateUnitHPR("xab1401", armyName, Random(randomLowerBound,randomUpperBound), 25.984375, Random(randomLowerBound,randomUpperBound), 0,0,0)
+    local paragon = CreateUnitHPR(
+        "xab1401",
+        armyName,
+        Random(randomLowerBound, randomUpperBound),
+        25.984375,
+        Random(randomLowerBound, randomUpperBound),
+        0,0,0
+    )
 
     paragon:CreateProjectile( '/effects/entities/UnitTeleport01/UnitTeleport01_proj.bp', 0, 1.35, 0, nil, nil, nil):SetCollision(false)
 
