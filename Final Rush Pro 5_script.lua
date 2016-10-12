@@ -11,6 +11,8 @@ local tvEn =  false	--Total Veterancy
 local acuEn	= false --Blackops Adv Command Units.
 
 local bp = GetUnitBlueprintByName("urc1901")
+bp.Intel.VisionRadius = 290
+bp.Economy.BuildTime = 800
 
 local AttackLocations = {
 	Team1 = {
@@ -71,8 +73,15 @@ local TableUnitID = {
 	AggroNoArty = { "ual0303", "xrl0305", "url0303", "xel0305", "dal0310" }
 }
 
-bp.Intel.VisionRadius = 290
-bp.Economy.BuildTime = 800
+function FinalRushLog(m, o)
+	if type(o) == "table" then
+		for k, v in o do
+			LOG("FinalRush: " .. m .. ": " .. k .. " = " .. tostring(v))
+		end
+	else
+		LOG("FinalRush: " .. m .. ": " .. o)
+	end
+end
 
 function OnPopulate()
 	ScenarioUtils.InitializeArmies()
