@@ -10,7 +10,7 @@ describe("PlayerArmies", function()
         end)
 
         it("Given unknown army index, nil is returned", function()
-            assert.is.is_nil(armies.getNameForIndex(3))
+            assert.is_nil(armies.getNameForIndex(3))
         end)
     end)
 
@@ -27,7 +27,7 @@ describe("PlayerArmies", function()
 
     describe("getIndexForName", function()
         it("Given unknown army name, nil is returned", function()
-            assert.is.is_nil(PlayerArmies({}).getIndexForName("ARMY_1"))
+            assert.is_nil(PlayerArmies({}).getIndexForName("ARMY_1"))
         end)
 
         it("Given known army name, its index is returned", function()
@@ -40,22 +40,22 @@ describe("PlayerArmies", function()
 
     describe("isBottomSideArmy", function()
         it("Given bottom side ARMY_, true is returned", function()
-            assert.is.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_1"))
-            assert.is.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_2"))
-            assert.is.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_3"))
-            assert.is.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_4"))
+            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_1"))
+            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_2"))
+            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_3"))
+            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_4"))
         end)
 
         it("Given top side ARMY_, false is returned", function()
-            assert.is.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_5"))
-            assert.is.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_6"))
-            assert.is.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_7"))
-            assert.is.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_8"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_5"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_6"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_7"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_8"))
         end)
 
         it("Given top non-player ARMY_, false is returned", function()
-            assert.is.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_9"))
-            assert.is.is_false(PlayerArmies({}).isBottomSideArmy("NEUTRAL_CIVILIAN"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_9"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("NEUTRAL_CIVILIAN"))
         end)
 
         local armies = {
@@ -66,17 +66,17 @@ describe("PlayerArmies", function()
         }
 
         it("Given bottom side army index, true is returned", function()
-            assert.is.is_true(require 'PlayerArmies'(armies).isBottomSideArmy(1))
-            assert.is.is_true(require 'PlayerArmies'(armies).isBottomSideArmy(2))
+            assert.is_true(require 'PlayerArmies'(armies).isBottomSideArmy(1))
+            assert.is_true(require 'PlayerArmies'(armies).isBottomSideArmy(2))
         end)
 
         it("Given top side army index, false is returned", function()
-            assert.is.is_false(require 'PlayerArmies'(armies).isBottomSideArmy(3))
-            assert.is.is_false(require 'PlayerArmies'(armies).isBottomSideArmy(4))
+            assert.is_false(require 'PlayerArmies'(armies).isBottomSideArmy(3))
+            assert.is_false(require 'PlayerArmies'(armies).isBottomSideArmy(4))
         end)
 
         it("Given top unknown army index, false is returned", function()
-            assert.is.is_false(require 'PlayerArmies'(armies).isBottomSideArmy(42))
+            assert.is_false(require 'PlayerArmies'(armies).isBottomSideArmy(42))
         end)
     end)
 
