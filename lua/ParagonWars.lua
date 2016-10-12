@@ -130,34 +130,13 @@ createCentralCivilians = function()
     createParagonActivator()
 end
 
-local setCivilianAlliance = function(StartingPlayersExistance)
-    if(StartingPlayersExistance.ARMY_1) then
-        SetAlliance("NEUTRAL_CIVILIAN","ARMY_1","Enemy")
-    end
-    if(StartingPlayersExistance.ARMY_2) then
-        SetAlliance("NEUTRAL_CIVILIAN","ARMY_2","Enemy")
-    end
-    if(StartingPlayersExistance.ARMY_3) then
-        SetAlliance("NEUTRAL_CIVILIAN","ARMY_3","Enemy")
-    end
-    if(StartingPlayersExistance.ARMY_4) then
-        SetAlliance("NEUTRAL_CIVILIAN","ARMY_4","Enemy")
-    end
-    if(StartingPlayersExistance.ARMY_5) then
-        SetAlliance("NEUTRAL_CIVILIAN","ARMY_5","Enemy")
-    end
-    if(StartingPlayersExistance.ARMY_6) then
-        SetAlliance("NEUTRAL_CIVILIAN","ARMY_6","Enemy")
-    end
-    if(StartingPlayersExistance.ARMY_7) then
-        SetAlliance("NEUTRAL_CIVILIAN","ARMY_7","Enemy")
-    end
-    if(StartingPlayersExistance.ARMY_8) then
-        SetAlliance("NEUTRAL_CIVILIAN","ARMY_8","Enemy")
+local setCivilianAlliance = function(playerArmies)
+    for armyName in playerArmies.getNameToIndexMap() do
+        SetAlliance("NEUTRAL_CIVILIAN", armyName, "Enemy")
     end
 end
 
-function setUp(StartingPlayersExistance)
-    setCivilianAlliance(StartingPlayersExistance)
+function setUp(playerArmies)
+    setCivilianAlliance(playerArmies)
     createCentralCivilians()
 end

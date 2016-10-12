@@ -66,17 +66,17 @@ describe("PlayerArmies", function()
         }
 
         it("Given bottom side army index, true is returned", function()
-            assert.is_true(require 'PlayerArmies'(armies).isBottomSideArmy(1))
-            assert.is_true(require 'PlayerArmies'(armies).isBottomSideArmy(2))
+            assert.is_true(PlayerArmies(armies).isBottomSideArmy(1))
+            assert.is_true(PlayerArmies(armies).isBottomSideArmy(2))
         end)
 
         it("Given top side army index, false is returned", function()
-            assert.is_false(require 'PlayerArmies'(armies).isBottomSideArmy(3))
-            assert.is_false(require 'PlayerArmies'(armies).isBottomSideArmy(4))
+            assert.is_false(PlayerArmies(armies).isBottomSideArmy(3))
+            assert.is_false(PlayerArmies(armies).isBottomSideArmy(4))
         end)
 
         it("Given top unknown army index, false is returned", function()
-            assert.is_false(require 'PlayerArmies'(armies).isBottomSideArmy(42))
+            assert.is_false(PlayerArmies(armies).isBottomSideArmy(42))
         end)
     end)
 
