@@ -1,4 +1,4 @@
-PlayerArmies = function(indexToNameMap)
+newInstance = function(indexToNameMap)
     local this = {}
     local nameToIndexMap
 
@@ -45,4 +45,4 @@ PlayerArmies = function(indexToNameMap)
     return this
 end
 
-return PlayerArmies
+return newInstance

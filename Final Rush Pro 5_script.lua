@@ -4,8 +4,6 @@ local Utilities = import('/lua/utilities.lua');
 local Entity = import('/lua/sim/Entity.lua').Entity;
 local GameCommon = import('/lua/ui/game/gamecommon.lua');
 local Aggression = import('/maps/Final Rush Pro 5/lua/Aggression.lua');
-local PrebuildTents = import('/maps/Final Rush Pro 5/lua/PrebuildTents.lua');
-local ParagonWars = import('/maps/Final Rush Pro 5/lua/ParagonWars.lua');
 -- Global Mod Check
 local tvEn =  false	--Total Veterancy
 local acuEn	= false --Blackops Adv Command Units.
@@ -120,13 +118,20 @@ function OnPopulate()
 	GetTeamSize()
 	ResetStartingRestrictions()
 	transportscoutonly()
-	PrebuildTents.spawn(ScenarioInfo.Options.opt_tents, StartingPlayersExistance)
+
+	if ScenarioInfo.Options.opt_tents > 0 then
+		local tents = import('/maps/Final Rush Pro 5/src/PrebuildTents.lua').newInstance(StartingPlayersExistance);
+		tents.spawn(ScenarioInfo.Options.opt_tents)
+	end
+
 	spawnCivilianLighthouses()
 	unlockovertime()
 
 	if ScenarioInfo.Options.opt_gamemode == 1 then
-		local PlayerArmies = import('/maps/Final Rush Pro 5/src/PlayerArmies.lua').PlayerArmies;
-		ParagonWars.setUp(PlayerArmies(ListArmies()))
+		local playerArmies = import('/maps/Final Rush Pro 5/src/PlayerArmies.lua').newInstance(ListArmies())
+		local paragonWars = import('/maps/Final Rush Pro 5/src/ParagonWars.lua').newInstance(playerArmies)
+
+		paragonWars.setUp()
 	end
 
 	if ScenarioInfo.Options.opt_gamemode > 1 then
@@ -137,7 +142,7 @@ function OnPopulate()
 	TeleportCheck()
 
 	if ScenarioInfo.Options.opt_AutoReclaim > 0 then
-		ForkThread(import('/maps/Final Rush Pro 5/lua/AutoReclaim.lua').AutoResourceThread)
+		ForkThread(import('/maps/Final Rush Pro 5/src/AutoReclaim.lua').AutoResourceThread)
 	end
 
 	if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
