@@ -119,8 +119,10 @@ function OnPopulate()
 	ResetStartingRestrictions()
 	transportscoutonly()
 
+	local playerArmies = import('/maps/Final Rush Pro 5/src/PlayerArmies.lua').newInstance(ListArmies())
+
 	if ScenarioInfo.Options.opt_tents > 0 then
-		local tents = import('/maps/Final Rush Pro 5/src/PrebuildTents.lua').newInstance(StartingPlayersExistance);
+		local tents = import('/maps/Final Rush Pro 5/src/PrebuildTents.lua').newInstance(playerArmies);
 		tents.spawn(ScenarioInfo.Options.opt_tents)
 	end
 
@@ -128,9 +130,7 @@ function OnPopulate()
 	unlockovertime()
 
 	if ScenarioInfo.Options.opt_gamemode == 1 then
-		local playerArmies = import('/maps/Final Rush Pro 5/src/PlayerArmies.lua').newInstance(ListArmies())
 		local paragonWars = import('/maps/Final Rush Pro 5/src/ParagonWars.lua').newInstance(playerArmies)
-
 		paragonWars.setUp()
 	end
 
