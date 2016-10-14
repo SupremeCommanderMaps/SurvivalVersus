@@ -93,4 +93,13 @@ describe("PlayerArmies", function()
         end)
     end)
 
+    describe("constructor", function()
+        it("Given map in constructor, it is reversed", function()
+            assert.are.same(
+                {[1] = "ARMY_2", [3] = "ARMY_7"},
+                PlayerArmies({[1] = "ARMY_2", [2] = "NEUTRAL_CIVILIAN", [3] = "ARMY_7", [4] = "ARMY_9"}).getIndexToNameMap()
+            )
+        end)
+    end)
+
 end)
