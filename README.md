@@ -10,21 +10,37 @@ This is an alpha version, no stable release is available yet.
 
 (Changes since version 4.0007)
 
-* Made the Auto Reclaim option work with recent versions of FAF
-* Added Spawn Delay option
+* Added Auto Reclaim option (or rather made it work with recent versions of FAF)
 * Added additional possible values to the Auto Reclaim option
-* Added option that allows turning Aggression tracking off
+* Changed default values of the lobby options to what most people expect
 * Added option that allows turning all player air units on
+* The Player Air restriction option now applies to all game modes
 * Added additional possible values to the Player Tech Delay option
+* Improved the wording of all option titles and descriptions
+* Dropped Final Rush UI and dependence on the FinalRushPro3 mod
+
+**Survival mode**
+
+* Added Spawn Delay option
+* Added option that allows turning Aggression tracking off
 * Fixed the MML restriction option
 * Fixed the T3 Mobile Arty restriction option
 * Fixed the Sniper Bot restriction option
-* Changed default values of the lobby options to what most people expect
-* Dropped Final Rush UI and dependence on the FinalRushPro3 mod
-* Fixed paragon assignment in Paragon Wars when playing with fewer than 8 people
-* Improved the wording of all option titles and descriptions
-* The Player Air restriction option now applies to all game modes
-* Many improvements to the structure of the code
+
+**Paragon Wars mode**
+
+* Paragon Wars now works properly when playing with less than 8 players
+* Units will no longer automatically fire on the (indestructible) Paragon Activator
+
+**Internal changes**
+
+* Refactored the codebase from procedural to object orientated
+    * Cohesive sets of code now have their own modules
+    * Global/static scope is now avoided and dependency injection is used
+* Moved the codebase into Git
+* Added a limited number of automated tests
+* Added README with installation instructions and release notes
+* Set continuous integration via TravisCI 
 
 ## Installation
 
