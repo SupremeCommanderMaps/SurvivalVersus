@@ -22,7 +22,7 @@ This is an alpha version, no stable release is available yet.
 **Survival mode**
 
 * Added Spawn Delay option
-* Added option that allows turning Aggression tracking off
+* Added option that allows turning Aggression Tracking off
 * Fixed the MML restriction option
 * Fixed the T3 Mobile Arty restriction option
 * Fixed the Sniper Bot restriction option
