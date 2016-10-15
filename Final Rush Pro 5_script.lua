@@ -77,6 +77,8 @@ function FinalRushLog(m, o)
 	end
 end
 
+local buildRestrictor
+
 function OnPopulate()
 	ScenarioUtils.InitializeArmies()
 	if (ScenarioInfo.Options.opt_gamemode == nil) then
@@ -112,13 +114,15 @@ function OnPopulate()
 
 	CreateStartingPlayersExistance()
 	GetTeamSize()
-	ResetStartingRestrictions()
-	transportscoutonly()
 
 	local playerArmies = import('/maps/Final Rush Pro 5/src/PlayerArmies.lua').newInstance(ListArmies())
+	buildRestrictor = import('/maps/Final Rush Pro 5/src/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo)
+
+	buildRestrictor.resetToStartingRestrictions()
 
 	if ScenarioInfo.Options.opt_tents > 0 then
 		local tents = import('/maps/Final Rush Pro 5/src/PrebuildTents.lua').newInstance(playerArmies);
+		LOG("Spawning " .. ScenarioInfo.Options.opt_tents .. " tents")
 		tents.spawn(ScenarioInfo.Options.opt_tents)
 	end
 
@@ -135,7 +139,6 @@ function OnPopulate()
 		Survival()
 	end
 
-	applyPlayerAirRestriction()
 	TeleportCheck()
 
 	if ScenarioInfo.Options.opt_AutoReclaim > 0 then
@@ -154,55 +157,6 @@ end
 --given a player returns a proper username
 getUsername = function(army)
 	return GetArmyBrain(army).Nickname;
-end
-
-transportscoutonly = function()
-	if (ScenarioInfo.Options.opt_FinalRushAir == 1) then
-		local tblArmies = ListArmies()
-		for index, name in tblArmies do
-			RemoveBuildRestriction(index, categories.AIR)
-			AddBuildRestriction(index, categories.uea0103) --UEF T1 Attack Bomber: Scorcher
-			AddBuildRestriction(index, categories.uea0102) --UEF T1 Interceptor: Cyclone
-			AddBuildRestriction(index, categories.dea0202) --UEF T2 Fighter/Bomber: Janus
-			AddBuildRestriction(index, categories.uea0203) --UEF T2 Gunship: Stinger
-			AddBuildRestriction(index, categories.uea0204) --UEF T2 Torpedo Bomber: Stork
-			AddBuildRestriction(index, categories.uea0304) --UEF T3 Strategic Bomber: Ambassador
-			AddBuildRestriction(index, categories.uea0305) --UEF T3 Heavy Gunship: Broadsword
-			AddBuildRestriction(index, categories.uea0303) --UEF T3 Air-Superiority Fighter: Wasp
-
-			AddBuildRestriction(index, categories.xsa0103) --Seraphim T1 Attack Bomber: Sinnve
-			AddBuildRestriction(index, categories.xsa0102) --Seraphim T1 Interceptor: Ia-atha
-			AddBuildRestriction(index, categories.xsa0202) --Seraphim T2 Fighter/Bomber: Notha
-			AddBuildRestriction(index, categories.xsa0203) --Seraphim T2 Gunship: Vulthoo
-			AddBuildRestriction(index, categories.xsa0204) --Seraphim T2 Torpedo Bomber: Uosioz
-			AddBuildRestriction(index, categories.xsa0303) --Seraphim T3 Air-Superiority Fighter: Iazyne
-			AddBuildRestriction(index, categories.xsa0304) --Seraphim T3 Strategic Bomber: Sinntha
-			AddBuildRestriction(index, categories.xsa0402) --Seraphim EX Experimental Bomber: Ahwassa
-
-			AddBuildRestriction(index, categories.ura0103) --Cybran T1 Attack Bomber: Zeus
-			AddBuildRestriction(index, categories.ura0102) --Cybran T1 Interceptor: Prowler
-			AddBuildRestriction(index, categories.xra0105) --Cybran T1 Light Gunship: Jester
-			AddBuildRestriction(index, categories.dra0202) --Cybran T2 Fighter/Bomber: Corsair
-			AddBuildRestriction(index, categories.ura0203) --Cybran T2 Gunship: Renegade
-			AddBuildRestriction(index, categories.ura0204) --Cybran T2 Torpedo Bomber: Cormorant
-			AddBuildRestriction(index, categories.ura0303) --Cybran T3 Air Superiority Fighter: Gemini
-			AddBuildRestriction(index, categories.xra0305) --Cybran T3 Heavy Gunship: Wailer
-			AddBuildRestriction(index, categories.ura0304) --Cybran T3 Strategic Bomber: Revenant
-			AddBuildRestriction(index, categories.ura0401) --Cybran EX Experimental Gunship: Soul Ripper
-
-			AddBuildRestriction(index, categories.uaa0103) --Aeon T1 Attack Bomber: Shimmer
-			AddBuildRestriction(index, categories.uaa0102) --Aeon T1 Interceptor: Conservator
-			AddBuildRestriction(index, categories.xaa0202) --Aeon T2 Combat Fighter: Swift Wind
-			AddBuildRestriction(index, categories.daa0206) --Aeon T2 Guided Missile: Mercy
-			AddBuildRestriction(index, categories.uaa0203) --Aeon T2 Gunship: Specter
-			AddBuildRestriction(index, categories.uaa0204) --Aeon T2 Torpedo Bomber: Skimmer
-			AddBuildRestriction(index, categories.xaa0305) --Aeon T3 AA Gunship: Restorer
-			AddBuildRestriction(index, categories.uaa0303) --Aeon T3 Air-Superiority Fighter: Corona
-			AddBuildRestriction(index, categories.uaa0304) --Aeon T3 Strategic Bomber: Shocker
-			AddBuildRestriction(index, categories.xaa0306) --Aeon T3 Torpedo Bomber: Solace
-			AddBuildRestriction(index, categories.uaa0310) --Aeon EX Experimental Aircraft Carrier: CZAR
-		end
-	end
 end
 
 unlockovertime = function()
@@ -228,8 +182,7 @@ enableT2 = function()
 	for index, name in tblArmies do
 		RemoveBuildRestriction(index, categories.TECH2)
 	end
-	transportscoutonly()
-	ResetStartingRestrictions()
+	buildRestrictor.resetToStartingRestrictions()
 	PrintText("Tech 2 Enabled", 20, "ffffffff", 5, 'center');
 end
 
@@ -240,8 +193,7 @@ enableT3 = function()
 	for index, name in tblArmies do
 		RemoveBuildRestriction(index, categories.TECH3)
 	end
-	transportscoutonly()
-	ResetStartingRestrictions()
+	buildRestrictor.resetToStartingRestrictions()
 	PrintText("Tech 3 Enabled", 20, "ffffffff", 5, 'center');
 end
 
@@ -252,82 +204,8 @@ enableEXP = function()
 	for index, name in tblArmies do
 		RemoveBuildRestriction(index, categories.EXPERIMENTAL)
 	end
-	transportscoutonly()
-	ResetStartingRestrictions()
+	buildRestrictor.resetToStartingRestrictions()
 	PrintText("Experimentals Enabled", 20, "ffffffff", 5, 'center');
-end
-
-ResetStartingRestrictions = function()
-	if ScenarioInfo.Options.RestrictedCategories == nil then
-		LOG("No Build Restrictions")
-	else
-		for key, value in ScenarioInfo.Options.RestrictedCategories do
-			local tblArmies = ListArmies()
-			for index, name in tblArmies do
-				if value == "PRODSC1" then
-					AddBuildRestriction(index, categories.PRODUCTSC1)
-				elseif value == "PRODFA" then
-					AddBuildRestriction(index, categories.PRODUCTFA)
-				elseif value == "PRODDL" then
-					-- AddBuildRestriction(index, categories.PRODUCTDL)
-				elseif value == "UEF" then
-					AddBuildRestriction(index, categories.UEF)
-				elseif value == "CYBRAN" then
-					AddBuildRestriction(index, categories.CYBRAN)
-				elseif value == "AEON" then
-					AddBuildRestriction(index, categories.AEON)
-				elseif value == "SERAPHIM" then
-					AddBuildRestriction(index, categories.SERAPHIM)
-				elseif value == "T1" then
-					AddBuildRestriction(index, categories.TECH1)
-				elseif value == "T2" then
-					AddBuildRestriction(index, categories.TECH2)
-				elseif value == "T3" then
-					AddBuildRestriction(index, categories.TECH3)
-				elseif value == "EXPERIMENTAL" then
-					AddBuildRestriction(index, categories.EXPERIMENTAL)
-				elseif value == "NAVAL" then
-					AddBuildRestriction(index, categories.NAVAL)
-				elseif value == "LAND" then
-					AddBuildRestriction(index, categories.LAND)
-				elseif value == "AIR" then
-					AddBuildRestriction(index, categories.AIR)
-				elseif value == "NUKE" then
-					AddBuildRestriction(index, categories.NUKE)
-					AddBuildRestriction(index, categories.ues0304) --UEF T3 Strategic Missile Submarine: Ace
-					AddBuildRestriction(index, categories.urs0304) --Cybran T3 Strategic Missile Submarine: Plan B
-					AddBuildRestriction(index, categories.uas0304) --Aeon T3 Strategic Missile Submarine: Silencer
-					AddBuildRestriction(index, categories.xsa0402) --Seraphim EX Experimental Bomber: Ahwassa
-					AddBuildRestriction(index, categories.xsb2401) --Seraphim EX Experimental Missile Launcher: Yolona Oss
-				elseif value == "GAMEENDERS" then
-					AddBuildRestriction(index, categories.uab2305)
-					AddBuildRestriction(index, categories.ueb2305)
-					AddBuildRestriction(index, categories.urb2305)
-					AddBuildRestriction(index, categories.xsb2305)
-					AddBuildRestriction(index, categories.xab2307)
-					AddBuildRestriction(index, categories.ueb2302)
-					AddBuildRestriction(index, categories.uab2302)
-					AddBuildRestriction(index, categories.urb2302)
-					AddBuildRestriction(index, categories.xsb2302)
-					AddBuildRestriction(index, categories.ues0304) --UEF T3 Strategic Missile Submarine: Ace
-					AddBuildRestriction(index, categories.urs0304) --Cybran T3 Strategic Missile Submarine: Plan B
-					AddBuildRestriction(index, categories.uas0304) --Aeon T3 Strategic Missile Submarine: Silencer
-					AddBuildRestriction(index, categories.xsa0402) --Seraphim EX Experimental Bomber: Ahwassa
-					AddBuildRestriction(index, categories.ueb2401) --UEF EX Experimental Artillery: Mavor
-					AddBuildRestriction(index, categories.url0401) --Cybran EX Experimental Mobile Rapid-Fire Artillery: Scathis
-					AddBuildRestriction(index, categories.xsb2401) --Seraphim EX Experimental Missile Launcher: Yolona Oss
-				elseif value == "BUBBLES" then
-					AddBuildRestriction(index, categories.SHIELD)
-				elseif value == "INTEL" then
-					AddBuildRestriction(index, categories.INTELLIGENCE)
-				elseif value == "SUPCOM" then
-					AddBuildRestriction(index, categories.SUBCOMMANDER)
-				elseif value == "FABS" then
-					AddBuildRestriction(index, categories.MASSFABRICATION)
-				end
-			end
-		end
-	end
 end
 
 createcivpararadar = function()
@@ -354,16 +232,6 @@ function disableWalls()
 	for armyIndex, armyName in ListArmies() do
 		AddBuildRestriction(armyIndex, categories.WALL)
 	end
-end
-
-function applyPlayerAirRestriction()
-	if (ScenarioInfo.Options.opt_FinalRushAir == 0) then
-		for armyIndex, armyName in ListArmies() do
-			AddBuildRestriction(armyIndex, categories.AIR)
-		end
-	end
-
-	transportscoutonly()
 end
 
 Survival = function()
