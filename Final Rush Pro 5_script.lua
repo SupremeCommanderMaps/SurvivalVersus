@@ -115,6 +115,8 @@ function OnPopulate()
 	CreateStartingPlayersExistance()
 	GetTeamSize()
 
+	local textPrinter = import('/maps/Final Rush Pro 5/src/TextPrinter.lua').newInstance()
+
 	local playerArmies = import('/maps/Final Rush Pro 5/src/PlayerArmies.lua').newInstance(ListArmies())
 	buildRestrictor = import('/maps/Final Rush Pro 5/src/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo)
 
@@ -128,7 +130,16 @@ function OnPopulate()
 
 	import('/maps/Final Rush Pro 5/src/CivilianLighthouses.lua').newInstance().spawn();
 
-	unlockovertime()
+	if (ScenarioInfo.Options.opt_timeunlocked ~= 0) then
+		local techRestrictor = import('/maps/Final Rush Pro 5/src/TechRestrictor.lua').newInstance(
+			buildRestrictor,
+			textPrinter,
+			playerArmies,
+			ScenarioInfo.Options.opt_timeunlocked
+		);
+
+		techRestrictor.startRestrictedTechCascade()
+	end
 
 	if ScenarioInfo.Options.opt_gamemode == 1 then
 		local paragonWars = import('/maps/Final Rush Pro 5/src/ParagonWars.lua').newInstance(playerArmies)
@@ -157,55 +168,6 @@ end
 --given a player returns a proper username
 getUsername = function(army)
 	return GetArmyBrain(army).Nickname;
-end
-
-unlockovertime = function()
-	if (ScenarioInfo.Options.opt_timeunlocked == 0) then
-	else
-		local tblArmies = ListArmies()
-		for index, name in tblArmies do
-			AddBuildRestriction(index, categories.TECH3)
-			AddBuildRestriction(index, categories.TECH2)
-			AddBuildRestriction(index, categories.EXPERIMENTAL)
-		end
-
-		ForkThread(enableT2)
-		ForkThread(enableT3)
-		ForkThread(enableEXP)
-	end
-end
-
-enableT2 = function()
-	LOG("Waiting for T2 - ", ScenarioInfo.Options.opt_timeunlocked)
-	WaitSeconds(ScenarioInfo.Options.opt_timeunlocked)
-	local tblArmies = ListArmies()
-	for index, name in tblArmies do
-		RemoveBuildRestriction(index, categories.TECH2)
-	end
-	buildRestrictor.resetToStartingRestrictions()
-	PrintText("Tech 2 Enabled", 20, "ffffffff", 5, 'center');
-end
-
-enableT3 = function()
-	LOG("Waiting for t3 - ", ScenarioInfo.Options.opt_timeunlocked * 2)
-	WaitSeconds(ScenarioInfo.Options.opt_timeunlocked * 2)
-	local tblArmies = ListArmies()
-	for index, name in tblArmies do
-		RemoveBuildRestriction(index, categories.TECH3)
-	end
-	buildRestrictor.resetToStartingRestrictions()
-	PrintText("Tech 3 Enabled", 20, "ffffffff", 5, 'center');
-end
-
-enableEXP = function()
-	LOG("Waiting for t4 - ", ScenarioInfo.Options.opt_timeunlocked * 3)
-	WaitSeconds(ScenarioInfo.Options.opt_timeunlocked * 3)
-	local tblArmies = ListArmies()
-	for index, name in tblArmies do
-		RemoveBuildRestriction(index, categories.EXPERIMENTAL)
-	end
-	buildRestrictor.resetToStartingRestrictions()
-	PrintText("Experimentals Enabled", 20, "ffffffff", 5, 'center');
 end
 
 createcivpararadar = function()
