@@ -5,32 +5,32 @@ describe("PlayerArmies", function()
     describe("getNameForIndex", function()
         local armies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_2"})
 
-        it("Given known army index, army name is returned", function()
+        it("returns army name when the index is known", function()
             assert.are.equal("ARMY_2", armies.getNameForIndex(2))
         end)
 
-        it("Given unknown army index, nil is returned", function()
+        it("returns nil when the index is unknown", function()
             assert.is_nil(armies.getNameForIndex(3))
         end)
     end)
 
     describe("getIndexToNameMap", function()
-        it("Given empty collection, empty map is returned", function()
+        it("returns empty map when there are no armies", function()
             assert.are.same({}, PlayerArmies({}).getIndexToNameMap())
         end)
 
-        it("Given map in constructor, same map is returned", function()
+        it("returns the same armies as the constructor got", function()
             local armyMap = {[1] = "ARMY_1", [2] = "ARMY_2"}
             assert.are.same(armyMap, PlayerArmies(armyMap).getIndexToNameMap())
         end)
     end)
 
     describe("getIndexForName", function()
-        it("Given unknown army name, nil is returned", function()
+        it("returns nil when the army name is not known", function()
             assert.is_nil(PlayerArmies({}).getIndexForName("ARMY_1"))
         end)
 
-        it("Given known army name, its index is returned", function()
+        it("returns the index of known armies", function()
             assert.is.equal(
                 2,
                 PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_5"}).getIndexForName("ARMY_5")
@@ -39,21 +39,21 @@ describe("PlayerArmies", function()
     end)
 
     describe("isBottomSideArmy", function()
-        it("Given bottom side ARMY_, true is returned", function()
+        it("returns true for bottom side ARMY_ names", function()
             assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_1"))
             assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_2"))
             assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_3"))
             assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_4"))
         end)
 
-        it("Given top side ARMY_, false is returned", function()
+        it("returns false for top side ARMY_ names", function()
             assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_5"))
             assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_6"))
             assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_7"))
             assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_8"))
         end)
 
-        it("Given top non-player ARMY_, false is returned", function()
+        it("returns false for non-player ARMY_ names", function()
             assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_9"))
             assert.is_false(PlayerArmies({}).isBottomSideArmy("NEUTRAL_CIVILIAN"))
         end)
@@ -65,27 +65,27 @@ describe("PlayerArmies", function()
             [4] = "ARMY_7",
         }
 
-        it("Given bottom side army index, true is returned", function()
+        it("returns true for bottom side army indexes", function()
             assert.is_true(PlayerArmies(armies).isBottomSideArmy(1))
             assert.is_true(PlayerArmies(armies).isBottomSideArmy(2))
         end)
 
-        it("Given top side army index, false is returned", function()
+        it("returns false for top side army indexes", function()
             assert.is_false(PlayerArmies(armies).isBottomSideArmy(3))
             assert.is_false(PlayerArmies(armies).isBottomSideArmy(4))
         end)
 
-        it("Given top unknown army index, false is returned", function()
+        it("returns false for unknown army indexes", function()
             assert.is_false(PlayerArmies(armies).isBottomSideArmy(42))
         end)
     end)
 
     describe("getNameToIndexMap", function()
-        it("Given empty collection, empty map is returned", function()
+        it("returns an empty map when there are no armies", function()
             assert.are.same({}, PlayerArmies({}).getNameToIndexMap())
         end)
 
-        it("Given map in constructor, it is reversed", function()
+        it("returns reversed constructor map", function()
             assert.are.same(
                 {["ARMY_2"] = 1, ["ARMY_7"] = 2},
                 PlayerArmies({[1] = "ARMY_2", [2] = "ARMY_7"}).getNameToIndexMap()
@@ -94,7 +94,7 @@ describe("PlayerArmies", function()
     end)
 
     describe("constructor", function()
-        it("Given map in constructor, it is reversed", function()
+        it("filters out non-player armies", function()
             assert.are.same(
                 {[1] = "ARMY_2", [3] = "ARMY_7"},
                 PlayerArmies({[1] = "ARMY_2", [2] = "NEUTRAL_CIVILIAN", [3] = "ARMY_7", [4] = "ARMY_9"}).getIndexToNameMap()
