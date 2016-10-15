@@ -8,10 +8,6 @@ local Aggression = import('/maps/Final Rush Pro 5/lua/Aggression.lua');
 local tvEn =  false	--Total Veterancy
 local acuEn	= false --Blackops Adv Command Units.
 
-local bp = GetUnitBlueprintByName("urc1901")
-bp.Intel.VisionRadius = 290
-bp.Economy.BuildTime = 800
-
 local AttackLocations = {
 	Team1 = {
 		Player1 = VECTOR3( 305.5, 25.9844, 451.5 ),
@@ -126,7 +122,8 @@ function OnPopulate()
 		tents.spawn(ScenarioInfo.Options.opt_tents)
 	end
 
-	spawnCivilianLighthouses()
+	import('/maps/Final Rush Pro 5/src/CivilianLighthouses.lua').newInstance().spawn();
+
 	unlockovertime()
 
 	if ScenarioInfo.Options.opt_gamemode == 1 then
@@ -152,38 +149,6 @@ function OnPopulate()
 end
 
 function OnStart(self)
-end
-
-spawnCivilianLighthouses = function()
-	local light1 = CreateUnitHPR( "urc1901", "NEUTRAL_CIVILIAN", 13.816323, 25.730654, 500.078125, 0,0,0)
-	local light2 = CreateUnitHPR( "urc1901", "ARMY_9", 498.060150, 25.724628, 12.122614, 0,0,0)
-	light1:SetReclaimable(false);
-	light1:SetCanTakeDamage(false);
-	light1:SetDoNotTarget(true);
-	light1:SetCanBeKilled(false);
-	light2:SetReclaimable(false);
-	light2:SetCanTakeDamage(false);
-	light2:SetDoNotTarget(true);
-	light2:SetCanBeKilled(false);
-
-	light2:SetCustomName("Vision Center")
-	light1:SetCustomName("Vision Center")
-
-	light1.OldOnCaptured = light1.OnCaptured;
-	light1.OnCaptured = function(self, captor)
-		local newunit = ChangeUnitArmy(self,captor:GetArmy())
-		newunit:SetReclaimable(false);
-		newunit:SetCanTakeDamage(false);
-		newunit:SetDoNotTarget(true);
-	end
-
-	light2.OldOnCaptured = light2.OnCaptured;
-	light2.OnCaptured = function(self, captor)
-		local newunit = ChangeUnitArmy(self,captor:GetArmy())
-		newunit:SetReclaimable(false);
-		newunit:SetCanTakeDamage(false);
-		newunit:SetDoNotTarget(true);
-	end
 end
 
 --given a player returns a proper username
