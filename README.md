@@ -23,9 +23,9 @@ This is an alpha version, no stable release is available yet.
 
 * Added Spawn Delay option
 * Added option that allows turning Aggression Tracking off
-* Fixed the MML restriction option
-* Fixed the T3 Mobile Arty restriction option
-* Fixed the Sniper Bot restriction option
+* Fixed the MML restriction option (it did not show up in the lobby)
+* Fixed the T3 Mobile Arty restriction option (it did not show up in the lobby)
+* Fixed the Sniper Bot restriction option (it did not show up in the lobby)
 
 **Paragon Wars mode**
 
