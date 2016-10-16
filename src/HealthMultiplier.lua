@@ -16,8 +16,9 @@ newInstance = function(gameMode, totalVeterancyIsEnabled)
             [6] = 4, --insane
         }
 
-        local hundredsOfSecondsAfterIncreaseStart = (GetGameTimeSeconds() - hpIncreaseDelay) / 100
-        return 1 + difficultyMultiplier[gameMode] * hundredsOfSecondsAfterIncreaseStart
+        local secondsAfterStart = GetGameTimeSeconds() - hpIncreaseDelay
+        secondsAfterStart = secondsAfterStart >= 0 and secondsAfterStart or 0
+        return 1 + difficultyMultiplier[gameMode] * secondsAfterStart / 100
     end
 
     local function increaseHealthNormally(unitGroup, hpIncreaseDelay)
