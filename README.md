@@ -36,7 +36,7 @@ This is an alpha version, no stable release is available yet.
 
 * Refactored the codebase from procedural to object orientated
     * Cohesive sets of code now have their own modules
-    * Global/static scope is now avoided and dependency injection is used
+    * Global/static scope is now avoided where possible and dependency injection is used
 * Moved the codebase into Git
 * Added a limited number of automated tests
 * Added README with installation instructions and release notes
