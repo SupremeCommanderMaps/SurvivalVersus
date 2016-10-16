@@ -4,9 +4,6 @@ local Utilities = import('/lua/utilities.lua');
 local Entity = import('/lua/sim/Entity.lua').Entity;
 local GameCommon = import('/lua/ui/game/gamecommon.lua');
 local Aggression = import('/maps/Final Rush Pro 5/lua/Aggression.lua');
--- Global Mod Check
-local tvEn =  false	--Total Veterancy
-local acuEn	= false --Blackops Adv Command Units.
 
 local AttackLocations = {
 	Team1 = {
@@ -148,6 +145,7 @@ function OnPopulate()
 
 	if ScenarioInfo.Options.opt_gamemode > 1 then
 		Survival()
+		ForkThread(RunBattle, textPrinter)
 	end
 
 	TeleportCheck()
@@ -217,8 +215,6 @@ Survival = function()
 
 	survivalStructures.createParagons()
 	survivalStructures.createRadars()
-
-	ForkThread(RunBattle)
 end
 
 function CreateStartingPlayersExistance()
@@ -248,9 +244,13 @@ function CreateStartingPlayersExistance()
 	end
 end
 
-RunBattle = function()
-	tvEn  = 	IsTotalVetEnabled() 	--Total Veterancy
-	acuEn = 	IsBLackOpsAcusEnabled() --Blackops Adv Command Units.
+local healthMultiplier
+
+RunBattle = function(textPrinter)
+	healthMultiplier = import('/maps/Final Rush Pro 5/src/HealthMultiplier.lua').newInstance(
+		ScenarioInfo.Options.opt_gamemode,
+		IsTotalVetEnabled()
+	)
 
 	local SpawnMulti = (Team1Count + Team2Count) / 8
 
@@ -336,8 +336,15 @@ RunBattle = function()
 	ForkThread(SpawnerGroup2,t2spawndelay,t2frequency / SpawnMulti)
 	ForkThread(SpawnerGroup3,t3spawndelay,t3frequency / SpawnMulti)
 	ForkThread(SpawnerGroup4,t4spawndelay,t4frequency / SpawnMulti)
-	ForkThread(SpawnerHunters, hunterdelay,hunterfrequency / SpawnMulti)
 	ForkThread(RandomEvents, t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
+
+	local hunters = import('/maps/Final Rush Pro 5/src/Hunters.lua').newInstance(
+		textPrinter,
+		healthMultiplier,
+		IsBLackOpsAcusEnabled()
+	)
+
+	ForkThread(hunters.hunterSpanwer, hunterdelay, hunterfrequency / SpawnMulti)
 end
 
 AggressionCheck = function()
@@ -378,15 +385,6 @@ SpawnerGroup4 = function(delay,frequency)
 	PrintText("Experimentals inbound", 20, "ffffffff", 5, 'center')
 	while true do
 		ForkThread(Round4,delay)
-		WaitSeconds(frequency)
-	end
-end
-
-SpawnerHunters = function(delay,frequency)
-	WaitSeconds(delay)
-	PrintText("Hunters inbound", 20, "ffffffff", 5, 'center')
-	while true do
-		ForkThread(Hunters,delay)
 		WaitSeconds(frequency)
 	end
 end
@@ -499,7 +497,7 @@ Round1 = function(hpincreasedelay)
 	local units_ARMY9 = {unit1_ARMY9,unit2_ARMY9,unit3_ARMY9,unit4_ARMY9,unit5_ARMY9,unit6_ARMY9}
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units_ARMY9,hpincreasedelay)
+		healthMultiplier.increaseHealth(units_ARMY9,hpincreasedelay)
 	end
 
 
@@ -519,7 +517,7 @@ Round1 = function(hpincreasedelay)
 	local units_Civilian = {unit1_Civilian,unit2_Civilian,unit3_Civilian,unit4_Civilian,unit5_Civilian,unit6_Civilian}
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units_Civilian,hpincreasedelay)
+		healthMultiplier.increaseHealth(units_Civilian,hpincreasedelay)
 	end
 
 	RemoveWreckage(units_ARMY9)
@@ -579,7 +577,7 @@ Round2 = function(hpincreasedelay)
 	local units_ARMY9 = {unit1_ARMY9,unit2_ARMY9,unit3_ARMY9,unit4_ARMY9,unit5_ARMY9,unit6_ARMY9,unit7_ARMY9,unit8_ARMY9,unit9_ARMY9,unit10_ARMY9}
 	ForkThread(Killgroup,units_ARMY9)
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units_ARMY9,hpincreasedelay)
+		healthMultiplier.increaseHealth(units_ARMY9,hpincreasedelay)
 	end
 	local transports_ARMY9 = {transport_AMY9}
 	ForkThread(Killgroup,transports_ARMY9)
@@ -609,7 +607,7 @@ Round2 = function(hpincreasedelay)
 	ForkThread(Killgroup,units_Civilian)
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units_Civilian,hpincreasedelay)
+		healthMultiplier.increaseHealth(units_Civilian,hpincreasedelay)
 	end
 
 	RemoveWreckage(units_ARMY9)
@@ -662,7 +660,7 @@ Round3 = function(hpincreasedelay)
 	local units_ARMY9 = {unit1_ARMY9,unit2_ARMY9,unit3_ARMY9,unit4_ARMY9,unit5_ARMY9,unit6_ARMY9,unit7_ARMY9,unit8_ARMY9,unit9_ARMY9,unit10_ARMY9}
 	ForkThread(Killgroup,units_ARMY9)
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units_ARMY9,hpincreasedelay)
+		healthMultiplier.increaseHealth(units_ARMY9,hpincreasedelay)
 	end
 
 	local transports_ARMY9 = {transport_AMY9}
@@ -690,7 +688,7 @@ Round3 = function(hpincreasedelay)
 	local units_Civilian = {unit1_Civilian,unit2_Civilian,unit3_Civilian,unit4_Civilian,unit5_Civilian,unit6_Civilian,unit7_Civilian,unit8_Civilian,unit9_Civilian,unit10_Civilian}
 	ForkThread(Killgroup,units_Civilian)
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units_Civilian,hpincreasedelay)
+		healthMultiplier.increaseHealth(units_Civilian,hpincreasedelay)
 	end
 
 	RemoveWreckage(units_ARMY9)
@@ -734,7 +732,7 @@ Round4 = function(hpincreasedelay)
 	local unit2_ARMY9 = CreateUnitHPR("ual0401", "ARMY_9", 500,20,10,0,0,0)
 	local units_ARMY9 = {unit1_ARMY9,unit2_ARMY9}
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units_ARMY9,hpincreasedelay)
+		healthMultiplier.increaseHealth(units_ARMY9,hpincreasedelay)
 	end
 
 	local transports_ARMY9 = {transport_AMY9}
@@ -750,7 +748,7 @@ Round4 = function(hpincreasedelay)
 	local transports_Civilian = {transport_Civilian}
 	local units_Civilian = {unit1_Civilian,unit2_Civilian}
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units_Civilian,hpincreasedelay)
+		healthMultiplier.increaseHealth(units_Civilian,hpincreasedelay)
 	end
 
 	RemoveWreckage(units_ARMY9)
@@ -821,7 +819,7 @@ SpawnARTY = function(hpincreasedelay)
 	ForkThread(Killgroup,units)
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units,hpincreasedelay)
+		healthMultiplier.increaseHealth(units,hpincreasedelay)
 	end
 
 	RemoveWreckage(units)
@@ -870,7 +868,7 @@ SpawnYthotha = function(hpincreasedelay)
 
 	ForkThread(Killgroup,units)
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units,hpincreasedelay)
+		healthMultiplier.increaseHealth(units,hpincreasedelay)
 	end
 
 	RemoveWreckage(units)
@@ -931,7 +929,7 @@ SpawnBombers = function(hpincreasedelay)
 	RemoveWreckage(units)
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units,hpincreasedelay)
+		healthMultiplier.increaseHealth(units,hpincreasedelay)
 	end
 
 	IssueMove(units, VECTOR3( Random(220,290), 80, Random(220,290)))
@@ -982,7 +980,7 @@ SpawnT1Gunships = function(hpincreasedelay)
 	RemoveWreckage(units)
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units,hpincreasedelay)
+		healthMultiplier.increaseHealth(units,hpincreasedelay)
 	end
 
 	IssueMove(units, VECTOR3( Random(220,290), 80, Random(220,290)))
@@ -1033,7 +1031,7 @@ SpawnT2Bombers = function(hpincreasedelay)
 	RemoveWreckage(units)
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units,hpincreasedelay)
+		healthMultiplier.increaseHealth(units,hpincreasedelay)
 	end
 
 	IssueMove(units, VECTOR3( Random(220,290), 80, Random(220,290)))
@@ -1084,7 +1082,7 @@ SpawnT3Bombers = function(hpincreasedelay)
 	RemoveWreckage(units)
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units,hpincreasedelay)
+		healthMultiplier.increaseHealth(units,hpincreasedelay)
 	end
 
 	IssueMove(units, VECTOR3( Random(220,290), 80, Random(220,290)))
@@ -1135,7 +1133,7 @@ SpawnT3Gunships = function(hpincreasedelay)
 	RemoveWreckage(units)
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units,hpincreasedelay)
+		healthMultiplier.increaseHealth(units,hpincreasedelay)
 	end
 
 	IssueMove(units, VECTOR3( Random(220,290), 80, Random(220,290)))
@@ -1187,7 +1185,7 @@ SpawnT2Destroyers = function(hpincreasedelay)
 	RemoveWreckage(units)
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units,hpincreasedelay)
+		healthMultiplier.increaseHealth(units,hpincreasedelay)
 	end
 
 	IssueMove(units, VECTOR3( Random(220,290), 80, Random(220,290)))
@@ -1254,157 +1252,9 @@ RandomEvents = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, 
 	end
 end
 
-Hunters = function(hpincreasedelay)
-	local AttackTeam = GetRandomCommander() --returns army ie. ARMY_1
-	local AttackCommander = GetArmyCommander(AttackTeam)
-	local Leader
-	local spawnrandomcommander = Random(1,4)
 
 
-	local acu_cyran
-	local acu_uef
-	local acu_aeon
-	local acu_seraphim
 
-	if acuEn == false then
-		acu_cyran	 =	"url0001"
-		acu_uef		 =	"uel0001"
-		acu_aeon	 =	"ual0001"
-		acu_seraphim =	"xsl0001"
-	elseif acuEn == true then
-		acu_cyran	 =	"erl0001"
-		acu_uef		 =	"eel0001"
-		acu_aeon	 =	"eal0001"
-		acu_seraphim =	"esl0001"
-	end
-
-	if spawnrandomcommander == 1 then
-		Leader = CreateUnitHPR(acu_aeon, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Aeon Armored Command Unit
-	elseif spawnrandomcommander == 2 then
-		Leader = CreateUnitHPR(acu_cyran, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Cybran Armored Command Unit
-	elseif spawnrandomcommander == 3 then
-		Leader = CreateUnitHPR(acu_uef, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --UEF Armored Command Unit
-	elseif spawnrandomcommander == 4 then
-		Leader = CreateUnitHPR(acu_seraphim, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Seraphim Armored Command Unit
-	end
-	Leader:SetCustomName("Bounty Hunter = Target: " .. getUsername(AttackTeam))
-	local unit_aeon  = CreateUnitHPR("ual0301", "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Aeon T3 Support Armored Command Unit
-	local unit_cyran = CreateUnitHPR("url0301", "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Cybran T3 Support Armored Command Unit
-	local unit_uef   = CreateUnitHPR("uel0301", "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --UEF T3 Support Armored Command Unit
-	local unit_sera  = CreateUnitHPR("xsl0301", "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Seraphim T3 Support Armored Command Unit
-
-	local unit_list = {Leader,unit_aeon,unit_cyran,unit_uef,unit_sera}
-
-	for index,spawnunit in unit_list do
-		ForkThread(spawnEffect,spawnunit)
-		ForkThread(CommanderUpgrades,spawnunit)
-	end
-
-	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(unit_list,hpincreasedelay)
-	end
-
-	if AttackCommander == false then --team has no commander
-	WaitSeconds(3)
-	for index, unit in unit_list do
-		ForkThread(spawnOutEffect,unit)
-	end
-	else
-		IssueAttack(unit_list,AttackCommander)
-
-
-		while not AttackCommander:IsDead() do
-			WaitSeconds(3)
-		end
-		PrintText("Bounty " .. getUsername(AttackTeam) .. " Collected" , 20, "ffffffff", 5, 'center');
-		WaitSeconds(6)
-		for index, unit in unit_list do
-			ForkThread(spawnOutEffect,unit)
-		end
-	end
-end
-
-CommanderUpgrades = function(unit)
-	local unitid = unit:GetUnitId()
-	if unitid == "ual0001" then 							--Aeon Armored Command Unit
-	unit:CreateEnhancement("Shield")
-	unit:CreateEnhancement("ShieldHeavy")
-	unit:CreateEnhancement("HeatSink")
-	unit:CreateEnhancement("CrysalisBeam")
-	elseif unitid == "url0001" then 						--Cybran Armored Command Unit
-	unit:CreateEnhancement("StealthGenerator")
-	unit:CreateEnhancement("CloakingGenerator")
-	unit:CreateEnhancement("CoolingUpgrade")
-	unit:CreateEnhancement("MicrowaveLaserGenerator")
-	elseif unitid == "uel0001" then 						--UEF Armored Command Unit
-	unit:CreateEnhancement("DamageStablization")
-	unit:CreateEnhancement("HeavyAntiMatterCannon")
-	unit:CreateEnhancement("Shield")
-	elseif unitid == "xsl0001" then 						--Seraphim Armored Command Unit
-	unit:CreateEnhancement("BlastAttack")
-	unit:CreateEnhancement("DamageStabilization")
-	unit:CreateEnhancement("DamageStabilizationAdvanced")
-	unit:CreateEnhancement("RateOfFire")
-	elseif unitid == "eal0001" then 						--Aeon Blackops Armored Command Unit
-	unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-	unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-	unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-	unit:CreateEnhancement("EXBeamPhason")
-	unit:CreateEnhancement("EXImprovedCoolingSystem")
-	unit:CreateEnhancement("EXPowerBooster")
-	unit:CreateEnhancement("EXShieldBattery")
-	unit:CreateEnhancement("EXActiveShielding")
-	unit:CreateEnhancement("EXImprovedShieldBattery")
-	elseif unitid == "erl0001" then 						--Cybran Blackops Armored Command Unit
-	unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-	unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-	unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-	unit:CreateEnhancement("EXMasor")
-	unit:CreateEnhancement("EXImprovedCoolingSystem")
-	unit:CreateEnhancement("EXAdvancedEmitterArray")
-	unit:CreateEnhancement("EXArmorPlating")
-	unit:CreateEnhancement("EXStructuralIntegrity")
-	unit:CreateEnhancement("EXCompositeMaterials")
-	elseif unitid == "eel0001" then 						--UEF Blackops Armored Command Unit
-	unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-	unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-	unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-	unit:CreateEnhancement("EXAntiMatterCannon")
-	unit:CreateEnhancement("EXImprovedContainmentBottle")
-	unit:CreateEnhancement("EXPowerBooster")
-	unit:CreateEnhancement("EXShieldBattery")
-	unit:CreateEnhancement("EXActiveShielding")
-	unit:CreateEnhancement("EXImprovedShieldBattery")
-	elseif unitid == "esl0001" then 						--Seraphim Blackops Armored Command Unit
-	unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-	unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-	unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-	unit:CreateEnhancement("EXCannonBigBall")
-	unit:CreateEnhancement("EXImprovedContainmentBottle")
-	unit:CreateEnhancement("EXPowerBooster")
-	unit:CreateEnhancement("EXL1Lambda")
-	unit:CreateEnhancement("EXL2Lambda")
-	unit:CreateEnhancement("EXL3Lambda")
-	elseif unitid == "ual0301" then 						--Aeon T3 Support Armored Command Unit
-	unit:CreateEnhancement("Shield") 	 					--back
-	unit:CreateEnhancement("ShieldHeavy") 	 				--back
-	unit:CreateEnhancement("StabilitySuppressant")  		--right
-	unit:CreateEnhancement("EngineeringFocusingModule")  	--left
-	elseif unitid == "url0301" then --Cybran T3 Support Armored Command Unit
-	unit:CreateEnhancement("StealthGenerator")  			--back
-	unit:CreateEnhancement("CloakingGenerator")  			--back
-	unit:CreateEnhancement("EMPCharge")						--left
-	unit:CreateEnhancement("FocusConvertor")				--right
-	elseif unitid == "uel0301" then --UEF T3 Support Armored Command Unit
-	unit:CreateEnhancement("AdvancedCoolingUpgrade")		--left
-	unit:CreateEnhancement("HighExplosiveOrdnance")			--right
-	unit:CreateEnhancement("Shield")						--back
-	elseif unitid == "xsl0301" then --Seraphim T3 Support Armored Command Unit
-	unit:CreateEnhancement("DamageStabilization")			--left
-	unit:CreateEnhancement("Shield")						--back
-	unit:CreateEnhancement("Overcharge")					--right
-	end
-end
 
 ArmyAttackTarget = function(attackarmy,unitgroup)
 	if attackarmy == "army9" then
@@ -1430,43 +1280,6 @@ Killgroup = function(unitgroup)
 	for key, value in unitgroup do
 		if not value:IsDead() then
 			spawnOutEffect(value)
-		end
-	end
-end
-
-HeathMulti = function(unitgroup,hpincreasedelay)
-	local current_time = GetGameTimeSeconds()
-	local hp_multi
-	local TVGlevel
-	local difficulty_multi
-	local vetlevel
-
-
-	if ScenarioInfo.Options.opt_gamemode == 4 then --normal
-	difficulty_multi = 0.25
-	vetlevel = 1
-	elseif ScenarioInfo.Options.opt_gamemode == 5 then --hard
-	difficulty_multi = 1
-	vetlevel = 3
-	elseif ScenarioInfo.Options.opt_gamemode == 6 then --insane
-	difficulty_multi = 4
-	vetlevel = 5
-	end
-
-	if tvEn == false then
-		hp_multi = (current_time - hpincreasedelay) / 100 * difficulty_multi
-		for key, value in unitgroup do
-			value:SetVeterancy(vetlevel)
-			value:SetMaxHealth(value:GetMaxHealth() * (hp_multi + 1))
-			value:SetHealth(value ,value:GetMaxHealth() * (hp_multi + 1))
-		end
-	elseif tvEn == true then
-		hp_multi = ((current_time - hpincreasedelay) / 100 * difficulty_multi)
-		TVGlevel = math.floor((current_time - (hpincreasedelay / 2)) / 30 * difficulty_multi)
-		for key, value in unitgroup do
-			value:AddLevels(TVGlevel)
-			value:SetMaxHealth(value:GetMaxHealth() * (hp_multi + 1))
-			value:SetHealth(value ,value:GetMaxHealth() * (hp_multi + 1))
 		end
 	end
 end
@@ -1506,45 +1319,8 @@ killUnitsOnLayer = function(layers)
 	end
 end
 
-GetRandomCommander = function()
-	local army = false
-	local randomnum
-	while army == false do
-		randomnum = Random(1,8)
-		if randomnum == 1 and StartingPlayersExistance.ARMY_1 and ArmyIsOutOfGame("ARMY_1") == false then
-			army = "ARMY_1"
-		elseif randomnum == 2 and StartingPlayersExistance.ARMY_2 and ArmyIsOutOfGame("ARMY_2") == false then
-			army = "ARMY_2"
-		elseif randomnum == 3 and StartingPlayersExistance.ARMY_3 and ArmyIsOutOfGame("ARMY_3") == false then
-			army = "ARMY_3"
-		elseif randomnum == 4 and StartingPlayersExistance.ARMY_4 and ArmyIsOutOfGame("ARMY_4") == false then
-			army = "ARMY_4"
-		elseif randomnum == 5 and StartingPlayersExistance.ARMY_5 and ArmyIsOutOfGame("ARMY_5") == false then
-			army = "ARMY_5"
-		elseif randomnum == 6 and StartingPlayersExistance.ARMY_6 and ArmyIsOutOfGame("ARMY_6") == false then
-			army = "ARMY_6"
-		elseif randomnum == 7 and StartingPlayersExistance.ARMY_7 and ArmyIsOutOfGame("ARMY_7") == false then
-			army = "ARMY_7"
-		elseif randomnum == 8 and StartingPlayersExistance.ARMY_8 and ArmyIsOutOfGame("ARMY_8") == false then
-			army = "ARMY_8"
-		else
-			army = false
-		end
-	end
-	PrintText("Hunters are targeting " .. getUsername(army), 20, "ffffffff", 5, 'center');
-	return army
-end
 
-GetArmyCommander = function(army)
-	local units = allUnits()
-	local commander = false
-	for index,unit in units do
-		if EntityCategoryContains(categories.COMMAND, unit) and scnArmy(unit) ==  army then
-			commander = unit
-		end
-	end
-	return commander
-end
+
 
 --given a unit returns the army
 scnArmy = function(unit)
@@ -1701,7 +1477,7 @@ SendUnitsToPlayer = function(unit, team, player, hpincreasedelay)
 	ForkThread(Killgroup,units)
 
 	if ScenarioInfo.Options.opt_gamemode > 3 then
-		HeathMulti(units,hpincreasedelay)
+		healthMultiplier.increaseHealth(units,hpincreasedelay)
 	end
 
 	RemoveWreckage(units)
@@ -1909,7 +1685,3 @@ function GetRandomUnit(tech)
 		end
 	end
 end
-
-
-
-
