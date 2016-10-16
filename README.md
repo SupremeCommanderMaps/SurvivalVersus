@@ -40,7 +40,7 @@ This is an alpha version, no stable release is available yet.
 * Moved the codebase into Git
 * Added a limited number of automated tests
 * Added README with installation instructions and release notes
-* Set continuous integration via TravisCI 
+* Set up continuous integration via TravisCI 
 
 ## Installation
 
