@@ -168,16 +168,16 @@ getUsername = function(army)
 	return GetArmyBrain(army).Nickname;
 end
 
+allUnits = function()
+	local xmapsize = ScenarioInfo.size[1]
+	local ymapsize = ScenarioInfo.size[2]
+	local mapRect = {x0 = 0, x1 = xmapsize, y0 = 0, y1 = ymapsize}
+	return GetUnitsInRect(mapRect)
+end
+
 function disableWalls()
 	for armyIndex, armyName in ListArmies() do
 		AddBuildRestriction(armyIndex, categories.WALL)
-	end
-end
-
-CommanderWaterPain = function()
-	while true do
-		WaitSeconds(2)
-		killUnitsOnLayer({'Water','Seabed','Sub'})
 	end
 end
 
@@ -209,7 +209,9 @@ Survival = function()
 		end
 		SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
 
-		ForkThread(CommanderWaterPain)
+		local commanderWaterPain = import('/maps/Final Rush Pro 5/src/CommanderWaterPain.lua').newInstance(allUnits)
+		commanderWaterPain.runThread()
+
 		survivalStructures.createHillGuards()
 	end
 
@@ -1283,44 +1285,6 @@ Killgroup = function(unitgroup)
 		end
 	end
 end
-
-allUnits = function()
-	local xmapsize = ScenarioInfo.size[1]
-	local ymapsize = ScenarioInfo.size[2]
-	local mapRect = {x0 = 0, x1 = xmapsize, y0 = 0, y1 = ymapsize}
-	return GetUnitsInRect(mapRect)
-end
-
-killUnitsOnLayer = function(layers)
-	--get all units on the map
-	local units = allUnits()
-	--if there are units on the map
-	if units and table.getn(units) > 0 then
-		for index,unit in units do
-			local delete = false
-
-			--is the unit on one of the specified layers?
-			for index,layer in layers do
-				if unit:GetCurrentLayer() == layer and EntityCategoryContains(categories.COMMAND, unit) then
-					delete = true
-				end
-			end
-
-			if  delete == true then
-				if unit and not unit:IsDead() then
-					local pos = unit:GetPosition()
-					unit:SetHealth(unit ,unit:GetHealth() - (unit:GetMaxHealth() / 10))
-					if unit:GetHealth() < 10 then
-						unit:Kill()
-					end
-				end
-			end
-		end
-	end
-end
-
-
-
 
 --given a unit returns the army
 scnArmy = function(unit)
