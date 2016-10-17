@@ -3,7 +3,6 @@ local ScenarioFramework = import('/lua/ScenarioFramework.lua');
 local Utilities = import('/lua/utilities.lua');
 local Entity = import('/lua/sim/Entity.lua').Entity;
 local GameCommon = import('/lua/ui/game/gamecommon.lua');
-local Aggression = import('/maps/Final Rush Pro 5/lua/Aggression.lua');
 
 local AttackLocations = {
 	Team1 = {
@@ -38,31 +37,6 @@ local StartingPlayersExistance = {
 
 local Team1Count
 local Team2Count
-
-local Aggro = {
-	Team1 = {
-		Player1 = 0,
-		Player2 = 0,
-		Player3 = 0,
-		Player4 = 0
-	},
-	Team2 = {
-		Player1 = 0,
-		Player2 = 0,
-		Player3 = 0,
-		Player4 = 0
-	}
-}
-
-local TableUnitID = {
-	Tech1 = { "ual0201", "ual0103", "url0107", "url0103", "uel0201", "uel0103", "xsl0201", "xsl0103" },
-	Tech2 = { "xal0203", "ual0202", "ual0111", "url0203", "url0202", "url0111", "drl0204", "uel0203", "del0204", "uel0202", "uel0111", "uel0303", "xsl0202", "xsl0203"},
-	Tech2NoTml = { "xal0203", "ual0202", "ual0103", "url0203", "url0202", "xsl0203", "drl0204", "uel0203", "del0204", "uel0202", "uel0307", "uel0303", "xsl0202", "xsl0203", "uel0203"},
-	Tech3 = { "ual0303", "xal0305", "xrl0305", "url0303", "xel0305", "xsl0303", "xsl0305"},
-	Tech3NoSniper = { "ual0303", "xrl0305", "url0303", "xel0305", "xsl0303", "uel0303", "url0303", "xsl0202"},
-	Aggro = { "ual0304", "url0304", "uel0304", "xsl0304", "dal0310" },
-	AggroNoArty = { "ual0303", "xrl0305", "url0303", "xel0305", "dal0310" }
-}
 
 function FinalRushLog(m, o)
 	if type(o) == "table" then
@@ -148,15 +122,12 @@ function OnPopulate()
 		ForkThread(RunBattle, textPrinter)
 	end
 
-	TeleportCheck()
+	if (ScenarioInfo.Options.opt_Teleport == 1) then
+		ScenarioFramework.RestrictEnhancements({'Teleporter'})
+	end
 
 	if ScenarioInfo.Options.opt_AutoReclaim > 0 then
 		ForkThread(import('/maps/Final Rush Pro 5/src/AutoReclaim.lua').AutoResourceThread)
-	end
-
-	if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
-		-- This looks like it is not needed; no side effects in file appart from local declarations
-		ForkThread(import('/maps/Final Rush Pro 5/lua/Aggression.lua').Aggression)
 	end
 end
 
@@ -330,8 +301,21 @@ RunBattle = function(textPrinter)
 	hunterdelay  = ScenarioInfo.Options.opt_FinalRushSpawnDelay + hunterdelay
 
 	if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
-		ForkThread(AggressionCheck)
-		AggressionSpawner(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+		local randomUnits = import('/maps/Final Rush Pro 5/src/RandomUnits.lua').newInstance(ScenarioInfo, ScenarioFramework)
+		local agressionSpawner = import('/maps/Final Rush Pro 5/src/AggressionSpawner.lua').newInstance(
+			StartingPlayersExistance,
+			randomUnits,
+			AttackLocations,
+			TransportDestinations,
+			ScenarioInfo,
+			ScenarioFramework,
+			GetRandomPlayer,
+			Killgroup,
+			RemoveWreckage,
+			spawnOutEffect
+		)
+
+		agressionSpawner.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
 	end
 
 	ForkThread(SpawnerGroup1,t1spawndelay,t1frequency / SpawnMulti,t2spawndelay)
@@ -349,7 +333,8 @@ RunBattle = function(textPrinter)
 		allUnits,
 		GetRandomPlayer,
 		Killgroup,
-		ListArmies
+		ListArmies,
+		spawnOutEffect
 	)
 
 	randomEvents.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
@@ -357,17 +342,11 @@ RunBattle = function(textPrinter)
 	local hunters = import('/maps/Final Rush Pro 5/src/Hunters.lua').newInstance(
 		textPrinter,
 		healthMultiplier,
-		IsBLackOpsAcusEnabled()
+		IsBLackOpsAcusEnabled(),
+		spawnOutEffect
 	)
 
 	ForkThread(hunters.hunterSpanwer, hunterdelay, hunterfrequency / SpawnMulti)
-end
-
-AggressionCheck = function()
-	while true do
-		CompileAggression()
-		WaitSeconds(2)
-	end
 end
 
 SpawnerGroup1 = function(delay,frequency,spawnend)
@@ -766,21 +745,27 @@ end
 
 ArmyAttackTarget = function(attackarmy,unitgroup)
 	if attackarmy == "army9" then
-		IssueAggressiveMove(unitgroup,GetRandomPlayer(1))
-		IssueAggressiveMove(unitgroup,GetRandomPlayer(1))
+		IssueAggressiveMove(unitgroup, GetRandomPlayer(1))
+		IssueAggressiveMove(unitgroup, GetRandomPlayer(1))
 	elseif attackarmy == "civ" then
-		IssueAggressiveMove(unitgroup,GetRandomPlayer(2))
-		IssueAggressiveMove(unitgroup,GetRandomPlayer(2))
+		IssueAggressiveMove(unitgroup, GetRandomPlayer(2))
+		IssueAggressiveMove(unitgroup, GetRandomPlayer(2))
 	end
 
 	WaitSeconds(90)
 	local range = 50
-	while GetNearestCommander(unitgroup,range) == false and range < 400 do
+	while GetNearestCommander(unitgroup, range) == false and range < 400 do
 		range = range + 50
 		WaitSeconds(1)
 	end
-	IssueAttack(unitgroup,GetNearestCommander(unitgroup,range))
-	ForkThread(Killgroup,unitgroup)
+
+	local nearestCommander = GetNearestCommander(unitgroup, range)
+
+	if nearestCommander ~= false then
+		IssueAttack(unitgroup, nearestCommander)
+	end
+
+	ForkThread(Killgroup, unitgroup)
 end
 
 Killgroup = function(unitgroup)
@@ -847,12 +832,6 @@ function RemoveWreckage(unitgroup)
 	end
 end
 
-function TeleportCheck()
-	if (ScenarioInfo.Options.opt_Teleport == 1) then
-		ScenarioFramework.RestrictEnhancements({'Teleporter'})
-	end
-end
-
 function GetTeamSize()
 	local Team1Num = 0
 	local Team2Num = 0
@@ -884,262 +863,4 @@ function GetTeamSize()
 
 	Team1Count = Team1Num
 	Team2Count = Team2Num
-end
-
-function CompileAggression()
-	Aggro.Team1.Player1 = Aggression.ReturnAggro(1,1)
-	Aggro.Team1.Player2 = Aggression.ReturnAggro(1,2)
-	Aggro.Team1.Player3 = Aggression.ReturnAggro(1,3)
-	Aggro.Team1.Player4 = Aggression.ReturnAggro(1,4)
-	Aggro.Team2.Player1 = Aggression.ReturnAggro(2,1)
-	Aggro.Team2.Player2 = Aggression.ReturnAggro(2,2)
-	Aggro.Team2.Player3 = Aggression.ReturnAggro(2,3)
-	Aggro.Team2.Player4 = Aggression.ReturnAggro(2,4)
-end
-
-SendUnitsToPlayer = function(unit, team, player, hpincreasedelay)
-	local AttackerARMY
-	local TeamToAttack = team
-	local TransportEnd
-	local transport
-
-	if TeamToAttack == 1 then --ARMY_9
-	TransportEnd = TransportDestinations.SouthernAttackerEnd
-	AttackerARMY = "ARMY_9"
-	transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
-	elseif TeamToAttack == 2 then
-		TransportEnd = TransportDestinations.NorthernAttackerEnd
-		AttackerARMY = "NEUTRAL_CIVILIAN"
-		transport = CreateUnitHPR("xea0306", AttackerARMY, 10, 80, 500, 0,0,0)
-	end
-
-
-	local TransportTo = VECTOR3( Random(220,290), 80, Random(220,290))
-
-	if ScenarioInfo.Options.opt_gamemode > 2 then
-		transport:SetCanTakeDamage(false);
-	end
-
-	local unit1 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-	local unit2 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-	local unit3 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-	local unit4 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-	local unit5 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-	local unit6 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-	local unit7 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-	local unit8 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-
-	local units = {unit1,unit2,unit3,unit4,unit5,unit6,unit7,unit8}
-	local transports = {transport}
-
-	ForkThread(Killgroup,units)
-
-	if ScenarioInfo.Options.opt_gamemode > 3 then
-		healthMultiplier.increaseHealth(units,hpincreasedelay)
-	end
-
-	RemoveWreckage(units)
-
-	ScenarioFramework.AttachUnitsToTransports(units, transports)
-	IssueTransportUnload(transports, TransportTo)
-
-	IssueAggressiveMove(units, PlayerToLoc(team, player))
-	IssueAggressiveMove(units, GetRandomPlayer(TeamToAttack))
-	IssueAggressiveMove(units, GetRandomPlayer(TeamToAttack))
-	IssueMove(transports,TransportEnd)
-
-	WaitSeconds(50)
-
-	for index, transport in transports do
-		spawnOutEffect(transport)
-	end
-end
-
-function PlayerToLoc(team, player)
-	if team == 1 then
-		if player == 1 then
-			return AttackLocations.Team1.Player1
-		elseif player == 2 then
-			return AttackLocations.Team1.Player2
-		elseif player == 3 then
-			return AttackLocations.Team1.Player3
-		elseif player == 4 then
-			return AttackLocations.Team1.Player4
-		end
-	elseif team == 2 then
-		if player == 1 then
-			return AttackLocations.Team2.Player1
-		elseif player == 2 then
-			return AttackLocations.Team2.Player2
-		elseif player == 3 then
-			return AttackLocations.Team2.Player3
-		elseif player == 4 then
-			return AttackLocations.Team2.Player4
-		end
-	end
-end
-
-function AggressionSpawner(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	if StartingPlayersExistance.ARMY_1 then
-		ForkThread(AggressionWatcher,"ARMY_1",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	end
-	if StartingPlayersExistance.ARMY_2 then
-		ForkThread(AggressionWatcher,"ARMY_2",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	end
-	if StartingPlayersExistance.ARMY_3 then
-		ForkThread(AggressionWatcher,"ARMY_3",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	end
-	if StartingPlayersExistance.ARMY_4 then
-		ForkThread(AggressionWatcher,"ARMY_4",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	end
-	if StartingPlayersExistance.ARMY_5 then
-		ForkThread(AggressionWatcher,"ARMY_5",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	end
-	if StartingPlayersExistance.ARMY_6 then
-		ForkThread(AggressionWatcher,"ARMY_6",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	end
-	if StartingPlayersExistance.ARMY_7 then
-		ForkThread(AggressionWatcher,"ARMY_7",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	end
-	if StartingPlayersExistance.ARMY_8 then
-		ForkThread(AggressionWatcher,"ARMY_8",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	end
-end
-
-function AggressionWatcher(army,t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-	local teamplayer = ArmyToPlayerTeam(army)
-	local unit
-	local hpincreasedelay
-	local timewait
-	local aggropercent
-	local counter = 0
-
-	while not ArmyIsOutOfGame(army) do
-		aggropercent = ArmyToAggro(army)
-		timewait = AgressionTimer(aggropercent)
-		if counter > timewait and aggropercent > 5 then
-			if GetGameTimeSeconds() > t4spawndelay then
-				if aggropercent > 100 then
-					hpincreasedelay = 0
-					unit = GetRandomUnit(4)
-				else
-					hpincreasedelay = t3spawndelay
-					unit = GetRandomUnit(3)
-				end
-			elseif GetGameTimeSeconds() > t3spawndelay then
-				if aggropercent > 100 then
-					hpincreasedelay = 0
-					unit = GetRandomUnit(4)
-				else
-					hpincreasedelay = t3spawndelay
-					unit = GetRandomUnit(3)
-				end
-			elseif GetGameTimeSeconds() > t2spawndelay then
-				unit = GetRandomUnit(2)
-				hpincreasedelay = t2spawndelay
-			else
-				unit = GetRandomUnit(1)
-				hpincreasedelay = t1spawndelay
-			end
-			ForkThread(SendUnitsToPlayer,unit,teamplayer.Team,teamplayer.Player, hpincreasedelay)
-			counter = 0
-		end
-		WaitSeconds(2)
-		counter = counter + 2
-	end
-end
-
-
-function ArmyToAggro(army)
-	if army == "ARMY_1" then
-		return Aggro.Team1.Player1
-	elseif army == "ARMY_2" then
-		return Aggro.Team1.Player2
-	elseif army == "ARMY_3" then
-		return Aggro.Team1.Player3
-	elseif army == "ARMY_4" then
-		return Aggro.Team1.Player4
-	elseif army == "ARMY_5" then
-		return Aggro.Team2.Player1
-	elseif army == "ARMY_6" then
-		return Aggro.Team2.Player2
-	elseif army == "ARMY_7" then
-		return Aggro.Team2.Player3
-	elseif army == "ARMY_8" then
-		return Aggro.Team2.Player4
-	end
-end
-
-function AgressionTimer(aggrolevel)
-	local timenum = 1
-	if aggrolevel < 10 then
-		timenum = 30
-	elseif aggrolevel < 20 then
-		timenum = 28
-	elseif aggrolevel < 30 then
-		timenum = 26
-	elseif aggrolevel < 40 then
-		timenum = 24
-	elseif aggrolevel < 50 then
-		timenum = 22
-	elseif aggrolevel < 60 then
-		timenum = 20
-	elseif aggrolevel < 70 then
-		timenum = 18
-	elseif aggrolevel < 80 then
-		timenum = 14
-	elseif aggrolevel < 90 then
-		timenum = 10
-	elseif aggrolevel < 100 then
-		timenum = 8
-	elseif aggrolevel > 100 then
-		timenum = 6
-	end
-	return timenum
-end
-
-function ArmyToPlayerTeam(army)
-	local data = {}
-	if army == "ARMY_1" then
-		data = { Team = 1, Player = 1 }
-	elseif army == "ARMY_2" then
-		data = { Team = 1, Player = 2 }
-	elseif army == "ARMY_3" then
-		data = { Team = 1, Player = 3 }
-	elseif army == "ARMY_4" then
-		data = { Team = 1, Player = 4 }
-	elseif army == "ARMY_5" then
-		data = { Team = 2, Player = 1 }
-	elseif army == "ARMY_6" then
-		data = { Team = 2, Player = 2 }
-	elseif army == "ARMY_7" then
-		data = { Team = 2, Player = 3 }
-	elseif army == "ARMY_8" then
-		data = { Team = 2, Player = 4 }
-	end
-	return data
-end
-
-function GetRandomUnit(tech)
-	if tech == 1 then
-		return ScenarioFramework.GetRandomEntry(TableUnitID.Tech1)
-	elseif tech == 2 then
-		if (ScenarioInfo.Options.opt_t2tml == 0) then
-			return ScenarioFramework.GetRandomEntry(TableUnitID.Tech2)
-		else
-			return ScenarioFramework.GetRandomEntry(TableUnitID.Tech2NoTml)
-		end
-	elseif tech == 3 then
-		if (ScenarioInfo.Options.opt_snipers == 0) then
-			return ScenarioFramework.GetRandomEntry(TableUnitID.Tech3)
-		else
-			return ScenarioFramework.GetRandomEntry(TableUnitID.Tech3NoSniper)
-		end
-	elseif tech == 4 then
-		if (ScenarioInfo.Options.opt_t3arty == 0) then
-			return ScenarioFramework.GetRandomEntry(TableUnitID.Aggro)
-		else
-			return ScenarioFramework.GetRandomEntry(TableUnitID.AggroNoArty)
-		end
-	end
 end
