@@ -35,6 +35,7 @@ newInstance = function(playerArmies)
     end
 
     return {
+        -- Spawns tents for all passed in playerArmies; so after some time some of those can be dead
         spawn = function(tentCount)
             for armyName in playerArmies.getNameToIndexMap() do
                 LOG("Spawning tents for army " .. armyName)

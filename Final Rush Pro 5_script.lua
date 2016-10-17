@@ -130,11 +130,6 @@ end
 function OnStart(self)
 end
 
---given a player returns a proper username
-getUsername = function(army)
-	return GetArmyBrain(army).Nickname;
-end
-
 allUnits = function()
 	local xmapsize = ScenarioInfo.size[1]
 	local ymapsize = ScenarioInfo.size[2]
@@ -339,7 +334,11 @@ RunBattle = function(textPrinter, playerArmies)
 	local hunters = import('/maps/Final Rush Pro 5/src/Hunters.lua').newInstance(
 		textPrinter,
 		healthMultiplier,
+		playerArmies,
 		IsBLackOpsAcusEnabled(),
+		spawnOutEffect,
+		allUnits,
+		spawnEffect,
 		spawnOutEffect
 	)
 

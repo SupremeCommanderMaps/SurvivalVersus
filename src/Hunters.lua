@@ -1,38 +1,32 @@
-newInstance = function(textPrinter, healthMultiplier, acuEn, spawnOutEffect)
-    local GetRandomCommander = function()
-        local army = false
-        local randomnum
+newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawnOutEffect, allUnits, spawnEffect, spawnOutEffect)
+    local getRandomArmy = function()
+        local armyName
+        local armies = playerArmies.getIndexToNameMap()
 
-        while army == false do
-            randomnum = Random(1,8)
-            if randomnum == 1 and StartingPlayersExistance.ARMY_1 and ArmyIsOutOfGame("ARMY_1") == false then
-                army = "ARMY_1"
-            elseif randomnum == 2 and StartingPlayersExistance.ARMY_2 and ArmyIsOutOfGame("ARMY_2") == false then
-                army = "ARMY_2"
-            elseif randomnum == 3 and StartingPlayersExistance.ARMY_3 and ArmyIsOutOfGame("ARMY_3") == false then
-                army = "ARMY_3"
-            elseif randomnum == 4 and StartingPlayersExistance.ARMY_4 and ArmyIsOutOfGame("ARMY_4") == false then
-                army = "ARMY_4"
-            elseif randomnum == 5 and StartingPlayersExistance.ARMY_5 and ArmyIsOutOfGame("ARMY_5") == false then
-                army = "ARMY_5"
-            elseif randomnum == 6 and StartingPlayersExistance.ARMY_6 and ArmyIsOutOfGame("ARMY_6") == false then
-                army = "ARMY_6"
-            elseif randomnum == 7 and StartingPlayersExistance.ARMY_7 and ArmyIsOutOfGame("ARMY_7") == false then
-                army = "ARMY_7"
-            elseif randomnum == 8 and StartingPlayersExistance.ARMY_8 and ArmyIsOutOfGame("ARMY_8") == false then
-                army = "ARMY_8"
-            end
-        end
+        repeat
+            armyName = armies[Random(1, table.getn(armies))]
+        until not ArmyIsOutOfGame(armyName)
 
-        textPrinter.print("Hunters are targeting " .. getUsername(army), 20, "ffffffff", 5, 'center');
+        return armyName
+    end
+
+    --given an army index returns an army
+    local indexToArmy = function(armyIndex)
+        local army = ListArmies()[armyIndex]
         return army
+    end
+
+    --given a unit returns the army
+    local scnArmy = function(unit)
+        local armyIndex = unit:GetArmy()
+        return indexToArmy(armyIndex)
     end
 
     local GetArmyCommander = function(army)
         local units = allUnits()
         local commander = false
         for _, unit in units do
-            if EntityCategoryContains(categories.COMMAND, unit) and scnArmy(unit) ==  army then
+            if EntityCategoryContains(categories.COMMAND, unit) and scnArmy(unit) == army then
                 commander = unit
             end
         end
@@ -121,8 +115,16 @@ newInstance = function(textPrinter, healthMultiplier, acuEn, spawnOutEffect)
         end
     end
 
+    --given a player returns a proper username
+    local getUsername = function(army)
+        return GetArmyBrain(army).Nickname;
+    end
+
     local Hunters = function(hpincreasedelay)
-        local AttackTeam = GetRandomCommander() --returns army ie. ARMY_1
+        local AttackTeam = getRandomArmy()
+
+        textPrinter.print("Hunters are targeting " .. getUsername(AttackTeam));
+
         local AttackCommander = GetArmyCommander(AttackTeam)
         local Leader
         local spawnrandomcommander = Random(1,4)
@@ -171,23 +173,24 @@ newInstance = function(textPrinter, healthMultiplier, acuEn, spawnOutEffect)
             healthMultiplier.increaseHealth(unit_list, hpincreasedelay)
         end
 
-        if AttackCommander == false then --team has no commander
-        WaitSeconds(3)
-        for _, unit in unit_list do
-            ForkThread(spawnOutEffect,unit)
-        end
+        if AttackCommander == false then
+            --team has no commander
+            WaitSeconds(3)
+            for _, unit in unit_list do
+                ForkThread(spawnOutEffect,unit)
+            end
         else
-            IssueAttack(unit_list,AttackCommander)
+            IssueAttack(unit_list, AttackCommander)
 
             while not AttackCommander:IsDead() do
                 WaitSeconds(3)
             end
 
-            textPrinter.print("Bounty " .. getUsername(AttackTeam) .. " Collected" , 20, "ffffffff", 5, 'center');
+            textPrinter.print("Bounty " .. getUsername(AttackTeam) .. " Collected");
 
             WaitSeconds(6)
 
-            for index, unit in unit_list do
+            for _, unit in unit_list do
                 ForkThread(spawnOutEffect,unit)
             end
         end
@@ -196,7 +199,7 @@ newInstance = function(textPrinter, healthMultiplier, acuEn, spawnOutEffect)
     return {
         hunterSpanwer = function(delay, frequency)
             WaitSeconds(delay)
-            textPrinter.print("Hunters inbound", 20, "ffffffff", 5, 'center')
+            textPrinter.print("Hunters inbound")
             while true do
                 ForkThread(Hunters,delay)
                 WaitSeconds(frequency)
