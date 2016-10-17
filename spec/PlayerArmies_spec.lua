@@ -102,4 +102,13 @@ describe("PlayerArmies", function()
         end)
     end)
 
+    describe("table.getn", function()
+        it("works on the return value of getIndexToNameMap", function()
+            assert.are.same(
+                3,
+                table.getn(PlayerArmies({[1] = "ARMY_2", [2] = "ARMY_7", [3] = "ARMY_8"}).getIndexToNameMap())
+            )
+        end)
+    end)
+
 end)

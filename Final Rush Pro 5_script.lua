@@ -35,9 +35,6 @@ local StartingPlayersExistance = {
 	ARMY_8 = false
 }
 
-local Team1Count
-local Team2Count
-
 function FinalRushLog(m, o)
 	if type(o) == "table" then
 		for k, v in o do
@@ -84,7 +81,6 @@ function OnPopulate()
 	end
 
 	CreateStartingPlayersExistance()
-	GetTeamSize()
 
 	local textPrinter = import('/maps/Final Rush Pro 5/src/TextPrinter.lua').newInstance()
 
@@ -119,7 +115,7 @@ function OnPopulate()
 
 	if ScenarioInfo.Options.opt_gamemode > 1 then
 		Survival()
-		ForkThread(RunBattle, textPrinter)
+		ForkThread(RunBattle, textPrinter, playerArmies)
 	end
 
 	if (ScenarioInfo.Options.opt_Teleport == 1) then
@@ -219,13 +215,13 @@ end
 
 local healthMultiplier
 
-RunBattle = function(textPrinter)
+RunBattle = function(textPrinter, playerArmies)
 	healthMultiplier = import('/maps/Final Rush Pro 5/src/HealthMultiplier.lua').newInstance(
 		ScenarioInfo.Options.opt_gamemode,
 		IsTotalVetEnabled()
 	)
 
-	local SpawnMulti = (Team1Count + Team2Count) / 8
+	local SpawnMulti = table.getn(playerArmies.getIndexToNameMap()) / 8
 
 	local t1spawndelay = 0
 	local t2spawndelay = 0
@@ -312,7 +308,8 @@ RunBattle = function(textPrinter)
 			GetRandomPlayer,
 			Killgroup,
 			RemoveWreckage,
-			spawnOutEffect
+			spawnOutEffect,
+			healthMultiplier
 		)
 
 		agressionSpawner.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
@@ -830,37 +827,4 @@ function RemoveWreckage(unitgroup)
 			bp.Wreckage = nil
 		end
 	end
-end
-
-function GetTeamSize()
-	local Team1Num = 0
-	local Team2Num = 0
-
-	if StartingPlayersExistance.ARMY_1 then
-		Team1Num = Team1Num + 1
-	end
-	if StartingPlayersExistance.ARMY_2 then
-		Team1Num = Team1Num + 1
-	end
-	if StartingPlayersExistance.ARMY_3 then
-		Team1Num = Team1Num + 1
-	end
-	if StartingPlayersExistance.ARMY_4 then
-		Team1Num = Team1Num + 1
-	end
-	if StartingPlayersExistance.ARMY_5 then
-		Team2Num = Team2Num + 1
-	end
-	if StartingPlayersExistance.ARMY_6 then
-		Team2Num = Team2Num + 1
-	end
-	if StartingPlayersExistance.ARMY_7 then
-		Team2Num = Team2Num + 1
-	end
-	if StartingPlayersExistance.ARMY_8 then
-		Team2Num = Team2Num + 1
-	end
-
-	Team1Count = Team1Num
-	Team2Count = Team2Num
 end

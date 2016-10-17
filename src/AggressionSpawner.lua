@@ -1,4 +1,4 @@
-newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, TransportDestinations, ScenarioInfo, ScenarioFramework, getRandomPlayer, killgroup, removeWreckage, spawnOutEffect)
+newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, TransportDestinations, ScenarioInfo, ScenarioFramework, getRandomPlayer, killgroup, removeWreckage, spawnOutEffect, healthMultiplier)
     local Aggression = import('/maps/Final Rush Pro 5/lua/Aggression.lua');
 
     local Aggro = {
