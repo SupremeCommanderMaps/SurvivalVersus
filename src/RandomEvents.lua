@@ -1,7 +1,7 @@
-newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWreckage, StartingPlayersExistance, AttackLocations, allUnits, GetRandomPlayer, Killgroup, ListArmies)
+newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWreckage, StartingPlayersExistance, AttackLocations, allUnits, GetRandomPlayer, Killgroup, ListArmies, spawnOutEffect)
 
     --given an army index returns an army
-    indexToArmy = function(armyIndex)
+    local indexToArmy = function(armyIndex)
         local army = ListArmies()[armyIndex]
         return army
     end
@@ -473,7 +473,7 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
         end
     end
 
-    local RandomEvents = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
+    local randomEventsThread = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
         while true do
             --T2 Section
             if GetGameTimeSeconds() - t2spawndelay > 0 then
@@ -521,7 +521,7 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
 
     return {
         start = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
-            ForkThread(RandomEvents, t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
+            ForkThread(randomEventsThread, t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
         end
     }
 end

@@ -1,4 +1,4 @@
-newInstance = function(textPrinter, healthMultiplier, acuEn)
+newInstance = function(textPrinter, healthMultiplier, acuEn, spawnOutEffect)
     local GetRandomCommander = function()
         local army = false
         local randomnum
@@ -173,7 +173,7 @@ newInstance = function(textPrinter, healthMultiplier, acuEn)
 
         if AttackCommander == false then --team has no commander
         WaitSeconds(3)
-        for index, unit in unit_list do
+        for _, unit in unit_list do
             ForkThread(spawnOutEffect,unit)
         end
         else
