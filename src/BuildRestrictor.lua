@@ -61,8 +61,7 @@ newInstance = function(playerArmies, ScenarioInfo)
     local function resetStartingRestrictions()
         if ScenarioInfo.Options.RestrictedCategories ~= nil then
             for _, value in ScenarioInfo.Options.RestrictedCategories do
-                local tblArmies = ListArmies()
-                for index, name in tblArmies do
+                for index in  ListArmies() do
                     if value == "PRODSC1" then
                         AddBuildRestriction(index, categories.PRODUCTSC1)
                     elseif value == "PRODFA" then

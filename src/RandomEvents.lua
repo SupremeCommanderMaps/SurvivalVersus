@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWreckage, StartingPlayersExistance, AttackLocations, allUnits, GetRandomPlayer, Killgroup, ListArmies, spawnOutEffect)
+newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWreckage, StartingPlayersExistance, AttackLocations, allUnits, GetRandomPlayer, Killgroup, ListArmies, spawnOutEffect, TransportDestinations)
 
     --given an army index returns an army
     local indexToArmy = function(armyIndex)

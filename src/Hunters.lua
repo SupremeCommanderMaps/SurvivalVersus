@@ -1,4 +1,4 @@
-newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawnOutEffect, allUnits, spawnEffect, spawnOutEffect)
+newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawnOutEffect, allUnits, spawnEffect)
     local getRandomArmy = function()
         local armyName
         local armies = playerArmies.getIndexToNameMap()
@@ -198,6 +198,7 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
 
     return {
         hunterSpanwer = function(delay, frequency)
+            delay = 10
             WaitSeconds(delay)
             textPrinter.print("Hunters inbound")
             while true do
