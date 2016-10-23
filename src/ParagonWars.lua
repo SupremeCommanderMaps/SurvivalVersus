@@ -1,11 +1,11 @@
 import('/lua/SimSync.lua');
 import('/lua/SimPlayerQuery.lua');
 
-newInstance = function(playerArmies)
+newInstance = function(playerArmies, textPrinter)
     local createCentralCivilians
 
     local DestroyMid = function()
-        PrintText("Clearing Mid in 10 Seconds. Please clear the area.", 20, "ffffffff", 5, 'center');
+        textPrinter.print("Clearing Mid in 10 Seconds. Please clear the area.");
         WaitSeconds(10)
 
         local ExplosionCount = 0
@@ -22,11 +22,11 @@ newInstance = function(playerArmies)
     end
 
     local paragonTimer = function(paragon, armyName)
-        PrintText("Player " ..  GetArmyBrain(armyName).Nickname .. " has a Paragon for 60 Seconds", 20, "ffffffff", 5, 'center');
+        textPrinter.print("Player " ..  GetArmyBrain(armyName).Nickname .. " has a Paragon for 60 Seconds");
 
         WaitSeconds(60)
         paragon:Destroy()
-        PrintText("Paragon Removed", 20, "ffffffff", 5, 'center');
+        textPrinter.print("Paragon Removed");
 
         ForkThread(DestroyMid)
         WaitSeconds(10)

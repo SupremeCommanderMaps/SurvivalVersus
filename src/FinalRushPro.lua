@@ -36,7 +36,7 @@ newInstance = function(ScenarioInfo)
 
     local function setupParagonWars()
         if ScenarioInfo.Options.opt_gamemode == 1 then
-            local paragonWars = import('/maps/Final Rush Pro 5/src/ParagonWars.lua').newInstance(playerArmies)
+            local paragonWars = import('/maps/Final Rush Pro 5/src/ParagonWars.lua').newInstance(playerArmies, textPrinter)
             paragonWars.setUp()
         end
     end
