@@ -31,6 +31,8 @@ This is an alpha version, no stable release is available yet.
 **Paragon Wars mode**
 
 * Paragon Wars now works properly when playing with less than 8 players
+* The Paragon Activator and civilian base now spawn in the exact center of the map (rather than deviating randomly)
+* The civilian base is now symmetrical (rather than constructed randomly)
 * Units will no longer automatically fire on the (indestructible) Paragon Activator
 
 **Internal changes**

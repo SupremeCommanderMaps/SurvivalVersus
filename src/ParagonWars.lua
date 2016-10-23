@@ -54,60 +54,88 @@ newInstance = function(playerArmies, textPrinter)
         ForkThread(paragonTimer, paragon, armyName)
     end
 
-    local createT1pd = function()
-        local T1DefenceCount = 0
+    local newUnitSpanwer = function()
+        local wtfIsThisValue = 25.984375
 
-        while T1DefenceCount < Random(8,16) do
-            CreateUnitHPR("uab2101", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
-            T1DefenceCount = T1DefenceCount + 1
+        return {
+            spawnUnit = function(blueprintName, armyName, x, y)
+                return CreateUnitHPR(blueprintName, armyName, x, wtfIsThisValue, y, 0,0,0)
+            end
+        }
+    end
+
+    local newBaseSpanwer = function(unitSpanwer, baseCenter, baseOwnerName)
+        local x = baseCenter.x
+        local y = baseCenter.y
+
+        local function spawnAround(blueprintName, options)
+            local radius = options.distance
+            local anglePerElement = 360 / options.numberOfPoints
+            local pointFilter = options.pointFilter or function() return true end
+
+            for pointNumber=1, options.numberOfPoints do
+                if pointFilter(pointNumber) then
+                    local angle = math.rad(anglePerElement * pointNumber)
+
+                    unitSpanwer.spawnUnit(
+                        blueprintName,
+                        baseOwnerName,
+                        x + radius * math.sin(angle),
+                        y + radius * math.cos(angle)
+                    )
+                end
+            end
         end
-    end
 
-    local createT2pd = function()
-        local T2DefenceCount = 0
-
-        while T2DefenceCount < Random(8,16) do
-            CreateUnitHPR("uab2301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
-            T2DefenceCount = T2DefenceCount + 1
+        local function spawnAroundDiagonally(blueprintName, options)
+            spawnAround(
+                blueprintName,
+                {
+                    distance = options.distance,
+                    numberOfPoints = options.numberOfPoints or 8,
+                    pointFilter = function(pointNumber)
+                        return math.mod(pointNumber, 2) == 1
+                    end
+                }
+            )
         end
-    end
 
-    local createAA = function()
-        local T3DefenceAACount = 0
-
-        while T3DefenceAACount < Random(8,16) do
-            CreateUnitHPR("ueb2304", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
-            T3DefenceAACount = T3DefenceAACount + 1
+        local function spawnAroundStraight(blueprintName, options)
+            spawnAround(
+                blueprintName,
+                {
+                    distance = options.distance,
+                    numberOfPoints = options.numberOfPoints or 8,
+                    pointFilter = function(pointNumber)
+                        return math.mod(pointNumber, 2) == 0
+                    end
+                }
+            )
         end
+
+        return {
+            spawnCentralStructure = function(blueprintName)
+                return unitSpanwer.spawnUnit(blueprintName, baseOwnerName, x, y)
+            end,
+            spawnAroundDiagonally = spawnAroundDiagonally,
+            spawnAroundStraight = spawnAroundStraight,
+            spawnAround = spawnAround
+        }
     end
 
-    local createShields = function()
-        local T3DefenceShieldCount = 0
+    local mapCenter = {
+        x = 255,
+        y = 255
+    }
 
-        while T3DefenceShieldCount < Random(2,4) do
-            CreateUnitHPR("uab4301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
-            T3DefenceShieldCount = T3DefenceShieldCount + 1
-        end
-    end
-
-    local createPower = function()
-        local T3PowerCount = 0
-
-        while T3PowerCount < Random(2,4) do
-            CreateUnitHPR("uab1301", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
-            T3PowerCount = T3PowerCount + 1
-        end
-    end
-
-    local createRadar = function()
-        CreateUnitHPR("uab3104", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0,0,0)
-    end
+    local baseSpawner = newBaseSpanwer(newUnitSpanwer(), mapCenter, "NEUTRAL_CIVILIAN")
 
     local createParagonActivator = function()
-        local paragonActivator = CreateUnitHPR("uac1901", "NEUTRAL_CIVILIAN", Random(245,265), 25.984375, Random(245,265), 0,0,0)
+        local paragonActivator = baseSpawner.spawnCentralStructure("uac1901")
         paragonActivator:SetReclaimable(false);
         paragonActivator:SetCanTakeDamage(false);
         paragonActivator:SetDoNotTarget(true);
+        paragonActivator:SetCustomName("Paragon Activator")
 
         paragonActivator.OldOnCaptured = paragonActivator.OnCaptured;
 
@@ -118,12 +146,15 @@ newInstance = function(playerArmies, textPrinter)
     end
 
     createCentralCivilians = function()
-        createT1pd()
-        createT2pd()
-        createAA()
-        createShields()
-        createPower()
-        createRadar()
+        baseSpawner.spawnAroundStraight("uab1301", {distance = 6}) -- Power
+        baseSpawner.spawnAroundDiagonally("uab4301", {distance = 8}) -- Shields
+        baseSpawner.spawnAroundDiagonally("uab3104", {distance = 8}) -- Radar (inside the shields)
+
+        baseSpawner.spawnAroundStraight("uab2304", {distance = 12, numberOfPoints = 16}) -- T3 AA
+        baseSpawner.spawnAroundDiagonally("uab4201", {distance = 12, numberOfPoints = 16}) -- TMD
+        baseSpawner.spawnAround("uab2301", {distance = 16, numberOfPoints = 16}) -- T2 PD
+        baseSpawner.spawnAround("uab2101", {distance = 19, numberOfPoints = 24}) -- T1 PD
+
         createParagonActivator()
     end
 
