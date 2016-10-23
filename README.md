@@ -17,6 +17,7 @@ This is an alpha version, no stable release is available yet.
 * The Player Air restriction option now applies to all game modes
 * Added additional possible values to the Player Tech Delay option
 * Improved the wording of all option titles and descriptions
+* Added description of the game modes to the map description visible in the lobby
 * Dropped Final Rush UI and dependence on the FinalRushPro3 mod
 
 **Survival mode**
