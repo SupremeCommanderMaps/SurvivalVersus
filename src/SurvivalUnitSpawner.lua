@@ -94,7 +94,7 @@ newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, hpincr
 
         IssueMove(transports, transportDetails[armyName].finalDestination)
 
-        WaitSeconds(50)
+        WaitSeconds(transportName == "ura0107" and 85 or 50)
 
         spawnOutEffect(transport)
     end
