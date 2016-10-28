@@ -58,8 +58,8 @@ newInstance = function(playerArmies, textPrinter)
         local wtfIsThisValue = 25.984375
 
         return {
-            spawnUnit = function(blueprintName, armyName, x, y)
-                return CreateUnitHPR(blueprintName, armyName, x, wtfIsThisValue, y, 0,0,0)
+            spawnUnit = function(blueprintName, armyName, x, y, yawInRadians)
+                return CreateUnitHPR(blueprintName, armyName, x, wtfIsThisValue, y, 0, yawInRadians or 0, 0)
             end
         }
     end
@@ -77,11 +77,12 @@ newInstance = function(playerArmies, textPrinter)
                 if pointFilter(pointNumber) then
                     local angle = math.rad(anglePerElement * pointNumber)
 
-                    unitSpanwer.spawnUnit(
+                    local unit = unitSpanwer.spawnUnit(
                         blueprintName,
                         baseOwnerName,
                         x + radius * math.sin(angle),
-                        y + radius * math.cos(angle)
+                        y + radius * math.cos(angle),
+                        angle
                     )
                 end
             end
@@ -154,7 +155,8 @@ newInstance = function(playerArmies, textPrinter)
         baseSpawner.spawnAroundDiagonally("uab4201", {distance = 12, numberOfPoints = 16}) -- TMD
         baseSpawner.spawnAround("uab2301", {distance = 16, numberOfPoints = 16}) -- T2 PD
         baseSpawner.spawnAround("uab2101", {distance = 19, numberOfPoints = 24}) -- T1 PD
-        baseSpawner.spawnAround("uab5101", {distance = 20, numberOfPoints = 128}) -- walls
+        baseSpawner.spawnAround("uab5101", {distance = 20.5, numberOfPoints = 128}) -- walls
+        baseSpawner.spawnAround("uab5101", {distance = 21.4, numberOfPoints = 128}) -- walls
 
         createParagonActivator()
     end
