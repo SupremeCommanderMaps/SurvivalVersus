@@ -167,13 +167,11 @@ newInstance = function(playerArmies, textPrinter)
         end
     end
 
-    local this = {}
-
-    this.setUp = function()
-        setCivilianAlliance()
-        createCentralCivilians()
-    end
-
-    return this
+    return {
+        setUp = function()
+            setCivilianAlliance()
+            createCentralCivilians()
+        end
+    }
 end
 

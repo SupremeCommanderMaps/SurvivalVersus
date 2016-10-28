@@ -198,7 +198,6 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
 
     return {
         hunterSpanwer = function(delay, frequency)
-            delay = 10
             WaitSeconds(delay)
             textPrinter.print("Hunters inbound")
             while true do
