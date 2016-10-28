@@ -154,6 +154,7 @@ newInstance = function(playerArmies, textPrinter)
         baseSpawner.spawnAroundDiagonally("uab4201", {distance = 12, numberOfPoints = 16}) -- TMD
         baseSpawner.spawnAround("uab2301", {distance = 16, numberOfPoints = 16}) -- T2 PD
         baseSpawner.spawnAround("uab2101", {distance = 19, numberOfPoints = 24}) -- T1 PD
+        baseSpawner.spawnAround("uab5101", {distance = 20, numberOfPoints = 128}) -- walls
 
         createParagonActivator()
     end
