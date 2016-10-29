@@ -27,6 +27,7 @@ This is an alpha version, no stable release is available yet.
 * Fixed the MML restriction option (it did not show up in the lobby)
 * Fixed the T3 Mobile Arty restriction option (it did not show up in the lobby)
 * Fixed the Sniper Bot restriction option (it did not show up in the lobby)
+* Unkillable transports can no longer be captured or reclaimed
 
 **Paragon Wars mode**
 
