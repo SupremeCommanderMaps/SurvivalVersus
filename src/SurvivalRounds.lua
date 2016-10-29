@@ -1,10 +1,12 @@
 newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, healthMultiplier, RemoveWreckage, spawnOutEffect, Killgroup, ScenarioFramework, textPrinter)
-    local Round1 = function(hpincreasedelay)
-        local survivalUnitSpanwer = import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawner.lua').newInstance(
+    local function newUnitSpawner(hpincreasedelay)
+        return import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawner.lua').newInstance(
             ScenarioInfo, ScenarioFramework, healthMultiplier, hpincreasedelay, RemoveWreckage,
             GetRandomPlayer, Killgroup, spawnOutEffect, TransportDestinations
         )
+    end
 
+    local Round1 = function(survivalUnitSpanwer)
         survivalUnitSpanwer.spawnWithTransports(
             {
                 "url0103", --Cybran T1 Mobile Light Artillery: Medusa
@@ -18,12 +20,7 @@ newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, hea
         )
     end
 
-    local Round2 = function(hpincreasedelay)
-        local survivalUnitSpanwer = import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawner.lua').newInstance(
-            ScenarioInfo, ScenarioFramework, healthMultiplier, hpincreasedelay, RemoveWreckage,
-            GetRandomPlayer, Killgroup, spawnOutEffect, TransportDestinations
-        )
-
+    local Round2 = function(survivalUnitSpanwer)
         survivalUnitSpanwer.spawnWithTransports(
             {
                 "url0202", --Cybran T2 Heavy Tank: Rhino
@@ -41,12 +38,7 @@ newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, hea
         )
     end
 
-    local Round3 = function(hpincreasedelay)
-        local survivalUnitSpanwer = import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawner.lua').newInstance(
-            ScenarioInfo, ScenarioFramework, healthMultiplier, hpincreasedelay, RemoveWreckage,
-            GetRandomPlayer, Killgroup, spawnOutEffect, TransportDestinations
-        )
-
+    local Round3 = function(survivalUnitSpanwer)
         survivalUnitSpanwer.spawnWithTransports(
             {
                 "url0303", --Cybran T3 Siege Assault Bot: Loyalist
@@ -64,12 +56,7 @@ newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, hea
         )
     end
 
-    local Round4 = function(hpincreasedelay)
-        local survivalUnitSpanwer = import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawner.lua').newInstance(
-            ScenarioInfo, ScenarioFramework, healthMultiplier, hpincreasedelay, RemoveWreckage,
-            GetRandomPlayer, Killgroup, spawnOutEffect, TransportDestinations
-        )
-
+    local Round4 = function(survivalUnitSpanwer)
         survivalUnitSpanwer.spawnWithTransports(
             {
                 "url0402",
@@ -79,10 +66,13 @@ newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, hea
         )
     end
 
-    local SpawnerGroup1 = function(delay, frequency, spawnend)
+    local SpawnerGroup1 = function(delay, frequency, spawnEnd)
         WaitSeconds(delay)
-        while GetGameTimeSeconds() < spawnend do
-            ForkThread(Round1, delay)
+
+        local survivalUnitSpanwer = newUnitSpawner(delay)
+
+        while GetGameTimeSeconds() < spawnEnd do
+            ForkThread(Round1, survivalUnitSpanwer)
             WaitSeconds(frequency)
         end
     end
@@ -90,8 +80,11 @@ newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, hea
     local SpawnerGroup2 = function(delay, frequency)
         WaitSeconds(delay)
         textPrinter.print("Tech 2 inbound")
+
+        local survivalUnitSpanwer = newUnitSpawner(delay)
+
         while true do
-            ForkThread(Round2, delay)
+            ForkThread(Round2, survivalUnitSpanwer)
             WaitSeconds(frequency)
         end
     end
@@ -99,8 +92,11 @@ newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, hea
     local SpawnerGroup3 = function(delay, frequency)
         WaitSeconds(delay)
         textPrinter.print("Tech 3 inbound")
+
+        local survivalUnitSpanwer = newUnitSpawner(delay)
+
         while true do
-            ForkThread(Round3, delay)
+            ForkThread(Round3, survivalUnitSpanwer)
             WaitSeconds(frequency)
         end
     end
@@ -108,8 +104,11 @@ newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, hea
     local SpawnerGroup4 = function(delay, frequency)
         WaitSeconds(delay)
         textPrinter.print("Experimentals inbound")
+
+        local survivalUnitSpanwer = newUnitSpawner(delay)
+
         while true do
-            ForkThread(Round4, delay)
+            ForkThread(Round4, survivalUnitSpanwer)
             WaitSeconds(frequency)
         end
     end
