@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, healthMultiplier, RemoveWreckage, spawnOutEffect, Killgroup, ScenarioFramework, textPrinter)
+newInstance = function(textPrinter, unitSpawnerFactory)
     local Round1 = function(survivalUnitSpanwer)
         survivalUnitSpanwer.spawnWithTransports(
             {
@@ -59,19 +59,12 @@ newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, hea
         )
     end
 
-    local function newUnitSpawner(hpincreasedelay)
-        return import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawner.lua').newInstance(
-            ScenarioInfo, ScenarioFramework, healthMultiplier, hpincreasedelay, RemoveWreckage,
-            GetRandomPlayer, Killgroup, spawnOutEffect, TransportDestinations
-        )
-    end
-
     local function createRoundSpawner(initialDelayInSeconds, frequencyInSeconds, spawnEndInSeconds, initialMessage, spawnFunction)
         return function()
             WaitSeconds(initialDelayInSeconds)
             textPrinter.print(initialMessage)
 
-            local survivalUnitSpanwer = newUnitSpawner(initialDelayInSeconds)
+            local survivalUnitSpanwer = unitSpawnerFactory.newSpawner(initialDelayInSeconds)
 
             while spawnEndInSeconds == nil or GetGameTimeSeconds() < spawnEndInSeconds do
                 ForkThread(spawnFunction, survivalUnitSpanwer)

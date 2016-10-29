@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, hpincreasedelay, removeWreckage, getRandomPlayer, killUnitsOnceExpired, spawnOutEffect, TransportDestinations)
+newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, spawnOutEffect, TransportDestinations, hpIncreaseDelayInSeconds)
     local transportDetails = {
         ARMY_9 = {
             spawnPosition = {
@@ -81,7 +81,7 @@ newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, hpincr
 
         -- TODO: always inject properly configured table with method increaseHealth(units)
         if ScenarioInfo.Options.opt_gamemode > 3 then
-            healthMultiplier.increaseHealth(units, hpincreasedelay)
+            healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
         end
 
         removeWreckage(units)
@@ -94,7 +94,7 @@ newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, hpincr
 
         IssueMove(transports, transportDetails[armyName].finalDestination)
 
-        WaitSeconds(transportName == "ura0107" and 85 or 50)
+        WaitSeconds(transportName == "ura0107" and 80 or 50)
 
         spawnOutEffect(transport)
     end

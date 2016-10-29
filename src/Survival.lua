@@ -281,10 +281,9 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
         hunterdelay  = ScenarioInfo.Options.opt_FinalRushSpawnDelay + hunterdelay
 
         if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
-            local randomUnits = import('/maps/Final Rush Pro 5/src/RandomUnits.lua').newInstance(ScenarioInfo, ScenarioFramework)
             local agressionSpawner = import('/maps/Final Rush Pro 5/src/AggressionSpawner.lua').newInstance(
                 StartingPlayersExistance,
-                randomUnits,
+                import('/maps/Final Rush Pro 5/src/RandomUnits.lua').newInstance(ScenarioInfo, ScenarioFramework),
                 AttackLocations,
                 TransportDestinations,
                 ScenarioInfo,
@@ -300,15 +299,17 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
         end
 
         local rounds = import('/maps/Final Rush Pro 5/src/SurvivalRounds.lua').newInstance(
-            ScenarioInfo,
-            TransportDestinations,
-            GetRandomPlayer,
-            healthMultiplier,
-            RemoveWreckage,
-            spawnOutEffect,
-            Killgroup,
-            ScenarioFramework,
-            textPrinter
+            textPrinter,
+            import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawnerFactory.lua').newInstance(
+                ScenarioInfo,
+                ScenarioFramework,
+                healthMultiplier,
+                RemoveWreckage,
+                GetRandomPlayer,
+                Killgroup,
+                spawnOutEffect,
+                TransportDestinations
+            )
         )
 
         rounds.start({
