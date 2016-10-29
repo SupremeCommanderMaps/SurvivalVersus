@@ -55,9 +55,9 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
         local transport
 
         if TeamToAttack == 1 then --ARMY_9
-        TransportEnd = TransportDestinations.SouthernAttackerEnd
-        AttackerARMY = "ARMY_9"
-        transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
+            TransportEnd = TransportDestinations.SouthernAttackerEnd
+            AttackerARMY = "ARMY_9"
+            transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
         elseif TeamToAttack == 2 then
             TransportEnd = TransportDestinations.NorthernAttackerEnd
             AttackerARMY = "NEUTRAL_CIVILIAN"
@@ -112,9 +112,9 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
         local transport
 
         if TeamToAttack == 1 then --ARMY_9
-        TransportEnd = TransportDestinations.SouthernAttackerEnd
-        AttackerARMY = "ARMY_9"
-        transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
+            TransportEnd = TransportDestinations.SouthernAttackerEnd
+            AttackerARMY = "ARMY_9"
+            transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
         elseif TeamToAttack == 2 then
             TransportEnd = TransportDestinations.NorthernAttackerEnd
             AttackerARMY = "NEUTRAL_CIVILIAN"
