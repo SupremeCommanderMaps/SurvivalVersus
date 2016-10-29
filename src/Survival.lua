@@ -311,10 +311,28 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
             textPrinter
         )
 
-        rounds.startT1Thread(t1spawndelay,t1frequency / SpawnMulti,t2spawndelay)
-        rounds.startT2Thread(t2spawndelay,t2frequency / SpawnMulti)
-        rounds.startT3Thread(t3spawndelay,t3frequency / SpawnMulti)
-        rounds.startT4Thread(t4spawndelay,t4frequency / SpawnMulti)
+        rounds.start({
+            T1 = {
+                initialDelayInSeconds = t1spawndelay,
+                frequencyInSeconds = t1frequency / SpawnMulti,
+                spawnEndInSeconds = t2spawndelay,
+            },
+            T2 = {
+                initialDelayInSeconds = t2spawndelay,
+                frequencyInSeconds = t2frequency / SpawnMulti,
+                spawnEndInSeconds = nil,
+            },
+            T3 = {
+                initialDelayInSeconds = t3spawndelay,
+                frequencyInSeconds = t3frequency / SpawnMulti,
+                spawnEndInSeconds = nil,
+            },
+            T4 = {
+                initialDelayInSeconds = t4spawndelay,
+                frequencyInSeconds = t4frequency / SpawnMulti,
+                spawnEndInSeconds = nil,
+            },
+        })
 
         local randomEvents = import('/maps/Final Rush Pro 5/src/RandomEvents.lua').newInstance(
             ScenarioInfo,

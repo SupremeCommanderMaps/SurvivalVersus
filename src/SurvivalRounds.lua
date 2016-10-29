@@ -1,11 +1,4 @@
 newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, healthMultiplier, RemoveWreckage, spawnOutEffect, Killgroup, ScenarioFramework, textPrinter)
-    local function newUnitSpawner(hpincreasedelay)
-        return import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawner.lua').newInstance(
-            ScenarioInfo, ScenarioFramework, healthMultiplier, hpincreasedelay, RemoveWreckage,
-            GetRandomPlayer, Killgroup, spawnOutEffect, TransportDestinations
-        )
-    end
-
     local Round1 = function(survivalUnitSpanwer)
         survivalUnitSpanwer.spawnWithTransports(
             {
@@ -66,65 +59,57 @@ newInstance = function(ScenarioInfo, TransportDestinations, GetRandomPlayer, hea
         )
     end
 
-    local SpawnerGroup1 = function(delay, frequency, spawnEnd)
-        WaitSeconds(delay)
-
-        local survivalUnitSpanwer = newUnitSpawner(delay)
-
-        while GetGameTimeSeconds() < spawnEnd do
-            ForkThread(Round1, survivalUnitSpanwer)
-            WaitSeconds(frequency)
-        end
+    local function newUnitSpawner(hpincreasedelay)
+        return import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawner.lua').newInstance(
+            ScenarioInfo, ScenarioFramework, healthMultiplier, hpincreasedelay, RemoveWreckage,
+            GetRandomPlayer, Killgroup, spawnOutEffect, TransportDestinations
+        )
     end
 
-    local SpawnerGroup2 = function(delay, frequency)
-        WaitSeconds(delay)
-        textPrinter.print("Tech 2 inbound")
+    local function createRoundSpawner(initialDelayInSeconds, frequencyInSeconds, spawnEndInSeconds, initialMessage, spawnFunction)
+        return function()
+            WaitSeconds(initialDelayInSeconds)
+            textPrinter.print(initialMessage)
 
-        local survivalUnitSpanwer = newUnitSpawner(delay)
+            local survivalUnitSpanwer = newUnitSpawner(initialDelayInSeconds)
 
-        while true do
-            ForkThread(Round2, survivalUnitSpanwer)
-            WaitSeconds(frequency)
-        end
-    end
-
-    local SpawnerGroup3 = function(delay, frequency)
-        WaitSeconds(delay)
-        textPrinter.print("Tech 3 inbound")
-
-        local survivalUnitSpanwer = newUnitSpawner(delay)
-
-        while true do
-            ForkThread(Round3, survivalUnitSpanwer)
-            WaitSeconds(frequency)
-        end
-    end
-
-    local SpawnerGroup4 = function(delay, frequency)
-        WaitSeconds(delay)
-        textPrinter.print("Experimentals inbound")
-
-        local survivalUnitSpanwer = newUnitSpawner(delay)
-
-        while true do
-            ForkThread(Round4, survivalUnitSpanwer)
-            WaitSeconds(frequency)
+            while spawnEndInSeconds == nil or GetGameTimeSeconds() < spawnEndInSeconds do
+                ForkThread(spawnFunction, survivalUnitSpanwer)
+                WaitSeconds(frequencyInSeconds)
+            end
         end
     end
 
     return {
-        startT1Thread = function(spawnDelay, spawnFrequency, spawnEnd)
-            ForkThread(SpawnerGroup1, spawnDelay, spawnFrequency, spawnEnd)
-        end,
-        startT2Thread = function(spawnDelay, spawnFrequency)
-            ForkThread(SpawnerGroup2, spawnDelay, spawnFrequency)
-        end,
-        startT3Thread = function(spawnDelay, spawnFrequency)
-            ForkThread(SpawnerGroup3, spawnDelay, spawnFrequency)
-        end,
-        startT4Thread = function(spawnDelay, spawnFrequency)
-            ForkThread(SpawnerGroup4, spawnDelay, spawnFrequency)
+        start = function(options)
+            ForkThread(createRoundSpawner(
+                options.T1.initialDelayInSeconds,
+                options.T1.frequencyInSeconds,
+                options.T1.spawnEndInSeconds,
+                "Tech 1 inbound",
+                Round1
+            ))
+            ForkThread(createRoundSpawner(
+                options.T2.initialDelayInSeconds,
+                options.T2.frequencyInSeconds,
+                options.T2.spawnEndInSeconds,
+                "Tech 2 inbound",
+                Round2
+            ))
+            ForkThread(createRoundSpawner(
+                options.T3.initialDelayInSeconds,
+                options.T3.frequencyInSeconds,
+                options.T3.spawnEndInSeconds,
+                "Tech 3 inbound",
+                Round3
+            ))
+            ForkThread(createRoundSpawner(
+                options.T4.initialDelayInSeconds,
+                options.T4.frequencyInSeconds,
+                options.T4.spawnEndInSeconds,
+                "Experimentals inbound",
+                Round4
+            ))
         end
     }
 end
