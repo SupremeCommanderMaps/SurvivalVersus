@@ -171,15 +171,15 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
         local unit8
 
         if TeamToAttack == 1 then --ARMY_9
-        AttackerARMY = "ARMY_9"
-        unit1 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit2 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit3 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit4 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit5 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit6 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit7 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit8 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            AttackerARMY = "ARMY_9"
+            unit1 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit2 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit3 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit4 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit5 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit6 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit7 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit8 = CreateUnitHPR("uea0103", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
         elseif TeamToAttack == 2 then
             AttackerARMY = "NEUTRAL_CIVILIAN"
             unit1 = CreateUnitHPR("uea0103", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
@@ -222,15 +222,15 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
         local unit8
 
         if TeamToAttack == 1 then --ARMY_9
-        AttackerARMY = "ARMY_9"
-        unit1 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit2 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit3 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit4 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit5 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit6 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit7 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit8 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            AttackerARMY = "ARMY_9"
+            unit1 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit2 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit3 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit4 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit5 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit6 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit7 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit8 = CreateUnitHPR("xra0105", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
         elseif TeamToAttack == 2 then
             AttackerARMY = "NEUTRAL_CIVILIAN"
             unit1 = CreateUnitHPR("xra0105", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
@@ -273,15 +273,15 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
         local unit8
 
         if TeamToAttack == 1 then --ARMY_9
-        AttackerARMY = "ARMY_9"
-        unit1 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit2 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit3 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit4 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit5 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit6 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit7 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit8 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            AttackerARMY = "ARMY_9"
+            unit1 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit2 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit3 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit4 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit5 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit6 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit7 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit8 = CreateUnitHPR("dea0202", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
         elseif TeamToAttack == 2 then
             AttackerARMY = "NEUTRAL_CIVILIAN"
             unit1 = CreateUnitHPR("dea0202", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
@@ -324,15 +324,15 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
         local unit8
 
         if TeamToAttack == 1 then --ARMY_9
-        AttackerARMY = "ARMY_9"
-        unit1 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit2 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit3 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit4 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit5 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit6 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit7 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit8 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            AttackerARMY = "ARMY_9"
+            unit1 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit2 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit3 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit4 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit5 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit6 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit7 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit8 = CreateUnitHPR("uea0304", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
         elseif TeamToAttack == 2 then
             AttackerARMY = "NEUTRAL_CIVILIAN"
             unit1 = CreateUnitHPR("uea0304", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
@@ -376,14 +376,14 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
 
         if TeamToAttack == 1 then --ARMY_9
         AttackerARMY = "ARMY_9"
-        unit1 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit2 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit3 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit4 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit5 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit6 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit7 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
-        unit8 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit1 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit2 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit3 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit4 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit5 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit6 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit7 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
+            unit8 = CreateUnitHPR("uea0305", AttackerARMY, Random(500,512), 25.9844, Random(0,10),0,0,0)
         elseif TeamToAttack == 2 then
             AttackerARMY = "NEUTRAL_CIVILIAN"
             unit1 = CreateUnitHPR("uea0305", AttackerARMY, Random(0,10), 25.9844, Random(500,512),0,0,0)
