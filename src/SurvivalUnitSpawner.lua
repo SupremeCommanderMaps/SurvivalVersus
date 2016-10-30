@@ -94,7 +94,11 @@ newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, remove
 
         IssueMove(transports, transportDetails[armyName].finalDestination)
 
-        WaitSeconds(transportName == "ura0107" and 80 or 50)
+        WaitSeconds(5)
+
+        while transport:IsUnitState('Moving') do
+            WaitSeconds(0.5)
+        end
 
         spawnOutEffect(transport)
     end
