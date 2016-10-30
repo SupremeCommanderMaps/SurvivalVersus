@@ -298,7 +298,7 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
             agressionSpawner.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
 
-        local unitSpanwerFactory = import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawnerFactory.lua').newInstance(
+        local unitSpanwerFactory = import('/maps/Final Rush Pro 5/src/SurvivalSpawnerFactory.lua').newInstance(
             ScenarioInfo,
             ScenarioFramework,
             healthMultiplier,
@@ -306,7 +306,9 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
             GetRandomPlayer,
             Killgroup,
             spawnOutEffect,
-            TransportDestinations
+            TransportDestinations,
+            StartingPlayersExistance,
+            AttackLocations
         )
 
         local rounds = import('/maps/Final Rush Pro 5/src/SurvivalRounds.lua').newInstance(
@@ -348,8 +350,6 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
             GetRandomPlayer,
             Killgroup,
             ListArmies,
-            spawnOutEffect,
-            TransportDestinations,
             unitSpanwerFactory
         )
 

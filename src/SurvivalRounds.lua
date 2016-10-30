@@ -64,10 +64,10 @@ newInstance = function(textPrinter, unitSpawnerFactory)
             WaitSeconds(initialDelayInSeconds)
             textPrinter.print(initialMessage)
 
-            local survivalUnitSpanwer = unitSpawnerFactory.newSpawner(initialDelayInSeconds)
+            local transportSpawner = unitSpawnerFactory.newTransportSpawner(initialDelayInSeconds)
 
             while spawnEndInSeconds == nil or GetGameTimeSeconds() < spawnEndInSeconds do
-                ForkThread(spawnFunction, survivalUnitSpanwer)
+                ForkThread(spawnFunction, transportSpawner)
                 WaitSeconds(frequencyInSeconds)
             end
         end

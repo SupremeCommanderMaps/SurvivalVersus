@@ -1,141 +1,103 @@
-newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, spawnOutEffect, TransportDestinations, hpIncreaseDelayInSeconds)
-    local transportDetails = {
+newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, StartingPlayersExistance, AttackLocations)
+    local airSpawnZones = {
         ARMY_9 = {
-            spawnPosition = {
-                x = 500,
-                y = 10
-            },
-            finalDestination = TransportDestinations.SouthernAttackerEnd
+            minX = 500,
+            maxX = 512,
+            minY = 0,
+            maxY = 10,
         },
         NEUTRAL_CIVILIAN = {
-            spawnPosition = {
-                x = 10,
-                y = 500
-            },
-            finalDestination = TransportDestinations.NorthernAttackerEnd
-        }
+            minX = 0,
+            maxX = 10,
+            minY = 500,
+            maxY = 512,
+        },
     }
 
-    local GetNearestCommander = function(unitgroup,range)
-        local unitattackerpos
-        local unit_pos
-        local dist
-        local CommandersInRange
-        local commandertoattack = false
+    local function GetRandomPlayerExisted(team)
+        local Units_FinalFight = false
+        local selectplayertoattack
 
-        for _,unitattacker in unitgroup do
-            if not unitattacker:IsDead() then
-                unitattackerpos = unitattacker:GetPosition()
-                local brain = unitattacker:GetAIBrain()
-                CommandersInRange = brain:GetUnitsAroundPoint( categories.COMMAND, unitattackerpos, range, 'Enemy' )
+        while Units_FinalFight == false do
+            selectplayertoattack = Random(1,4)
+
+            if team == 1 then
+
+                if selectplayertoattack == 1 and StartingPlayersExistance.ARMY_1 then
+                    Units_FinalFight = AttackLocations.Team1.Player1
+                elseif selectplayertoattack == 2 and StartingPlayersExistance.ARMY_2 then
+                    Units_FinalFight = AttackLocations.Team1.Player2
+                elseif selectplayertoattack == 3 and StartingPlayersExistance.ARMY_3 then
+                    Units_FinalFight = AttackLocations.Team1.Player3
+                elseif selectplayertoattack == 4 and StartingPlayersExistance.ARMY_4 then
+                    Units_FinalFight = AttackLocations.Team1.Player4
+                end
+            elseif team == 2 then
+
+                if selectplayertoattack == 1 and StartingPlayersExistance.ARMY_5 then
+                    Units_FinalFight = AttackLocations.Team2.Player1
+                elseif selectplayertoattack == 2 and StartingPlayersExistance.ARMY_6 then
+                    Units_FinalFight = AttackLocations.Team2.Player2
+                elseif selectplayertoattack == 3 and StartingPlayersExistance.ARMY_7 then
+                    Units_FinalFight = AttackLocations.Team2.Player3
+                elseif selectplayertoattack == 4 and StartingPlayersExistance.ARMY_8 then
+                    Units_FinalFight = AttackLocations.Team2.Player4
+                end
             end
+            WaitSeconds(0.1)
         end
-
-        if CommandersInRange then
-            for _, unit in CommandersInRange do
-                unit_pos = unit:GetPosition()
-                dist = VDist2(unitattackerpos.x,unitattackerpos.z,unit_pos.x,unit_pos.z)
-                commandertoattack = unit
-            end
-        end
-
-        return commandertoattack
+        return Units_FinalFight
     end
 
-    local function attackArmy(targetArmyName, unitgroup)
-        if targetArmyName == "ARMY_9" then
-            IssueAggressiveMove(unitgroup, getRandomPlayer(1))
-            IssueAggressiveMove(unitgroup, getRandomPlayer(1))
-        else
-            IssueAggressiveMove(unitgroup, getRandomPlayer(2))
-            IssueAggressiveMove(unitgroup, getRandomPlayer(2))
+    local function spawnAirUnitsFromName(unitNames, armyName)
+        local spawnZone = airSpawnZones[armyName]
+        local units = {}
+
+        for _, unitName in unitNames do
+            table.insert(
+                units,
+                CreateUnitHPR(
+                    unitName,
+                    armyName,
+                    Random(spawnZone.minX, spawnZone.maxX),
+                    25.9844,
+                    Random(spawnZone.minY, spawnZone.maxY),
+                    0, 0, 0
+                )
+            )
         end
 
-        WaitSeconds(90)
-        local range = 50
-        while GetNearestCommander(unitgroup, range) == false and range < 400 do
-            range = range + 50
-            WaitSeconds(1)
-        end
-
-        local nearestCommander = GetNearestCommander(unitgroup, range)
-
-        if nearestCommander ~= false then
-            IssueAttack(unitgroup, nearestCommander)
-        end
-
-        ForkThread(killUnitsOnceExpired, unitgroup)
+        return units
     end
 
-    local function spawnOutOnceNotMoving(unit)
-        ForkThread(function()
-            WaitSeconds(5)
+    local function sendAirUnitsInForAttack(units, owningArmyName)
+        IssueMove(units, VECTOR3( Random(220,290), 80, Random(220,290)))
 
-            while unit:IsUnitState('Moving') do
-                WaitSeconds(0.5)
-            end
+        local teamIndex = owningArmyName == "ARMY_9" and 1 or 2
 
-            spawnOutEffect(unit)
-        end)
+        IssueAggressiveMove(units, GetRandomPlayerExisted(teamIndex))
+        IssueAggressiveMove(units, getRandomPlayer(teamIndex))
+        IssueAggressiveMove(units, getRandomPlayer(teamIndex))
     end
 
-    local function spawnUnitsForArmy(units, armyName, transportDesination, transportName)
-        local spawnPosition = transportDetails[armyName].spawnPosition
-        local transport = CreateUnitHPR(transportName, armyName, spawnPosition.x, 80, spawnPosition.y, 0, 0, 0)
-        local transports = { transport }
+    local function spawnAirUnitsForArmy(unitNames, armyName)
+        local units = spawnAirUnitsFromName(unitNames, armyName)
 
-        if ScenarioInfo.Options.opt_gamemode > 2 then
-            transport:SetReclaimable(false);
-            transport:SetCanTakeDamage(false);
-            transport:SetDoNotTarget(true);
-            transport:SetCanBeKilled(false);
-        end
+        removeWreckage(units)
 
         -- TODO: always inject properly configured table with method increaseHealth(units)
         if ScenarioInfo.Options.opt_gamemode > 3 then
             healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
         end
 
-        removeWreckage(units)
-
-        ScenarioFramework.AttachUnitsToTransports(units, transports)
-
-        IssueTransportUnload(transports, transportDesination)
-
-        ForkThread(attackArmy, armyName, units)
-
-        IssueMove(transports, transportDetails[armyName].finalDestination)
-
-        spawnOutOnceNotMoving(transport)
-    end
-
-    local function spawnUnitsFromName(unitNames, armyName)
-        local units = {}
-
-        for _, unitName in unitNames do
-            table.insert(units, CreateUnitHPR(unitName, armyName, 255.5, 25.9844, 255.5, 0, 0, 0))
-        end
-
-        return units
+        ForkThread(sendAirUnitsInForAttack, units, armyName)
+        ForkThread(killUnitsOnceExpired, units)
     end
 
     return {
-        spawnWithTransports = function(unitNames, transportName)
-            local transportDesination = VECTOR3(Random(220, 290), 80, Random(220, 290))
-
-            spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "ARMY_9"),
-                "ARMY_9",
-                transportDesination,
-                transportName
-            )
-
-            spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "NEUTRAL_CIVILIAN"),
-                "NEUTRAL_CIVILIAN",
-                transportDesination,
-                transportName
-            )
+        spawnAirUnits = function(unitNames)
+            spawnAirUnitsForArmy(unitNames, "ARMY_9")
+            spawnAirUnitsForArmy(unitNames, "NEUTRAL_CIVILIAN")
         end
     }
 end
