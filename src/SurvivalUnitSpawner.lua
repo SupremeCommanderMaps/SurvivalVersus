@@ -67,7 +67,19 @@ newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, remove
         ForkThread(killUnitsOnceExpired, unitgroup)
     end
 
-    local function spawn(units, armyName, transportDesination, transportName)
+    local function spawnOutOnceNotMoving(unit)
+        ForkThread(function()
+            WaitSeconds(5)
+
+            while unit:IsUnitState('Moving') do
+                WaitSeconds(0.5)
+            end
+
+            spawnOutEffect(unit)
+        end)
+    end
+
+    local function spawnUnitsForArmy(units, armyName, transportDesination, transportName)
         local spawnPosition = transportDetails[armyName].spawnPosition
         local transport = CreateUnitHPR(transportName, armyName, spawnPosition.x, 80, spawnPosition.y, 0, 0, 0)
         local transports = { transport }
@@ -94,13 +106,7 @@ newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, remove
 
         IssueMove(transports, transportDetails[armyName].finalDestination)
 
-        WaitSeconds(5)
-
-        while transport:IsUnitState('Moving') do
-            WaitSeconds(0.5)
-        end
-
-        spawnOutEffect(transport)
+        spawnOutOnceNotMoving(transport)
     end
 
     local function spawnUnitsFromName(unitNames, armyName)
@@ -117,14 +123,14 @@ newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, remove
         spawnWithTransports = function(unitNames, transportName)
             local transportDesination = VECTOR3(Random(220, 290), 80, Random(220, 290))
 
-            spawn(
+            spawnUnitsForArmy(
                 spawnUnitsFromName(unitNames, "ARMY_9"),
                 "ARMY_9",
                 transportDesination,
                 transportName
             )
 
-            spawn(
+            spawnUnitsForArmy(
                 spawnUnitsFromName(unitNames, "NEUTRAL_CIVILIAN"),
                 "NEUTRAL_CIVILIAN",
                 transportDesination,
