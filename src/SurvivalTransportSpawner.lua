@@ -109,7 +109,6 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
         spawnOutOnceNotMoving(transport)
     end
 
-
     local function spawnUnitsFromName(unitNames, armyName)
         local units = {}
 

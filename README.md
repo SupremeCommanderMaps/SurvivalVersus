@@ -24,7 +24,7 @@ This is an alpha version, no stable release is available yet.
 
 * Added Spawn Delay option
 * Random events now spawn units for both teams rather than one random victim
-* Added option that allows turning Aggression Tracking off
+* Added option that allows turning Aggression Tracking (punishing of fast tech, ACU in mid, etc) off
 * Fixed the MML restriction option (it did not show up in the lobby)
 * Fixed the T3 Mobile Arty restriction option (it did not show up in the lobby)
 * Fixed the Sniper Bot restriction option (it did not show up in the lobby)

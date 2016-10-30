@@ -342,13 +342,7 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
         local randomEvents = import('/maps/Final Rush Pro 5/src/RandomEvents.lua').newInstance(
             ScenarioInfo,
             textPrinter,
-            healthMultiplier,
-            RemoveWreckage,
-            StartingPlayersExistance,
-            AttackLocations,
             allUnits,
-            GetRandomPlayer,
-            Killgroup,
             ListArmies,
             unitSpanwerFactory
         )

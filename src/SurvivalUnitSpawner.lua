@@ -14,6 +14,21 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
         },
     }
 
+    local navySpawnZones = {
+        ARMY_9 = {
+            minX = 480,
+            maxX = 490,
+            minY = 20,
+            maxY = 30,
+        },
+        NEUTRAL_CIVILIAN = {
+            minX = 20,
+            maxX = 30,
+            minY = 480,
+            maxY = 490,
+        },
+    }
+
     local function GetRandomPlayerExisted(team)
         local Units_FinalFight = false
         local selectplayertoattack
@@ -49,11 +64,18 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
         return Units_FinalFight
     end
 
-    local function spawnAirUnitsFromName(unitNames, armyName)
-        local spawnZone = airSpawnZones[armyName]
+    local function isShipName(unitName)
+        return string.lower(string.sub(unitName, 3, 3)) == "s"
+    end
+
+    local function spawnUnitsFromName(unitNames, armyName)
+        local airSpawnZone = airSpawnZones[armyName]
+        local navySpawnZone = navySpawnZones[armyName]
         local units = {}
 
         for _, unitName in unitNames do
+            local spawnZone = isShipName(unitName) and navySpawnZone or airSpawnZone
+
             table.insert(
                 units,
                 CreateUnitHPR(
@@ -70,7 +92,7 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
         return units
     end
 
-    local function sendAirUnitsInForAttack(units, owningArmyName)
+    local function sendUnitsInForAttack(units, owningArmyName)
         IssueMove(units, VECTOR3( Random(220,290), 80, Random(220,290)))
 
         local teamIndex = owningArmyName == "ARMY_9" and 1 or 2
@@ -80,8 +102,8 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
         IssueAggressiveMove(units, getRandomPlayer(teamIndex))
     end
 
-    local function spawnAirUnitsForArmy(unitNames, armyName)
-        local units = spawnAirUnitsFromName(unitNames, armyName)
+    local function spawnUnitsForArmy(unitNames, armyName)
+        local units = spawnUnitsFromName(unitNames, armyName)
 
         removeWreckage(units)
 
@@ -90,14 +112,14 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
             healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
         end
 
-        ForkThread(sendAirUnitsInForAttack, units, armyName)
+        ForkThread(sendUnitsInForAttack, units, armyName)
         ForkThread(killUnitsOnceExpired, units)
     end
 
     return {
-        spawnAirUnits = function(unitNames)
-            spawnAirUnitsForArmy(unitNames, "ARMY_9")
-            spawnAirUnitsForArmy(unitNames, "NEUTRAL_CIVILIAN")
+        spawnUnits = function(unitNames)
+            spawnUnitsForArmy(unitNames, "ARMY_9")
+            spawnUnitsForArmy(unitNames, "NEUTRAL_CIVILIAN")
         end
     }
 end
