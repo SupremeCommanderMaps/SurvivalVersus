@@ -200,6 +200,7 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
         hunterSpanwer = function(delay, frequency)
             WaitSeconds(delay)
             textPrinter.print("Hunters inbound")
+
             while true do
                 ForkThread(Hunters,delay)
                 WaitSeconds(frequency)

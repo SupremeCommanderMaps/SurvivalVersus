@@ -58,7 +58,7 @@ options =
     {
         default = 1,
         label = "Spawn Delay",
-        help = "Extra time before the first enemies start spawning",
+        help = "(Survival modes only) Extra time before the first enemies start spawning",
         key = 'opt_FinalRushSpawnDelay',
         pref = 'opt_FinalRushSpawnDelay',
         values = {
@@ -77,7 +77,7 @@ options =
     {
         default = 2,
         label = "Aggression Tracking",
-        help = "Aggressive players get more units. If artilery is not disabled, the extra units will mainly be artilery. Things that generate agression: reaching tech 2, reaching tech 3, creating your first experimental, building mexes, building massfabs, building nukes, building arty and walking your ACU to the center.",
+        help = "(Survival modes only) Aggressive players get more units. If artilery is not disabled, the extra units will mainly be artilery. Things that generate agression: reaching tech 2, reaching tech 3, creating your first experimental, building mexes, building massfabs, building nukes, building arty and walking your ACU to the center.",
         key = 'opt_FinalRushAggression',
         pref = 'opt_FinalRushAggression',
         values = {
@@ -95,17 +95,6 @@ options =
             { text = "Disabled", help = "No air units at all", key = 0, },
             { text = "Scouts and Transports", help = "Scouts and transports only", key = 1, },
             { text = "Enabled", help = "All air units are enabled. NOTE: the incomming waves do NOT contain AA even with this option.", key = 2, },
-        },
-    },
-    {
-        default = 2,
-        label = "Player Navy",
-        help = "Enable or disable navy building for the players",
-        key = 'opt_FinalRushNavy',
-        pref = 'opt_FinalRushNavy',
-        values = {
-            { text = "Disabled", help = "Disabled", key = 0, },
-            { text = "Enabled", help = "Enabled", key = 1, },
         },
     },
     {
@@ -140,7 +129,7 @@ options =
     {
         default = 1,
         label = "Enemy T2 MMLs",
-        help = "T2 MMLs",
+        help = "(Survival modes only) T2 MMLs",
         key = 'opt_t2tml',
         pref = 'opt_t2tml',
         values = {
@@ -151,7 +140,7 @@ options =
     {
         default = 1,
         label = "Enemy Mobile T3 Artillery",
-        help = "Mobile T3 Artillery",
+        help = "(Survival modes only) Mobile T3 Artillery",
         key = 'opt_t3arty',
         pref = 'opt_t3arty',
         values = {
@@ -162,7 +151,7 @@ options =
     {
         default = 1,
         label = "Enemy Sniper Bots",
-        help = "Sniper Bots",
+        help = "(Survival modes only) Sniper Bots",
         key = 'opt_snipers',
         pref = 'opt_snipers',
         values = {
