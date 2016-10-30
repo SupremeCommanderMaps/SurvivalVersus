@@ -1,4 +1,5 @@
-newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWreckage, StartingPlayersExistance, AttackLocations, allUnits, GetRandomPlayer, Killgroup, ListArmies, spawnOutEffect, TransportDestinations)
+newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWreckage, StartingPlayersExistance,
+                        AttackLocations, allUnits, GetRandomPlayer, Killgroup, ListArmies, spawnOutEffect, TransportDestinations, unitSpawnerFactory)
 
     --given an army index returns an army
     local indexToArmy = function(armyIndex)
@@ -47,113 +48,33 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
         return Units_FinalFight
     end
 
-    local SpawnARTY = function(hpincreasedelay)
-        textPrinter.print("T3 Mobile Arty Detected");
-        local AttackerARMY
-        local TeamToAttack = Random(1,2)
-        local TransportEnd
-        local transport
+    local function spawnT3Arty(initialDelayInSeconds)
+        textPrinter.print("T3 Mobile Artillery Detected");
 
-        if TeamToAttack == 1 then --ARMY_9
-            TransportEnd = TransportDestinations.SouthernAttackerEnd
-            AttackerARMY = "ARMY_9"
-            transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
-        elseif TeamToAttack == 2 then
-            TransportEnd = TransportDestinations.NorthernAttackerEnd
-            AttackerARMY = "NEUTRAL_CIVILIAN"
-            transport = CreateUnitHPR("xea0306", AttackerARMY, 10, 80, 500, 0,0,0)
-        end
-
-
-        local TransportTo = VECTOR3( Random(220,290), 80, Random(220,290))
-
-        if ScenarioInfo.Options.opt_gamemode > 2 then
-            transport:SetCanTakeDamage(false);
-        end
-
-        local unit1 = CreateUnitHPR("url0304", AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-        local unit2 = CreateUnitHPR("uel0304", AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-        local unit3 = CreateUnitHPR("url0304", AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-        local unit4 = CreateUnitHPR("uel0304", AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-        local unit5 = CreateUnitHPR("url0304", AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-        local unit6 = CreateUnitHPR("uel0304", AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-        local unit7 = CreateUnitHPR("url0304", AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-        local unit8 = CreateUnitHPR("uel0304", AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-
-        local units = {unit1,unit2,unit3,unit4,unit5,unit6,unit7,unit8}
-        local transports = {transport}
-
-        ForkThread(Killgroup,units)
-
-        if ScenarioInfo.Options.opt_gamemode > 3 then
-            healthMultiplier.increaseHealth(units,hpincreasedelay)
-        end
-
-        removeWreckage(units)
-
-        ScenarioFramework.AttachUnitsToTransports(units, transports)
-        IssueTransportUnload(transports, TransportTo)
-
-        IssueAggressiveMove(units,GetRandomPlayer(TeamToAttack))
-        IssueMove(transports,TransportEnd)
-
-        WaitSeconds(50)
-
-        for index, transport in transports do
-            spawnOutEffect(transport)
-        end
+        unitSpawnerFactory.newSpawner(initialDelayInSeconds).spawnWithTransports(
+            {
+                "url0304", --Cybran T3 Mobile Heavy Artillery: Trebuchet
+                "url0304",
+                "url0304",
+                "url0304",
+                "uel0304", --UEF T3 Mobile Heavy Artillery: Demolisher
+                "uel0304",
+                "uel0304",
+                "uel0304",
+            },
+            "xea0306"
+        )
     end
 
-    local SpawnYthotha = function(hpincreasedelay)
-        textPrinter.print("Ythotha Detected");
-        local AttackerARMY
-        local TeamToAttack = Random(1,2)
-        local TransportEnd
-        local transport
+    local function spawnYthotha(initialDelayInSeconds)
+        textPrinter.print("Ythothas Detected");
 
-        if TeamToAttack == 1 then --ARMY_9
-            TransportEnd = TransportDestinations.SouthernAttackerEnd
-            AttackerARMY = "ARMY_9"
-            transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
-        elseif TeamToAttack == 2 then
-            TransportEnd = TransportDestinations.NorthernAttackerEnd
-            AttackerARMY = "NEUTRAL_CIVILIAN"
-            transport = CreateUnitHPR("xea0306", AttackerARMY, 10, 80, 500, 0,0,0)
-        end
-
-
-        local TransportTo = VECTOR3( Random(220,290), 80, Random(220,290))
-
-        if ScenarioInfo.Options.opt_gamemode > 2 then
-            transport:SetCanTakeDamage(false);
-        end
-
-        local unit1 = CreateUnitHPR("xsl0401", AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)
-
-        local units = {unit1}
-        local transports = {transport}
-
-        ForkThread(Killgroup,units)
-        if ScenarioInfo.Options.opt_gamemode > 3 then
-            healthMultiplier.increaseHealth(units,hpincreasedelay)
-        end
-
-        removeWreckage(units)
-
-        ScenarioFramework.AttachUnitsToTransports(units, transports)
-        IssueTransportUnload(transports, TransportTo)
-
-        IssueAggressiveMove(units, GetRandomPlayerExisted(TeamToAttack))
-        IssueAggressiveMove(units, GetRandomPlayer(TeamToAttack))
-        IssueAggressiveMove(units, GetRandomPlayer(TeamToAttack))
-
-        IssueMove(transports,TransportEnd)
-
-        WaitSeconds(50)
-
-        for index, transport in transports do
-            spawnOutEffect(transport)
-        end
+        unitSpawnerFactory.newSpawner(initialDelayInSeconds).spawnWithTransports(
+            {
+                "xsl0401",
+            },
+            "xea0306"
+        )
     end
 
     local SpawnBombers = function(hpincreasedelay)
@@ -492,7 +413,7 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
                 local RandomEvent = Random(1,4)
                 if RandomEvent == 1 then
                     if (ScenarioInfo.Options.opt_t3arty == 0) then
-                        ForkThread(SpawnARTY, t3spawndelay)
+                        ForkThread(spawnT3Arty, t3spawndelay)
                     else
                         ForkThread(SpawnT3Bombers, t4spawndelay)
                     end
@@ -509,7 +430,7 @@ newInstance = function(ScenarioInfo, textPrinter, healthMultiplier, removeWrecka
             if GetGameTimeSeconds() - t4spawndelay > 0 then
                 local RandomEvent = Random(1,2)
                 if RandomEvent == 1 then
-                    ForkThread(SpawnYthotha, t4spawndelay)
+                    ForkThread(spawnYthotha, t4spawndelay)
                 elseif RandomEvent == 2 then
                     ForkThread(SpawnT3Bombers, t4spawndelay)
                 end
