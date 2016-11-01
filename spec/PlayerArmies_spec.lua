@@ -87,7 +87,7 @@ describe("PlayerArmies", function()
 
         it("returns reversed constructor map", function()
             assert.are.same(
-                {["ARMY_2"] = 1, ["ARMY_7"] = 2},
+                {ARMY_2 = 1, ARMY_7 = 2},
                 PlayerArmies({[1] = "ARMY_2", [2] = "ARMY_7"}).getNameToIndexMap()
             )
         end)
