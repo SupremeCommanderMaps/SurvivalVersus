@@ -31,6 +31,18 @@ newInstance = function(fullIndexToNameMap)
         end
     end
 
+    local function isBottomSideArmy(armyNameOrIndex)
+        local bottomArmies = {
+            ARMY_1 = true,
+            ARMY_2 = true,
+            ARMY_3 = true,
+            ARMY_4 = true,
+        }
+
+        local armyName = tonumber(armyNameOrIndex) and indexToNameMap[armyNameOrIndex] or armyNameOrIndex
+        return bottomArmies[armyName] or false
+    end
+
     return {
         getNameForIndex = function(armyIndex)
             return indexToNameMap[armyIndex]
@@ -46,16 +58,28 @@ newInstance = function(fullIndexToNameMap)
             buildNameToIndexMap()
             return nameToIndexMap[armyName]
         end,
-        isBottomSideArmy = function(armyNameOrIndex)
-            local bottomArmies = {
-                ARMY_1 = true,
-                ARMY_2 = true,
-                ARMY_3 = true,
-                ARMY_4 = true,
-            }
+        isBottomSideArmy = isBottomSideArmy,
+        getBottomSideArmies = function()
+            local bottomSideArmies = {}
 
-            local armyName = tonumber(armyNameOrIndex) and indexToNameMap[armyNameOrIndex] or armyNameOrIndex
-            return bottomArmies[armyName] or false
+            for armyIndex, armyName in pairs(indexToNameMap) do
+                if isBottomSideArmy(armyName) then
+                    bottomSideArmies[armyIndex] = armyName
+                end
+            end
+
+            return newInstance(bottomSideArmies)
+        end,
+        getTopSideArmies = function()
+            local topSideArmies = {}
+
+            for armyIndex, armyName in pairs(indexToNameMap) do
+                if not isBottomSideArmy(armyName) then
+                    topSideArmies[armyIndex] = armyName
+                end
+            end
+
+            return newInstance(topSideArmies)
         end
     }
 end

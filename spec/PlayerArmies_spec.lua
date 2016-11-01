@@ -111,4 +111,46 @@ describe("PlayerArmies", function()
         end)
     end)
 
+    describe("getBottomSideArmies", function()
+        it("returns an empty table when there are only top side armies", function()
+            local allArmies = PlayerArmies({[1] = "ARMY_5", [2] = "ARMY_6", [3] = "ARMY_8"})
+
+            assert.are.same(
+                {},
+                allArmies.getBottomSideArmies().getIndexToNameMap()
+            )
+        end)
+
+        it("returns only top side armies when there are on both sides", function()
+            local allArmies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_4", [3] = "ARMY_5", [4] = "ARMY_8"})
+            local bottomArmies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_4"})
+
+            assert.are.same(
+                bottomArmies.getIndexToNameMap(),
+                allArmies.getBottomSideArmies().getIndexToNameMap()
+            )
+        end)
+    end)
+
+    describe("getTopSideArmies", function()
+        it("returns an empty table when there are only bottom side armies", function()
+            local allArmies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_2", [3] = "ARMY_4"})
+
+            assert.are.same(
+                {},
+                allArmies.getTopSideArmies().getIndexToNameMap()
+            )
+        end)
+
+        it("returns only top side armies when there are on both sides", function()
+            local allArmies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_4", [3] = "ARMY_5", [4] = "ARMY_8"})
+            local topArmies = PlayerArmies({[3] = "ARMY_5", [4] = "ARMY_8"})
+
+            assert.are.same(
+                topArmies.getIndexToNameMap(),
+                allArmies.getTopSideArmies().getIndexToNameMap()
+            )
+        end)
+    end)
+
 end)
