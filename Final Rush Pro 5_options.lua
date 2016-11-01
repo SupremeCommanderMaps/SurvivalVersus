@@ -86,6 +86,28 @@ options =
         },
     },
     {
+        default = 2,
+        label = "Random Events",
+        help = "(Survival modes only) When enabled, from time to time random events will happen. Mostly these are spawning of special enemy units, such as bombers, artillery and destroyers",
+        key = 'opt_FinalRushRandomEvents',
+        pref = 'opt_FinalRushRandomEvents',
+        values = {
+            { text = "Disabled", help = "Disabled", key = 0, },
+            { text = "Enabled", help = "Enabled", key = 1, },
+        },
+    },
+    {
+        default = 2,
+        label = "Bounty Hunters",
+        help = "(Survival modes only) When enabled, from time to time Bounty Hunters (an ACU and a few SACUs) will hunt the players",
+        key = 'opt_FinalRushHunters',
+        pref = 'opt_FinalRushHunters',
+        values = {
+            { text = "Disabled", help = "Disabled", key = 0, },
+            { text = "Enabled", help = "Enabled", key = 1, },
+        },
+    },
+    {
         default = 1,
         label = "Player Air",
         help = "The degree to which air should be enabled for the players",

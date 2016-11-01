@@ -16,6 +16,12 @@ local function defaultGameOptions()
 	if (ScenarioInfo.Options.opt_FinalRushAggression == nil) then
 		ScenarioInfo.Options.opt_FinalRushAggression = 1;
 	end
+	if (ScenarioInfo.Options.opt_FinalRushRandomEvents == nil) then
+		ScenarioInfo.Options.opt_FinalRushRandomEvents = 1;
+	end
+	if (ScenarioInfo.Options.opt_FinalRushHunters == nil) then
+		ScenarioInfo.Options.opt_FinalRushHunters = 1;
+	end
 	if (ScenarioInfo.Options.opt_FinalRushAir == nil) then
 		ScenarioInfo.Options.opt_FinalRushAir = 0;
 	end

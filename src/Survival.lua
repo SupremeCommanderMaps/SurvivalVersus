@@ -339,27 +339,31 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
             },
         })
 
-        local randomEvents = import('/maps/Final Rush Pro 5/src/RandomEvents.lua').newInstance(
-            ScenarioInfo,
-            textPrinter,
-            allUnits,
-            ListArmies,
-            unitSpanwerFactory
-        )
+        if ScenarioInfo.Options.opt_FinalRushRandomEvents == 1 then
+            local randomEvents = import('/maps/Final Rush Pro 5/src/RandomEvents.lua').newInstance(
+                ScenarioInfo,
+                textPrinter,
+                allUnits,
+                ListArmies,
+                unitSpanwerFactory
+            )
 
-        randomEvents.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
+            randomEvents.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
+        end
 
-        local hunters = import('/maps/Final Rush Pro 5/src/Hunters.lua').newInstance(
-            textPrinter,
-            healthMultiplier,
-            playerArmies,
-            IsBLackOpsAcusEnabled(),
-            spawnOutEffect,
-            allUnits,
-            spawnEffect
-        )
+        if ScenarioInfo.Options.opt_FinalRushHunters == 1 then
+            local hunters = import('/maps/Final Rush Pro 5/src/Hunters.lua').newInstance(
+                textPrinter,
+                healthMultiplier,
+                playerArmies,
+                IsBLackOpsAcusEnabled(),
+                spawnOutEffect,
+                allUnits,
+                spawnEffect
+            )
 
-        ForkThread(hunters.hunterSpanwer, hunterdelay, hunterfrequency / SpawnMulti)
+            ForkThread(hunters.hunterSpanwer, hunterdelay, hunterfrequency / SpawnMulti)
+        end
     end
 
     return {
