@@ -28,6 +28,9 @@ This is an alpha version, no stable release is available yet.
 * Fixed the MML restriction option (it did not show up in the lobby)
 * Fixed the T3 Mobile Arty restriction option (it did not show up in the lobby)
 * Fixed the Sniper Bot restriction option (it did not show up in the lobby)
+* Hunters now for both teams rather than one random victim
+* Hunters will now attack targets in the bottom team rather then glitch and sit idly in the center
+* All Hunters now teleport out once their target has been killed rather than a few glitching and remaining 
 * Indestructible transports can no longer be captured or reclaimed
 
 **Paragon Wars mode**

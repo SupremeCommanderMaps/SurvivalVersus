@@ -1,38 +1,4 @@
 newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawnOutEffect, allUnits, spawnEffect)
-    local getRandomArmy = function()
-        local armyName
-        local armies = playerArmies.getIndexToNameMap()
-
-        repeat
-            armyName = armies[Random(1, table.getn(armies))]
-        until not ArmyIsOutOfGame(armyName)
-
-        return armyName
-    end
-
-    --given an army index returns an army
-    local indexToArmy = function(armyIndex)
-        local army = ListArmies()[armyIndex]
-        return army
-    end
-
-    --given a unit returns the army
-    local scnArmy = function(unit)
-        local armyIndex = unit:GetArmy()
-        return indexToArmy(armyIndex)
-    end
-
-    local GetArmyCommander = function(army)
-        local units = allUnits()
-        local commander = false
-        for _, unit in units do
-            if EntityCategoryContains(categories.COMMAND, unit) and scnArmy(unit) == army then
-                commander = unit
-            end
-        end
-        return commander
-    end
-
     local CommanderUpgrades = function(unit)
         local unitid = unit:GetUnitId()
         if unitid == "ual0001" then 							--Aeon Armored Command Unit
@@ -128,8 +94,8 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
         return { "url0001", "uel0001", "ual0001", "xsl0001" }
     end
 
-    local function spawnCommander(unitName)
-        local commander = CreateUnitHPR(unitName, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)
+    local function spawnCommander(armyName, unitName)
+        local commander = CreateUnitHPR(unitName, armyName, Random(250,260), 25.9844, Random(250,260),0,0,0)
 
         ForkThread(spawnEffect, commander)
         ForkThread(CommanderUpgrades, commander)
@@ -137,61 +103,95 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
         return commander
     end
 
-    local function spawnRandomCommander()
-        return spawnCommander(getCommanderNames()[Random(1,4)])
+    local function spawnRandomCommander(hunterArmyName)
+        return spawnCommander(hunterArmyName, getCommanderNames()[Random(1,4)])
     end
 
-    local Hunters = function(initialSpawnDelayInSeconds)
-        local AttackTeam = getRandomArmy()
+    local getAcuByArmyName = function(armyName)
+        local armyIndex = playerArmies.getIndexForName(armyName)
 
-        textPrinter.print("Hunters are targeting " .. getUsername(AttackTeam));
-
-        local leadBountyHunter = spawnRandomCommander()
-        leadBountyHunter:SetCustomName("Bounty Hunter = Target: " .. getUsername(AttackTeam))
-
-        local unit_aeon  = spawnCommander("ual0301")  --Aeon T3 Support Armored Command Unit
-        local unit_cyran = spawnCommander("url0301")  --Cybran T3 Support Armored Command Unit
-        local unit_uef   = spawnCommander("uel0301")  --UEF T3 Support Armored Command Unit
-        local unit_sera  = spawnCommander("xsl0301")  --Seraphim T3 Support Armored Command Unit
-
-        local unit_list = { leadBountyHunter, unit_aeon, unit_cyran, unit_uef, unit_sera }
-
-        if ScenarioInfo.Options.opt_gamemode > 3 then
-            healthMultiplier.increaseHealth(unit_list, initialSpawnDelayInSeconds)
+        for _, unit in allUnits() do
+            if EntityCategoryContains(categories.COMMAND, unit) and unit:GetArmy() == armyIndex then
+                return unit
+            end
         end
 
-        local AttackCommander = GetArmyCommander(AttackTeam)
+        return false
+    end
 
-        if AttackCommander == false then
-            --team has no commander
+    local huntingThread = function(targetArmyName, hunterArmyName, initialSpawnDelayInSeconds)
+        local targetAcu = getAcuByArmyName(targetArmyName)
+
+        if targetAcu == false then
+            return
+        end
+
+        textPrinter.print("Hunters are targeting " .. getUsername(targetArmyName));
+
+        local leadBountyHunter = spawnRandomCommander(hunterArmyName)
+        leadBountyHunter:SetCustomName("Bounty Hunter = Target: " .. getUsername(targetArmyName))
+
+        local aeonHunter = spawnCommander(hunterArmyName, "ual0301")  --Aeon T3 Support Armored Command Unit
+        local cyranHunter = spawnCommander(hunterArmyName, "url0301")  --Cybran T3 Support Armored Command Unit
+        local spaceNazi = spawnCommander(hunterArmyName, "uel0301")  --UEF T3 Support Armored Command Unit
+        local seraHunter = spawnCommander(hunterArmyName, "xsl0301")  --Seraphim T3 Support Armored Command Unit
+
+        local bountryHunters = { leadBountyHunter, aeonHunter, cyranHunter, spaceNazi, seraHunter }
+
+        if ScenarioInfo.Options.opt_gamemode > 3 then
+            healthMultiplier.increaseHealth(bountryHunters, initialSpawnDelayInSeconds)
+        end
+
+        IssueAttack(bountryHunters, targetAcu)
+
+        while not targetAcu:IsDead() do
             WaitSeconds(3)
-            for _, unit in unit_list do
-                ForkThread(spawnOutEffect,unit)
+        end
+
+        textPrinter.print("Bounty " .. getUsername(targetArmyName) .. " Collected");
+
+        WaitSeconds(5)
+
+        for _, unit in bountryHunters do
+            -- FIXME: this causes an error for some of the commanders that halts that thread before unit:Destroy() is reached
+            ForkThread(spawnOutEffect, unit)
+
+            ForkThread(function(unit)
+                WaitSeconds(1)
+                unit:Destroy()
+            end, unit)
+        end
+    end
+
+    local function huntRandomArmy(somePlayerArmies, hunterArmyName, initialSpawnDelayInSeconds)
+        local inGameArmies = {}
+
+        for _, armyName in somePlayerArmies.getIndexToNameMap() do
+            if not ArmyIsOutOfGame(armyName) then
+                table.insert(inGameArmies, armyName)
             end
-        else
-            IssueAttack(unit_list, AttackCommander)
+        end
 
-            while not AttackCommander:IsDead() do
-                WaitSeconds(3)
-            end
-
-            textPrinter.print("Bounty " .. getUsername(AttackTeam) .. " Collected");
-
-            WaitSeconds(6)
-
-            for _, unit in unit_list do
-                ForkThread(spawnOutEffect,unit)
-            end
+        if inGameArmies ~= {} then
+            ForkThread(
+                huntingThread,
+                inGameArmies[Random(1, table.getn(inGameArmies))],
+                hunterArmyName,
+                initialSpawnDelayInSeconds
+            )
         end
     end
 
     return {
         hunterSpanwer = function(initialSpawnDelayInSeconds, frequency)
-            WaitSeconds(delay)
+            initialSpawnDelayInSeconds = 10
+            frequency = 120
+            WaitSeconds(initialSpawnDelayInSeconds)
             textPrinter.print("Hunters inbound")
 
             while true do
-                ForkThread(Hunters, initialSpawnDelayInSeconds)
+                huntRandomArmy(playerArmies.getTopSideArmies(), "NEUTRAL_CIVILIAN", initialSpawnDelayInSeconds)
+                huntRandomArmy(playerArmies.getBottomSideArmies(), "ARMY_9", initialSpawnDelayInSeconds)
                 WaitSeconds(frequency)
             end
         end
