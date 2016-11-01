@@ -120,58 +120,47 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
         return GetArmyBrain(army).Nickname;
     end
 
-    local Hunters = function(hpincreasedelay)
+    local function getCommanderNames()
+        if acuEn then
+            return { "erl0001", "eel0001", "eal0001", "esl0001" }
+        end
+
+        return { "url0001", "uel0001", "ual0001", "xsl0001" }
+    end
+
+    local function spawnCommander(unitName)
+        local commander = CreateUnitHPR(unitName, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)
+
+        ForkThread(spawnEffect, commander)
+        ForkThread(CommanderUpgrades, commander)
+
+        return commander
+    end
+
+    local function spawnRandomCommander()
+        return spawnCommander(getCommanderNames()[Random(1,4)])
+    end
+
+    local Hunters = function(initialSpawnDelayInSeconds)
         local AttackTeam = getRandomArmy()
 
         textPrinter.print("Hunters are targeting " .. getUsername(AttackTeam));
 
-        local AttackCommander = GetArmyCommander(AttackTeam)
-        local Leader
-        local spawnrandomcommander = Random(1,4)
+        local leadBountyHunter = spawnRandomCommander()
+        leadBountyHunter:SetCustomName("Bounty Hunter = Target: " .. getUsername(AttackTeam))
 
+        local unit_aeon  = spawnCommander("ual0301")  --Aeon T3 Support Armored Command Unit
+        local unit_cyran = spawnCommander("url0301")  --Cybran T3 Support Armored Command Unit
+        local unit_uef   = spawnCommander("uel0301")  --UEF T3 Support Armored Command Unit
+        local unit_sera  = spawnCommander("xsl0301")  --Seraphim T3 Support Armored Command Unit
 
-        local acu_cyran
-        local acu_uef
-        local acu_aeon
-        local acu_seraphim
-
-        if acuEn == false then
-            acu_cyran	 =	"url0001"
-            acu_uef		 =	"uel0001"
-            acu_aeon	 =	"ual0001"
-            acu_seraphim =	"xsl0001"
-        elseif acuEn == true then
-            acu_cyran	 =	"erl0001"
-            acu_uef		 =	"eel0001"
-            acu_aeon	 =	"eal0001"
-            acu_seraphim =	"esl0001"
-        end
-
-        if spawnrandomcommander == 1 then
-            Leader = CreateUnitHPR(acu_aeon, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Aeon Armored Command Unit
-        elseif spawnrandomcommander == 2 then
-            Leader = CreateUnitHPR(acu_cyran, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Cybran Armored Command Unit
-        elseif spawnrandomcommander == 3 then
-            Leader = CreateUnitHPR(acu_uef, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --UEF Armored Command Unit
-        elseif spawnrandomcommander == 4 then
-            Leader = CreateUnitHPR(acu_seraphim, "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Seraphim Armored Command Unit
-        end
-        Leader:SetCustomName("Bounty Hunter = Target: " .. getUsername(AttackTeam))
-        local unit_aeon  = CreateUnitHPR("ual0301", "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Aeon T3 Support Armored Command Unit
-        local unit_cyran = CreateUnitHPR("url0301", "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Cybran T3 Support Armored Command Unit
-        local unit_uef   = CreateUnitHPR("uel0301", "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --UEF T3 Support Armored Command Unit
-        local unit_sera  = CreateUnitHPR("xsl0301", "NEUTRAL_CIVILIAN", Random(250,260), 25.9844, Random(250,260),0,0,0)  --Seraphim T3 Support Armored Command Unit
-
-        local unit_list = {Leader,unit_aeon,unit_cyran,unit_uef,unit_sera}
-
-        for _, spawnunit in unit_list do
-            ForkThread(spawnEffect,spawnunit)
-            ForkThread(CommanderUpgrades,spawnunit)
-        end
+        local unit_list = { leadBountyHunter, unit_aeon, unit_cyran, unit_uef, unit_sera }
 
         if ScenarioInfo.Options.opt_gamemode > 3 then
-            healthMultiplier.increaseHealth(unit_list, hpincreasedelay)
+            healthMultiplier.increaseHealth(unit_list, initialSpawnDelayInSeconds)
         end
+
+        local AttackCommander = GetArmyCommander(AttackTeam)
 
         if AttackCommander == false then
             --team has no commander
@@ -197,12 +186,12 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
     end
 
     return {
-        hunterSpanwer = function(delay, frequency)
+        hunterSpanwer = function(initialSpawnDelayInSeconds, frequency)
             WaitSeconds(delay)
             textPrinter.print("Hunters inbound")
 
             while true do
-                ForkThread(Hunters,delay)
+                ForkThread(Hunters, initialSpawnDelayInSeconds)
                 WaitSeconds(frequency)
             end
         end
