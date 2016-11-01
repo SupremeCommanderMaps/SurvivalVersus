@@ -146,8 +146,7 @@ newInstance = function(ScenarioInfo, textPrinter, allUnits, ListArmies, survival
     local SpeedCurrentUnits = function()
         textPrinter.print("Current Unit Speed Boosted");
 
-        local units = allUnits()
-        for _, unit in units do
+        for _, unit in allUnits() do
             if EntityCategoryContains(categories.LAND + categories.NAVAL, unit) and scnArmy(unit) ==  "ARMY_9" or scnArmy(unit) == "NEUTRAL_CIVILIAN" then
                 unit:SetSpeedMult(2)
             end

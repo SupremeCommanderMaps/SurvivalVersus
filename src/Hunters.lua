@@ -36,82 +36,82 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
     local CommanderUpgrades = function(unit)
         local unitid = unit:GetUnitId()
         if unitid == "ual0001" then 							--Aeon Armored Command Unit
-        unit:CreateEnhancement("Shield")
-        unit:CreateEnhancement("ShieldHeavy")
-        unit:CreateEnhancement("HeatSink")
-        unit:CreateEnhancement("CrysalisBeam")
+            unit:CreateEnhancement("Shield")
+            unit:CreateEnhancement("ShieldHeavy")
+            unit:CreateEnhancement("HeatSink")
+            unit:CreateEnhancement("CrysalisBeam")
         elseif unitid == "url0001" then 						--Cybran Armored Command Unit
-        unit:CreateEnhancement("StealthGenerator")
-        unit:CreateEnhancement("CloakingGenerator")
-        unit:CreateEnhancement("CoolingUpgrade")
-        unit:CreateEnhancement("MicrowaveLaserGenerator")
+            unit:CreateEnhancement("StealthGenerator")
+            unit:CreateEnhancement("CloakingGenerator")
+            unit:CreateEnhancement("CoolingUpgrade")
+            unit:CreateEnhancement("MicrowaveLaserGenerator")
         elseif unitid == "uel0001" then 						--UEF Armored Command Unit
-        unit:CreateEnhancement("DamageStablization")
-        unit:CreateEnhancement("HeavyAntiMatterCannon")
-        unit:CreateEnhancement("Shield")
+            unit:CreateEnhancement("DamageStablization")
+            unit:CreateEnhancement("HeavyAntiMatterCannon")
+            unit:CreateEnhancement("Shield")
         elseif unitid == "xsl0001" then 						--Seraphim Armored Command Unit
-        unit:CreateEnhancement("BlastAttack")
-        unit:CreateEnhancement("DamageStabilization")
-        unit:CreateEnhancement("DamageStabilizationAdvanced")
-        unit:CreateEnhancement("RateOfFire")
+            unit:CreateEnhancement("BlastAttack")
+            unit:CreateEnhancement("DamageStabilization")
+            unit:CreateEnhancement("DamageStabilizationAdvanced")
+            unit:CreateEnhancement("RateOfFire")
         elseif unitid == "eal0001" then 						--Aeon Blackops Armored Command Unit
-        unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-        unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-        unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-        unit:CreateEnhancement("EXBeamPhason")
-        unit:CreateEnhancement("EXImprovedCoolingSystem")
-        unit:CreateEnhancement("EXPowerBooster")
-        unit:CreateEnhancement("EXShieldBattery")
-        unit:CreateEnhancement("EXActiveShielding")
-        unit:CreateEnhancement("EXImprovedShieldBattery")
+            unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
+            unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
+            unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
+            unit:CreateEnhancement("EXBeamPhason")
+            unit:CreateEnhancement("EXImprovedCoolingSystem")
+            unit:CreateEnhancement("EXPowerBooster")
+            unit:CreateEnhancement("EXShieldBattery")
+            unit:CreateEnhancement("EXActiveShielding")
+            unit:CreateEnhancement("EXImprovedShieldBattery")
         elseif unitid == "erl0001" then 						--Cybran Blackops Armored Command Unit
-        unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-        unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-        unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-        unit:CreateEnhancement("EXMasor")
-        unit:CreateEnhancement("EXImprovedCoolingSystem")
-        unit:CreateEnhancement("EXAdvancedEmitterArray")
-        unit:CreateEnhancement("EXArmorPlating")
-        unit:CreateEnhancement("EXStructuralIntegrity")
-        unit:CreateEnhancement("EXCompositeMaterials")
+            unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
+            unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
+            unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
+            unit:CreateEnhancement("EXMasor")
+            unit:CreateEnhancement("EXImprovedCoolingSystem")
+            unit:CreateEnhancement("EXAdvancedEmitterArray")
+            unit:CreateEnhancement("EXArmorPlating")
+            unit:CreateEnhancement("EXStructuralIntegrity")
+            unit:CreateEnhancement("EXCompositeMaterials")
         elseif unitid == "eel0001" then 						--UEF Blackops Armored Command Unit
-        unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-        unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-        unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-        unit:CreateEnhancement("EXAntiMatterCannon")
-        unit:CreateEnhancement("EXImprovedContainmentBottle")
-        unit:CreateEnhancement("EXPowerBooster")
-        unit:CreateEnhancement("EXShieldBattery")
-        unit:CreateEnhancement("EXActiveShielding")
-        unit:CreateEnhancement("EXImprovedShieldBattery")
+            unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
+            unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
+            unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
+            unit:CreateEnhancement("EXAntiMatterCannon")
+            unit:CreateEnhancement("EXImprovedContainmentBottle")
+            unit:CreateEnhancement("EXPowerBooster")
+            unit:CreateEnhancement("EXShieldBattery")
+            unit:CreateEnhancement("EXActiveShielding")
+            unit:CreateEnhancement("EXImprovedShieldBattery")
         elseif unitid == "esl0001" then 						--Seraphim Blackops Armored Command Unit
-        unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
-        unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
-        unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
-        unit:CreateEnhancement("EXCannonBigBall")
-        unit:CreateEnhancement("EXImprovedContainmentBottle")
-        unit:CreateEnhancement("EXPowerBooster")
-        unit:CreateEnhancement("EXL1Lambda")
-        unit:CreateEnhancement("EXL2Lambda")
-        unit:CreateEnhancement("EXL3Lambda")
+            unit:CreateEnhancement("EXCombatEngineering")  		--combat t2
+            unit:CreateEnhancement("EXAssaultEngineering")		--combat t3
+            unit:CreateEnhancement("EXApocolypticEngineering")	--combat t4
+            unit:CreateEnhancement("EXCannonBigBall")
+            unit:CreateEnhancement("EXImprovedContainmentBottle")
+            unit:CreateEnhancement("EXPowerBooster")
+            unit:CreateEnhancement("EXL1Lambda")
+            unit:CreateEnhancement("EXL2Lambda")
+            unit:CreateEnhancement("EXL3Lambda")
         elseif unitid == "ual0301" then 						--Aeon T3 Support Armored Command Unit
-        unit:CreateEnhancement("Shield") 	 					--back
-        unit:CreateEnhancement("ShieldHeavy") 	 				--back
-        unit:CreateEnhancement("StabilitySuppressant")  		--right
-        unit:CreateEnhancement("EngineeringFocusingModule")  	--left
+            unit:CreateEnhancement("Shield") 	 					--back
+            unit:CreateEnhancement("ShieldHeavy") 	 				--back
+            unit:CreateEnhancement("StabilitySuppressant")  		--right
+            unit:CreateEnhancement("EngineeringFocusingModule")  	--left
         elseif unitid == "url0301" then --Cybran T3 Support Armored Command Unit
-        unit:CreateEnhancement("StealthGenerator")  			--back
-        unit:CreateEnhancement("CloakingGenerator")  			--back
-        unit:CreateEnhancement("EMPCharge")						--left
-        unit:CreateEnhancement("FocusConvertor")				--right
+            unit:CreateEnhancement("StealthGenerator")  			--back
+            unit:CreateEnhancement("CloakingGenerator")  			--back
+            unit:CreateEnhancement("EMPCharge")						--left
+            unit:CreateEnhancement("FocusConvertor")				--right
         elseif unitid == "uel0301" then --UEF T3 Support Armored Command Unit
-        unit:CreateEnhancement("AdvancedCoolingUpgrade")		--left
-        unit:CreateEnhancement("HighExplosiveOrdnance")			--right
-        unit:CreateEnhancement("Shield")						--back
+            unit:CreateEnhancement("AdvancedCoolingUpgrade")		--left
+            unit:CreateEnhancement("HighExplosiveOrdnance")			--right
+            unit:CreateEnhancement("Shield")						--back
         elseif unitid == "xsl0301" then --Seraphim T3 Support Armored Command Unit
-        unit:CreateEnhancement("DamageStabilization")			--left
-        unit:CreateEnhancement("Shield")						--back
-        unit:CreateEnhancement("Overcharge")					--right
+            unit:CreateEnhancement("DamageStabilization")			--left
+            unit:CreateEnhancement("Shield")						--back
+            unit:CreateEnhancement("Overcharge")					--right
         end
     end
 
