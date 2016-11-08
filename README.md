@@ -19,7 +19,7 @@ TL;DR: many new options, balance enhancements, no more need for mods
 * Added Spawn Delay option (survival modes only)
 * Added options to specify T1, T2, T3 and T4 Spawn Frequency (survival modes only)
 * Added options to specify T2, T3 and T4 Spawn Delay (survival modes only)
-* Added option to Health Increase of the spawned units (survival modes only)
+* Added option to specify the Health Increase of the spawned units (survival modes only)
 * Added option to specify Random Event Frequency (survival modes only)
 * Added option to specify Bounty Hunter Frequency (survival modes only)
 * Added option to specify Bounty Hunter Delay (survival modes only)
