@@ -24,9 +24,9 @@ TL;DR: many new options, balance enhancements, no more need for mods
 * Added option to specify Bounty Hunter Frequency (survival modes only)
 * Added option to specify Bounty Hunter Delay (survival modes only)
 * Added option that allows turning Aggression Tracking (punishing of fast tech, ACU in mid, etc) off (survival modes only)
-* Fixed the MML restriction option (it did not show up in the lobby)
-* Fixed the T3 Mobile Arty restriction option (it did not show up in the lobby)
-* Fixed the Sniper Bot restriction option (it did not show up in the lobby)
+* Fixed the MML restriction option (it did not show up in the lobby) (survival modes only)
+* Fixed the T3 Mobile Arty restriction option (it did not show up in the lobby) (survival modes only)
+* Fixed the Sniper Bot restriction option (it did not show up in the lobby) (survival modes only)
 * Added option that allows turning all player air units on
 
 Extra option values:
