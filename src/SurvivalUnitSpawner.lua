@@ -107,10 +107,7 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
 
         removeWreckage(units)
 
-        -- TODO: always inject properly configured table with method increaseHealth(units)
-        if ScenarioInfo.Options.opt_gamemode > 3 then
-            healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
-        end
+        healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
 
         ForkThread(sendUnitsInForAttack, units, armyName)
         ForkThread(killUnitsOnceExpired, units)

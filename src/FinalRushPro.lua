@@ -35,14 +35,14 @@ newInstance = function(ScenarioInfo)
     end
 
     local function setupParagonWars()
-        if ScenarioInfo.Options.opt_gamemode == 1 then
+        if ScenarioInfo.Options.opt_gamemode == 2 then
             local paragonWars = import('/maps/Final Rush Pro 5/src/ParagonWars.lua').newInstance(playerArmies, textPrinter)
             paragonWars.setUp()
         end
     end
 
     local function setupServival()
-        if ScenarioInfo.Options.opt_gamemode > 1 then
+        if ScenarioInfo.Options.opt_gamemode == 0 or ScenarioInfo.Options.opt_gamemode == 1 then
             local survival = import('/maps/Final Rush Pro 5/src/Survival.lua').newInstance(ScenarioInfo, textPrinter, playerArmies)
             survival.start()
         end

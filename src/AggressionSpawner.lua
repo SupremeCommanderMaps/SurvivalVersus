@@ -129,7 +129,8 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
 
         local TransportTo = VECTOR3( Random(220,290), 80, Random(220,290))
 
-        if ScenarioInfo.Options.opt_gamemode > 2 then
+        if ScenarioInfo.Options.opt_gamemode == 1 then
+            -- classic survival
             transport:SetCanTakeDamage(false);
         end
 
@@ -147,9 +148,7 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
 
         ForkThread(killgroup,units)
 
-        if ScenarioInfo.Options.opt_gamemode > 3 then
-            healthMultiplier.increaseHealth(units,hpincreasedelay)
-        end
+        healthMultiplier.increaseHealth(units, hpincreasedelay)
 
         removeWreckage(units)
 
@@ -260,6 +259,8 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
         start = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
             ForkThread(Aggression.Aggression)
             ForkThread(AggressionCheck)
+
+            -- TODO: only start spawning stuff once t1spawndelay has passed
             AggressionSpawner(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
     }

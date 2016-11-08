@@ -138,9 +138,7 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
 
         local bountryHunters = { leadBountyHunter, aeonHunter, cyranHunter, spaceNazi, seraHunter }
 
-        if ScenarioInfo.Options.opt_gamemode > 3 then
-            healthMultiplier.increaseHealth(bountryHunters, initialSpawnDelayInSeconds)
-        end
+        healthMultiplier.increaseHealth(bountryHunters, initialSpawnDelayInSeconds)
 
         IssueAttack(bountryHunters, targetAcu)
 

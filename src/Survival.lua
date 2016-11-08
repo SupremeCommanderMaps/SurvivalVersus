@@ -164,35 +164,35 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
     local setUp = function()
         disableWalls()
 
-        if ScenarioInfo.Options.opt_gamemode == 2 then  --versus survival
-        local tblArmies = ListArmies()
-        for index, name in tblArmies do
-            if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
-                SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
-                SetAlliance(index, "ARMY_9", 'Ally')
-            elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
-                SetAlliance(index, "ARMY_9", 'Enemy')
-                SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
+        if ScenarioInfo.Options.opt_gamemode == 0 then  --versus survival
+            local tblArmies = ListArmies()
+            for index, name in tblArmies do
+                if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
+                    SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
+                    SetAlliance(index, "ARMY_9", 'Ally')
+                elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
+                    SetAlliance(index, "ARMY_9", 'Enemy')
+                    SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
+                end
             end
-        end
 
-        SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
+            SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
         end
 
         local survivalStructures = import('/maps/Final Rush Pro 5/src/SurvivalStructures.lua').newInstance()
 
-        if ScenarioInfo.Options.opt_gamemode > 2 then  --easy, normal, hard and insane survival
-        local tblArmies = ListArmies()
-        for index in tblArmies do
-            SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
-            SetAlliance(index, "ARMY_9", 'Enemy')
-        end
-        SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
+        if ScenarioInfo.Options.opt_gamemode == 1 then  --classic survival
+            local tblArmies = ListArmies()
+            for index in tblArmies do
+                SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
+                SetAlliance(index, "ARMY_9", 'Enemy')
+            end
+            SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
 
-        local commanderWaterPain = import('/maps/Final Rush Pro 5/src/CommanderWaterPain.lua').newInstance(allUnits)
-        commanderWaterPain.runThread()
+            local commanderWaterPain = import('/maps/Final Rush Pro 5/src/CommanderWaterPain.lua').newInstance(allUnits)
+            commanderWaterPain.runThread()
 
-        survivalStructures.createHillGuards()
+            survivalStructures.createHillGuards()
         end
 
         survivalStructures.createParagons()
@@ -201,84 +201,15 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
 
     local runBattle = function(textPrinter, playerArmies)
         local healthMultiplier = import('/maps/Final Rush Pro 5/src/HealthMultiplier.lua').newInstance(
-            ScenarioInfo.Options.opt_gamemode,
+            ScenarioInfo.Options.opt_FinalRushDifficulty,
+            ScenarioInfo.Options.opt_FinalRushHealthIncrease,
             IsTotalVetEnabled()
         )
 
-        local SpawnMulti = table.getn(playerArmies.getIndexToNameMap()) / 8
-
-        local t1spawndelay = 0
-        local t2spawndelay = 0
-        local t3spawndelay = 0
-        local t4spawndelay = 0
-        local hunterdelay = 0
-
-        local t1frequency = 0
-        local t2frequency = 0
-        local t3frequency = 0
-        local t4frequency = 0
-        local hunterfrequency = 0
-        local RandomFrequency = 0
-
-        if ScenarioInfo.Options.opt_gamemode < 4 then
-            LOG("Survival Easy or Versus")
-            t1spawndelay = 0
-            t2spawndelay = 6  * 60
-            t3spawndelay = 12 * 60
-            t4spawndelay = 18 * 60
-            hunterdelay  = 24 * 60
-            t1frequency = 6
-            t2frequency = 6
-            t3frequency = 10
-            t4frequency = 30
-            hunterfrequency = 4 * 60
-            RandomFrequency = 90
-        elseif ScenarioInfo.Options.opt_gamemode == 4 then
-            LOG("Survival Normal")
-            t1spawndelay = 0
-            t2spawndelay = 6  * 60
-            t3spawndelay = 12 * 60
-            t4spawndelay = 18 * 60
-            hunterdelay  = 22 * 60
-            t1frequency = 6
-            t2frequency = 6
-            t3frequency = 10
-            t4frequency = 10
-            hunterfrequency = 3 * 60
-            RandomFrequency = 70
-        elseif ScenarioInfo.Options.opt_gamemode == 5 then
-            LOG("Survival Hard")
-            t1spawndelay = 0
-            t2spawndelay = 5  * 60
-            t3spawndelay = 10 * 60
-            t4spawndelay = 16 * 60
-            hunterdelay  = 18 * 60
-            t1frequency = 6
-            t2frequency = 6
-            t3frequency = 10
-            t4frequency = 10
-            hunterfrequency = 2 * 60
-            RandomFrequency = 50
-        elseif ScenarioInfo.Options.opt_gamemode == 6 then
-            LOG("Survival Insane")
-            t1spawndelay = 0
-            t2spawndelay = 4 * 60
-            t3spawndelay = 8 * 60
-            t4spawndelay = 14 * 60
-            hunterdelay  = 16 * 60
-            t1frequency = 6
-            t2frequency = 6
-            t3frequency = 10
-            t4frequency = 8
-            hunterfrequency = 90
-            RandomFrequency = 30
-        end
-
-        t1spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + t1spawndelay
-        t2spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + t2spawndelay
-        t3spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + t3spawndelay
-        t4spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + t4spawndelay
-        hunterdelay  = ScenarioInfo.Options.opt_FinalRushSpawnDelay + hunterdelay
+        local t1spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay
+        local t2spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT2Delay
+        local t3spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT3Delay
+        local t4spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT4Delay
 
         if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
             local agressionSpawner = import('/maps/Final Rush Pro 5/src/AggressionSpawner.lua').newInstance(
@@ -316,30 +247,32 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
             unitSpanwerFactory
         )
 
+        local SpawnMulti = table.getn(playerArmies.getIndexToNameMap()) / 8
+
         rounds.start({
             T1 = {
                 initialDelayInSeconds = t1spawndelay,
-                frequencyInSeconds = t1frequency / SpawnMulti,
+                frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT1Frequency / SpawnMulti,
                 spawnEndInSeconds = t2spawndelay,
             },
             T2 = {
                 initialDelayInSeconds = t2spawndelay,
-                frequencyInSeconds = t2frequency / SpawnMulti,
+                frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT2Frequency / SpawnMulti,
                 spawnEndInSeconds = nil,
             },
             T3 = {
                 initialDelayInSeconds = t3spawndelay,
-                frequencyInSeconds = t3frequency / SpawnMulti,
+                frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT3Frequency / SpawnMulti,
                 spawnEndInSeconds = nil,
             },
             T4 = {
                 initialDelayInSeconds = t4spawndelay,
-                frequencyInSeconds = t4frequency / SpawnMulti,
+                frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
                 spawnEndInSeconds = nil,
             },
         })
 
-        if ScenarioInfo.Options.opt_FinalRushRandomEvents == 1 then
+        if ScenarioInfo.Options.opt_FinalRushRandomEvents > 0 then
             local randomEvents = import('/maps/Final Rush Pro 5/src/RandomEvents.lua').newInstance(
                 ScenarioInfo,
                 textPrinter,
@@ -348,10 +281,10 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
                 unitSpanwerFactory
             )
 
-            randomEvents.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
+            randomEvents.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, ScenarioInfo.Options.opt_FinalRushRandomEvents)
         end
 
-        if ScenarioInfo.Options.opt_FinalRushHunters == 1 then
+        if ScenarioInfo.Options.opt_FinalRushHunters > 0 then
             local hunters = import('/maps/Final Rush Pro 5/src/Hunters.lua').newInstance(
                 textPrinter,
                 healthMultiplier,
@@ -362,7 +295,11 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
                 spawnEffect
             )
 
-            ForkThread(hunters.hunterSpanwer, hunterdelay, hunterfrequency / SpawnMulti)
+            ForkThread(
+                hunters.hunterSpanwer,
+                ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushHunterDelay,
+                ScenarioInfo.Options.opt_FinalRushHunters / SpawnMulti
+            )
         end
     end
 

@@ -84,7 +84,8 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
         local transport = CreateUnitHPR(transportName, armyName, spawnPosition.x, 80, spawnPosition.y, 0, 0, 0)
         local transports = { transport }
 
-        if ScenarioInfo.Options.opt_gamemode > 2 then
+        if ScenarioInfo.Options.opt_gamemode == 1 then
+            -- survival classic
             transport:SetReclaimable(false);
             transport:SetCanTakeDamage(false);
             transport:SetDoNotTarget(true);
@@ -93,10 +94,7 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
 
         removeWreckage(units)
 
-        -- TODO: always inject properly configured table with method increaseHealth(units)
-        if ScenarioInfo.Options.opt_gamemode > 3 then
-            healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
-        end
+        healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
 
         ScenarioFramework.AttachUnitsToTransports(units, transports)
 

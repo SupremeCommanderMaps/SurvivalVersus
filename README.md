@@ -10,27 +10,41 @@ This is an alpha version, no stable release is available yet.
 
 (Changes since version 4.0007)
 
+TL;DR: many new options, balance enhancements, no more need for mods
+
+**New lobby options**
+
+* Added Survival Difficulty option (which can be used in both Survival Classic and Survival Versus)
 * Added Auto Reclaim option (or rather made it work with recent versions of FAF)
-* Added additional possible values to the Auto Reclaim option
-* Changed default values of the lobby options to what most people expect
-* Added option that allows turning all player air units on
-* The Player Air restriction option now applies to all game modes
-* Added additional possible values to the Player Tech Delay option
-* Improved the wording of all option titles and descriptions
-* Added description of the game modes to the map description visible in the lobby
-* Dropped Final Rush UI and dependence on the FinalRushPro3 mod
-
-**Survival mode**
-
-* Added Spawn Delay option
-* Random events now spawn units for both teams rather than one random victim
-* Bounty Hunters now spawn for both teams rather than one random victim
+* Added Spawn Delay option (survival modes only)
+* Added options to specify T1, T2, T3 and T4 Spawn Frequency (survival modes only)
+* Added options to specify T2, T3 and T4 Spawn Delay (survival modes only)
+* Added option to Health Increase of the spawned units (survival modes only)
+* Added option to specify Random Event Frequency (survival modes only)
+* Added option to specify Bounty Hunter Frequency (survival modes only)
+* Added option to specify Bounty Hunter Delay (survival modes only)
+* Added option that allows turning Aggression Tracking (punishing of fast tech, ACU in mid, etc) off (survival modes only)
 * Fixed the MML restriction option (it did not show up in the lobby)
 * Fixed the T3 Mobile Arty restriction option (it did not show up in the lobby)
 * Fixed the Sniper Bot restriction option (it did not show up in the lobby)
-* Added option to disable random events
-* Added option to disable Bounty Hunters
-* Added option that allows turning Aggression Tracking (punishing of fast tech, ACU in mid, etc) off
+* Added option that allows turning all player air units on
+
+Extra option values:
+
+* Added additional possible values to the Auto Reclaim option
+* Added additional possible values to the Player Tech Delay option
+
+Other lobby improvements:
+
+* Changed default values of the lobby options to what most people expect
+* Improved the wording of all option titles and descriptions
+* The Player Air restriction option now applies to all game modes
+* Added description of the game modes to the map description visible in the lobby
+
+**Survival modes**
+
+* Random events now spawn units for both teams rather than one random victim
+* Bounty Hunters now spawn for both teams rather than one random victim
 * Bounty Hunters will now attack targets in the bottom team rather then glitch and sit idly in the center
 * All Bounty  Hunters now teleport out once their target has been killed rather than a few glitching and remaining 
 * Indestructible transports can no longer be captured or reclaimed
@@ -44,6 +58,7 @@ This is an alpha version, no stable release is available yet.
 
 **Internal changes**
 
+* Dropped Final Rush UI and dependence on the FinalRushPro3 mod
 * Refactored the codebase from procedural to object orientated
     * Cohesive sets of code now have their own modules
     * Global/static scope is now avoided where possible and dependency injection is used
