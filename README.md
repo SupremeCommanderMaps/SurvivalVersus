@@ -6,7 +6,7 @@ You can [read the documentation][docs].
 
 ## New in version 5
 
-(Changes since version 4.0007) This is a beta version, no stable release is available yet.
+(Changes since v4.0007) This is a beta version, no stable release is available yet.
 
 TL;DR: many new options, various balance enhancements, no more need for mods
 
