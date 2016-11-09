@@ -20,7 +20,9 @@ ScenarioInfo = {
             }
         }
     },
-    description=[[This map supports multiple game modes: Survival, Survival Versus, Paragon Wars and Normal.
+    description=[[More comprehensive documentation can be found at bit.ly/final-rush-pro
+    
+This map supports multiple game modes: Survival, Survival Versus, Paragon Wars and Normal.
 
 In the Survival modes, waves of increasingly strong enemy units get spawned and your mission is to survive as long as possible. Beware that you cannot put your ACU into the water or hide in the hills behind your base; both will result in it being destroyed.
 
