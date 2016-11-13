@@ -2,15 +2,13 @@
 <img align="right" src="preview.jpg">
 A survival map for [Supreme Commander: Forged Alliance Forever][FAF].
 
-[![Build Status](https://travis-ci.org/JeroenDeDauw/FinalRushPro5.svg?branch=master)](https://travis-ci.org/JeroenDeDauw/FinalRushPro5)
+You can [read the documentation][docs].
 
 ## New in version 5
 
-This is an alpha version, no stable release is available yet.
+(Changes since v4.0007) This is a beta version, no stable release is available yet.
 
-(Changes since version 4.0007)
-
-TL;DR: many new options, balance enhancements, no more need for mods
+TL;DR: many new options, various balance enhancements, no more need for mods
 
 **New lobby options**
 
@@ -79,6 +77,8 @@ of the Vampire mod.
 
 ## Updates and contributing
 
+[![Build Status](https://travis-ci.org/JeroenDeDauw/FinalRushPro5.svg?branch=master)](https://travis-ci.org/JeroenDeDauw/FinalRushPro5)
+
 You can find the latest version of the map on the [Final Rush Pro 5 GitHub project][GitHub], which is
 also the place where you can file issues, post feature request, and submit patches.
 
@@ -98,6 +98,7 @@ This version of the map includes files from the FinalRushPro3 mod, which was cre
 Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview image was created by JuiceBoy.
 
 [FAF]: http://www.faforever.com/
+[docs]: http://wiki.faforever.com/index.php?title=Final_Rush_Pro_5
 [download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
 [Busted]: http://olivinelabs.com/busted/
