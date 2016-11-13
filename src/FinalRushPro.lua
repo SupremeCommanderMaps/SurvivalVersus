@@ -54,10 +54,28 @@ newInstance = function(ScenarioInfo)
         end
     end
 
+    local function showWelcomeMessage()
+        ForkThread(function()
+            local modeNames = {
+                [0] = "Survival Versus",
+                [1] = "Survival Classic",
+                [2] = "Paragon Wars",
+                [3] = "Nothing Special",
+            }
+
+            local modeName = modeNames[ScenarioInfo.Options.opt_gamemode]
+
+            textPrinter.printBig("Welcome to Final Rush Pro 5 - " .. modeName .. " mode")
+            textPrinter.print("Docs at bit.ly/final-rush-pro")
+            textPrinter.print(" ")
+        end)
+
+    end
+
     return {
         setUp = function()
+            showWelcomeMessage()
             buildRestrictor.resetToStartingRestrictions()
-
             setupTents()
             setupLighthouses()
             restrictTechs()
