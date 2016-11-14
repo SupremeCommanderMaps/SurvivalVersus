@@ -162,6 +162,7 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
     end
 
     local function huntRandomArmy(somePlayerArmies, hunterArmyName, initialSpawnDelayInSeconds)
+        -- TODO: this function can be simplified by using new PlayerArmies methods
         local inGameArmies = {}
 
         for _, armyName in somePlayerArmies.getIndexToNameMap() do

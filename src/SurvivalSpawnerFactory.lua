@@ -1,5 +1,5 @@
-newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, removeWreckage, getRandomPlayer,
-                        killUnitsOnceExpired, spawnOutEffect, TransportDestinations, StartingPlayersExistance, AttackLocations)
+newInstance = function(ScenarioInfo, ScenarioFramework, playerArmies, healthMultiplier, removeWreckage, getRandomPlayer,
+                        killUnitsOnceExpired, spawnOutEffect, TransportDestinations, getAllUnits)
 
     local transportSpawnerClass = import('/maps/Final Rush Pro 5/src/SurvivalTransportSpawner.lua')
     local unitSpawnerClass = import('/maps/Final Rush Pro 5/src/SurvivalUnitSpawner.lua')
@@ -13,10 +13,8 @@ newInstance = function(ScenarioInfo, ScenarioFramework, healthMultiplier, remove
         end,
         newUnitSpawner = function(hpIncreaseDelayInSeconds)
             return unitSpawnerClass.newInstance(
-                ScenarioInfo, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds,
-                StartingPlayersExistance, AttackLocations
+                playerArmies, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, getAllUnits
             )
         end
     }
 end
-

@@ -1,8 +1,14 @@
 newInstance = function(fullIndexToNameMap)
     local function isPlayerArmyName(armyName)
         local names = {
-            ARMY_1 = true,  ARMY_2 = true, ARMY_3 = true, ARMY_4 = true,
-            ARMY_5 = true,  ARMY_6 = true, ARMY_7 = true, ARMY_8 = true,
+            ARMY_1 = true,
+            ARMY_2 = true,
+            ARMY_3 = true,
+            ARMY_4 = true,
+            ARMY_5 = true,
+            ARMY_6 = true,
+            ARMY_7 = true,
+            ARMY_8 = true,
         }
 
         return names[armyName] or false
@@ -43,6 +49,62 @@ newInstance = function(fullIndexToNameMap)
         return bottomArmies[armyName] or false
     end
 
+    local function isTopSideArmy(armyNameOrIndex)
+        local bottomArmies = {
+            ARMY_5 = true,
+            ARMY_6 = true,
+            ARMY_7 = true,
+            ARMY_8 = true,
+        }
+
+        local armyName = tonumber(armyNameOrIndex) and indexToNameMap[armyNameOrIndex] or armyNameOrIndex
+        return bottomArmies[armyName] or false
+    end
+
+    local function filter(filterFunction)
+        local filtered = {}
+
+        for armyIndex, armyName in pairs(indexToNameMap) do
+            if filterFunction(armyName) then
+                filtered[armyIndex] = armyName
+            end
+        end
+
+        return newInstance(filtered)
+    end
+
+    local function newFilterMethod(filterFunction)
+        return function()
+            return filter(filterFunction)
+        end
+    end
+
+    local getBottomSideArmies = newFilterMethod(isBottomSideArmy)
+    local getTopSideArmies = newFilterMethod(isTopSideArmy)
+
+    local function getTargetsForArmy(hunterArmyName)
+        if hunterArmyName == "NEUTRAL_CIVILIAN" then
+            return getTopSideArmies()
+        end
+
+        if hunterArmyName == "ARMY_9" then
+            return getBottomSideArmies()
+        end
+
+        return newInstance({})
+    end
+
+    local function getRandomArmyName()
+        local armyCount = table.getn(indexToNameMap)
+
+        if armyCount < 1 then
+            return nil
+        end
+
+        local randomFunction = Random or math.random
+        return indexToNameMap[randomFunction(1, armyCount)]
+    end
+
     return {
         getNameForIndex = function(armyIndex)
             return indexToNameMap[armyIndex]
@@ -59,28 +121,12 @@ newInstance = function(fullIndexToNameMap)
             return nameToIndexMap[armyName]
         end,
         isBottomSideArmy = isBottomSideArmy,
-        getBottomSideArmies = function()
-            local bottomSideArmies = {}
-
-            for armyIndex, armyName in pairs(indexToNameMap) do
-                if isBottomSideArmy(armyName) then
-                    bottomSideArmies[armyIndex] = armyName
-                end
-            end
-
-            return newInstance(bottomSideArmies)
-        end,
-        getTopSideArmies = function()
-            local topSideArmies = {}
-
-            for armyIndex, armyName in pairs(indexToNameMap) do
-                if not isBottomSideArmy(armyName) then
-                    topSideArmies[armyIndex] = armyName
-                end
-            end
-
-            return newInstance(topSideArmies)
-        end
+        isTopSideArmy = isTopSideArmy,
+        getBottomSideArmies = getBottomSideArmies,
+        getTopSideArmies = getTopSideArmies,
+        getTargetsForArmy = getTargetsForArmy,
+        getRandomArmyName = getRandomArmyName,
+        filterByName = filter
     }
 end
 

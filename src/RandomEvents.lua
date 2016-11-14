@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, textPrinter, allUnits, ListArmies, survivalSpawnerFactory)
+newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survivalSpawnerFactory)
 
     local function spawnT3Arty(initialDelayInSeconds)
         textPrinter.print("T3 Mobile Artillery Detected");
@@ -131,22 +131,15 @@ newInstance = function(ScenarioInfo, textPrinter, allUnits, ListArmies, survival
         )
     end
 
-    --given an army index returns an army
-    local indexToArmy = function(armyIndex)
-        local army = ListArmies()[armyIndex]
-        return army
-    end
-
-    --given a unit returns the army
-    local scnArmy = function(unit)
-        local armyIndex = unit:GetArmy()
-        return indexToArmy(armyIndex)
+    local isSurvivalUnit = function(unit)
+        local armyName = ListArmies()[unit:GetArmy()]
+        return armyName == "ARMY_9" or armyName == "NEUTRAL_CIVILIAN"
     end
 
     local SpeedCurrentUnits = function()
         textPrinter.print("Current Unit Speed Boosted");
 
-        for _, unit in allUnits() do
+        for _, unit in getAllUnits() do
             if EntityCategoryContains(categories.LAND + categories.NAVAL, unit) and scnArmy(unit) ==  "ARMY_9" or scnArmy(unit) == "NEUTRAL_CIVILIAN" then
                 unit:SetSpeedMult(2)
             end

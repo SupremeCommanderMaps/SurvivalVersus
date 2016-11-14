@@ -232,14 +232,14 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
         local unitSpanwerFactory = import('/maps/Final Rush Pro 5/src/SurvivalSpawnerFactory.lua').newInstance(
             ScenarioInfo,
             ScenarioFramework,
+            playerArmies,
             healthMultiplier,
             RemoveWreckage,
             GetRandomPlayer,
             Killgroup,
             spawnOutEffect,
             TransportDestinations,
-            StartingPlayersExistance,
-            AttackLocations
+            allUnits
         )
 
         local rounds = import('/maps/Final Rush Pro 5/src/SurvivalRounds.lua').newInstance(

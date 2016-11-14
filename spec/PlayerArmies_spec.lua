@@ -112,7 +112,7 @@ describe("PlayerArmies", function()
     end)
 
     describe("getBottomSideArmies", function()
-        it("returns an empty table when there are only top side armies", function()
+        it("returns no armies when there are only top side armies", function()
             local allArmies = PlayerArmies({[1] = "ARMY_5", [2] = "ARMY_6", [3] = "ARMY_8"})
 
             assert.are.same(
@@ -133,7 +133,7 @@ describe("PlayerArmies", function()
     end)
 
     describe("getTopSideArmies", function()
-        it("returns an empty table when there are only bottom side armies", function()
+        it("returns no armies when there are only bottom side armies", function()
             local allArmies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_2", [3] = "ARMY_4"})
 
             assert.are.same(
@@ -152,5 +152,97 @@ describe("PlayerArmies", function()
             )
         end)
     end)
+
+    describe("getTargetsForArmy", function()
+        it("returns no armies when there are no armies", function()
+            local allArmies = PlayerArmies({})
+
+            assert.are.same(
+                {},
+                allArmies.getTargetsForArmy("NEUTRAL_CIVILIAN").getIndexToNameMap()
+            )
+        end)
+
+        it("returns all NEUTRAL_CIVILIAN armies when there are only armies for NEUTRAL_CIVILIAN", function()
+            local allArmies = PlayerArmies({"ARMY_5", "ARMY_6", "ARMY_8"})
+
+            assert.are.same(
+                {"ARMY_5", "ARMY_6", "ARMY_8"},
+                allArmies.getTargetsForArmy("NEUTRAL_CIVILIAN").getIndexToNameMap()
+            )
+        end)
+
+        it("returns all ARMY_9 armies when there are only armies for ARMY_9", function()
+            local allArmies = PlayerArmies({"ARMY_1", "ARMY_3", "ARMY_4"})
+
+            assert.are.same(
+                {"ARMY_1", "ARMY_3", "ARMY_4"},
+                allArmies.getTargetsForArmy("ARMY_9").getIndexToNameMap()
+            )
+        end)
+
+        it("returns no NEUTRAL_CIVILIAN armies when there are only ARMY_9 armies", function()
+            local allArmies = PlayerArmies({"ARMY_1", "ARMY_3", "ARMY_4"})
+
+            assert.are.same(
+                {},
+                allArmies.getTargetsForArmy("NEUTRAL_CIVILIAN").getIndexToNameMap()
+            )
+        end)
+
+        it("returns no ARMY_9 armies when there are only NEUTRAL_CIVILIAN armies", function()
+            local allArmies = PlayerArmies({"ARMY_5", "ARMY_6", "ARMY_8"})
+
+            assert.are.same(
+                {},
+                allArmies.getTargetsForArmy("ARMY_9").getIndexToNameMap()
+            )
+        end)
+
+        it("returns no armies for invalid army name", function()
+            local allArmies = PlayerArmies({"ARMY_1", "ARMY_5"})
+
+            assert.are.same(
+                {},
+                allArmies.getTargetsForArmy("Pink_fluffy_unicorns").getIndexToNameMap()
+            )
+        end)
+    end)
+
+    describe("getRandomArmyName", function()
+        it("returns nil when there are no armies", function()
+            local armies = PlayerArmies({})
+
+            assert.is_nil(armies.getRandomArmyName())
+        end)
+
+        it("returns the army when there is only one army", function()
+            local armies = PlayerArmies({"ARMY_5"})
+
+            assert.is.equal("ARMY_5", armies.getRandomArmyName())
+        end)
+
+        it("returns one of the armies if there are multiple", function()
+            local armies = PlayerArmies({"ARMY_1", "ARMY_5"})
+            local randomArmyName = armies.getRandomArmyName()
+
+            assert.is_true(randomArmyName == "ARMY_1" or randomArmyName == "ARMY_5")
+        end)
+    end)
+
+    describe("filterByName", function()
+        it("returns only elements matching the filter function", function()
+            local armies = PlayerArmies({"ARMY_1", "ARMY_5", "ARMY_6", "ARMY_8"})
+
+            assert.are.same(
+                {[2] = "ARMY_5", [3] = "ARMY_6"},
+                armies.filterByName(function(armyName)
+                    return armyName == "ARMY_5" or armyName == "ARMY_6"
+                end).getIndexToNameMap()
+            )
+        end)
+    end)
+
+
 
 end)

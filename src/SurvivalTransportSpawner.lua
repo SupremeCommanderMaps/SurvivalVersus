@@ -42,7 +42,7 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
         return commandertoattack
     end
 
-    local function attackArmy(attackingArmyName, unitgroup)
+    local function issueAttackCommands(attackingArmyName, unitgroup)
         if attackingArmyName == "ARMY_9" then
             IssueAggressiveMove(unitgroup, getRandomPlayer(1))
             IssueAggressiveMove(unitgroup, getRandomPlayer(1))
@@ -100,7 +100,7 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
 
         IssueTransportUnload(transports, transportDesination)
 
-        ForkThread(attackArmy, armyName, units)
+        ForkThread(issueAttackCommands, armyName, units)
 
         IssueMove(transports, transportDetails[armyName].finalDestination)
 
