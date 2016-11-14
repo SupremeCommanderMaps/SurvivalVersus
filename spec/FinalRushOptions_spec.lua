@@ -43,7 +43,7 @@ describe("FinalRushOptions", function()
 
             local returnedOptions = FinalRushOptions.applyPresets(inputOptions)
 
-            assert.are.equal(0, returnedOptions.opt_FinalRushSpawnDelay)
+            assert.are.equal(10, returnedOptions.opt_FinalRushSpawnDelay)
             assert.are.equal(1, returnedOptions.opt_FinalRushAggression)
             assert.are.equal(90, returnedOptions.opt_FinalRushRandomEvents)
             assert.are.equal(480, returnedOptions.opt_FinalRushHunters)

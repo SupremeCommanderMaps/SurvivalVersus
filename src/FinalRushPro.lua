@@ -55,7 +55,7 @@ newInstance = function(ScenarioInfo)
     end
 
     local function showWelcomeMessage()
-        ForkThread(function()
+        local getGameMode = function()
             local modeNames = {
                 [0] = "Survival Versus",
                 [1] = "Survival Classic",
@@ -63,6 +63,10 @@ newInstance = function(ScenarioInfo)
                 [3] = "Nothing Special",
             }
 
+            return modeNames[ScenarioInfo.Options.opt_gamemode]
+        end
+
+        local getDifficuly = function()
             local difficulyNames = {
                 [1] = "Very easy",
                 [2] = "Easy",
@@ -71,15 +75,19 @@ newInstance = function(ScenarioInfo)
                 [5] = "Insane",
             }
 
-            local textColor = "ffb4ffd4"
-            local duration = 9
+            return difficulyNames[ScenarioInfo.Options.opt_FinalRushDifficulty]
+        end
 
-            textPrinter.print("Welcome to Final Rush Pro 5", {size = 35, color = textColor, duration = duration})
+        ForkThread(function()
+            local headerOptions = {color = "ffb4ffd4", duration = 8.5, size = 35 }
+            local textOptions = {color = "ffb4ffd4", duration = 8.5 }
+
+            textPrinter.print("Welcome to Final Rush Pro 5", headerOptions)
             textPrinter.printBlankLine()
-            textPrinter.print("Game mode: " ..  modeNames[ScenarioInfo.Options.opt_gamemode], {color = textColor, duration = duration})
-            textPrinter.print("Difficulty: " ..  difficulyNames[ScenarioInfo.Options.opt_FinalRushDifficulty], {color = textColor, duration = duration})
+            textPrinter.print("Game mode: " ..  getGameMode(), textOptions)
+            textPrinter.print("Difficulty: " ..  getDifficuly(), textOptions)
             textPrinter.printBlankLine()
-            textPrinter.print("Docs at bit.ly/final-rush-pro", {color = textColor, duration = duration})
+            textPrinter.print("Docs at bit.ly/final-rush-pro", textOptions)
         end)
 
     end
