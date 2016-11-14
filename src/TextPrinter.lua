@@ -14,8 +14,8 @@ newInstance = function()
 
     return {
         print = print,
-        printBlankLine = function()
-            print(" ")
+        printBlankLine = function(options)
+            print(" ", options)
         end
     }
 end

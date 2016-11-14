@@ -79,15 +79,15 @@ newInstance = function(ScenarioInfo)
         end
 
         ForkThread(function()
-            local headerOptions = {color = "ffb4ffd4", duration = 8.5, size = 35 }
-            local textOptions = {color = "ffb4ffd4", duration = 8.5 }
+            local headerOptions = {color = "ffb4ffd4", duration = 12, location = "leftcenter", size = 35 }
+            local textOptions = {color = "ffb4ffd4", duration = 12, location = "leftcenter" }
 
-            textPrinter.print("Welcome to Final Rush Pro 5", headerOptions)
-            textPrinter.printBlankLine()
-            textPrinter.print("Game mode: " ..  getGameMode(), textOptions)
-            textPrinter.print("Difficulty: " ..  getDifficuly(), textOptions)
-            textPrinter.printBlankLine()
-            textPrinter.print("Docs at bit.ly/final-rush-pro", textOptions)
+            textPrinter.print(string.rep( " ", 12 ) .. "Welcome to Final Rush Pro 5", headerOptions)
+            textPrinter.printBlankLine(textOptions)
+            textPrinter.print(string.rep( " ", 20 ) .. "Game mode: " ..  getGameMode(), textOptions)
+            textPrinter.print(string.rep( " ", 20 ) .. "Difficulty: " ..  getDifficuly(), textOptions)
+            textPrinter.printBlankLine(textOptions)
+            textPrinter.print(string.rep( " ", 20 ) .. "Docs at bit.ly/final-rush-pro", textOptions)
         end)
 
     end
