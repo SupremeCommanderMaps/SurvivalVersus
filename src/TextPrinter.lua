@@ -2,12 +2,20 @@ import('/lua/SimSync.lua');
 import('/lua/SimPlayerQuery.lua');
 
 newInstance = function()
+    local function print(str, options)
+        options = options or {}
+        options.size = options.size or 20
+        options.color = options.color or "ffffffff"
+        options.duration = options.duration or 5
+        options.location = options.location or "center"
+
+        PrintText(str, options.size, options.color, options.duration, options.location);
+    end
+
     return {
-        print = function(str)
-            PrintText(str, 20, "ffffffff", 5, 'center');
-        end,
-        printBig = function(str)
-            PrintText(str, 35, "ffffffff", 5, 'center');
+        print = print,
+        printBlankLine = function()
+            print(" ")
         end
     }
 end

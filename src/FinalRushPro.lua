@@ -63,11 +63,23 @@ newInstance = function(ScenarioInfo)
                 [3] = "Nothing Special",
             }
 
-            local modeName = modeNames[ScenarioInfo.Options.opt_gamemode]
+            local difficulyNames = {
+                [1] = "Very easy",
+                [2] = "Easy",
+                [3] = "Normal",
+                [4] = "Hard",
+                [5] = "Insane",
+            }
 
-            textPrinter.printBig("Welcome to Final Rush Pro 5 - " .. modeName .. " mode")
-            textPrinter.print("Docs at bit.ly/final-rush-pro")
-            textPrinter.print(" ")
+            local textColor = "ffb4ffd4"
+            local duration = 9
+
+            textPrinter.print("Welcome to Final Rush Pro 5", {size = 35, color = textColor, duration = duration})
+            textPrinter.printBlankLine()
+            textPrinter.print("Game mode: " ..  modeNames[ScenarioInfo.Options.opt_gamemode], {color = textColor, duration = duration})
+            textPrinter.print("Difficulty: " ..  difficulyNames[ScenarioInfo.Options.opt_FinalRushDifficulty], {color = textColor, duration = duration})
+            textPrinter.printBlankLine()
+            textPrinter.print("Docs at bit.ly/final-rush-pro", {color = textColor, duration = duration})
         end)
 
     end

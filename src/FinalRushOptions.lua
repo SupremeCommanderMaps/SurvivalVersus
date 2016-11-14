@@ -38,8 +38,8 @@ function applyPresets(scenarioOptions)
     local difficultyPreset = {
         opt_FinalRushSpawnDelay = {
             [1] = 180,
-            [2] = 0,
-            [3] = 0,
+            [2] = 10,
+            [3] = 10,
             [4] = 0,
             [5] = 0,
         },

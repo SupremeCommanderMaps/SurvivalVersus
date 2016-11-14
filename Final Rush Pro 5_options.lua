@@ -90,12 +90,13 @@ options =
     {
         default = 1,
         label = "Spawn Delay",
-        help = "(Survival modes only) Extra time before the first enemies start spawning. Compounds with the tech specific spawn delay options. Also delays Random Events and Bounty Hunters. Normal difficulty has no Spawn Delay. Very easy has 3 minutes",
+        help = "(Survival modes only) Extra time before the first enemies start spawning. Compounds with the tech specific spawn delay options. Also delays Random Events and Bounty Hunters. Normal difficulty has 6 seconds spawn delay. Very easy has 3 minutes",
         key = 'opt_FinalRushSpawnDelay',
         pref = 'opt_FinalRushSpawnDelay',
         values = {
             { text = "Difficulty preset", help = "Automatically pick a value based on the selected difficulty", key = -1, },
             { text = "None", help = "None", key = 0, },
+            { text = "10 seconds", help = "10 seconds", key = 10, },
             { text = "30 seconds", help = "30 seconds", key = 30, },
             { text = "1 minute", help = "1 minute", key = 60, },
             { text = "2 minutes", help = "2 minutes", key = 120, },
