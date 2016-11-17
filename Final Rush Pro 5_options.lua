@@ -392,7 +392,7 @@ options =
         key = 'opt_t3arty',
         pref = 'opt_t3arty',
         values = {
-            { text = "Enabled", help = "Disabled", key = 0, },
+            { text = "Enabled", help = "Enabled", key = 0, },
             { text = "Disabled", help = "Disabled", key = 1, },
         },
     },
@@ -403,7 +403,7 @@ options =
         key = 'opt_snipers',
         pref = 'opt_snipers',
         values = {
-            { text = "Enabled", help = "Disabled", key = 0, },
+            { text = "Enabled", help = "Enabled", key = 0, },
             { text = "Disabled", help = "Disabled", key = 1, },
         },
     }
