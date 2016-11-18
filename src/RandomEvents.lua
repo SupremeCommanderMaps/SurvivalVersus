@@ -173,17 +173,17 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     local function getPossibleEvents(elapsedTimeInSeconds, t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         local possibleEvents = {}
 
-        if elapsedTimeInSeconds >= t1spawndelay and elapsedTimeInSeconds < t2spawndelay then
+        if elapsedTimeInSeconds > t1spawndelay + 1 and elapsedTimeInSeconds <= t2spawndelay then
             table.insert(possibleEvents, {spawnBombers, t2spawndelay})
             table.insert(possibleEvents, {spawnT1Gunships, t2spawndelay})
         end
 
-        if elapsedTimeInSeconds >= t2spawndelay and elapsedTimeInSeconds < t3spawndelay then
+        if elapsedTimeInSeconds > t2spawndelay and elapsedTimeInSeconds <= t3spawndelay then
             table.insert(possibleEvents, {spawnT2Bombers, t3spawndelay})
             table.insert(possibleEvents, {SpawnT2Gunships, t3spawndelay})
         end
 
-        if elapsedTimeInSeconds >= t3spawndelay then
+        if elapsedTimeInSeconds > t3spawndelay then
             table.insert(possibleEvents, {SpawnT2Destroyers, t3spawndelay})
             table.insert(possibleEvents, {spawnT3Bombers, t3spawndelay})
             table.insert(possibleEvents, {SpawnT3Gunships, t3spawndelay})
@@ -193,7 +193,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
             end
         end
 
-        if elapsedTimeInSeconds >= t4spawndelay then
+        if elapsedTimeInSeconds > t4spawndelay then
             table.insert(possibleEvents, {spawnYthotha, t4spawndelay})
 
             if Random(1, 2) == 1 then
