@@ -1,42 +1,10 @@
 newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survivalSpawnerFactory)
 
-    local function spawnT3Arty(initialDelayInSeconds)
-        textPrinter.print("T3 Mobile Artillery Detected");
-
-        survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
-            {
-                "url0304", --Cybran T3 Mobile Heavy Artillery: Trebuchet
-                "url0304",
-                "url0304",
-                "url0304",
-                "uel0304", --UEF T3 Mobile Heavy Artillery: Demolisher
-                "uel0304",
-                "uel0304",
-                "uel0304",
-            },
-            "xea0306"
-        )
-    end
-
-    local function spawnYthotha(initialDelayInSeconds)
-        textPrinter.print("Ythothas Detected");
-
-        survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
-            {
-                "xsl0401",
-            },
-            "xea0306"
-        )
-    end
-
     local function spawnBombers(initialDelayInSeconds)
         textPrinter.print("T1 Bombers Detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
-                "uea0103",
-                "uea0103",
-                "uea0103",
                 "uea0103",
                 "uea0103",
                 "uea0103",
@@ -51,11 +19,6 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
-                "xra0105",
-                "xra0105",
-                "xra0105",
-                "xra0105",
-                "xra0105",
                 "xra0105",
                 "xra0105",
                 "xra0105",
@@ -76,6 +39,23 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
                 "dra0202",
                 "dra0202",
                 "dra0202",
+            }
+        )
+    end
+
+    local SpawnT2Gunships = function(initialDelayInSeconds)
+        textPrinter.print("T2 Gunships Detected");
+
+        survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
+            {
+                "uea0203",
+                "uea0203",
+                "uea0203",
+                "uea0203",
+                "uea0203",
+                "uea0203",
+                "uea0203",
+                "uea0203",
             }
         )
     end
@@ -131,6 +111,35 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
         )
     end
 
+    local function spawnT3Arty(initialDelayInSeconds)
+        textPrinter.print("T3 Mobile Artillery Detected");
+
+        survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
+            {
+                "url0304", --Cybran T3 Mobile Heavy Artillery: Trebuchet
+                "url0304",
+                "url0304",
+                "url0304",
+                "uel0304", --UEF T3 Mobile Heavy Artillery: Demolisher
+                "uel0304",
+                "uel0304",
+                "uel0304",
+            },
+            "xea0306"
+        )
+    end
+
+    local function spawnYthotha(initialDelayInSeconds)
+        textPrinter.print("Ythothas Detected");
+
+        survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
+            {
+                "xsl0401",
+            },
+            "xea0306"
+        )
+    end
+
     local isSurvivalUnit = function(unit)
         local armyName = ListArmies()[unit:GetArmy()]
         return armyName == "ARMY_9" or armyName == "NEUTRAL_CIVILIAN"
@@ -140,54 +149,67 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
         textPrinter.print("Current Unit Speed Boosted");
 
         for _, unit in getAllUnits() do
-            if EntityCategoryContains(categories.LAND + categories.NAVAL, unit) and scnArmy(unit) ==  "ARMY_9" or scnArmy(unit) == "NEUTRAL_CIVILIAN" then
+            if EntityCategoryContains(categories.LAND + categories.NAVAL, unit) and isSurvivalUnit(unit) then
                 unit:SetSpeedMult(2)
             end
         end
     end
 
+    local function getPossibleEvents(elapsedTimeInSeconds, t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        local possibleEvents = {}
+
+        if elapsedTimeInSeconds >= t1spawndelay and elapsedTimeInSeconds < t2spawndelay then
+            table.insert(possibleEvents, {spawnBombers, t2spawndelay})
+            table.insert(possibleEvents, {spawnT1Gunships, t2spawndelay})
+        end
+
+        if elapsedTimeInSeconds >= t2spawndelay and elapsedTimeInSeconds < t3spawndelay then
+            table.insert(possibleEvents, {spawnT2Bombers, t3spawndelay})
+            table.insert(possibleEvents, {SpawnT2Gunships, t3spawndelay})
+        end
+
+        if elapsedTimeInSeconds >= t3spawndelay then
+            table.insert(possibleEvents, {SpawnT2Destroyers, t3spawndelay})
+            table.insert(possibleEvents, {spawnT3Bombers, t3spawndelay})
+            table.insert(possibleEvents, {SpawnT3Gunships, t3spawndelay})
+
+            if (ScenarioInfo.Options.opt_t3arty == 0) then
+                table.insert(possibleEvents, {spawnT3Arty, t3spawndelay})
+            end
+        end
+
+        if elapsedTimeInSeconds >= t4spawndelay then
+            table.insert(possibleEvents, {spawnYthotha, t4spawndelay})
+        end
+
+        return possibleEvents
+    end
+
+    local function runEvent(eventCallable)
+        if eventCallable ~= nil then
+            ForkThread(eventCallable[1], eventCallable[2])
+        end
+    end
+
+    local function runRandomEvents(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        local elapsedTimeInSeconds = GetGameTimeSeconds()
+
+        local possibleEvents = getPossibleEvents(elapsedTimeInSeconds, t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+
+        runEvent(possibleEvents[Random(1, table.getn(possibleEvents))])
+
+        if elapsedTimeInSeconds >= t4spawndelay then
+            runEvent(possibleEvents[Random(1, table.getn(possibleEvents))])
+        end
+
+        if elapsedTimeInSeconds >= t1spawndelay and Random(1, 5) == 1 then
+            ForkThread(SpeedCurrentUnits)
+        end
+    end
+
     local randomEventsThread = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
         while true do
-            --T2 Section
-            if GetGameTimeSeconds() - t2spawndelay > 0 then
-                local RandomEvent = Random(1,3)
-                if RandomEvent == 1 then
-                    ForkThread(spawnBombers,t2spawndelay)
-                elseif RandomEvent == 2 then
-                    ForkThread(spawnT1Gunships, t3spawndelay)
-                elseif RandomEvent == 3 then
-                    ForkThread(SpeedCurrentUnits)
-                end
-            end
-
-            --T3 Section
-            if GetGameTimeSeconds() - t3spawndelay > 0 then
-                local RandomEvent = Random(1,4)
-                if RandomEvent == 1 then
-                    if (ScenarioInfo.Options.opt_t3arty == 0) then
-                        ForkThread(spawnT3Arty, t3spawndelay)
-                    else
-                        ForkThread(spawnT3Bombers, t4spawndelay)
-                    end
-                elseif RandomEvent == 2 then
-                    ForkThread(spawnT2Bombers, t3spawndelay)
-                elseif RandomEvent == 3 then
-                    ForkThread(SpawnT3Gunships, t3spawndelay)
-                elseif RandomEvent == 4 then
-                    ForkThread(SpawnT2Destroyers, t3spawndelay)
-                end
-            end
-
-            --T4 Section
-            if GetGameTimeSeconds() - t4spawndelay > 0 then
-                local RandomEvent = Random(1,2)
-                if RandomEvent == 1 then
-                    ForkThread(spawnYthotha, t4spawndelay)
-                elseif RandomEvent == 2 then
-                    ForkThread(spawnT3Bombers, t4spawndelay)
-                end
-            end
-
+            runRandomEvents(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
             WaitSeconds(RandomFrequency)
         end
     end

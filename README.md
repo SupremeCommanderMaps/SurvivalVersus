@@ -43,6 +43,7 @@ Other lobby improvements:
 
 * Random events now spawn units for both teams rather than one random victim
 * Bounty Hunters now spawn for both teams rather than one random victim
+* Random events now match the land unit tech level and stop spawning lower tech units as they get obsolete
 * Random event units now only spawn for players that are still in game (rather than glitch and sit idly in the center) 
 * Bounty Hunters will now attack targets in the bottom team (rather than glitch and sit idly in the center)
 * All Bounty  Hunters now teleport out once their target has been killed (rather than a few glitching and remaining)

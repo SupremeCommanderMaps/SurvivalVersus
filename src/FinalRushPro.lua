@@ -79,13 +79,21 @@ newInstance = function(ScenarioInfo)
         end
 
         ForkThread(function()
-            local headerOptions = {color = "ffb4ffd4", duration = 12, location = "leftcenter", size = 35 }
-            local textOptions = {color = "ffb4ffd4", duration = 12, location = "leftcenter" }
+            local headerOptions = {color = "ffb4ffd4", duration = 11, location = "leftcenter", size = 35 }
+            local textOptions = {color = "ffb4ffd4", duration = 11, location = "leftcenter" }
 
             textPrinter.print(string.rep( " ", 12 ) .. "Welcome to Final Rush Pro 5", headerOptions)
             textPrinter.printBlankLine(textOptions)
             textPrinter.print(string.rep( " ", 20 ) .. "Game mode: " ..  getGameMode(), textOptions)
-            textPrinter.print(string.rep( " ", 20 ) .. "Difficulty: " ..  getDifficuly(), textOptions)
+			
+			if ScenarioInfo.Options.opt_gamemode < 2 then
+				textPrinter.print(string.rep( " ", 20 ) .. "Difficulty: " ..  getDifficuly(), textOptions)
+			end
+			
+			if ScenarioInfo.Options.opt_gamemode == 2 then
+				textPrinter.print(string.rep( " ", 20 ) .. "Civilian base: 100% Morgan Certified™", textOptions)
+			end
+            
             textPrinter.printBlankLine(textOptions)
             textPrinter.print(string.rep( " ", 20 ) .. "Docs at bit.ly/final-rush-pro", textOptions)
         end)
