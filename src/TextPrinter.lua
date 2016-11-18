@@ -1,5 +1,4 @@
 import('/lua/SimSync.lua');
-import('/lua/SimPlayerQuery.lua');
 
 newInstance = function()
     local function print(str, options)
