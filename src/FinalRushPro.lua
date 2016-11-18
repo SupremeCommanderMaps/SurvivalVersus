@@ -12,7 +12,7 @@ newInstance = function(ScenarioInfo)
     end
 
     local function setupLighthouses()
-        import('/maps/Final Rush Pro 5/src/CivilianLighthouses.lua').newInstance().spawn();
+        import('/maps/Final Rush Pro 5/src/CivilianLighthouses.lua').newInstance(textPrinter, playerArmies).spawn();
     end
 
     local function restrictTechs()
