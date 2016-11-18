@@ -1,7 +1,11 @@
 newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survivalSpawnerFactory)
 
+    local function printText(text)
+        textPrinter.print(text, {duration = 3})
+    end
+    
     local function spawnBombers(initialDelayInSeconds)
-        textPrinter.print("T1 Bombers Detected");
+        printText("T1 Bombers Detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -15,7 +19,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnT1Gunships(initialDelayInSeconds)
-        textPrinter.print("T1 Gunships Detected");
+        printText("T1 Gunships Detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -27,7 +31,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnT2Bombers(initialDelayInSeconds)
-        textPrinter.print("T2 Bombers Detected");
+        printText("T2 Bombers Detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -44,7 +48,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local SpawnT2Gunships = function(initialDelayInSeconds)
-        textPrinter.print("T2 Gunships Detected");
+        printText("T2 Gunships Detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -61,7 +65,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnT3Bombers(initialDelayInSeconds)
-        textPrinter.print("T3 Bombers Detected");
+        printText("T3 Bombers Detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -78,7 +82,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local SpawnT3Gunships = function(initialDelayInSeconds)
-        textPrinter.print("T3 Gunships Detected");
+        printText("T3 Gunships Detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -95,7 +99,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local SpawnT2Destroyers = function(initialDelayInSeconds)
-        textPrinter.print("Destroyers Detected");
+        printText("Destroyers Detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -112,7 +116,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnT3Arty(initialDelayInSeconds)
-        textPrinter.print("T3 Mobile Artillery Detected");
+        printText("T3 Mobile Artillery Detected");
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
@@ -130,7 +134,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnYthotha(initialDelayInSeconds)
-        textPrinter.print("Ythotha Detected");
+        printText("Ythotha Detected");
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
@@ -141,7 +145,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnFatboy(initialDelayInSeconds)
-        textPrinter.print("Fatboy Detected");
+        printText("Fatboy Detected");
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
@@ -157,7 +161,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local SpeedCurrentUnits = function()
-        textPrinter.print("Current Unit Speed Boosted");
+        printText("Current Unit Speed Boosted");
 
         for _, unit in getAllUnits() do
             if EntityCategoryContains(categories.LAND + categories.NAVAL, unit) and isSurvivalUnit(unit) then
