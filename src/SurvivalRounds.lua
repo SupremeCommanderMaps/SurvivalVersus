@@ -62,7 +62,7 @@ newInstance = function(textPrinter, unitSpawnerFactory)
     local function createRoundSpawner(initialDelayInSeconds, frequencyInSeconds, spawnEndInSeconds, initialMessage, spawnFunction)
         return function()
             WaitSeconds(initialDelayInSeconds)
-            textPrinter.print(initialMessage)
+            textPrinter.print(initialMessage, {duration = 3.5})
 
             local transportSpawner = unitSpawnerFactory.newTransportSpawner(initialDelayInSeconds)
 
@@ -79,7 +79,7 @@ newInstance = function(textPrinter, unitSpawnerFactory)
                 options.T1.initialDelayInSeconds,
                 options.T1.frequencyInSeconds,
                 options.T1.spawnEndInSeconds,
-                "Tech 1 inbound",
+                "And so it begins! Tech 1 inbound",
                 Round1
             ))
             ForkThread(createRoundSpawner(
