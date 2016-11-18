@@ -23,7 +23,7 @@ newInstance = function(textPrinter)
             local unit = ChangeUnitArmy(self, captor:GetArmy())
             preventDamage(unit)
 
-            printText("Converted To Christianity", 3)
+            printText("Converted to Christianity", 3)
         end
 
         lighthouse.OnFailedBeingCaptured = function()
