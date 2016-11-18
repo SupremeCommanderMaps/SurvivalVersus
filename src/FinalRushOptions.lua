@@ -23,6 +23,7 @@ function defaultOptions(scenarioOptions)
         opt_t2tml = 0,
         opt_t3arty = 0,
         opt_snipers = 0,
+        opt_FinalRushEventNotifications = 1
     }
 
     for optionName, defaultValue in pairs(defaults) do

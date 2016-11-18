@@ -272,10 +272,14 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
             },
         })
 
+        local eventTextPrinter =
+            ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
+                or import('/maps/Final Rush Pro 5/src/NullTextPrinter.lua').newInstance()
+
         if ScenarioInfo.Options.opt_FinalRushRandomEvents > 0 then
             local randomEvents = import('/maps/Final Rush Pro 5/src/RandomEvents.lua').newInstance(
                 ScenarioInfo,
-                textPrinter,
+                eventTextPrinter,
                 allUnits,
                 ListArmies,
                 unitSpanwerFactory
@@ -286,7 +290,7 @@ newInstance = function(ScenarioInfo, textPrinter, playerArmies)
 
         if ScenarioInfo.Options.opt_FinalRushHunters > 0 then
             local hunters = import('/maps/Final Rush Pro 5/src/Hunters.lua').newInstance(
-                textPrinter,
+                eventTextPrinter,
                 healthMultiplier,
                 playerArmies,
                 IsBLackOpsAcusEnabled(),

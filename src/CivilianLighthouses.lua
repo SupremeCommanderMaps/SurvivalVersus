@@ -1,4 +1,4 @@
-newInstance = function(textPrinter, playerArmies)
+newInstance = function(textPrinter)
     local function preventDamage(unit)
        unit:SetReclaimable(false);
        unit:SetCanTakeDamage(false);
@@ -7,20 +7,28 @@ newInstance = function(textPrinter, playerArmies)
     end
 
     local function initializeLighthouse(lighthouse, textLocation)
+        local printText = function(txt, durationInSeconds)
+            textPrinter.print("     " .. txt .. "     ", {location = textLocation, duration = durationInSeconds})
+        end
+
         preventDamage(lighthouse)
 
         lighthouse:SetCustomName("Such NSA")
 
-        lighthouse.OldOnCaptured = lighthouse.OnCaptured;
+        lighthouse.OnStartBeingCaptured = function()
+            printText("Wolololo", 2)
+        end
 
         lighthouse.OnCaptured = function(self, captor)
             local unit = ChangeUnitArmy(self, captor:GetArmy())
             preventDamage(unit)
 
-            textPrinter.print("     Wolololo     ", {location = textLocation})
+            printText("Converted To Christianity", 3)
         end
 
-        LOG(repr(lighthouse))
+        lighthouse.OnFailedBeingCaptured = function()
+            printText("Nope.jpg", 2)
+        end
     end
 
     return {

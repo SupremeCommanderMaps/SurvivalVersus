@@ -130,11 +130,22 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnYthotha(initialDelayInSeconds)
-        textPrinter.print("Ythothas Detected");
+        textPrinter.print("Ythotha Detected");
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
                 "xsl0401",
+            },
+            "xea0306"
+        )
+    end
+
+    local function spawnFatboy(initialDelayInSeconds)
+        textPrinter.print("Fatboy Detected");
+
+        survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
+            {
+                "uel0401",
             },
             "xea0306"
         )
@@ -180,6 +191,10 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
 
         if elapsedTimeInSeconds >= t4spawndelay then
             table.insert(possibleEvents, {spawnYthotha, t4spawndelay})
+
+            if Random(1, 2) == 1 then
+                table.insert(possibleEvents, {spawnFatboy, t4spawndelay})
+            end
         end
 
         return possibleEvents
