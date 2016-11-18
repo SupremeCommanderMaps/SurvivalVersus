@@ -55,6 +55,7 @@ Other lobby improvements:
 * The Paragon Activator and civilian base now spawn in the exact center of the map (rather than deviating randomly)
 * The civilian base is now symmetrical (rather than constructed randomly)
 * Units will no longer automatically fire on the (indestructible) Paragon Activator
+* The Paragon Activator now takes more build power to capture (multiple seconds instead of near instant)
 
 **Internal changes**
 
