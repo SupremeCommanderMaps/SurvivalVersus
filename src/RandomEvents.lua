@@ -5,7 +5,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
     
     local function spawnBombers(initialDelayInSeconds)
-        printText("T1 Bombers Detected");
+        printText("T1 bombers detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -19,7 +19,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnT1Gunships(initialDelayInSeconds)
-        printText("T1 Gunships Detected");
+        printText("T1 gunships detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -31,7 +31,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnT2Bombers(initialDelayInSeconds)
-        printText("T2 Bombers Detected");
+        printText("T2 bombers detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -48,7 +48,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local SpawnT2Gunships = function(initialDelayInSeconds)
-        printText("T2 Gunships Detected");
+        printText("T2 gunships detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -65,7 +65,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnT3Bombers(initialDelayInSeconds)
-        printText("T3 Bombers Detected");
+        printText("T3 bombers detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -82,7 +82,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local SpawnT3Gunships = function(initialDelayInSeconds)
-        printText("T3 Gunships Detected");
+        printText("T3 gunships detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -99,7 +99,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local SpawnT2Destroyers = function(initialDelayInSeconds)
-        printText("Destroyers Detected");
+        printText("Destroyers detected");
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -116,7 +116,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnT3Arty(initialDelayInSeconds)
-        printText("T3 Mobile Artillery Detected");
+        printText("T3 mobile artillery detected");
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
@@ -134,7 +134,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnYthotha(initialDelayInSeconds)
-        printText("Ythotha Detected");
+        printText("Ythotha detected");
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
@@ -145,7 +145,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local function spawnFatboy(initialDelayInSeconds)
-        printText("Fatboy Detected");
+        printText("Fatboy detected");
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
@@ -161,7 +161,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     end
 
     local SpeedCurrentUnits = function()
-        printText("Current Unit Speed Boosted");
+        printText("Current unit speed boosted");
 
         for _, unit in getAllUnits() do
             if EntityCategoryContains(categories.LAND + categories.NAVAL, unit) and isSurvivalUnit(unit) then
