@@ -166,9 +166,14 @@ newInstance = function(playerArmies, textPrinter)
             SetAlliance("NEUTRAL_CIVILIAN", armyName, "Enemy")
         end
     end
+    
+    local function setParagonActivatorCaptureCost()
+        GetUnitBlueprintByName("uac1901").Economy.BuildTime = 1000
+    end
 
     return {
         setUp = function()
+            setParagonActivatorCaptureCost()
             setCivilianAlliance()
             createCentralCivilians()
         end
