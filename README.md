@@ -6,7 +6,7 @@ You can [read the documentation][docs].
 
 ## New in version 5
 
-(Changes since v4.0007) This is a beta version, no stable release is available yet.
+Released on 2016-11-20 (changes since v4.0007)
 
 TL;DR: many new options, various balance enhancements, no more need for mods
 
@@ -50,7 +50,6 @@ Other lobby improvements:
 * Bounty Hunters will now attack targets in the bottom team (rather than glitch and sit idly in the center)
 * All Bounty  Hunters now teleport out once their target has been killed (rather than a few glitching and remaining)
 * Improved target areas selection of random event units
-* Indestructible transports can no longer be captured or reclaimed
 
 **Paragon Wars mode**
 
