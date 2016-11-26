@@ -2,7 +2,17 @@
 <img align="right" src="preview.jpg">
 A survival map for [Supreme Commander: Forged Alliance Forever][FAF].
 
-You can [read the documentation][docs] or [download the latest version][download].
+You can [read the documentation][docs].
+
+## Installation
+
+* Download the [latest version of the map][download]
+* Extract the zip. The result should be a directory named `Final Rush Pro 5`
+* Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
+
+Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
+Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
+of the Vampire mod.
 
 ## New in version 5
 
@@ -69,16 +79,6 @@ Other lobby improvements:
 * Added a limited number of automated tests
 * Added README with installation instructions and release notes
 * Set up continuous integration via TravisCI 
-
-## Installation
-
-* Download the [latest version of the map][download]
-* Extract the zip. The result should be a directory named `Final Rush Pro 5`
-* Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
-
-Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
-Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
-of the Vampire mod.
 
 ## Updates and contributing
 
