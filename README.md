@@ -2,7 +2,7 @@
 <img align="right" src="preview.jpg">
 A survival map for [Supreme Commander: Forged Alliance Forever][FAF].
 
-You can [read the documentation][docs].
+You can [read the documentation][docs] or [download the latest version][download].
 
 ## New in version 5
 
@@ -73,7 +73,7 @@ Other lobby improvements:
 ## Installation
 
 * Download the [latest version of the map][download]
-* Extract the zip and rename the directory from `FinalRushPro5-master` to `Final Rush Pro 5`
+* Extract the zip. The result should be a directory named `Final Rush Pro 5`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
@@ -104,7 +104,7 @@ Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview imag
 
 [FAF]: http://www.faforever.com/
 [docs]: http://wiki.faforever.com/index.php?title=Final_Rush_Pro_5
-[download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
+[download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases/download/v5.0.0/Final.Rush.Pro.5.zip
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
 [Busted]: http://olivinelabs.com/busted/
 [Entropy]: https://entropywins.wtf/
