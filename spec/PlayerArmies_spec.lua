@@ -228,6 +228,12 @@ describe("PlayerArmies", function()
 
             assert.is_true(randomArmyName == "ARMY_1" or randomArmyName == "ARMY_5")
         end)
+
+        it("works when there is no army with key 1", function()
+            local armies = PlayerArmies({[2] = "ARMY_5"})
+
+            assert.is.equal("ARMY_5", armies.getRandomArmyName())
+        end)
     end)
 
     describe("filterByName", function()

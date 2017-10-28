@@ -94,15 +94,20 @@ newInstance = function(fullIndexToNameMap)
         return newInstance({})
     end
 
-    local function getRandomArmyName()
-        local armyCount = table.getn(indexToNameMap)
+    local function getTableKeys(theTable)
+        local keyset = {}
 
-        if armyCount < 1 then
-            return nil
+        for key in pairs(theTable) do
+            table.insert(keyset, key)
         end
 
+        return keyset
+    end
+
+    local function getRandomArmyName()
+        local keyset = getTableKeys(indexToNameMap)
         local randomFunction = Random or math.random
-        return indexToNameMap[randomFunction(1, armyCount)]
+        return indexToNameMap[keyset[randomFunction(1, table.getn(keyset))]]
     end
 
     return {

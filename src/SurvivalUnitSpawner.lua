@@ -89,8 +89,8 @@ newInstance = function(playerArmies, healthMultiplier, removeWreckage, getRandom
     end
 
     local function spawnUnitsForArmy(unitNames, armyName)
-        local targetArmyName = playerArmies
-            .getTargetsForArmy(armyName)
+        local targetArmyName =
+            playerArmies.getTargetsForArmy(armyName)
             .filterByName(function(aName)
                 return not ArmyIsOutOfGame(aName)
             end)
@@ -110,8 +110,8 @@ newInstance = function(playerArmies, healthMultiplier, removeWreckage, getRandom
 
     return {
         spawnUnits = function(unitNames)
-            spawnUnitsForArmy(unitNames, "ARMY_9")
             spawnUnitsForArmy(unitNames, "NEUTRAL_CIVILIAN")
+            spawnUnitsForArmy(unitNames, "ARMY_9")
         end
     }
 end
