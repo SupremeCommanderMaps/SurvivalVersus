@@ -1,23 +1,23 @@
 newInstance = function(ScenarioInfo)
-    local textPrinter = import('/maps/final_rush_pro_5_1.v0001/src/TextPrinter.lua').newInstance()
-    local playerArmies = import('/maps/final_rush_pro_5_1.v0001/src/PlayerArmies.lua').newInstance(ListArmies())
-    local buildRestrictor = import('/maps/final_rush_pro_5_1.v0001/src/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo)
+    local textPrinter = import('/maps/final_rush_pro_5.1.v0003/src/TextPrinter.lua').newInstance()
+    local playerArmies = import('/maps/final_rush_pro_5.1.v0003/src/PlayerArmies.lua').newInstance(ListArmies())
+    local buildRestrictor = import('/maps/final_rush_pro_5.1.v0003/src/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo)
 
     local function setupTents()
         if ScenarioInfo.Options.opt_tents > 0 then
-            local tents = import('/maps/final_rush_pro_5_1.v0001/src/PrebuildTents.lua').newInstance(playerArmies);
+            local tents = import('/maps/final_rush_pro_5.1.v0003/src/PrebuildTents.lua').newInstance(playerArmies);
             LOG("Spawning " .. ScenarioInfo.Options.opt_tents .. " tents")
             tents.spawn(ScenarioInfo.Options.opt_tents)
         end
     end
 
     local function setupLighthouses()
-        import('/maps/final_rush_pro_5_1.v0001/src/CivilianLighthouses.lua').newInstance(textPrinter, playerArmies).spawn();
+        import('/maps/final_rush_pro_5.1.v0003/src/CivilianLighthouses.lua').newInstance(textPrinter, playerArmies).spawn();
     end
 
     local function restrictTechs()
         if ScenarioInfo.Options.opt_timeunlocked ~= 0 then
-            local techRestrictor = import('/maps/final_rush_pro_5_1.v0001/src/TechRestrictor.lua').newInstance(
+            local techRestrictor = import('/maps/final_rush_pro_5.1.v0003/src/TechRestrictor.lua').newInstance(
                 buildRestrictor,
                 textPrinter,
                 playerArmies,
@@ -36,21 +36,21 @@ newInstance = function(ScenarioInfo)
 
     local function setupParagonWars()
         if ScenarioInfo.Options.opt_gamemode == 2 then
-            local paragonWars = import('/maps/final_rush_pro_5_1.v0001/src/ParagonWars.lua').newInstance(playerArmies, textPrinter)
+            local paragonWars = import('/maps/final_rush_pro_5.1.v0003/src/ParagonWars.lua').newInstance(playerArmies, textPrinter)
             paragonWars.setUp()
         end
     end
 
     local function setupServival()
         if ScenarioInfo.Options.opt_gamemode == 0 or ScenarioInfo.Options.opt_gamemode == 1 then
-            local survival = import('/maps/final_rush_pro_5_1.v0001/src/Survival.lua').newInstance(ScenarioInfo, textPrinter, playerArmies)
+            local survival = import('/maps/final_rush_pro_5.1.v0003/src/Survival.lua').newInstance(ScenarioInfo, textPrinter, playerArmies)
             survival.start()
         end
     end
 
     local function setupAutoReclaim()
         if ScenarioInfo.Options.opt_AutoReclaim > 0 then
-            ForkThread(import('/maps/final_rush_pro_5_1.v0001/src/AutoReclaim.lua').AutoResourceThread)
+            ForkThread(import('/maps/final_rush_pro_5.1.v0003/src/AutoReclaim.lua').AutoResourceThread)
         end
     end
 
