@@ -161,20 +161,18 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
         end
     end
 
-    local function huntRandomArmy(somePlayerArmies, hunterArmyName, initialSpawnDelayInSeconds)
-        -- TODO: this function can be simplified by using new PlayerArmies methods
-        local inGameArmies = {}
+    local function huntRandomArmy(hunterArmyName, initialSpawnDelayInSeconds)
+        local targetArmyName = playerArmies
+            .getTargetsForArmy(hunterArmyName)
+            .filterByName(function(aName)
+                return not ArmyIsOutOfGame(aName)
+            end)
+            .getRandomArmyName()
 
-        for _, armyName in somePlayerArmies.getIndexToNameMap() do
-            if not ArmyIsOutOfGame(armyName) then
-                table.insert(inGameArmies, armyName)
-            end
-        end
-
-        if inGameArmies ~= {} then
+        if targetArmyName ~= nil then
             ForkThread(
                 huntingThread,
-                inGameArmies[Random(1, table.getn(inGameArmies))],
+                targetArmyName,
                 hunterArmyName,
                 initialSpawnDelayInSeconds
             )
@@ -187,8 +185,8 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
             textPrinter.print("Hunters inbound")
 
             while true do
-                huntRandomArmy(playerArmies.getTopSideArmies(), "NEUTRAL_CIVILIAN", initialSpawnDelayInSeconds)
-                huntRandomArmy(playerArmies.getBottomSideArmies(), "ARMY_9", initialSpawnDelayInSeconds)
+                huntRandomArmy("NEUTRAL_CIVILIAN", initialSpawnDelayInSeconds)
+                huntRandomArmy("ARMY_9", initialSpawnDelayInSeconds)
                 WaitSeconds(frequency)
             end
         end

@@ -7,12 +7,20 @@ You can [read the documentation][docs].
 ## Installation
 
 * Download the [latest version of the map][download]
-* Extract the zip. The result should be a directory named `Final Rush Pro 5`
+* Extract the zip. The result should be a directory named `final_rush_pro_5_1.v0001`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
 Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
 of the Vampire mod.
+
+## New in version 5.1
+
+Released on 2017-10-29
+
+* Fixed random event units spawning only for bottom team players
+* Added messages showing detailed game settings at the start of the game
+* Decreased default HP increase on easy from 11.11% to 10%
 
 ## New in version 5
 
@@ -103,7 +111,7 @@ This version of the map includes files from the FinalRushPro3 mod, which was cre
 Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview image was created by JuiceBoy.
 
 [FAF]: http://www.faforever.com/
-[docs]: http://wiki.faforever.com/index.php?title=Final_Rush_Pro_5
+[docs]: http://wiki.faforever.com/index.php?title=final_rush_pro_5_1
 [download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases/download/v5.0.0/Final.Rush.Pro.5.zip
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
 [Busted]: http://olivinelabs.com/busted/

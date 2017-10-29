@@ -1,6 +1,6 @@
 version = 5
 ScenarioInfo = {
-    name="Final Rush Pro 5",
+    name="Final Rush Pro 5.1",
     map_version=1,
     description=[[More comprehensive documentation can be found at bit.ly/final-rush-pro
     
@@ -14,7 +14,7 @@ In Paragon Wars, the two teams fight for control over the centre of the map, whe
 
 At the left and right corners of the map, civilian lighthouses get spawned. These can be captured for extra map vision.
 
-Version of the 5 adds several new features and fixes many bugs. For more information, see the README.md (text file) located in "Maps/Final Rush Pro 5", or visit the site at https://github.com/JeroenDeDauw/FinalRushPro5]],
+Version of the 5 adds several new features and fixes many bugs. For more information, see the README.md (text file) located in "Maps/final_rush_pro_5_1.v0001", or visit the site at https://github.com/JeroenDeDauw/FinalRushPro5]],
     norushoffsetX_ARMY_1=0,
     norushoffsetX_ARMY_2=0,
     norushoffsetX_ARMY_3=0,
@@ -32,10 +32,10 @@ Version of the 5 adds several new features and fixes many bugs. For more informa
     norushoffsetY_ARMY_7=0,
     norushoffsetY_ARMY_8=0,
     norushradius=110,
-    map="/maps/final_rush_pro_5.v0001/Final_Rush_Pro_5.scmap",
-    preview="/maps/final_rush_pro_5.v0001/preview.jpg",
-    save="/maps/final_rush_pro_5.v0001/Final_Rush_Pro_5_save.lua",
-    script="/maps/final_rush_pro_5.v0001/Final_Rush_Pro_5_script.lua",
+    map="/maps/final_rush_pro_5_1.v0001/final_rush_pro_5_1.scmap",
+    preview="/maps/final_rush_pro_5_1.v0001/preview.jpg",
+    save="/maps/final_rush_pro_5_1.v0001/final_rush_pro_5_1_save.lua",
+    script="/maps/final_rush_pro_5_1.v0001/final_rush_pro_5_1_script.lua",
     size={ 512, 512 },
     starts=true,
     type="skirmish",

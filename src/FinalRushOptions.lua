@@ -123,7 +123,7 @@ function applyPresets(scenarioOptions)
         },
         opt_FinalRushHealthIncrease = {
             [1] = 0,
-            [2] = 1 / 9,
+            [2] = 0.1,
             [3] = 0.25,
             [4] = 1,
             [5] = 2,

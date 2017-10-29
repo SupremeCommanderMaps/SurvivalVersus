@@ -1,23 +1,23 @@
 newInstance = function(ScenarioInfo)
-    local textPrinter = import('/maps/Final_Rush_Pro_5.v0001/src/TextPrinter.lua').newInstance()
-    local playerArmies = import('/maps/Final_Rush_Pro_5.v0001/src/PlayerArmies.lua').newInstance(ListArmies())
-    local buildRestrictor = import('/maps/Final_Rush_Pro_5.v0001/src/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo)
+    local textPrinter = import('/maps/final_rush_pro_5_1.v0001/src/TextPrinter.lua').newInstance()
+    local playerArmies = import('/maps/final_rush_pro_5_1.v0001/src/PlayerArmies.lua').newInstance(ListArmies())
+    local buildRestrictor = import('/maps/final_rush_pro_5_1.v0001/src/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo)
 
     local function setupTents()
         if ScenarioInfo.Options.opt_tents > 0 then
-            local tents = import('/maps/Final_Rush_Pro_5.v0001/src/PrebuildTents.lua').newInstance(playerArmies);
+            local tents = import('/maps/final_rush_pro_5_1.v0001/src/PrebuildTents.lua').newInstance(playerArmies);
             LOG("Spawning " .. ScenarioInfo.Options.opt_tents .. " tents")
             tents.spawn(ScenarioInfo.Options.opt_tents)
         end
     end
 
     local function setupLighthouses()
-        import('/maps/Final_Rush_Pro_5.v0001/src/CivilianLighthouses.lua').newInstance(textPrinter, playerArmies).spawn();
+        import('/maps/final_rush_pro_5_1.v0001/src/CivilianLighthouses.lua').newInstance(textPrinter, playerArmies).spawn();
     end
 
     local function restrictTechs()
         if ScenarioInfo.Options.opt_timeunlocked ~= 0 then
-            local techRestrictor = import('/maps/Final_Rush_Pro_5.v0001/src/TechRestrictor.lua').newInstance(
+            local techRestrictor = import('/maps/final_rush_pro_5_1.v0001/src/TechRestrictor.lua').newInstance(
                 buildRestrictor,
                 textPrinter,
                 playerArmies,
@@ -36,21 +36,21 @@ newInstance = function(ScenarioInfo)
 
     local function setupParagonWars()
         if ScenarioInfo.Options.opt_gamemode == 2 then
-            local paragonWars = import('/maps/Final_Rush_Pro_5.v0001/src/ParagonWars.lua').newInstance(playerArmies, textPrinter)
+            local paragonWars = import('/maps/final_rush_pro_5_1.v0001/src/ParagonWars.lua').newInstance(playerArmies, textPrinter)
             paragonWars.setUp()
         end
     end
 
     local function setupServival()
         if ScenarioInfo.Options.opt_gamemode == 0 or ScenarioInfo.Options.opt_gamemode == 1 then
-            local survival = import('/maps/Final_Rush_Pro_5.v0001/src/Survival.lua').newInstance(ScenarioInfo, textPrinter, playerArmies)
+            local survival = import('/maps/final_rush_pro_5_1.v0001/src/Survival.lua').newInstance(ScenarioInfo, textPrinter, playerArmies)
             survival.start()
         end
     end
 
     local function setupAutoReclaim()
         if ScenarioInfo.Options.opt_AutoReclaim > 0 then
-            ForkThread(import('/maps/Final_Rush_Pro_5.v0001/src/AutoReclaim.lua').AutoResourceThread)
+            ForkThread(import('/maps/final_rush_pro_5_1.v0001/src/AutoReclaim.lua').AutoResourceThread)
         end
     end
 
@@ -78,24 +78,77 @@ newInstance = function(ScenarioInfo)
             return difficulyNames[ScenarioInfo.Options.opt_FinalRushDifficulty]
         end
 
-        ForkThread(function()
-            local headerOptions = {color = "ffb4ffd4", duration = 11, location = "leftcenter", size = 35 }
-            local textOptions = {color = "ffb4ffd4", duration = 11, location = "leftcenter" }
+        local headerOptions = {color = "ffb4ffd4", duration = 10, location = "leftcenter", size = 35 }
+        local textOptions = {color = "ffb4ffd4", duration = 10, location = "leftcenter" }
 
-            textPrinter.print(string.rep( " ", 12 ) .. "Welcome to Final Rush Pro 5", headerOptions)
+        ForkThread(function()
+            textPrinter.print(string.rep( " ", 12 ) .. "Welcome to Final Rush Pro 5.1", headerOptions)
+            textPrinter.print(string.rep( " ", 20 ) .. "Version 5.x by EntropyWins", textOptions)
+
             textPrinter.printBlankLine(textOptions)
+
             textPrinter.print(string.rep( " ", 20 ) .. "Game mode: " ..  getGameMode(), textOptions)
-			
-			if ScenarioInfo.Options.opt_gamemode < 2 then
-				textPrinter.print(string.rep( " ", 20 ) .. "Difficulty: " ..  getDifficuly(), textOptions)
-			end
-			
-			if ScenarioInfo.Options.opt_gamemode == 2 then
-				textPrinter.print(string.rep( " ", 20 ) .. "Civilian base: 100% Morgan Certified™", textOptions)
-			end
-            
+            if ScenarioInfo.Options.opt_gamemode == 2 then
+                textPrinter.print(string.rep( " ", 20 ) .. "Civilian base: 100% Morgan Certified™", textOptions)
+            end
+
             textPrinter.printBlankLine(textOptions)
+
             textPrinter.print(string.rep( " ", 20 ) .. "Docs at bit.ly/final-rush-pro", textOptions)
+        end)
+
+        ForkThread(function()
+            if ScenarioInfo.Options.opt_gamemode == 0 or ScenarioInfo.Options.opt_gamemode == 1 then
+                WaitSeconds(10.01)
+                textOptions.size = 18
+                textOptions.duration = 21
+
+                textPrinter.print(string.rep( " ", 20 ) .. "Difficulty preset: " ..  getDifficuly(), textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "Game mode: " ..  getGameMode(), textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "Water kills ACU: " .. ( ScenarioInfo.Options.opt_gamemode == 0 and "no" or "yes" ), textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "Can kill transports: " .. ( ScenarioInfo.Options.opt_gamemode == 0 and "yes" or "no" ), textOptions)
+
+                textPrinter.printBlankLine(textOptions)
+
+                textPrinter.print(string.rep( " ", 20 ) .. "Auto reclaim: " ..  ScenarioInfo.Options.opt_AutoReclaim .. "%", textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "Health increase: " ..  ScenarioInfo.Options.opt_FinalRushHealthIncrease * 100 .. "% every 100 seconds", textOptions)
+
+                textPrinter.printBlankLine(textOptions)
+
+                textPrinter.print(string.rep( " ", 20 ) .. "T1 spawn delay: " ..  ScenarioInfo.Options.opt_FinalRushSpawnDelay .. " seconds", textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "T2 spawn delay: " ..  ScenarioInfo.Options.opt_FinalRushT2Delay / 60 .. " minutes", textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "T3 spawn delay: " ..  ScenarioInfo.Options.opt_FinalRushT3Delay / 60 .. " minutes", textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "T4 spawn delay: " ..  ScenarioInfo.Options.opt_FinalRushT4Delay / 60 .. " minutes", textOptions)
+
+                textPrinter.printBlankLine(textOptions)
+
+                textPrinter.print(string.rep( " ", 20 ) .. "T1 frequency: every " ..  ScenarioInfo.Options.opt_FinalRushT1Frequency .. " seconds", textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "T2 frequency: every " ..  ScenarioInfo.Options.opt_FinalRushT2Frequency .. " seconds", textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "T3 frequency: every " ..  ScenarioInfo.Options.opt_FinalRushT3Frequency .. " seconds", textOptions)
+                textPrinter.print(string.rep( " ", 20 ) .. "T4 frequency: every " ..  ScenarioInfo.Options.opt_FinalRushT4Frequency .. " seconds", textOptions)
+
+                textPrinter.printBlankLine(textOptions)
+
+                if ScenarioInfo.Options.opt_FinalRushRandomEvents == 0 then
+                    textPrinter.print(string.rep( " ", 20 ) .. "No random events", textOptions)
+                else
+                    textPrinter.print(
+                        string.rep( " ", 20 ) .. "Random events every " ..  ScenarioInfo.Options.opt_FinalRushRandomEvents .. " seconds with"
+                            .. ( ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and "" or " NO" ) .. " notifications",
+                        textOptions
+                    )
+                end
+
+                if ScenarioInfo.Options.opt_FinalRushHunters == 0 then
+                    textPrinter.print(string.rep( " ", 20 ) .. "No bounty hunters", textOptions)
+                else
+                    textPrinter.print(
+                        string.rep( " ", 20 ) .. "Bounty hunters after " ..  ScenarioInfo.Options.opt_FinalRushHunterDelay / 60 .. " minutes, spawning every "
+                            ..  ScenarioInfo.Options.opt_FinalRushHunters / 60 .. " minutes",
+                        textOptions
+                    )
+                end
+            end
         end)
 
     end
