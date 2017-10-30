@@ -112,7 +112,7 @@ Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview imag
 
 [FAF]: http://www.faforever.com/
 [docs]: http://wiki.faforever.com/index.php?title=final_rush_pro_5_1
-[download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases/download/v5.0.0/Final.Rush.Pro.5.zip
+[download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
 [Busted]: http://olivinelabs.com/busted/
 [Entropy]: https://entropywins.wtf/
