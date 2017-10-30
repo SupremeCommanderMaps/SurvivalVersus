@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
+newInstance = function(options, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
     local transportDetails = {
         ARMY_9 = {
             spawnPosition = {
@@ -82,15 +82,15 @@ newInstance = function(ScenarioInfo, healthMultiplier, removeWreckage, getRandom
     local function spawnUnitsForArmy(units, armyName, transportDesination, transportName)
         local spawnPosition = transportDetails[armyName].spawnPosition
         local transport = CreateUnitHPR(transportName, armyName, spawnPosition.x, 80, spawnPosition.y, 0, 0, 0)
-        local transports = { transport }
 
-        if ScenarioInfo.Options.opt_gamemode == 1 then
-            -- survival classic
+        if not options.canKillTransports() then
             transport:SetReclaimable(false);
             transport:SetCanTakeDamage(false);
             transport:SetDoNotTarget(true);
             transport:SetCanBeKilled(false);
         end
+
+        local transports = { transport }
 
         removeWreckage(units)
 

@@ -1,4 +1,4 @@
-import('/lua/SimSync.lua');
+import('/lua/SimSync.lua')
 
 newInstance = function()
     local function print(str, options)
@@ -8,7 +8,7 @@ newInstance = function()
         options.duration = options.duration or 5
         options.location = options.location or "center"
 
-        PrintText(str, options.size, options.color, options.duration, options.location);
+        PrintText(str, options.size, options.color, options.duration, options.location)
     end
 
     return {

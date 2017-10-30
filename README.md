@@ -7,12 +7,18 @@ You can [read the documentation][docs].
 ## Installation
 
 * Download the [latest version of the map][download]
-* Extract the zip. The result should be a directory named `final_rush_pro_5.1.v0003`
+* Extract the zip. The result should be a directory named `final_rush_pro_5.2.v0001`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
 Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
 of the Vampire mod.
+
+## New in version 5.2
+
+Not published yet
+
+* Added option to set if the survival transports can be killed
 
 ## New in version 5.1
 

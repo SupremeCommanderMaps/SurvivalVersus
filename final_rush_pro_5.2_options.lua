@@ -417,5 +417,17 @@ options =
             { text = "Enabled", help = "Enabled", key = 0, },
             { text = "Disabled", help = "Disabled", key = 1, },
         },
+    },
+    {
+        default = 1,
+        label = "Killable transports",
+        help = "(Survival modes only) Allow killing the transports bringing in the units",
+        key = 'opt_FinalRushKillableTransports',
+        pref = 'opt_FinalRushKillableTransports',
+        values = {
+            { text = "Only in Survival Versus", help = "Enabled in Survival Versus, disbabled in Survival Classic", key = 0, },
+            { text = "Disabled", help = "Disabled", key = 1, },
+            { text = "Enabled", help = "Enabled", key = 2, },
+        },
     }
 };

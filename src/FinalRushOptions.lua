@@ -1,8 +1,19 @@
+local SURVIVAL_VERSUS = 0
+local SURVIVAL_CLASSIC = 1
+local PARAGON_WARS = 2
+local GAME_MODE_PLAIN = 3
+
+local VERY_EASY = 1
+local EASY = 2
+local NORMAL = 3
+local HARD = 4
+local INSANE = 5
+
 -- This function works around the FAF lobby not correctly defaulting the options
-function defaultOptions(scenarioOptions)
+local function defaultOptions(scenarioOptions)
     local defaults = {
-        opt_gamemode = 0,
-        opt_FinalRushDifficulty = 2,
+        opt_gamemode = SURVIVAL_VERSUS,
+        opt_FinalRushDifficulty = EASY,
         opt_tents = 9,
         opt_AutoReclaim = 50,
         opt_FinalRushRandomEvents = -1,
@@ -23,7 +34,8 @@ function defaultOptions(scenarioOptions)
         opt_t2tml = 0,
         opt_t3arty = 0,
         opt_snipers = 0,
-        opt_FinalRushEventNotifications = 1
+        opt_FinalRushEventNotifications = 1,
+        opt_FinalRushKillableTransports = 0
     }
 
     for optionName, defaultValue in pairs(defaults) do
@@ -35,98 +47,98 @@ function defaultOptions(scenarioOptions)
     return scenarioOptions
 end
 
-function applyPresets(scenarioOptions)
+local function applyPresets(scenarioOptions)
     local difficultyPreset = {
         opt_FinalRushSpawnDelay = {
-            [1] = 180,
-            [2] = 10,
-            [3] = 10,
-            [4] = 0,
-            [5] = 0,
+            [VERY_EASY] = 180,
+            [EASY] = 10,
+            [NORMAL] = 10,
+            [HARD] = 0,
+            [INSANE] = 0,
         },
         opt_FinalRushAggression = {
-            [1] = 0,
-            [2] = 1,
-            [3] = 1,
-            [4] = 1,
-            [5] = 1,
+            [VERY_EASY] = 0,
+            [EASY] = 1,
+            [NORMAL] = 1,
+            [HARD] = 1,
+            [INSANE] = 1,
         },
         opt_FinalRushRandomEvents = {
-            [1] = 600,
-            [2] = 90,
-            [3] = 70,
-            [4] = 50,
-            [5] = 30,
+            [VERY_EASY] = 600,
+            [EASY] = 90,
+            [NORMAL] = 70,
+            [HARD] = 50,
+            [INSANE] = 30,
         },
         opt_FinalRushHunters = {
-            [1] = 0,
-            [2] = 480,
-            [3] = 300,
-            [4] = 240,
-            [5] = 120,
+            [VERY_EASY] = 0,
+            [EASY] = 480,
+            [NORMAL] = 300,
+            [HARD] = 240,
+            [INSANE] = 120,
         },
         opt_FinalRushHunterDelay = {
-            [1] = 0,
-            [2] = 24 * 60,
-            [3] = 22 * 60,
-            [4] = 18 * 60,
-            [5] = 16 * 60,
+            [VERY_EASY] = 0,
+            [EASY] = 24 * 60,
+            [NORMAL] = 22 * 60,
+            [HARD] = 18 * 60,
+            [INSANE] = 16 * 60,
         },
         opt_FinalRushT1Frequency = {
-            [1] = 6,
-            [2] = 6,
-            [3] = 6,
-            [4] = 6,
-            [5] = 6,
+            [VERY_EASY] = 6,
+            [EASY] = 6,
+            [NORMAL] = 6,
+            [HARD] = 6,
+            [INSANE] = 6,
         },
         opt_FinalRushT2Frequency = {
-            [1] = 6,
-            [2] = 6,
-            [3] = 6,
-            [4] = 6,
-            [5] = 6,
+            [VERY_EASY] = 6,
+            [EASY] = 6,
+            [NORMAL] = 6,
+            [HARD] = 6,
+            [INSANE] = 6,
         },
         opt_FinalRushT3Frequency = {
-            [1] = 10,
-            [2] = 10,
-            [3] = 10,
-            [4] = 10,
-            [5] = 10,
+            [VERY_EASY] = 10,
+            [EASY] = 10,
+            [NORMAL] = 10,
+            [HARD] = 10,
+            [INSANE] = 10,
         },
         opt_FinalRushT4Frequency = {
-            [1] = 12,
-            [2] = 10,
-            [3] = 10,
-            [4] = 10,
-            [5] = 8,
+            [VERY_EASY] = 12,
+            [EASY] = 10,
+            [NORMAL] = 10,
+            [HARD] = 10,
+            [INSANE] = 8,
         },
         opt_FinalRushT2Delay = {
-            [1] = 8 * 60,
-            [2] = 6 * 60,
-            [3] = 6 * 60,
-            [4] = 5 * 60,
-            [5] = 4 * 60,
+            [VERY_EASY] = 8 * 60,
+            [EASY] = 6 * 60,
+            [NORMAL] = 6 * 60,
+            [HARD] = 5 * 60,
+            [INSANE] = 4 * 60,
         },
         opt_FinalRushT3Delay = {
-            [1] = 16 * 60,
-            [2] = 12 * 60,
-            [3] = 12 * 60,
-            [4] = 10 * 60,
-            [5] = 8 * 60,
+            [VERY_EASY] = 16 * 60,
+            [EASY] = 12 * 60,
+            [NORMAL] = 12 * 60,
+            [HARD] = 10 * 60,
+            [INSANE] = 8 * 60,
         },
         opt_FinalRushT4Delay = {
-            [1] = 24 * 60,
-            [2] = 18 * 60,
-            [3] = 18 * 60,
-            [4] = 16 * 60,
-            [5] = 14 * 60,
+            [VERY_EASY] = 24 * 60,
+            [EASY] = 18 * 60,
+            [NORMAL] = 18 * 60,
+            [HARD] = 16 * 60,
+            [INSANE] = 14 * 60,
         },
         opt_FinalRushHealthIncrease = {
-            [1] = 0,
-            [2] = 0.1,
-            [3] = 0.25,
-            [4] = 1,
-            [5] = 2,
+            [VERY_EASY] = 0,
+            [EASY] = 0.1,
+            [NORMAL] = 0.25,
+            [HARD] = 1,
+            [INSANE] = 2,
         }
     }
 
@@ -139,7 +151,38 @@ function applyPresets(scenarioOptions)
     return scenarioOptions
 end
 
-return {
-    defaultOptions = defaultOptions,
-    applyPresets = applyPresets
-}
+function newInstance(ScenarioInfoOptions)
+    local rawOptions = applyPresets(defaultOptions(ScenarioInfoOptions))
+
+    local this = {}
+
+    this. getRawOptions = function()
+        return rawOptions
+    end
+
+    this.isSurvivalGame = function()
+        return rawOptions.opt_gamemode == SURVIVAL_VERSUS or rawOptions.opt_gamemode == SURVIVAL_CLASSIC
+    end
+
+    this.isSurvivalVersus = function()
+        return rawOptions.opt_gamemode == SURVIVAL_VERSUS
+    end
+
+    this.isSurvivalClassic = function()
+        return rawOptions.opt_gamemode == SURVIVAL_CLASSIC
+    end
+
+    this.isParagonWars = function()
+        return rawOptions.opt_gamemode == PARAGON_WARS
+    end
+
+    this.canKillTransports = function()
+        if rawOptions.opt_FinalRushKillableTransports == 0 then
+            return this.isSurvivalVersus()
+        else
+            return rawOptions.opt_FinalRushKillableTransports == 2
+        end
+    end
+
+    return this
+end
