@@ -420,7 +420,7 @@ options =
     },
     {
         default = 1,
-        label = "Killable transports",
+        label = "Killable Transports",
         help = "(Survival modes only) Allow killing the transports bringing in the units",
         key = 'opt_FinalRushKillableTransports',
         pref = 'opt_FinalRushKillableTransports',

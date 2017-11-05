@@ -102,15 +102,26 @@ newInstance = function(ScenarioInfo)
 
         ForkThread(function()
             if options.isSurvivalGame() then
-                local printedText = ""
+                WaitSeconds(10.01)
+
                 local printer = {
                     print = function(text)
-                        printedText = printedText .. "\n" .. text .. " "
+                        textPrinter.print(string.rep( " ", 20 ) .. text, textOptions)
                     end,
                     printBlankLine = function()
-                        printedText = printedText .. "\n"
+                        textPrinter.printBlankLine(textOptions)
                     end
                 }
+
+--                local printedText = ""
+--                local printer = {
+--                    print = function(text)
+--                        printedText = printedText .. "\n" .. text .. " "
+--                    end,
+--                    printBlankLine = function()
+--                        printedText = printedText .. "\n"
+--                    end
+--                }
 
                 printer.print("Difficulty preset: " ..  getDifficuly())
                 printer.print("Game mode: " ..  getGameMode())
@@ -156,14 +167,14 @@ newInstance = function(ScenarioInfo)
                     )
                 end
 
-local d = CreateDialogue([[a kinda long is line that is kinda long ish
-MJHAU]], {"Close"}, "right")
-                LOG(repr(d))
-
-                d.OnButtonPressed = function(self, info)
-                    d.Width.Set(500)
-                    --d:Destroy()
-                end
+--local d = CreateDialogue([[a kinda long is line that is kinda long ish
+--MJHAU]], {"Close"}, "right")
+--                LOG(repr(d))
+--
+--                d.OnButtonPressed = function(self, info)
+--                    d.Width.Set(500)
+--                    --d:Destroy()
+--                end
             end
         end)
 

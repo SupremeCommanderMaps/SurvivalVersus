@@ -19,6 +19,7 @@ of the Vampire mod.
 Not published yet
 
 * Added option to set if the survival transports can be killed
+* Fixed Novax not being buildable
 
 ## New in version 5.1
 
