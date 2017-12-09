@@ -165,7 +165,7 @@ newInstance = function(playerArmies, ScenarioInfo)
 
                 if enableNovax then
                     LOG('RemoveBuildRestriction(index, categories.xea0002)')
-                    RemoveBuildRestriction(index, categories.xea0002)
+                    RemoveBuildRestriction(armyIndex, categories.xea0002)
                 end
             end
         end

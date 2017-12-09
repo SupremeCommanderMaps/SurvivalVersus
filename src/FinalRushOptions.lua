@@ -12,6 +12,7 @@ local INSANE = 5
 -- This function works around the FAF lobby not correctly defaulting the options
 local function defaultOptions(scenarioOptions)
     local defaults = {
+        RestrictedCategories = {},
         opt_gamemode = SURVIVAL_VERSUS,
         opt_FinalRushDifficulty = EASY,
         opt_tents = 9,
@@ -35,7 +36,8 @@ local function defaultOptions(scenarioOptions)
         opt_t3arty = 0,
         opt_snipers = 0,
         opt_FinalRushEventNotifications = 1,
-        opt_FinalRushKillableTransports = 0
+        opt_FinalRushKillableTransports = 0,
+        opt_FinalRushWaterKillsACUs = 0
     }
 
     for optionName, defaultValue in pairs(defaults) do
@@ -181,6 +183,14 @@ function newInstance(ScenarioInfoOptions)
             return this.isSurvivalVersus()
         else
             return rawOptions.opt_FinalRushKillableTransports == 2
+        end
+    end
+
+    this.waterKillsAcu = function()
+        if rawOptions.opt_FinalRushWaterKillsACUs == 0 then
+            return this.isSurvivalClassic()
+        else
+            return rawOptions.opt_FinalRushWaterKillsACUs == 2
         end
     end
 

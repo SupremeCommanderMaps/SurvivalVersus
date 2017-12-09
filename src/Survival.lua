@@ -164,7 +164,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     local setUp = function()
         disableWalls()
 
-        if ScenarioInfo.Options.opt_gamemode == 0 then  --versus survival
+        if options.isSurvivalVersus() then
             local tblArmies = ListArmies()
             for index, name in tblArmies do
                 if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
@@ -181,7 +181,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         local survivalStructures = import('/maps/final_rush_pro_5.2.v0001/src/SurvivalStructures.lua').newInstance()
 
-        if ScenarioInfo.Options.opt_gamemode == 1 then  --classic survival
+        if options.waterKillsAcu() then
             local tblArmies = ListArmies()
             for index in tblArmies do
                 SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')

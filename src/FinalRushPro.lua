@@ -81,11 +81,11 @@ newInstance = function(ScenarioInfo)
             return difficulyNames[ScenarioInfo.Options.opt_FinalRushDifficulty]
         end
 
-        local headerOptions = {color = "ffb4ffd4", duration = 10, location = "leftcenter", size = 35 }
-        local textOptions = {color = "ffb4ffd4", duration = 10, location = "leftcenter" }
+        local headerOptions = {color = "ffb4ffd4", duration = 7, location = "leftcenter", size = 35 }
+        local textOptions = {color = "ffb4ffd4", duration = 7, location = "leftcenter" }
 
         ForkThread(function()
-            textPrinter.print(string.rep( " ", 12 ) .. "Welcome to Final Rush Pro 5.2 alpha", headerOptions)
+            textPrinter.print(string.rep( " ", 12 ) .. "Welcome to Final Rush Pro 5.2", headerOptions)
             textPrinter.print(string.rep( " ", 20 ) .. "Version 5.x by EntropyWins", textOptions)
 
             textPrinter.printBlankLine(textOptions)
@@ -102,8 +102,9 @@ newInstance = function(ScenarioInfo)
 
         ForkThread(function()
             if options.isSurvivalGame() then
-                WaitSeconds(10.01)
+                WaitSeconds(7.01)
 
+                textOptions.duration = 13
                 local printer = {
                     print = function(text)
                         textPrinter.print(string.rep( " ", 20 ) .. text, textOptions)
@@ -113,39 +114,35 @@ newInstance = function(ScenarioInfo)
                     end
                 }
 
---                local printedText = ""
---                local printer = {
---                    print = function(text)
---                        printedText = printedText .. "\n" .. text .. " "
---                    end,
---                    printBlankLine = function()
---                        printedText = printedText .. "\n"
---                    end
---                }
+                printer.printBlankLine()
+                printer.printBlankLine()
+                printer.printBlankLine()
+                printer.printBlankLine()
 
-                printer.print("Difficulty preset: " ..  getDifficuly())
-                printer.print("Game mode: " ..  getGameMode())
-                printer.print("Water kills ACU: " .. ( options.isSurvivalVersus() == 0 and "no" or "yes" ))
+                printer.print("Water kills ACU: " .. ( options.waterKillsAcu() == 0 and "no" or "yes" ))
                 printer.print("Can kill transports: " .. ( options.canKillTransports() == 0 and "yes" or "no" ))
 
                 printer.printBlankLine()
 
+                printer.print("Difficulty preset: " ..  getDifficuly())
                 printer.print("Auto reclaim: " ..  ScenarioInfo.Options.opt_AutoReclaim .. "%")
                 printer.print("Health increase: " ..  ScenarioInfo.Options.opt_FinalRushHealthIncrease * 100 .. "% every 100 seconds")
 
                 printer.printBlankLine()
 
-                printer.print("T1 spawn delay: " ..  ScenarioInfo.Options.opt_FinalRushSpawnDelay .. " seconds")
-                printer.print("T2 spawn delay: " ..  ScenarioInfo.Options.opt_FinalRushT2Delay / 60 .. " minutes")
-                printer.print("T3 spawn delay: " ..  ScenarioInfo.Options.opt_FinalRushT3Delay / 60 .. " minutes")
-                printer.print("T4 spawn delay: " ..  ScenarioInfo.Options.opt_FinalRushT4Delay / 60 .. " minutes")
+                printer.print(
+                    "Spawn delay: T1 after " ..  ScenarioInfo.Options.opt_FinalRushSpawnDelay .. "s, "
+                            .. "T2 " .. ScenarioInfo.Options.opt_FinalRushT2Delay / 60 .. "m, "
+                            .. "T3 " .. ScenarioInfo.Options.opt_FinalRushT3Delay / 60 .. "m, "
+                            .. "T4 " .. ScenarioInfo.Options.opt_FinalRushT4Delay / 60 .. "m"
+                )
 
-                printer.printBlankLine()
-
-                printer.print("T1 frequency: every " ..  ScenarioInfo.Options.opt_FinalRushT1Frequency .. " seconds")
-                printer.print("T2 frequency: every " ..  ScenarioInfo.Options.opt_FinalRushT2Frequency .. " seconds")
-                printer.print("T3 frequency: every " ..  ScenarioInfo.Options.opt_FinalRushT3Frequency .. " seconds")
-                printer.print("T4 frequency: every " ..  ScenarioInfo.Options.opt_FinalRushT4Frequency .. " seconds")
+                printer.print(
+                    "Spawn frequency: T1 every " ..  ScenarioInfo.Options.opt_FinalRushT1Frequency .. "s, "
+                            .. "T2 " .. ScenarioInfo.Options.opt_FinalRushT2Frequency .. "s, "
+                            .. "T3 " .. ScenarioInfo.Options.opt_FinalRushT3Frequency .. "s, "
+                            .. "T4 " .. ScenarioInfo.Options.opt_FinalRushT4Frequency .. "s"
+                )
 
                 printer.printBlankLine()
 

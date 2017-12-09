@@ -6,6 +6,9 @@ You can [read the documentation][docs].
 
 ## Installation
 
+The easiest way to install the map is to get it via the [Forged Alliance Forever][FAF] map vault.
+Alternatively you can download it from GitHub, using these steps:
+
 * Download the [latest version of the map][download]
 * Extract the zip. The result should be a directory named `final_rush_pro_5.2.v0001`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
@@ -16,9 +19,10 @@ of the Vampire mod.
 
 ## New in version 5.2
 
-Not published yet
+Released on 2017-12-09
 
 * Added option to set if the survival transports can be killed
+* Added option to set if ACU hiding should be prevented
 * Fixed Novax not being buildable
 
 ## New in version 5.1
@@ -118,8 +122,8 @@ This version of the map includes files from the FinalRushPro3 mod, which was cre
 Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview image was created by JuiceBoy.
 
 [FAF]: http://www.faforever.com/
-[docs]: http://wiki.faforever.com/index.php?title=final_rush_pro_5_1
-[download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases/download/v5.0.0/Final.Rush.Pro.5.zip
+[docs]: https://wiki.faforever.com/index.php?title=Final_Rush_Pro_5
+[download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases/download/v5.2.0/Final.Rush.Pro.5.2.zip
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
 [Busted]: http://olivinelabs.com/busted/
 [Entropy]: https://entropywins.wtf/

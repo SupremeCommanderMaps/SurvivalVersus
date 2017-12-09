@@ -426,8 +426,20 @@ options =
         pref = 'opt_FinalRushKillableTransports',
         values = {
             { text = "Only in Survival Versus", help = "Enabled in Survival Versus, disbabled in Survival Classic", key = 0, },
-            { text = "Disabled", help = "Disabled", key = 1, },
-            { text = "Enabled", help = "Enabled", key = 2, },
+            { text = "Disabled", help = "Disabled (transports can not be killed)", key = 1, },
+            { text = "Enabled", help = "Enabled (transports can be killed)", key = 2, },
+        },
+    },
+    {
+        default = 1,
+        label = "Prevent ACU Hiding",
+        help = "(Survival modes only) Prevents ACU hiding in the water and hills",
+        key = 'opt_FinalRushWaterKillsACUs',
+        pref = 'opt_FinalRushWaterKillsACUs',
+        values = {
+            { text = "Only in Survival Classic", help = "Enabled in Survival Classic, disbabled in Survival Versus", key = 0, },
+            { text = "Disabled", help = "Disabled (ACUs can hide)", key = 1, },
+            { text = "Enabled", help = "Enabled (ACUs cannot hide)", key = 2, },
         },
     }
 };
