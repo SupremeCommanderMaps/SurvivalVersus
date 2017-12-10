@@ -1,6 +1,5 @@
 # Final Rush Pro 5
 <img align="right" src="preview.jpg">
-
 A survival map for [Supreme Commander: Forged Alliance Forever][FAF].
 
 You can [read the documentation][docs].
@@ -76,7 +75,7 @@ Other lobby improvements:
 * Bounty Hunters now spawn for both teams rather than one random victim
 * Random events now match the land unit tech level and stop spawning lower tech units as they get obsolete
 * Added T2 Gunships and Fatboy random events
-* Random event units now only spawn for players that are still in game (rather than glitch and sit idly in the center) 
+* Random event units now only spawn for players that are still in game (rather than glitch and sit idly in the center)
 * Bounty Hunters will now attack targets in the bottom team (rather than glitch and sit idly in the center)
 * All Bounty  Hunters now teleport out once their target has been killed (rather than a few glitching and remaining)
 * Improved target areas selection of random event units
@@ -98,7 +97,7 @@ Other lobby improvements:
 * Moved the codebase into Git
 * Added a limited number of automated tests
 * Added README with installation instructions and release notes
-* Set up continuous integration via TravisCI 
+* Set up continuous integration via TravisCI
 
 ## Updates and contributing
 
@@ -123,10 +122,8 @@ This version of the map includes files from the FinalRushPro3 mod, which was cre
 Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview image was created by JuiceBoy.
 
 [FAF]: http://www.faforever.com/
-[docs]: http://wiki.faforever.com/index.php?title=final_rush_pro_5_1
-[download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases
 [docs]: https://wiki.faforever.com/index.php?title=Final_Rush_Pro_5
-[download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases
+[download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases/download/v5.2.0/Final.Rush.Pro.5.2.zip
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
 [Busted]: http://olivinelabs.com/busted/
 [Entropy]: https://entropywins.wtf/
