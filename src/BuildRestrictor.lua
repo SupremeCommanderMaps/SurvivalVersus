@@ -1,6 +1,5 @@
 newInstance = function(playerArmies, ScenarioInfo)
     local function enableUefTransportsAndScouts(index)
-        RemoveBuildRestriction(index, categories.AIR)
         AddBuildRestriction(index, categories.uea0103) --UEF T1 Attack Bomber: Scorcher
         AddBuildRestriction(index, categories.uea0102) --UEF T1 Interceptor: Cyclone
         AddBuildRestriction(index, categories.dea0202) --UEF T2 Fighter/Bomber: Janus
@@ -49,8 +48,9 @@ newInstance = function(playerArmies, ScenarioInfo)
         AddBuildRestriction(index, categories.uaa0310) --Aeon EX Experimental Aircraft Carrier: CZAR
     end
 
-    local function enableTransportsAndScouts()
+    local function disableAirExceptTransportsAndScouts()
         for armyIndex in playerArmies.getIndexToNameMap() do
+            RemoveBuildRestriction(index, categories.AIR)
             enableUefTransportsAndScouts(armyIndex)
             enableSeraphimTransportsAndScouts(armyIndex)
             enableCybranTransportsAndScouts(armyIndex)
@@ -122,23 +122,50 @@ newInstance = function(playerArmies, ScenarioInfo)
                         AddBuildRestriction(index, categories.SUBCOMMANDER)
                     elseif value == "FABS" then
                         AddBuildRestriction(index, categories.MASSFABRICATION)
+                    elseif value == "xea0002" then
+                        -- UEF sattelite
+                        LOG('AddBuildRestriction(index, categories.xea0002)')
+                        AddBuildRestriction(index, categories.xea0002)
                     end
                 end
             end
         end
     end
 
+    local function novaxIsEnabledInOptions()
+        for _, value in ScenarioInfo.Options.RestrictedCategories do
+            if value == "xea0002" then
+                return false
+            end
+        end
+
+        return true
+    end
+
     return {
         resetToStartingRestrictions = function()
             resetStartingRestrictions()
 
-            if (ScenarioInfo.Options.opt_FinalRushAir == 1) then
-                enableTransportsAndScouts()
+            if ScenarioInfo.Options.opt_FinalRushAir == 1 then
+                disableAirExceptTransportsAndScouts()
             end
 
-            if (ScenarioInfo.Options.opt_FinalRushAir == 0) then
-                for armyIndex in playerArmies.getIndexToNameMap() do
+            LOG('------------------------------------------------------')
+            LOG(repr(ScenarioInfo.Options.RestrictedCategories))
+            LOG('------------------------------------------------------')
+
+            local enableNovax = novaxIsEnabledInOptions()
+
+            LOG(repr(enableNovax))
+
+            for armyIndex in playerArmies.getIndexToNameMap() do
+                if (ScenarioInfo.Options.opt_FinalRushAir == 0) then
                     AddBuildRestriction(armyIndex, categories.AIR)
+                end
+
+                if enableNovax then
+                    LOG('RemoveBuildRestriction(index, categories.xea0002)')
+                    RemoveBuildRestriction(armyIndex, categories.xea0002)
                 end
             end
         end

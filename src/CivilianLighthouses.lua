@@ -1,9 +1,9 @@
 newInstance = function(textPrinter)
     local function preventDamage(unit)
-       unit:SetReclaimable(false);
-       unit:SetCanTakeDamage(false);
-       unit:SetDoNotTarget(true);
-       unit:SetCanBeKilled(false);
+       unit:SetReclaimable(false)
+       unit:SetCanTakeDamage(false)
+       unit:SetDoNotTarget(true)
+       unit:SetCanBeKilled(false)
     end
 
     local function initializeLighthouse(lighthouse, textLocation)
