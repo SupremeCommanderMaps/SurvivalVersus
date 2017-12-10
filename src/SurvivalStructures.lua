@@ -8,15 +8,15 @@ newInstance = function()
     end
 
     local function NoHillsClimbingBitches()
-        local police1 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 493.739227, 65.536545, 493.537750, 0.000000, 0.671952, 0.000000)
-        local police2 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 477.215668, 65.875885, 477.170502, 0.000000, 0.733038, 0.000000)
-        local police3 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 438.233734, 63.601822, 494.937134, 0.000000, -0.497419, 0.000000)
-        local police4 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 495.536011, 62.919582, 438.201752, 0.000000, 2.487095, 0.000000)
+        local police1 = CreateUnitHPR( "ual0401", "ARMY_9", 493.739227, 65.536545, 493.537750, 0.000000, 0.671952, 0.000000)
+        local police2 = CreateUnitHPR( "ual0401", "ARMY_9", 477.215668, 65.875885, 477.170502, 0.000000, 0.733038, 0.000000)
+        local police3 = CreateUnitHPR( "ual0401", "ARMY_9", 438.233734, 63.601822, 494.937134, 0.000000, -0.497419, 0.000000)
+        local police4 = CreateUnitHPR( "ual0401", "ARMY_9", 495.536011, 62.919582, 438.201752, 0.000000, 2.487095, 0.000000)
 
-        local police5 = CreateUnitHPR( "ual0401", "ARMY_9", 17.379473, 65.951057, 17.682734, 0.000000, -2.417280, 0.000000)
-        local police6 = CreateUnitHPR( "ual0401", "ARMY_9", 35.684875, 65.957329, 35.915600, 0.000000, 0.654499, 0.000000)
-        local police7 = CreateUnitHPR( "ual0401", "ARMY_9", 15.666634, 62.922352, 72.599403, 0.000000, 0.000000, 0.000000)
-        local police8 = CreateUnitHPR( "ual0401", "ARMY_9", 74.871712, 63.439056, 16.922817, 0.000000, 1.439896, 0.000000)
+        local police5 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 17.379473, 65.951057, 17.682734, 0.000000, -2.417280, 0.000000)
+        local police6 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 35.684875, 65.957329, 35.915600, 0.000000, 0.654499, 0.000000)
+        local police7 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 15.666634, 62.922352, 72.599403, 0.000000, 0.000000, 0.000000)
+        local police8 = CreateUnitHPR( "ual0401", "NEUTRAL_CIVILIAN", 74.871712, 63.439056, 16.922817, 0.000000, 1.439896, 0.000000)
 
         makeInvincible(police1)
         makeInvincible(police2)

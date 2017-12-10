@@ -10,7 +10,7 @@ The easiest way to install the map is to get it via the [Forged Alliance Forever
 Alternatively you can download it from GitHub, using these steps:
 
 * Download the [latest version of the map][download]
-* Extract the zip. The result should be a directory named `final_rush_pro_5.2.v0001`
+* Extract the zip. The result should be a directory named `final_rush_pro_5.2.v0002`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
@@ -19,7 +19,7 @@ of the Vampire mod.
 
 ## New in version 5.2
 
-Released on 2017-12-09
+Released on 2017-12-10
 
 * Added option to set if the survival transports can be killed
 * Added option to set if ACU hiding should be prevented
