@@ -21,7 +21,7 @@ of the Vampire mod.
 
 Not released yet
 
-* 
+* Added 125% and 150% values to the Auto Reclaim option
 
 ## New in version 5.2
 

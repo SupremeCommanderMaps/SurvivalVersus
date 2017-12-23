@@ -62,6 +62,8 @@ options =
             { text = "50 percent", help = "50 percent", key = 50, },
             { text = "75 percent", help = "75 percent", key = 75, },
             { text = "100 percent", help = "100 percent", key = 100, },
+            { text = "125 percent", help = "125 percent", key = 125, },
+            { text = "150 percent", help = "150 percent", key = 150, },
             { text = "200 percent", help = "200 percent", key = 200, },
             { text = "over 9000 percent", help = "You know you want it", key = 9001, },
         },
