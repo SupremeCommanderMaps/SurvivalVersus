@@ -9,40 +9,45 @@ local NORMAL = 3
 local HARD = 4
 local INSANE = 5
 
+local SET_BY_PRESET = -1
+
+local defaults = {
+    RestrictedCategories = {},
+    opt_gamemode = SURVIVAL_VERSUS,
+    opt_FinalRushDifficulty = NORMAL,
+    opt_tents = 9,
+    opt_AutoReclaim = 50,
+    opt_FinalRushAir = 0,
+    opt_timeunlocked = 0,
+    opt_t2tml = 0,
+    opt_t3arty = 0,
+    opt_snipers = 0,
+    opt_FinalRushEventNotifications = 1,
+    opt_FinalRushKillableTransports = 0,
+    opt_FinalRushWaterKillsACUs = 0,
+    opt_FinalRushRandomEvents = SET_BY_PRESET,
+    opt_FinalRushSpawnDelay = SET_BY_PRESET,
+    opt_FinalRushT1Frequency = SET_BY_PRESET,
+    opt_FinalRushT2Delay = SET_BY_PRESET,
+    opt_FinalRushT2Frequency = SET_BY_PRESET,
+    opt_FinalRushT3Delay = SET_BY_PRESET,
+    opt_FinalRushT3Frequency = SET_BY_PRESET,
+    opt_FinalRushT4Delay = SET_BY_PRESET,
+    opt_FinalRushT4Frequency = SET_BY_PRESET,
+    opt_FinalRushHunterDelay = SET_BY_PRESET,
+    opt_FinalRushHunters = SET_BY_PRESET,
+    opt_FinalRushHealthIncrease = SET_BY_PRESET,
+    opt_FinalRushAggression = SET_BY_PRESET
+}
+
+local optionsThatGotDefaulted = {}
+
 -- This function works around the FAF lobby not correctly defaulting the options
 local function defaultOptions(scenarioOptions)
-    local defaults = {
-        RestrictedCategories = {},
-        opt_gamemode = SURVIVAL_VERSUS,
-        opt_FinalRushDifficulty = NORMAL,
-        opt_tents = 9,
-        opt_AutoReclaim = 50,
-        opt_FinalRushRandomEvents = -1,
-        opt_FinalRushSpawnDelay = -1,
-        opt_FinalRushT1Frequency = -1,
-        opt_FinalRushT2Delay = -1,
-        opt_FinalRushT2Frequency = -1,
-        opt_FinalRushT3Delay = -1,
-        opt_FinalRushT3Frequency = -1,
-        opt_FinalRushT4Delay = -1,
-        opt_FinalRushT4Frequency = -1,
-        opt_FinalRushHunterDelay = -1,
-        opt_FinalRushHunters = -1,
-        opt_FinalRushHealthIncrease = -1,
-        opt_FinalRushAggression = -1,
-        opt_FinalRushAir = 0,
-        opt_timeunlocked = 0,
-        opt_t2tml = 0,
-        opt_t3arty = 0,
-        opt_snipers = 0,
-        opt_FinalRushEventNotifications = 1,
-        opt_FinalRushKillableTransports = 0,
-        opt_FinalRushWaterKillsACUs = 0
-    }
-
     for optionName, defaultValue in pairs(defaults) do
         if (scenarioOptions[optionName] == nil) then
             scenarioOptions[optionName] = defaultValue
+            optionsThatGotDefaulted[optionName] = true
         end
     end
 
@@ -58,33 +63,26 @@ local function applyPresets(scenarioOptions)
             [HARD] = 0,
             [INSANE] = 0,
         },
-        opt_FinalRushAggression = {
-            [VERY_EASY] = 0,
-            [EASY] = 1,
-            [NORMAL] = 1,
-            [HARD] = 1,
-            [INSANE] = 1,
+        opt_FinalRushT2Delay = {
+            [VERY_EASY] = 8 * 60,
+            [EASY] = 6 * 60,
+            [NORMAL] = 6 * 60,
+            [HARD] = 5 * 60,
+            [INSANE] = 4 * 60,
         },
-        opt_FinalRushRandomEvents = {
-            [VERY_EASY] = 600,
-            [EASY] = 90,
-            [NORMAL] = 70,
-            [HARD] = 50,
-            [INSANE] = 30,
+        opt_FinalRushT3Delay = {
+            [VERY_EASY] = 16 * 60,
+            [EASY] = 12 * 60,
+            [NORMAL] = 12 * 60,
+            [HARD] = 10 * 60,
+            [INSANE] = 8 * 60,
         },
-        opt_FinalRushHunters = {
-            [VERY_EASY] = 0,
-            [EASY] = 480,
-            [NORMAL] = 300,
-            [HARD] = 240,
-            [INSANE] = 120,
-        },
-        opt_FinalRushHunterDelay = {
-            [VERY_EASY] = 0,
-            [EASY] = 24 * 60,
-            [NORMAL] = 22 * 60,
-            [HARD] = 18 * 60,
-            [INSANE] = 16 * 60,
+        opt_FinalRushT4Delay = {
+            [VERY_EASY] = 24 * 60,
+            [EASY] = 18 * 60,
+            [NORMAL] = 18 * 60,
+            [HARD] = 16 * 60,
+            [INSANE] = 14 * 60,
         },
         opt_FinalRushT1Frequency = {
             [VERY_EASY] = 6,
@@ -114,26 +112,33 @@ local function applyPresets(scenarioOptions)
             [HARD] = 10,
             [INSANE] = 8,
         },
-        opt_FinalRushT2Delay = {
-            [VERY_EASY] = 8 * 60,
-            [EASY] = 6 * 60,
-            [NORMAL] = 6 * 60,
-            [HARD] = 5 * 60,
-            [INSANE] = 4 * 60,
+        opt_FinalRushAggression = {
+            [VERY_EASY] = 0,
+            [EASY] = 1,
+            [NORMAL] = 1,
+            [HARD] = 1,
+            [INSANE] = 1,
         },
-        opt_FinalRushT3Delay = {
-            [VERY_EASY] = 16 * 60,
-            [EASY] = 12 * 60,
-            [NORMAL] = 12 * 60,
-            [HARD] = 10 * 60,
-            [INSANE] = 8 * 60,
+        opt_FinalRushRandomEvents = {
+            [VERY_EASY] = 600,
+            [EASY] = 90,
+            [NORMAL] = 70,
+            [HARD] = 50,
+            [INSANE] = 30,
         },
-        opt_FinalRushT4Delay = {
-            [VERY_EASY] = 24 * 60,
-            [EASY] = 18 * 60,
-            [NORMAL] = 18 * 60,
-            [HARD] = 16 * 60,
-            [INSANE] = 14 * 60,
+        opt_FinalRushHunters = {
+            [VERY_EASY] = 0,
+            [EASY] = 480,
+            [NORMAL] = 300,
+            [HARD] = 240,
+            [INSANE] = 120,
+        },
+        opt_FinalRushHunterDelay = {
+            [VERY_EASY] = 0,
+            [EASY] = 24 * 60,
+            [NORMAL] = 22 * 60,
+            [HARD] = 18 * 60,
+            [INSANE] = 16 * 60,
         },
         opt_FinalRushHealthIncrease = {
             [VERY_EASY] = 0,
@@ -145,7 +150,7 @@ local function applyPresets(scenarioOptions)
     }
 
     for optionName, defaultValues in pairs(difficultyPreset) do
-        if (scenarioOptions[optionName] == -1) then
+        if (scenarioOptions[optionName] == SET_BY_PRESET) then
             scenarioOptions[optionName] = defaultValues[scenarioOptions.opt_FinalRushDifficulty]
         end
     end
@@ -192,6 +197,10 @@ function newInstance(ScenarioInfoOptions)
         else
             return rawOptions.opt_FinalRushWaterKillsACUs == 2
         end
+    end
+
+    this.isNonDefault = function(optionName)
+        return optionsThatGotDefaulted[optionName] or false
     end
 
     return this

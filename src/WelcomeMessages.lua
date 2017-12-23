@@ -1,15 +1,26 @@
 newInstance = function(ScenarioInfo, options, textPrinter)
-    local function newPrinter(durationInSeconds)
-        local textOptions = {color = "ffb4ffd4", duration = durationInSeconds, location = "leftcenter" }
+    local WELCOME_MESSAGE_DURATION = 7
+    local SETTINGS_MESSAGE_DURATION = 13
 
-        return {
-            print = function(text)
-                textPrinter.print(string.rep( " ", 20 ) .. text, textOptions)
-            end,
-            printBlankLine = function()
-                textPrinter.printBlankLine(textOptions)
-            end
-        }
+    local function newPrinter(durationInSeconds)
+        local textOptions = { color = "ffb4ffd4", duration = durationInSeconds, location = "leftcenter" }
+        local modifiedTextOptions = { color = "ffffd4d4", duration = durationInSeconds, location = "leftcenter" }
+
+        local this = {}
+
+        this.print = function(text)
+            textPrinter.print(string.rep(" ", 20) .. text, textOptions)
+        end
+
+        this.printBlankLine = function()
+            textPrinter.printBlankLine(textOptions)
+        end
+
+        this.printOption = function(optionName, text)
+            textPrinter.print(string.rep(" ", 20) .. text, options.isNonDefault(optionName) and textOptions or modifiedTextOptions)
+        end
+
+        return this
     end
 
     local getGameMode = function()
@@ -36,14 +47,14 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     end
 
     local function showGameVersionMessage(printer)
-        local headerOptions = {color = "ffa4dde4", duration = 7, location = "leftcenter", size = 35 }
-        textPrinter.print(string.rep( " ", 12 ) .. "Welcome to Final Rush Pro 5.3", headerOptions)
+        local headerOptions = { color = "ffa4a4e4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter", size = 35 }
+        textPrinter.print(string.rep(" ", 12) .. "Welcome to Final Rush Pro 5.3", headerOptions)
 
         printer.print("Version 5.x by EntropyWins")
 
         printer.printBlankLine()
 
-        printer.print("Game mode: " ..  getGameMode())
+        printer.printOption("opt_gamemode", "Game mode: " .. getGameMode())
 
         if options.isParagonWars() then
             printer.print("Civilian base: 100% Morgan Certified™")
@@ -64,63 +75,61 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         printer.printBlankLine()
 
         if ScenarioInfo.Options.opt_FinalRushAir ~= 0 then
-            printer.print("Player air is ON")
+            printer.printOption("opt_FinalRushAir", "Player air is ON")
         else
             printer.printBlankLine()
         end
 
-        printer.print("Water kills ACU: " .. ( options.waterKillsAcu() == 0 and "no" or "yes" ))
-        printer.print("Can kill transports: " .. ( options.canKillTransports() == 0 and "yes" or "no" ))
+        printer.printOption("opt_FinalRushWaterKillsACUs", "Water kills ACU: " .. (options.waterKillsAcu() == 0 and "no" or "yes"))
+        printer.printOption("opt_FinalRushKillableTransports", "Can kill transports: " .. (options.canKillTransports() == 0 and "yes" or "no"))
 
         printer.printBlankLine()
 
-        printer.print("Difficulty preset: " ..  getDifficuly())
-        printer.print("Auto reclaim: " ..  ScenarioInfo.Options.opt_AutoReclaim .. "%")
-        printer.print("Health increase: " ..  ScenarioInfo.Options.opt_FinalRushHealthIncrease * 100 .. "% every 100 seconds")
+        printer.printOption("opt_FinalRushDifficulty", "Difficulty preset: " .. getDifficuly())
+        printer.printOption("opt_AutoReclaim", "Auto reclaim: " .. ScenarioInfo.Options.opt_AutoReclaim .. "%")
+        printer.printOption("opt_FinalRushHealthIncrease", "Health increase: " .. ScenarioInfo.Options.opt_FinalRushHealthIncrease * 100 .. "% every 100 seconds")
 
         printer.printBlankLine()
 
-        printer.print(
-            "Spawn delay: T1 after " ..  ScenarioInfo.Options.opt_FinalRushSpawnDelay .. "s, "
-                    .. "T2 " .. ScenarioInfo.Options.opt_FinalRushT2Delay / 60 .. "m, "
-                    .. "T3 " .. ScenarioInfo.Options.opt_FinalRushT3Delay / 60 .. "m, "
-                    .. "T4 " .. ScenarioInfo.Options.opt_FinalRushT4Delay / 60 .. "m"
+        printer.printOption(
+            "opt_FinalRushSpawnDelay",
+            "Spawn delay: T1 after " .. ScenarioInfo.Options.opt_FinalRushSpawnDelay .. "s, "
+                .. "T2 " .. ScenarioInfo.Options.opt_FinalRushT2Delay / 60 .. "m, "
+                .. "T3 " .. ScenarioInfo.Options.opt_FinalRushT3Delay / 60 .. "m, "
+                .. "T4 " .. ScenarioInfo.Options.opt_FinalRushT4Delay / 60 .. "m"
         )
 
-        printer.print(
-            "Spawn frequency: T1 every " ..  ScenarioInfo.Options.opt_FinalRushT1Frequency .. "s, "
-                    .. "T2 " .. ScenarioInfo.Options.opt_FinalRushT2Frequency .. "s, "
-                    .. "T3 " .. ScenarioInfo.Options.opt_FinalRushT3Frequency .. "s, "
-                    .. "T4 " .. ScenarioInfo.Options.opt_FinalRushT4Frequency .. "s"
+        printer.printOption(
+            "opt_FinalRushT1Frequency",
+            "Spawn frequency: T1 every " .. ScenarioInfo.Options.opt_FinalRushT1Frequency .. "s, "
+                .. "T2 " .. ScenarioInfo.Options.opt_FinalRushT2Frequency .. "s, "
+                .. "T3 " .. ScenarioInfo.Options.opt_FinalRushT3Frequency .. "s, "
+                .. "T4 " .. ScenarioInfo.Options.opt_FinalRushT4Frequency .. "s"
         )
 
         printer.printBlankLine()
 
         if ScenarioInfo.Options.opt_FinalRushRandomEvents == 0 then
-            printer.print("No random events")
+            printer.printOption("opt_FinalRushRandomEvents", "No random events")
         else
-            printer.print(
-                "Random events every " ..  ScenarioInfo.Options.opt_FinalRushRandomEvents .. " seconds with"
-                        .. ( ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and "" or " NO" ) .. " notifications"
-            )
+            printer.printOption("opt_FinalRushRandomEvents", "Random events every " .. ScenarioInfo.Options.opt_FinalRushRandomEvents .. " seconds with"
+                    .. (ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and "" or " NO") .. " notifications")
         end
 
         if ScenarioInfo.Options.opt_FinalRushHunters == 0 then
-            printer.print("No bounty hunters")
+            printer.printOption("opt_FinalRushHunters", "No bounty hunters")
         else
-            printer.print(
-                "Bounty hunters after " ..  ScenarioInfo.Options.opt_FinalRushHunterDelay / 60 .. " minutes, spawning every "
-                        ..  ScenarioInfo.Options.opt_FinalRushHunters / 60 .. " minutes"
-            )
+            printer.printOption("opt_FinalRushHunters", "Bounty hunters after " .. ScenarioInfo.Options.opt_FinalRushHunterDelay / 60 .. " minutes, spawning every "
+                    .. ScenarioInfo.Options.opt_FinalRushHunters / 60 .. " minutes")
         end
     end
 
     return {
         startDisplay = function()
             ForkThread(function()
-                showGameVersionMessage(newPrinter(7))
-                WaitSeconds(7.01)
-                showGameSettingsMessage(newPrinter(13))
+                showGameVersionMessage(newPrinter(WELCOME_MESSAGE_DURATION))
+                WaitSeconds(WELCOME_MESSAGE_DURATION + 0.01)
+                showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
             end)
         end
     }
