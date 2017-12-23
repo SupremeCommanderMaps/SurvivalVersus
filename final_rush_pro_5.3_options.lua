@@ -14,7 +14,7 @@ options =
         },
     },
     {
-        default = 2,
+        default = 3,
         label = "Survival Difficulty",
         help = "Survival Difficulty. Affects both survival modes. ",
         key = 'opt_FinalRushDifficulty',

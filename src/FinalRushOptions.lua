@@ -14,7 +14,7 @@ local function defaultOptions(scenarioOptions)
     local defaults = {
         RestrictedCategories = {},
         opt_gamemode = SURVIVAL_VERSUS,
-        opt_FinalRushDifficulty = EASY,
+        opt_FinalRushDifficulty = NORMAL,
         opt_tents = 9,
         opt_AutoReclaim = 50,
         opt_FinalRushRandomEvents = -1,
