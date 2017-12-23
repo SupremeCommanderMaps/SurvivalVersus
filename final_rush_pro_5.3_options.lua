@@ -130,8 +130,8 @@ options =
     },
     {
         default = 3,
-        label = "Prevent ACU Hiding",
-        help = "(Survival modes only) Prevents ACU hiding in the water and hills",
+        label = "ACU Hiding",
+        help = "(Survival modes only) Allow or prevent ACU hiding in the water and hills",
         key = 'opt_FinalRushWaterKillsACUs',
         pref = 'opt_FinalRushWaterKillsACUs',
         values = {
