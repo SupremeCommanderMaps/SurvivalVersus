@@ -85,7 +85,7 @@ newInstance = function(ScenarioInfo)
         local textOptions = {color = "ffb4ffd4", duration = 7, location = "leftcenter" }
 
         ForkThread(function()
-            textPrinter.print(string.rep( " ", 12 ) .. "Welcome to Final Rush Pro 5.2", headerOptions)
+            textPrinter.print(string.rep( " ", 12 ) .. "Welcome to Final Rush Pro 5.3", headerOptions)
             textPrinter.print(string.rep( " ", 20 ) .. "Version 5.x by EntropyWins", textOptions)
 
             textPrinter.printBlankLine(textOptions)
