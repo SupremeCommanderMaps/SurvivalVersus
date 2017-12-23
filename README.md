@@ -22,6 +22,7 @@ of the Vampire mod.
 Not released yet
 
 * Changed default difficulty from EASY to NORMAL (NORMAL is a lot more difficult as the game progresses)
+* ACU hiding is now prevented by default in Survival Versus (but can be enabled with via the options)
 * Modified lobby options are now (mostly) highlighted in the welcome message
 * Added 125% and 150% values to the Auto Reclaim option
 
