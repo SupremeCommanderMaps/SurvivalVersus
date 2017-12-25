@@ -80,8 +80,8 @@ newInstance = function(ScenarioInfo, options, textPrinter)
             printer.printBlankLine()
         end
 
-        printer.printOption("opt_FinalRushWaterKillsACUs", "Water kills ACU: " .. (options.waterKillsAcu() == 0 and "no" or "yes"))
-        printer.printOption("opt_FinalRushKillableTransports", "Can kill transports: " .. (options.canKillTransports() == 0 and "yes" or "no"))
+        printer.printOption("opt_FinalRushWaterKillsACUs", "Can hide ACU: " .. (options.waterKillsAcu() and "no" or "yes"))
+        printer.printOption("opt_FinalRushKillableTransports", "Can kill transports: " .. (options.canKillTransports() and "yes" or "no"))
 
         printer.printBlankLine()
 
