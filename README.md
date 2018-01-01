@@ -10,7 +10,7 @@ The easiest way to install the map is to get it via the [Forged Alliance Forever
 Alternatively you can download it from GitHub, using these steps:
 
 * Download the [latest version of the map][download]
-* Extract the zip. The result should be a directory named `final_rush_pro_5.3.v0001`
+* Extract the zip. The result should be a directory named `final_rush_pro_5.3.v0002`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
