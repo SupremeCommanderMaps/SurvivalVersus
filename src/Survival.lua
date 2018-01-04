@@ -188,10 +188,10 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
         end
 
-        local survivalStructures = import('/maps/final_rush_pro_5.3.v0002/src/SurvivalStructures.lua').newInstance()
+        local survivalStructures = import('/maps/final_rush_pro_5.4.v0001/src/SurvivalStructures.lua').newInstance()
 
         if options.waterKillsAcu() then
-            local commanderWaterPain = import('/maps/final_rush_pro_5.3.v0002/src/CommanderWaterPain.lua').newInstance(allUnits)
+            local commanderWaterPain = import('/maps/final_rush_pro_5.4.v0001/src/CommanderWaterPain.lua').newInstance(allUnits)
             commanderWaterPain.runThread()
 
             survivalStructures.createHillGuards()
@@ -202,7 +202,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     end
 
     local runBattle = function(textPrinter, playerArmies)
-        local healthMultiplier = import('/maps/final_rush_pro_5.3.v0002/src/HealthMultiplier.lua').newInstance(
+        local healthMultiplier = import('/maps/final_rush_pro_5.4.v0001/src/HealthMultiplier.lua').newInstance(
             ScenarioInfo.Options.opt_FinalRushDifficulty,
             ScenarioInfo.Options.opt_FinalRushHealthIncrease,
             IsTotalVetEnabled()
@@ -214,9 +214,9 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         local t4spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT4Delay
 
         if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
-            local agressionSpawner = import('/maps/final_rush_pro_5.3.v0002/src/AggressionSpawner.lua').newInstance(
+            local agressionSpawner = import('/maps/final_rush_pro_5.4.v0001/src/AggressionSpawner.lua').newInstance(
                 StartingPlayersExistance,
-                import('/maps/final_rush_pro_5.3.v0002/src/RandomUnits.lua').newInstance(ScenarioInfo, ScenarioFramework),
+                import('/maps/final_rush_pro_5.4.v0001/src/RandomUnits.lua').newInstance(ScenarioInfo, ScenarioFramework),
                 AttackLocations,
                 TransportDestinations,
                 ScenarioInfo,
@@ -231,7 +231,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             agressionSpawner.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
 
-        local unitSpanwerFactory = import('/maps/final_rush_pro_5.3.v0002/src/SurvivalSpawnerFactory.lua').newInstance(
+        local unitSpanwerFactory = import('/maps/final_rush_pro_5.4.v0001/src/SurvivalSpawnerFactory.lua').newInstance(
             options,
             ScenarioFramework,
             playerArmies,
@@ -244,7 +244,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             allUnits
         )
 
-        local rounds = import('/maps/final_rush_pro_5.3.v0002/src/SurvivalRounds.lua').newInstance(
+        local rounds = import('/maps/final_rush_pro_5.4.v0001/src/SurvivalRounds.lua').newInstance(
             textPrinter,
             unitSpanwerFactory
         )
@@ -276,10 +276,10 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         local eventTextPrinter =
             ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
-                or import('/maps/final_rush_pro_5.3.v0002/src/NullTextPrinter.lua').newInstance()
+                or import('/maps/final_rush_pro_5.4.v0001/src/NullTextPrinter.lua').newInstance()
 
         if ScenarioInfo.Options.opt_FinalRushRandomEvents > 0 then
-            local randomEvents = import('/maps/final_rush_pro_5.3.v0002/src/RandomEvents.lua').newInstance(
+            local randomEvents = import('/maps/final_rush_pro_5.4.v0001/src/RandomEvents.lua').newInstance(
                 ScenarioInfo,
                 eventTextPrinter,
                 allUnits,
@@ -291,7 +291,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         end
 
         if ScenarioInfo.Options.opt_FinalRushHunters > 0 then
-            local hunters = import('/maps/final_rush_pro_5.3.v0002/src/Hunters.lua').newInstance(
+            local hunters = import('/maps/final_rush_pro_5.4.v0001/src/Hunters.lua').newInstance(
                 eventTextPrinter,
                 healthMultiplier,
                 playerArmies,
