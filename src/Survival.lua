@@ -62,25 +62,13 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     local function IsTotalVetEnabled()
         local ai = GetArmyBrain("ARMY_9")
         for _,unit  in ai:GetListOfUnits( categories.STRUCTURE, false ) do
-            if unit:GetBlueprint().Economy.xpValue == nil then
-                LOG('TVG Disabled')
-                return false
-            else
-                LOG('TVG Enabled')
-                return true
-            end
+            return unit:GetBlueprint().Economy.xpValue ~= nil
         end
     end
 
     local function IsBLackOpsAcusEnabled()
         local bobp = GetUnitBlueprintByName("eal0001")
-        if bobp.Economy.BuildTime  == nil then
-            LOG('Blackops Disabled')
-            return false
-        else
-            LOG('Blackops Enabled')
-            return true
-        end
+        return bobp.Economy.BuildTime  ~= nil
     end
 
     local allUnits = function()
