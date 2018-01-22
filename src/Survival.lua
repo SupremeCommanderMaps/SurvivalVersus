@@ -232,69 +232,80 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             allUnits
         )
 
-        local rounds = import('/maps/final_rush_pro_5.4.v0001/src/SurvivalRounds.lua').newInstance(
-            textPrinter,
-            unitSpanwerFactory
-        )
-
         local SpawnMulti = table.getn(playerArmies.getIndexToNameMap()) / 8
 
-        rounds.start({
-            T1 = {
-                initialDelayInSeconds = t1spawndelay,
-                frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT1Frequency / SpawnMulti,
-                spawnEndInSeconds = t2spawndelay,
-            },
-            T2 = {
-                initialDelayInSeconds = t2spawndelay,
-                frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT2Frequency / SpawnMulti,
-                spawnEndInSeconds = nil,
-            },
-            T3 = {
-                initialDelayInSeconds = t3spawndelay,
-                frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT3Frequency / SpawnMulti,
-                spawnEndInSeconds = nil,
-            },
-            T4 = {
-                initialDelayInSeconds = t4spawndelay,
-                frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
-                spawnEndInSeconds = nil,
-            },
-        })
+        local function getEventTextPrinter()
+            return ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
+                    or import('/maps/final_rush_pro_5.4.v0001/src/NullTextPrinter.lua').newInstance()
+        end
 
-        local eventTextPrinter =
-            ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
-                or import('/maps/final_rush_pro_5.4.v0001/src/NullTextPrinter.lua').newInstance()
-
-        if ScenarioInfo.Options.opt_FinalRushRandomEvents > 0 then
-            local randomEvents = import('/maps/final_rush_pro_5.4.v0001/src/RandomEvents.lua').newInstance(
-                ScenarioInfo,
-                eventTextPrinter,
-                allUnits,
-                ListArmies,
+        local function runSurvivalRounds()
+            local rounds = import('/maps/final_rush_pro_5.4.v0001/src/SurvivalRounds.lua').newInstance(
+                textPrinter,
                 unitSpanwerFactory
             )
 
-            randomEvents.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, ScenarioInfo.Options.opt_FinalRushRandomEvents)
+            rounds.start({
+                T1 = {
+                    initialDelayInSeconds = t1spawndelay,
+                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT1Frequency / SpawnMulti,
+                    spawnEndInSeconds = t2spawndelay,
+                },
+                T2 = {
+                    initialDelayInSeconds = t2spawndelay,
+                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT2Frequency / SpawnMulti,
+                    spawnEndInSeconds = nil,
+                },
+                T3 = {
+                    initialDelayInSeconds = t3spawndelay,
+                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT3Frequency / SpawnMulti,
+                    spawnEndInSeconds = nil,
+                },
+                T4 = {
+                    initialDelayInSeconds = t4spawndelay,
+                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
+                    spawnEndInSeconds = nil,
+                },
+            })
         end
 
-        if ScenarioInfo.Options.opt_FinalRushHunters > 0 then
-            local hunters = import('/maps/final_rush_pro_5.4.v0001/src/Hunters.lua').newInstance(
-                eventTextPrinter,
-                healthMultiplier,
-                playerArmies,
-                IsBLackOpsAcusEnabled(),
-                spawnOutEffect,
-                allUnits,
-                spawnEffect
-            )
+        local function runRandomEvents()
+            if ScenarioInfo.Options.opt_FinalRushRandomEvents > 0 then
+                local randomEvents = import('/maps/final_rush_pro_5.4.v0001/src/RandomEvents.lua').newInstance(
+                    ScenarioInfo,
+                    getEventTextPrinter(),
+                    allUnits,
+                    ListArmies,
+                    unitSpanwerFactory
+                )
 
-            ForkThread(
-                hunters.hunterSpanwer,
-                ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushHunterDelay,
-                ScenarioInfo.Options.opt_FinalRushHunters / SpawnMulti
-            )
+                randomEvents.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, ScenarioInfo.Options.opt_FinalRushRandomEvents)
+            end
         end
+
+        local function runBountyHunters()
+            if ScenarioInfo.Options.opt_FinalRushHunters > 0 then
+                local hunters = import('/maps/final_rush_pro_5.4.v0001/src/Hunters.lua').newInstance(
+                    getEventTextPrinter(),
+                    healthMultiplier,
+                    playerArmies,
+                    IsBLackOpsAcusEnabled(),
+                    spawnOutEffect,
+                    allUnits,
+                    spawnEffect
+                )
+
+                ForkThread(
+                    hunters.hunterSpanwer,
+                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushHunterDelay,
+                    ScenarioInfo.Options.opt_FinalRushHunters / SpawnMulti
+                )
+            end
+        end
+
+        runSurvivalRounds()
+        runRandomEvents()
+        runBountyHunters()
     end
 
     return {
