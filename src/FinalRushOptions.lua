@@ -114,8 +114,8 @@ local function applyPresets(scenarioOptions)
         },
         opt_FinalRushAggression = {
             [VERY_EASY] = 0,
-            [EASY] = 1,
-            [NORMAL] = 1,
+            [EASY] = 0,
+            [NORMAL] = 0,
             [HARD] = 1,
             [INSANE] = 1,
         },
