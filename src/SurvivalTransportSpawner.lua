@@ -16,25 +16,25 @@ newInstance = function(options, healthMultiplier, removeWreckage, getRandomPlaye
         }
     }
 
-    local GetNearestCommander = function(unitgroup,range)
+    local GetNearestCommander = function(unitgroup, range)
         local unitattackerpos
         local unit_pos
         local dist
         local CommandersInRange
         local commandertoattack = false
 
-        for _,unitattacker in unitgroup do
+        for _, unitattacker in unitgroup do
             if not unitattacker:IsDead() then
                 unitattackerpos = unitattacker:GetPosition()
                 local brain = unitattacker:GetAIBrain()
-                CommandersInRange = brain:GetUnitsAroundPoint( categories.COMMAND, unitattackerpos, range, 'Enemy' )
+                CommandersInRange = brain:GetUnitsAroundPoint(categories.COMMAND, unitattackerpos, range, 'Enemy')
             end
         end
 
         if CommandersInRange then
             for _, unit in CommandersInRange do
                 unit_pos = unit:GetPosition()
-                dist = VDist2(unitattackerpos.x,unitattackerpos.z,unit_pos.x,unit_pos.z)
+                dist = VDist2(unitattackerpos.x, unitattackerpos.z, unit_pos.x, unit_pos.z)
                 commandertoattack = unit
             end
         end

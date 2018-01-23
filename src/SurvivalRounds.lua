@@ -36,9 +36,9 @@ newInstance = function(textPrinter, unitSpawnerFactory)
             {
                 "url0303", --Cybran T3 Siege Assault Bot: Loyalist
                 "xel0305", --UEF T3 Armored Assault Bot: Percival
-                "uel0303", --Cybran T3 Mobile Heavy Artillery: Trebuchet
-                "ual0303", --Cybran T3 Mobile Heavy Artillery: Trebuchet
-                "xrl0305",--Cybran T3 Armored Assault Bot: The Brick
+                "uel0303", --UEF T3 Heavy Assault Bot: Titan
+                "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
+                "xrl0305", --Cybran T3 Armored Assault Bot: The Brick
                 "uel0303", --UEF T3 Heavy Assault Bot: Titan
                 "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
                 "dal0310", --Aeon T3 Shield Disruptor: Absolver
