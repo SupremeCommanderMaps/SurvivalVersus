@@ -22,7 +22,7 @@ of the Vampire mod.
 Under development
 
 * Added extra values for the HP Increase lobby option
-* Added extra values for the HP Increase lobby option
+* Added extra values for the wave frequency and wave delay lobby options
 * Aggression Tracking is now disabled by default for Easy and Normal difficulties
 
 ## New in version 5.3
