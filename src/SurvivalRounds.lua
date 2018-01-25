@@ -56,7 +56,7 @@ newInstance = function(textPrinter, unitSpawnerFactory)
             },
             "xea0306"
         )
-        WaitSeconds(0.5)
+        WaitSeconds(1)
         survivalUnitSpanwer.spawnWithTransports(
             {
                 "url0402",

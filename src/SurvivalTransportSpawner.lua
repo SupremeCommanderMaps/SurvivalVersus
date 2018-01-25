@@ -84,10 +84,10 @@ newInstance = function(options, healthMultiplier, removeWreckage, getRandomPlaye
         local transport = CreateUnitHPR(transportName, armyName, spawnPosition.x, 80, spawnPosition.y, 0, 0, 0)
 
         if not options.canKillTransports() then
-            transport:SetReclaimable(false);
-            transport:SetCanTakeDamage(false);
-            transport:SetDoNotTarget(true);
-            transport:SetCanBeKilled(false);
+            transport:SetReclaimable(false)
+            transport:SetCanTakeDamage(false)
+            transport:SetDoNotTarget(true)
+            transport:SetCanBeKilled(false)
         end
 
         local transports = { transport }
