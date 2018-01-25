@@ -37,10 +37,13 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     local getDifficuly = function()
         local difficulyNames = {
             [1] = "Very easy",
-            [2] = "Easy",
-            [3] = "Normal",
-            [4] = "Hard",
-            [5] = "Insane",
+            [2] = "Easier",
+            [3] = "Easy",
+            [4] = "Normal",
+            [5] = "Hard",
+            [6] = "Harder",
+            [7] = "Very hard",
+            [8] = "Insane",
         }
 
         return difficulyNames[ScenarioInfo.Options.opt_FinalRushDifficulty]
