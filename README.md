@@ -22,9 +22,17 @@ of the Vampire mod.
 Under development
 
 * Monkeys and GCs no longer spawn together in a single transport and now separately choose target players
+* Reworked difficulty presets
+    * Normal difficulty was renamed to Hard
+    * Hard difficulty was renamed to Very hard
+    * Easy difficulty was renamed to Easier
+    * Added new "Normal" difficulty (the default), slightly easier than Hard (the old Normal)
+    * Added new "Easy" difficulty, slightly easier than (the new) Normal
+    * Added new "Hard" difficulty, slightly harder than (the new) Normal
 * Added extra values for the HP Increase lobby option
 * Added extra values for the wave frequency and wave delay lobby options
-* Aggression Tracking is now disabled by default for Easy and Normal difficulties
+* Added extra values for the Auto Reclaim lobby option
+* Aggression Tracking is now disabled by default for all difficulties except Very hard and Insane
 
 ## New in version 5.3
 
