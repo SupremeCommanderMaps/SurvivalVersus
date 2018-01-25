@@ -21,6 +21,7 @@ of the Vampire mod.
 
 Under development
 
+* Monkeys and GCs no longer spawn together in a single transport and now separately choose target players
 * Added extra values for the HP Increase lobby option
 * Added extra values for the wave frequency and wave delay lobby options
 * Aggression Tracking is now disabled by default for Easy and Normal difficulties

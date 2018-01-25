@@ -52,8 +52,14 @@ newInstance = function(textPrinter, unitSpawnerFactory)
     local Round4 = function(survivalUnitSpanwer)
         survivalUnitSpanwer.spawnWithTransports(
             {
-                "url0402",
                 "ual0401",
+            },
+            "xea0306"
+        )
+        WaitSeconds(0.5)
+        survivalUnitSpanwer.spawnWithTransports(
+            {
+                "url0402",
             },
             "xea0306"
         )
