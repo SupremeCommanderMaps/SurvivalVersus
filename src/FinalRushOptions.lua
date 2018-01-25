@@ -5,10 +5,10 @@ local GAME_MODE_PLAIN = 3
 
 local VERY_EASY = 1
 local EASIER = 2
-local EASY = 3 --
-local NORMAL = 4 --
+local EASY = 3
+local NORMAL = 4
 local HARD = 5
-local HARDER = 6 --
+local HARDER = 6
 local VERY_HARD = 7
 local INSANE = 8
 
@@ -17,7 +17,7 @@ local SET_BY_PRESET = -1
 local defaults = {
     RestrictedCategories = {},
     opt_gamemode = SURVIVAL_VERSUS,
-    opt_FinalRushDifficulty = HARD,
+    opt_FinalRushDifficulty = NORMAL,
     opt_tents = 9,
     opt_AutoReclaim = 50,
     opt_FinalRushAir = 0,
