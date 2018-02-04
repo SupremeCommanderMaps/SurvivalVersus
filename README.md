@@ -29,10 +29,12 @@ Under development
     * Added new "Normal" difficulty (the default), slightly easier than Hard (the old Normal)
     * Added new "Easy" difficulty, slightly easier than (the new) Normal
     * Added new "Hard" difficulty, slightly harder than (the new) Normal
+* Added Team Bonus option that allows giving one team a recourse bonus and nerf their enemy units
 * Added extra values for the HP Increase lobby option
 * Added extra values for the wave frequency and wave delay lobby options
 * Added extra values for the Auto Reclaim lobby option
 * Aggression Tracking is now disabled by default for all difficulties except Very hard and Insane
+* Fixed HP increase when playing with Total Veterancy (HP will now increase rather than stay the same)
 
 ## New in version 5.3
 
