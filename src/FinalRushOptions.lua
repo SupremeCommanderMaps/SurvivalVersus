@@ -18,6 +18,7 @@ local defaults = {
     RestrictedCategories = {},
     opt_gamemode = SURVIVAL_VERSUS,
     opt_FinalRushDifficulty = NORMAL,
+    opt_FinalRushTeamBonus = 0,
     opt_tents = 9,
     opt_AutoReclaim = 50,
     opt_FinalRushAir = 0,

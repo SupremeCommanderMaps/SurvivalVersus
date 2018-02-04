@@ -53,7 +53,11 @@ newInstance = function(ScenarioInfo)
 
     local function setupAutoReclaim()
         if ScenarioInfo.Options.opt_AutoReclaim > 0 then
-            ForkThread(import('/maps/final_rush_pro_5.4.v0001/src/AutoReclaim.lua').AutoResourceThread)
+            ForkThread(
+                import('/maps/final_rush_pro_5.4.v0001/src/AutoReclaim.lua').AutoReclaimThread,
+                options,
+                playerArmies
+            )
         end
     end
 
