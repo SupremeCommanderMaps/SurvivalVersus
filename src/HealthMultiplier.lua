@@ -19,10 +19,11 @@ newInstance = function(difficultyMultiplier, totalVeterancyIsEnabled)
 
     local function incraseHealthForTotalVeterancy(unitGroup, hpIncreaseDelay)
         local hp_multi = getHealthMultiplier(hpIncreaseDelay)
-        local TVGlevel = math.floor((current_time - (hpIncreaseDelay / 2)) / 30 * difficulty_multi)
+        -- TODO: fixme
+        --local TVGlevel = math.floor((current_time - (hpIncreaseDelay / 2)) / 30 * difficulty_multi)
 
         for _, value in unitGroup do
-            value:AddLevels(TVGlevel)
+            --value:AddLevels(TVGlevel)
             value:SetMaxHealth(value:GetMaxHealth() * hp_multi)
             value:SetHealth(value ,value:GetMaxHealth() * hp_multi)
         end
@@ -30,11 +31,11 @@ newInstance = function(difficultyMultiplier, totalVeterancyIsEnabled)
 
     return {
         increaseHealth = function(unitGroup, hpIncreaseDelay)
-            if totalVeterancyIsEnabled then
-                incraseHealthForTotalVeterancy(unitGroup, hpIncreaseDelay)
-            else
+--            if totalVeterancyIsEnabled then
+--                incraseHealthForTotalVeterancy(unitGroup, hpIncreaseDelay)
+--            else
                 increaseHealthNormally(unitGroup, hpIncreaseDelay)
-            end
+--            end
         end
     }
 end
