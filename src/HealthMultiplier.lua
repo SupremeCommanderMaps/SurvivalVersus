@@ -1,16 +1,4 @@
-newInstance = function(gameDifficulty, difficultyMultiplier, totalVeterancyIsEnabled)
-    local function getVeterancyLevel()
-        local levels = {
-            [1] = 1,
-            [2] = 1,
-            [3] = 3,
-            [4] = 4,
-            [5] = 5,
-        }
-
-        return levels[gameDifficulty]
-    end
-
+newInstance = function(difficultyMultiplier, totalVeterancyIsEnabled)
     local function getHealthMultiplier(hpIncreaseDelay)
         local secondsAfterStart = GetGameTimeSeconds() - hpIncreaseDelay
         secondsAfterStart = secondsAfterStart >= 0 and secondsAfterStart or 0
@@ -22,10 +10,8 @@ newInstance = function(gameDifficulty, difficultyMultiplier, totalVeterancyIsEna
         if difficultyMultiplier <= 0 then return end
 
         local hp_multi = getHealthMultiplier(hpIncreaseDelay)
-        local vetLevel = getVeterancyLevel()
-
         for _, value in unitGroup do
-            value:SetVeterancy(vetLevel)
+            value:SetVeterancy(5)
             value:SetMaxHealth(value:GetMaxHealth() * hp_multi)
             value:SetHealth(value ,value:GetMaxHealth() * hp_multi)
         end

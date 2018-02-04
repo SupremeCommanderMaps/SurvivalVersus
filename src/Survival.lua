@@ -191,7 +191,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
     local runBattle = function(textPrinter, playerArmies)
         local healthMultiplier = import('/maps/final_rush_pro_5.4.v0001/src/HealthMultiplier.lua').newInstance(
-            ScenarioInfo.Options.opt_FinalRushDifficulty,
             ScenarioInfo.Options.opt_FinalRushHealthIncrease,
             IsTotalVetEnabled()
         )
