@@ -5,26 +5,26 @@ local function newAutoReclaimer(playerArmies, balanceBonus)
 
 	local this = {}
 
-	this.setup = function()
-		for _, armyName in playerArmies.getIndexToNameMap() do
-			previousMass[armyName] = 0
-			previousEnergy[armyName] = 0
-			armyMultipliers[armyName] = this.getArmyMultiplier(armyName)
-		end
-	end
-
-	this.getArmyMultiplier = function(armyName)
-		local bonusIsForTopTeam = balanceBonus > 0
-
+	local function getArmyMultiplier(armyName)
 		if balanceBonus == 0 then
 			return 1
 		end
+
+		local bonusIsForTopTeam = balanceBonus > 0
 
 		if bonusIsForTopTeam ~= playerArmies.isTopSideArmy(armyName) then
 			return 1
 		end
 
 		return 1 + math.abs(balanceBonus) / 100
+	end
+
+	this.setup = function()
+		for _, armyName in playerArmies.getIndexToNameMap() do
+			previousMass[armyName] = 0
+			previousEnergy[armyName] = 0
+			armyMultipliers[armyName] = getArmyMultiplier(armyName)
+		end
 	end
 
 	this.autoReclaim = function(massMultiplier, energyMultiplier)
@@ -48,7 +48,7 @@ local function newAutoReclaimer(playerArmies, balanceBonus)
 end
 
 function AutoReclaimThread(options, playerArmies)
-	local reclaimer = newAutoReclaimer(playerArmies, options.getRawOptions().opt_FinalRushTeamBonus)
+	local reclaimer = newAutoReclaimer(playerArmies, options.getRawOptions().opt_FinalRushTeamBonusReclaim)
 	reclaimer.setup()
 
 	local massMultiplier = options.getRawOptions().opt_AutoReclaim / 100

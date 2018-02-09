@@ -1,41 +1,68 @@
-newInstance = function(difficultyMultiplier, totalVeterancyIsEnabled)
-    local function getHealthMultiplier(hpIncreaseDelay)
-        local secondsAfterStart = GetGameTimeSeconds() - hpIncreaseDelay
-        secondsAfterStart = secondsAfterStart >= 0 and secondsAfterStart or 0
+local function multiplyUnitHealth(unit, multiplier)
+    unit:SetMaxHealth(unit:GetMaxHealth() * multiplier)
+    unit:SetHealth(unit, unit:GetMaxHealth() * multiplier)
+end
 
-        return 1 + difficultyMultiplier * secondsAfterStart / 100
+local function newTimeBasedHealthMultiplier(increasePerHundredSeconds, hpIncreaseDelay)
+    local this = {}
+
+    local function computeMultiplier()
+        local secondsSinceStartOfIncrease = GetGameTimeSeconds() - hpIncreaseDelay
+        secondsSinceStartOfIncrease = secondsSinceStartOfIncrease >= 0 and secondsSinceStartOfIncrease or 0
+
+        return 1 + increasePerHundredSeconds * secondsSinceStartOfIncrease / 100
     end
 
-    local function increaseHealthNormally(unitGroup, hpIncreaseDelay)
-        if difficultyMultiplier <= 0 then return end
+    this.multiplyHealth = function(unitGroup)
+        local multiplier = computeMultiplier()
 
-        local hp_multi = getHealthMultiplier(hpIncreaseDelay)
-        for _, value in unitGroup do
-            value:SetVeterancy(5)
-            value:SetMaxHealth(value:GetMaxHealth() * hp_multi)
-            value:SetHealth(value ,value:GetMaxHealth() * hp_multi)
+        if multiplier <= 0 then return end
+
+        for _, unit in unitGroup do
+            unit:SetVeterancy(5)
+            multiplyUnitHealth(unit, multiplier)
         end
     end
 
-    local function incraseHealthForTotalVeterancy(unitGroup, hpIncreaseDelay)
-        local hp_multi = getHealthMultiplier(hpIncreaseDelay)
-        -- TODO: fixme
-        --local TVGlevel = math.floor((current_time - (hpIncreaseDelay / 2)) / 30 * difficulty_multi)
+    return this
+end
 
-        for _, value in unitGroup do
-            --value:AddLevels(TVGlevel)
-            value:SetMaxHealth(value:GetMaxHealth() * hp_multi)
-            value:SetHealth(value ,value:GetMaxHealth() * hp_multi)
+local function newTeamBonusHealthMultiplier(playerArmies, balanceBonus)
+    local function getArmyMultiplier(armyName)
+        local bonusIsForTopTeam = balanceBonus > 0
+
+        if bonusIsForTopTeam ~= ( armyName == "NEUTRAL_CIVILIAN" ) then
+            return 1
+        end
+
+        return 1 - math.abs(balanceBonus) / 100
+    end
+
+    local function constructHealthMultiplicationFunction()
+        if balanceBonus == 0 then
+            return function() end
+        end
+
+        return function(unitGroup)
+            for _, unit in unitGroup do
+                multiplyUnitHealth(unit, getArmyMultiplier(unit:GetAIBrain().Name))
+            end
         end
     end
 
     return {
+        multiplyHealth = constructHealthMultiplicationFunction()
+    }
+end
+
+newInstance = function(playerArmies, difficultyMultiplier, balanceBonus)
+    local bonusHealthMultiplier = newTeamBonusHealthMultiplier(playerArmies, balanceBonus)
+
+    return {
         increaseHealth = function(unitGroup, hpIncreaseDelay)
---            if totalVeterancyIsEnabled then
---                incraseHealthForTotalVeterancy(unitGroup, hpIncreaseDelay)
---            else
-                increaseHealthNormally(unitGroup, hpIncreaseDelay)
---            end
+            local healhMultiplier = newTimeBasedHealthMultiplier(difficultyMultiplier, hpIncreaseDelay)
+            healhMultiplier.multiplyHealth(unitGroup)
+            bonusHealthMultiplier.multiplyHealth(unitGroup)
         end
     }
 end

@@ -150,13 +150,7 @@ newInstance = function(playerArmies, ScenarioInfo)
                 disableAirExceptTransportsAndScouts()
             end
 
-            LOG('------------------------------------------------------')
-            LOG(repr(ScenarioInfo.Options.RestrictedCategories))
-            LOG('------------------------------------------------------')
-
             local enableNovax = novaxIsEnabledInOptions()
-
-            LOG(repr(enableNovax))
 
             for armyIndex in playerArmies.getIndexToNameMap() do
                 if (ScenarioInfo.Options.opt_FinalRushAir == 0) then
@@ -164,7 +158,6 @@ newInstance = function(playerArmies, ScenarioInfo)
                 end
 
                 if enableNovax then
-                    LOG('RemoveBuildRestriction(index, categories.xea0002)')
                     RemoveBuildRestriction(armyIndex, categories.xea0002)
                 end
             end

@@ -21,7 +21,8 @@ of the Vampire mod.
 
 Under development
 
-* Monkeys and GCs no longer spawn together in a single transport and now separately choose target players
+* Added Team Bonus option that allows giving one team a recourse bonus
+* Added Team Bonus option that allows decreasing the HP of the enemy units for one team
 * Reworked difficulty presets
     * Normal difficulty was renamed to Hard
     * Hard difficulty was renamed to Very hard
@@ -29,7 +30,7 @@ Under development
     * Added new "Normal" difficulty (the default), slightly easier than Hard (the old Normal)
     * Added new "Easy" difficulty, slightly easier than (the new) Normal
     * Added new "Hard" difficulty, slightly harder than (the new) Normal
-* Added Team Bonus option that allows giving one team a recourse bonus and nerf their enemy units
+* Monkeys and GCs no longer spawn together in a single transport and now separately choose target players
 * Added extra values for the HP Increase lobby option
 * Added extra values for the wave frequency and wave delay lobby options
 * Added extra values for the Auto Reclaim lobby option
