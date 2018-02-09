@@ -50,8 +50,8 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     end
 
     local function showGameVersionMessage(printer)
-        local headerOptions = { color = "ffa4ddf4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter", size = 35 }
-        textPrinter.print(string.rep(" ", 12) .. "Welcome to Final Rush Pro 5.4 ALPHA", headerOptions)
+        local headerOptions = { color = "ffb4d4ff", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter", size = 35 }
+        textPrinter.print(string.rep(" ", 12) .. "Welcome to Final Rush Pro 5.4", headerOptions)
 
         printer.print("Version 5.x by EntropyWins")
 

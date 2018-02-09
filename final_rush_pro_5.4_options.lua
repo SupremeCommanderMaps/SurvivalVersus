@@ -82,6 +82,7 @@ options =
             { text = "Top team, 60 percent", help = "The top team gets less strong enemy units", key = 60 },
             { text = "Top team, 75 percent", help = "The top team gets less strong enemy units", key = 75 },
             { text = "Top team, 90 percent", help = "The top team gets less strong enemy units", key = 90 },
+            { text = "Top team, 95 percent", help = "The top team gets less strong enemy units", key = 95 },
             { text = "Bottom team, 2 percent", help = "The bottom team gets less strong enemy units", key = -2 },
             { text = "Bottom team, 5 percent", help = "The bottom team gets less strong enemy units", key = -5 },
             { text = "Bottom team, 10 percent", help = "The bottom team gets less strong enemy units", key = -10 },
@@ -94,6 +95,7 @@ options =
             { text = "Bottom team, 60 percent", help = "The bottom team gets less strong enemy units", key = -60 },
             { text = "Bottom team, 75 percent", help = "The bottom team gets less strong enemy units", key = -75 },
             { text = "Bottom team, 90 percent", help = "The bottom team gets less strong enemy units", key = -90 },
+            { text = "Bottom team, 95 percent", help = "The bottom team gets less strong enemy units", key = -95 },
         },
     },
     {
