@@ -17,9 +17,15 @@ Note: you do not need to have the FinalRushPro3 mod like you did with version 4 
 Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
 of the Vampire mod.
 
+
+## New in version 5.5
+
+* Rebalanced strat bomber random event from 8 bombers going for 1 random player to
+  3 groups (1 group of 4 and 2 groups of 3) each going for a random player
+
 ## New in version 5.4
 
-Under development
+Released on 2018-02-10
 
 * Added Team Bonus option that allows giving one team a recourse bonus
 * Added Team Bonus option that allows decreasing the HP of the enemy units for one team

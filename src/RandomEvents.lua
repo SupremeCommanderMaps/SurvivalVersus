@@ -67,12 +67,26 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
     local function spawnT3Bombers(initialDelayInSeconds)
         printText("T3 bombers detected");
 
-        survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
+        local spawner = survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds)
+
+        spawner.spawnUnits(
             {
                 "uea0304",
                 "uea0304",
                 "uea0304",
+            }
+        )
+
+        spawner.spawnUnits(
+            {
                 "uea0304",
+                "uea0304",
+                "uea0304",
+            }
+        )
+
+        spawner.spawnUnits(
+            {
                 "uea0304",
                 "uea0304",
                 "uea0304",
