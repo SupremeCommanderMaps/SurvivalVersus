@@ -73,8 +73,6 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         printer.printBlankLine()
         printer.printBlankLine()
         printer.printBlankLine()
-        printer.printBlankLine()
-        printer.printBlankLine()
 
         if ScenarioInfo.Options.opt_FinalRushAir ~= 0 then
             printer.printOption("opt_FinalRushAir", "Player air is ON")
@@ -127,9 +125,6 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     end
 
     local function showTeamBonusMessage(printer)
-        printer.printBlankLine()
-        printer.printBlankLine()
-        printer.printBlankLine()
         printer.printBlankLine()
         printer.printBlankLine()
         printer.printBlankLine()
