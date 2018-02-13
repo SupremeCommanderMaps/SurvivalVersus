@@ -1,6 +1,7 @@
 newInstance = function(ScenarioInfo, options, textPrinter)
     local WELCOME_MESSAGE_DURATION = 7
     local SETTINGS_MESSAGE_DURATION = 13
+    local BONUS_MESSAGE_DURATION = 5
 
     local function newPrinter(durationInSeconds)
         local textOptions = { color = "ffb4ffd4", duration = durationInSeconds, location = "leftcenter" }
@@ -50,7 +51,7 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     end
 
     local function showGameVersionMessage(printer)
-        local headerOptions = { color = "ffb4d4ff", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter", size = 35 }
+        local headerOptions = { color = "ffa4dde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter", size = 35 }
         textPrinter.print(string.rep(" ", 12) .. "Welcome to Final Rush Pro 5.5 ALPHA", headerOptions)
 
         printer.print("Version 5.x by EntropyWins")
@@ -69,10 +70,8 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     end
 
     local function showGameSettingsMessage(printer)
-        if not options.isSurvivalGame() then
-            return
-        end
-
+        printer.printBlankLine()
+        printer.printBlankLine()
         printer.printBlankLine()
         printer.printBlankLine()
         printer.printBlankLine()
@@ -127,12 +126,43 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         end
     end
 
+    local function showTeamBonusMessage(printer)
+        printer.printBlankLine()
+        printer.printBlankLine()
+        printer.printBlankLine()
+        printer.printBlankLine()
+        printer.printBlankLine()
+        printer.printBlankLine()
+
+        if ScenarioInfo.Options.opt_FinalRushTeamBonusHP ~= 0 then
+            printer.printOption(
+                "opt_FinalRushTeamBonusHP",
+                "HP bonus: units " .. math.abs( ScenarioInfo.Options.opt_FinalRushTeamBonusHP ) .. "% weaker for the "
+                        .. ( ScenarioInfo.Options.opt_FinalRushTeamBonusHP > 0 and "top team" or "bottom team" )
+            )
+        end
+
+        if ScenarioInfo.Options.opt_FinalRushTeamBonusReclaim ~= 0 then
+            printer.printOption(
+                "opt_FinalRushTeamBonusReclaim",
+                "Reclaim bonus: extra " .. math.abs( ScenarioInfo.Options.opt_FinalRushTeamBonusReclaim ) .. "% for the "
+                        .. ( ScenarioInfo.Options.opt_FinalRushTeamBonusReclaim > 0 and "top team" or "bottom team" )
+            )
+        end
+    end
+
     return {
         startDisplay = function()
             ForkThread(function()
                 showGameVersionMessage(newPrinter(WELCOME_MESSAGE_DURATION))
-                WaitSeconds(WELCOME_MESSAGE_DURATION + 0.01)
-                showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
+
+                if options.isSurvivalGame() then
+                    WaitSeconds(WELCOME_MESSAGE_DURATION + 0.01)
+                    showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
+
+                    WaitSeconds(SETTINGS_MESSAGE_DURATION + 0.01)
+                    showTeamBonusMessage(newPrinter(BONUS_MESSAGE_DURATION))
+                end
             end)
         end
     }

@@ -22,6 +22,7 @@ of the Vampire mod.
 
 * Rebalanced strat bomber random event from 8 bombers going for 1 random player to
   3 groups (1 group of 4 and 2 groups of 3) each going for a random player
+* Added team bonus options to welcome message (only shown in case there is a bonus)
 
 ## New in version 5.4
 
