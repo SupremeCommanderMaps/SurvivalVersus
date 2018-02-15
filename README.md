@@ -20,6 +20,8 @@ of the Vampire mod.
 
 ## New in version 5.5
 
+Released on 2018-02-15
+
 * Rebalanced strat bomber random event from 8 bombers going for 1 random player to
   3 groups (1 group of 4 and 2 groups of 3) each going for a random player
 * Added team bonus options to welcome message (only shown in case there is a bonus)
