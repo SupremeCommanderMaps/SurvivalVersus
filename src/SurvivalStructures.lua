@@ -1,10 +1,10 @@
 newInstance = function()
     local makeInvincible = function(unit)
-        unit:SetReclaimable(false);
-        unit:SetCanTakeDamage(false);
-        unit:SetDoNotTarget(true);
-        unit:SetCanBeKilled(false);
-        unit:SetCapturable(false);
+        unit:SetReclaimable(false)
+        unit:SetCanTakeDamage(false)
+        unit:SetDoNotTarget(true)
+        unit:SetCanBeKilled(false)
+        unit:SetCapturable(false)
     end
 
     local function NoHillsClimbingBitches()

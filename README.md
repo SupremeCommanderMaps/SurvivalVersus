@@ -23,6 +23,7 @@ of the Vampire mod.
 Under development
 
 * The Hill Guards (GCs) are now hostile to both teams
+* The Vision Centers now have a very high HP to make them doubly unkillable (since once apparently is not enough in FAF)
 * Removed (recently broken) lobby option to disable teleporting (in favour of the lobby unit restriction tool)
 
 ## New in version 5.5

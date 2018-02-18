@@ -14,6 +14,8 @@ newInstance = function(textPrinter)
         preventDamage(lighthouse)
 
         lighthouse:SetCustomName("Such NSA")
+        lighthouse:SetMaxHealth(3133742)
+        lighthouse:SetHealth(lighthouse, 3133742)
 
         lighthouse.OnStartBeingCaptured = function()
             printText("Wolololo", 2)
@@ -38,12 +40,12 @@ newInstance = function(textPrinter)
             bp.Economy.BuildTime = 800
 
             initializeLighthouse(
-                CreateUnitHPR( "urc1901", "NEUTRAL_CIVILIAN", 13.816323, 25.730654, 500.078125, 0,0,0),
+                CreateUnitHPR("urc1901", "NEUTRAL_CIVILIAN", 13.816323, 25.730654, 500.078125, 0,0,0),
                 "leftcenter"
             )
 
             initializeLighthouse(
-                CreateUnitHPR( "urc1901", "ARMY_9", 498.060150, 25.724628, 12.122614, 0,0,0),
+                CreateUnitHPR("urc1901", "ARMY_9", 498.060150, 25.724628, 12.122614, 0,0,0),
                 "rightcenter"
             )
         end
