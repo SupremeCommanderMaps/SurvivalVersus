@@ -142,51 +142,86 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         end
     end
 
-    local setUp = function()
-        disableWalls()
+    local function setSurvivalVersusAlliances()
+        local tblArmies = ListArmies()
+        for index, name in tblArmies do
+            SetAlliance(index, "FRIENDLY_BOT", 'Ally')
 
-        if options.isSurvivalVersus() then
-            local tblArmies = ListArmies()
-            for index, name in tblArmies do
-                if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
-                    SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
-                    SetAlliance(index, "ARMY_9", 'Ally')
-                    SetAlliance(index, "HOSTILE_BOT", 'Enemy')
-                elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
-                    SetAlliance(index, "ARMY_9", 'Enemy')
-                    SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
-                    SetAlliance(index, "HOSTILE_BOT", 'Enemy')
-                end
-            end
-        end
-
-        if options.isSurvivalClassic() then
-            local tblArmies = ListArmies()
-            for index in tblArmies do
+            if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
                 SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
+                SetAlliance(index, "ARMY_9", 'Ally')
+                SetAlliance(index, "HOSTILE_BOT", 'Enemy')
+            elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
                 SetAlliance(index, "ARMY_9", 'Enemy')
+                SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
                 SetAlliance(index, "HOSTILE_BOT", 'Enemy')
             end
         end
+    end
 
+    local function setSurvivalClassicAlliances()
+        local tblArmies = ListArmies()
+        for index in tblArmies do
+            SetAlliance(index, "FRIENDLY_BOT", 'Ally')
+
+            SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
+            SetAlliance(index, "ARMY_9", 'Enemy')
+            SetAlliance(index, "HOSTILE_BOT", 'Enemy')
+        end
+    end
+
+    local function allyBotsWithEachOther()
         SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
         SetAlliance("HOSTILE_BOT", "NEUTRAL_CIVILIAN", 'Ally')
         SetAlliance("HOSTILE_BOT", "ARMY_9", 'Ally')
 
-        local brain = GetArmyBrain("ARMY_9")
-        brain:GiveStorage('Mass', 42)
-        brain:GiveStorage('Energy', 42)
+        SetAlliance("FRIENDLY_BOT", "NEUTRAL_CIVILIAN", 'Ally')
+        SetAlliance("FRIENDLY_BOT", "ARMY_9", 'Ally')
+        SetAlliance("FRIENDLY_BOT", "HOSTILE_BOT", 'Ally')
+    end
+
+    local function giveStorage(armyName)
+        local brain = GetArmyBrain(armyName)
+        brain:GiveStorage('Mass', 4242)
+        brain:GiveStorage('Energy', 4242)
+    end
+
+    local function giveBotsStorage()
+        giveStorage("ARMY_9")
+        giveStorage("NEUTRAL_CIVILIAN")
+        giveStorage("HOSTILE_BOT")
+        giveStorage("FRIENDLY_BOT")
+    end
+
+    local setUp = function()
+        disableWalls()
+
+        if options.isSurvivalVersus() then
+            setSurvivalVersusAlliances()
+        end
+
+        if options.isSurvivalClassic() then
+            setSurvivalClassicAlliances()
+        end
+
+        allyBotsWithEachOther()
+        giveBotsStorage()
 
         local survivalStructures = import('/maps/final_rush_pro_5.6.v0001/src/SurvivalStructures.lua').newInstance()
+
+        survivalStructures.createTopParagon("ARMY_9")
+        survivalStructures.createTopOmni("HOSTILE_BOT")
+        survivalStructures.createTopRadar("FRIENDLY_BOT")
+
+        survivalStructures.createBottomParagon("NEUTRAL_CIVILIAN")
+        survivalStructures.createBottomOmni("HOSTILE_BOT")
+        survivalStructures.createBottomRadar("FRIENDLY_BOT")
 
         if options.waterKillsAcu() then
             import('/maps/final_rush_pro_5.6.v0001/src/CommanderWaterPain.lua').newInstance(allUnits).runThread()
 
             import('/maps/final_rush_pro_5.6.v0001/src/HillGuards.lua').newInstance().createHillGuards()
         end
-
-        survivalStructures.createParagons()
-        survivalStructures.createRadars()
     end
 
     local runBattle = function(textPrinter, playerArmies)

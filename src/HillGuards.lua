@@ -28,24 +28,8 @@ newInstance = function()
         end
     end
 
-    local createParagons = function()
-        local para1 = CreateUnitHPR("xab1401", OWNING_ARMY_NAME, 0, 0, 0, 0,0,0)
-        local para2 = CreateUnitHPR("xab1401", OWNING_ARMY_NAME, 512, 0, 512, 0,0,0)
-
-        makeInvincible(para1)
-        makeInvincible(para2)
-    end
-
-    local function createStorage()
-        local brain = GetArmyBrain(OWNING_ARMY_NAME)
-        brain:GiveStorage('Mass', 4242)
-        brain:GiveStorage('Energy', 4242)
-    end
-
     return {
         createHillGuards = function()
-            createStorage()
-            createParagons()
             NoHillsClimbingBitches()
         end
     }

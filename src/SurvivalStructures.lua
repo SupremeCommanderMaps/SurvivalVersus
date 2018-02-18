@@ -7,26 +7,42 @@ newInstance = function()
         unit:SetCapturable(false)
     end
 
-    local function configureRadar(radar)
---        radar:SetIntelRadius('Vision', 50)
+    local PARAGON = "xab1401"
+    local T3RADAR = "uab3104"
+    local T1RADAR = "uab3101"
 
+    local function configureOmni(omni)
+        makeInvincible(omni)
+        omni:SetIntelRadius('Vision', 500)
+        omni:SetIntelRadius('WaterVision', 500)
+        omni:SetIntelRadius('Omni', 500)
+
+        omni:SetConsumptionPerSecondEnergy(0)
+    end
+
+    local function configureRadar(radar)
         makeInvincible(radar)
+        radar:SetConsumptionPerSecondEnergy(0)
     end
 
     return {
-        createRadars = function()
-            local radar1 = CreateUnitHPR("uab3104", "HOSTILE_BOT", 0, 0, 0, 0,0,0)
-            local radar2 = CreateUnitHPR("uab3104", "HOSTILE_BOT", 512, 0, 512, 0,0,0)
-
-            configureRadar(radar1)
-            configureRadar(radar2)
+        createTopParagon = function(owningArmyName)
+            makeInvincible(CreateUnitHPR(PARAGON, owningArmyName, 0, 0, 0, 0, 0, 0))
         end,
-        createParagons = function()
-            local para1 = CreateUnitHPR("xab1401", "ARMY_9", 0, 0, 0, 0,0,0)
-            local para2 = CreateUnitHPR("xab1401", "NEUTRAL_CIVILIAN", 512, 0, 512, 0,0,0)
-
-            makeInvincible(para1)
-            makeInvincible(para2)
+        createBottomParagon = function(owningArmyName)
+            makeInvincible(CreateUnitHPR(PARAGON, owningArmyName, 512, 0, 512, 0, 0, 0))
+        end,
+        createTopRadar = function(owningArmyName)
+            configureRadar(CreateUnitHPR(T1RADAR, owningArmyName, 0, 0, 0, 0, 0, 0))
+        end,
+        createBottomRadar = function(owningArmyName)
+            configureRadar(CreateUnitHPR(T1RADAR, owningArmyName, 512, 0, 512, 0, 0, 0))
+        end,
+        createTopOmni = function(owningArmyName)
+            configureOmni(CreateUnitHPR(T3RADAR, owningArmyName, 0, 0, 0, 0, 0, 0))
+        end,
+        createBottomOmni = function(owningArmyName)
+            configureOmni(CreateUnitHPR(T3RADAR, owningArmyName, 512, 0, 512, 0, 0, 0))
         end
     }
 end
