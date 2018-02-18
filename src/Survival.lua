@@ -59,13 +59,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         end
     end
 
-    local function IsTotalVetEnabled()
-        local ai = GetArmyBrain("ARMY_9")
-        for _,unit  in ai:GetListOfUnits( categories.STRUCTURE, false ) do
-            return unit:GetBlueprint().Economy.xpValue ~= nil
-        end
-    end
-
     local function IsBLackOpsAcusEnabled()
         local bobp = GetUnitBlueprintByName("eal0001")
         return bobp.Economy.BuildTime  ~= nil
@@ -158,17 +151,13 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
                     SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
                     SetAlliance(index, "ARMY_9", 'Ally')
-                    SetAlliance(index, "ARMY_10", 'Enemy')
+                    SetAlliance(index, "HOSTILE_BOT", 'Enemy')
                 elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
                     SetAlliance(index, "ARMY_9", 'Enemy')
                     SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
-                    SetAlliance(index, "ARMY_10", 'Enemy')
+                    SetAlliance(index, "HOSTILE_BOT", 'Enemy')
                 end
             end
-
-            SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
-            SetAlliance("ARMY_10", "NEUTRAL_CIVILIAN", 'Ally')
-            SetAlliance("ARMY_10", "ARMY_9", 'Ally')
         end
 
         if options.isSurvivalClassic() then
@@ -176,20 +165,24 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             for index in tblArmies do
                 SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
                 SetAlliance(index, "ARMY_9", 'Enemy')
-                SetAlliance(index, "ARMY_10", 'Enemy')
+                SetAlliance(index, "HOSTILE_BOT", 'Enemy')
             end
-            SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
-            SetAlliance("ARMY_10", "NEUTRAL_CIVILIAN", 'Ally')
-            SetAlliance("ARMY_10", "ARMY_9", 'Ally')
         end
+
+        SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
+        SetAlliance("HOSTILE_BOT", "NEUTRAL_CIVILIAN", 'Ally')
+        SetAlliance("HOSTILE_BOT", "ARMY_9", 'Ally')
+
+        local brain = GetArmyBrain("ARMY_9")
+        brain:GiveStorage('Mass', 42)
+        brain:GiveStorage('Energy', 42)
 
         local survivalStructures = import('/maps/final_rush_pro_5.6.v0001/src/SurvivalStructures.lua').newInstance()
 
         if options.waterKillsAcu() then
-            local commanderWaterPain = import('/maps/final_rush_pro_5.6.v0001/src/CommanderWaterPain.lua').newInstance(allUnits)
-            commanderWaterPain.runThread()
+            import('/maps/final_rush_pro_5.6.v0001/src/CommanderWaterPain.lua').newInstance(allUnits).runThread()
 
-            survivalStructures.createHillGuards()
+            import('/maps/final_rush_pro_5.6.v0001/src/HillGuards.lua').newInstance().createHillGuards()
         end
 
         survivalStructures.createParagons()

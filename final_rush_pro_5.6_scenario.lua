@@ -41,7 +41,7 @@ Version of the 5 adds several new features and fixes many bugs. For more informa
     type="skirmish",
     Configurations={
         standard={
-            customprops={ ExtraArmies="ARMY_9 NEUTRAL_CIVILIAN ARMY_10" },
+            customprops={ ExtraArmies="ARMY_9 NEUTRAL_CIVILIAN HOSTILE_BOT" },
             teams={
                 {
                     armies={
