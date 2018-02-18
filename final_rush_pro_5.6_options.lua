@@ -471,17 +471,6 @@ options =
     },
     {
         default = 1,
-        label = "Player Teleportation",
-        help = "Player Teleportation",
-        key = 'opt_Teleport',
-        pref = 'opt_Teleport',
-        values = {
-            { text = "Enabled", help = "Enabled", key = 0, },
-            { text = "Disabled", help = "Disabled", key = 1, },
-        },
-    },
-    {
-        default = 1,
         label = "Player Tech Delay",
         help = "Players start with only tech 1. Higher tech tiers get unlocked at the specified interval. This does not effect the spawned enemy units.",
         key = 'opt_timeunlocked',
