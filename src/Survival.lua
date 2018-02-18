@@ -1,5 +1,5 @@
 newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
-    local ScenarioFramework = import('/lua/ScenarioFramework.lua');
+    local ScenarioFramework = import('/lua/ScenarioFramework.lua')
 
     local TransportDestinations = {
         SouthernAttackerEnd = VECTOR3(500,80,10),
@@ -182,8 +182,8 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
     local function giveStorage(armyName)
         local brain = GetArmyBrain(armyName)
-        brain:GiveStorage('Mass', 4242)
-        brain:GiveStorage('Energy', 4242)
+        brain:GiveStorage('MASS', 4242)
+        brain:GiveStorage('ENERGY', 4242)
     end
 
     local function giveBotsStorage()
@@ -191,6 +191,23 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         giveStorage("NEUTRAL_CIVILIAN")
         giveStorage("HOSTILE_BOT")
         giveStorage("FRIENDLY_BOT")
+    end
+
+    local function disableBotResourceOverflow()
+        GetArmyBrain("HOSTILE_BOT"):SetResourceSharing(false)
+        GetArmyBrain("FRIENDLY_BOT"):SetResourceSharing(false)
+    end
+
+    local function createSurvivalStructures()
+        local survivalStructures = import('/maps/final_rush_pro_5.6.v0001/src/SurvivalStructures.lua').newInstance()
+
+        survivalStructures.createTopParagon("ARMY_9")
+        survivalStructures.createTopOmni("HOSTILE_BOT")
+        survivalStructures.createTopRadar("FRIENDLY_BOT")
+
+        survivalStructures.createBottomParagon("NEUTRAL_CIVILIAN")
+        survivalStructures.createBottomOmni("HOSTILE_BOT")
+        survivalStructures.createBottomRadar("FRIENDLY_BOT")
     end
 
     local setUp = function()
@@ -206,16 +223,9 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         allyBotsWithEachOther()
         giveBotsStorage()
+        disableBotResourceOverflow()
 
-        local survivalStructures = import('/maps/final_rush_pro_5.6.v0001/src/SurvivalStructures.lua').newInstance()
-
-        survivalStructures.createTopParagon("ARMY_9")
-        survivalStructures.createTopOmni("HOSTILE_BOT")
-        survivalStructures.createTopRadar("FRIENDLY_BOT")
-
-        survivalStructures.createBottomParagon("NEUTRAL_CIVILIAN")
-        survivalStructures.createBottomOmni("HOSTILE_BOT")
-        survivalStructures.createBottomRadar("FRIENDLY_BOT")
+        createSurvivalStructures()
 
         if options.waterKillsAcu() then
             import('/maps/final_rush_pro_5.6.v0001/src/CommanderWaterPain.lua').newInstance(allUnits).runThread()
