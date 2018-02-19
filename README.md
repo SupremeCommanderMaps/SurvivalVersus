@@ -27,12 +27,13 @@ Under development
 * Intel shared with the players has been reduced to a t1 radar in the hills that share their intel with all players
 * The Vision Centers now have a very high HP to make them doubly unkillable (since once apparently is not enough in FAF)
 * Removed (recently broken) lobby option to disable teleporting (in favour of the lobby unit restriction tool)
+* The shields of the bots units (most notably the T3 transports) no longer flicker due to power shortage
 
 ## New in version 5.5
 
 Released on 2018-02-15
 
-* Rebalanced strat bomber random event from 8 bombers going for 1 random player to
+* Rebalanced strategic bomber random event from 8 bombers going for 1 random player to
   3 groups (1 group of 4 and 2 groups of 3) each going for a random player
 * Added team bonus options to welcome message (only shown in case there is a bonus)
 
