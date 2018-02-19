@@ -20,9 +20,10 @@ of the Vampire mod.
 
 ## New in version 5.6
 
-Under development
+Released on 2018-02-19
 
 * The Hill Guards (GCs) are now hostile to both teams
+* The bot now stops spawning T2 units once the T4 stage has been reached
 * The bot now has vision and omni on the entire map
 * Intel shared with the players has been reduced to a t1 radar in the hills that share their intel with all players
 * The Vision Centers now have a very high HP to make them doubly unkillable (since once apparently is not enough in FAF)
