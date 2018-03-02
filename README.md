@@ -23,6 +23,8 @@ of the Vampire mod.
 
 Under development
 
+* The 3 groups of bombers in the strategic bombers random event now spawn with 5 second delay in between them
+
 ## New in version 5.6
 
 Released on 2018-02-19

@@ -77,6 +77,8 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
             }
         )
 
+        WaitSeconds(5)
+
         spawner.spawnUnits(
             {
                 "uea0304",
@@ -84,6 +86,8 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
                 "uea0304",
             }
         )
+
+        WaitSeconds(5)
 
         spawner.spawnUnits(
             {

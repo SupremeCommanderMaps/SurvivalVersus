@@ -59,11 +59,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         end
     end
 
-    local function IsBLackOpsAcusEnabled()
-        local bobp = GetUnitBlueprintByName("eal0001")
-        return bobp.Economy.BuildTime  ~= nil
-    end
-
     local allUnits = function()
         return GetUnitsInRect({x0 = 0, x1 = ScenarioInfo.size[1], y0 = 0, y1 = ScenarioInfo.size[2]})
     end
@@ -326,6 +321,11 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
                 randomEvents.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, ScenarioInfo.Options.opt_FinalRushRandomEvents)
             end
+        end
+
+        local function IsBLackOpsAcusEnabled()
+            local bobp = GetUnitBlueprintByName("eal0001")
+            return bobp.Economy.BuildTime  ~= nil
         end
 
         local function runBountyHunters()
