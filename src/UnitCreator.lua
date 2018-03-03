@@ -36,6 +36,7 @@ function newUnitCreator()
     end
 
     -- Create a unit with the "isSurvivalSpawned" flag
+    -- These are units send in to fight the players
     this.spawnSurvivalUnit = function(unitInfo)
         unitInfo.isSurvivalSpawned = true
         return this.create(unitInfo)

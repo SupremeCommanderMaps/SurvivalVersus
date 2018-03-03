@@ -80,7 +80,7 @@ newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, 
     local function spawnTransport(armyName, transportName)
         local spawnPosition = transportDetails[armyName].spawnPosition
 
-        local transport = unitCreator.spawnSurvivalUnit({
+        local transport = unitCreator.create({
             blueprintName = transportName,
             armyName = armyName,
             x = spawnPosition.x,
@@ -120,15 +120,13 @@ newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, 
         local units = {}
 
         for _, unitName in unitNames do
-            table.insert(
-                units,
+            table.insert(units,
                 unitCreator.spawnSurvivalUnit({
                     blueprintName = unitName,
                     armyName = armyName,
                     x = 255.5,
                     y = 255.5
-                })
-            )
+                }))
         end
 
         return units
@@ -138,19 +136,15 @@ newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, 
         spawnWithTransports = function(unitNames, transportName)
             local transportDesination = VECTOR3(Random(220, 290), 80, Random(220, 290))
 
-            spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "ARMY_9"),
+            spawnUnitsForArmy(spawnUnitsFromName(unitNames, "ARMY_9"),
                 "ARMY_9",
                 transportDesination,
-                transportName
-            )
+                transportName)
 
-            spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "NEUTRAL_CIVILIAN"),
+            spawnUnitsForArmy(spawnUnitsFromName(unitNames, "NEUTRAL_CIVILIAN"),
                 "NEUTRAL_CIVILIAN",
                 transportDesination,
-                transportName
-            )
+                transportName)
         end
     }
 end
