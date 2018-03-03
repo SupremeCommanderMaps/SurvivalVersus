@@ -204,7 +204,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         createSurvivalStructures()
 
         if options.waterKillsAcu() then
-            import('/maps/final_rush_pro_5.7.v0001/src/CommanderWaterPain.lua').newInstance(allUnits).runThread()
+            import('/maps/final_rush_pro_5.7.v0001/src/CommanderWaterPain.lua').newInstance(allUnits, textPrinter).runThread()
 
             import('/maps/final_rush_pro_5.7.v0001/src/HillGuards.lua').newInstance().createHillGuards()
         end
@@ -223,10 +223,12 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         unitCreator.onUnitCreated(function(unit, unitInfo)
             if unitInfo.isSurvivalSpawned then
-                WaitSeconds(60*5)
-                if not unit:IsDead() then
-                    spawnOutEffect(unit)
-                end
+                ForkThread(function()
+                    WaitSeconds(60*5)
+                    if not unit:IsDead() then
+                        spawnOutEffect(unit)
+                    end
+                end)
             end
         end)
 

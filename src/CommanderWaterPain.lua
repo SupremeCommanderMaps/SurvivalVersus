@@ -1,26 +1,34 @@
-newInstance = function(getAllUnits)
-    local killCommandUnitsOnLayer = function(layers)
-        --get all units on the map
+newInstance = function(getAllUnits, textPrinter)
+    local function unitIsInTheWater(unit)
+        local layer = unit:GetCurrentLayer()
+        return layer == "Water" or layer == "Seabed" or layer == "Sub"
+    end
+
+    local function shouldHurtUnit(unit)
+        return EntityCategoryContains(categories.COMMAND, unit) and unitIsInTheWater(unit) and unit and not unit:IsDead()
+    end
+
+    local function announceDrowning(unit)
+        textPrinter.print(
+            GetArmyBrain(unit:GetArmy()).Nickname .. " is drowning!",
+            {size = 15, duration = 2}
+        )
+    end
+
+    local function hurtUnit(unit)
+        unit:SetHealth(unit ,unit:GetHealth() - (unit:GetMaxHealth() / 10))
+        if unit:GetHealth() < 10 then
+            unit:Kill()
+        end
+    end
+
+    local killCommandUnitsOnLayer = function()
         local units = getAllUnits()
-        --if there are units on the map
         if units and table.getn(units) > 0 then
             for _, unit in units do
-                local delete = false
-
-                --is the unit on one of the specified layers?
-                for _, layer in layers do
-                    if unit:GetCurrentLayer() == layer and EntityCategoryContains(categories.COMMAND, unit) then
-                        delete = true
-                    end
-                end
-
-                if delete then
-                    if unit and not unit:IsDead() then
-                        unit:SetHealth(unit ,unit:GetHealth() - (unit:GetMaxHealth() / 10))
-                        if unit:GetHealth() < 10 then
-                            unit:Kill()
-                        end
-                    end
+                if shouldHurtUnit(unit) then
+                    announceDrowning(unit)
+                    hurtUnit(unit)
                 end
             end
         end
@@ -29,7 +37,7 @@ newInstance = function(getAllUnits)
     local function waterPainThread()
         while true do
             WaitSeconds(2)
-            killCommandUnitsOnLayer({'Water','Seabed','Sub'})
+            killCommandUnitsOnLayer()
         end
     end
 
