@@ -25,6 +25,7 @@ Under development
 
 * The 3 groups of bombers in the strategic bombers random event now spawn with 5 second delay in between them
 * Added message to notify players of drowning ACUs
+* Fixed bug causing Vision Centers to become killable after being captured twice
 
 ## New in version 5.6
 
@@ -34,7 +35,6 @@ Released on 2018-02-19
 * The bot now stops spawning T2 units once the T4 stage has been reached
 * The bot now has vision and omni on the entire map
 * Intel shared with the players has been reduced to a t1 radar in the hills that share their intel with all players
-* The Vision Centers now have a very high HP to make them doubly unkillable (since once apparently is not enough in FAF)
 * Removed (recently broken) lobby option to disable teleporting (in favour of the lobby unit restriction tool)
 * The shields of the bots units (most notably the T3 transports) no longer flicker due to power shortage
 

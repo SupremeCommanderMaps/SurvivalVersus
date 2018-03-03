@@ -15,26 +15,32 @@ newInstance = function(textPrinter)
             textPrinter.print("     " .. txt .. "     ", {location = textLocation, duration = durationInSeconds})
         end
 
-        preventDamage(lighthouse)
-
-        ScenarioFramework.CreateUnitCapturedTrigger(
-            nil,
-            function(newUnit)
-                preventDamage(newUnit)
-                printText("Converted to Christianity", 3)
-            end,
-            lighthouse
-        )
-
         lighthouse:SetCustomName("Such NSA")
 
-        lighthouse.OnStartBeingCaptured = function()
-            printText("Wolololo", 2)
+        local setupLightouse
+
+        setupLightouse = function(unit)
+            preventDamage(unit)
+
+            ScenarioFramework.CreateUnitCapturedTrigger(
+                nil,
+                function(newUnit)
+                    setupLightouse(newUnit)
+                    printText("Converted to Christianity", 3)
+                end,
+                unit
+            )
+
+            unit.OnStartBeingCaptured = function()
+                printText("Wolololo", 2)
+            end
+
+            unit.OnFailedBeingCaptured = function()
+                printText("Nope.jpg", 2)
+            end
         end
 
-        lighthouse.OnFailedBeingCaptured = function()
-            printText("Nope.jpg", 2)
-        end
+        setupLightouse(lighthouse)
     end
 
     return {
