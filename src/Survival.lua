@@ -112,15 +112,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         unit:Destroy()
     end
 
-    local Killgroup = function(unitgroup)
-        WaitSeconds(60*5)
-        for _, value in unitgroup do
-            if not value:IsDead() then
-                spawnOutEffect(value)
-            end
-        end
-    end
-
     local function disableWalls()
         for armyIndex in ListArmies() do
             AddBuildRestriction(armyIndex, categories.WALL)
@@ -225,11 +216,19 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         if ScenarioInfo.Options.opt_AutoReclaim > 0 then
             unitCreator.onUnitCreated(function(unit, unitInfo)
                 if unitInfo.isSurvivalSpawned then
-                    bp = unit:GetBlueprint()
-                    bp.Wreckage = nil
+                    unit:GetBlueprint().Wreckage = nil
                 end
             end)
         end
+
+        unitCreator.onUnitCreated(function(unit, unitInfo)
+            if unitInfo.isSurvivalSpawned then
+                WaitSeconds(60*5)
+                if not unit:IsDead() then
+                    spawnOutEffect(unit)
+                end
+            end
+        end)
 
         local healthMultiplier = import('/maps/final_rush_pro_5.7.v0001/src/HealthMultiplier.lua').newInstance(
             playerArmies,
@@ -251,7 +250,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 ScenarioInfo,
                 ScenarioFramework,
                 GetRandomPlayer,
-                Killgroup,
                 spawnOutEffect,
                 healthMultiplier
             )
@@ -266,7 +264,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             playerArmies,
             healthMultiplier,
             GetRandomPlayer,
-            Killgroup,
             spawnOutEffect,
             TransportDestinations,
             allUnits

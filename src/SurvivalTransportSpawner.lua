@@ -1,4 +1,4 @@
-newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
+newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
     local transportDetails = {
         ARMY_9 = {
             spawnPosition = {
@@ -63,8 +63,6 @@ newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, 
         if nearestCommander ~= false then
             IssueAttack(unitgroup, nearestCommander)
         end
-
-        ForkThread(killUnitsOnceExpired, unitgroup)
     end
 
     local function spawnOutOnceNotMoving(unit)

@@ -1,4 +1,4 @@
-newInstance = function(unitCreator, playerArmies, healthMultiplier, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, getAllUnits)
+newInstance = function(unitCreator, playerArmies, healthMultiplier, getRandomPlayer, hpIncreaseDelayInSeconds, getAllUnits)
     local airSpawnZones = {
         ARMY_9 = {
             minX = 500,
@@ -100,7 +100,6 @@ newInstance = function(unitCreator, playerArmies, healthMultiplier, getRandomPla
             healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
 
             ForkThread(sendUnitsInForAttack, units, targetArmyName, armyName)
-            ForkThread(killUnitsOnceExpired, units)
         end
     end
 
