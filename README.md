@@ -23,11 +23,11 @@ of the Vampire mod.
 
 Under development
 
-* The 3 groups of bombers in the strategic bombers random event now spawn with 5 second delay in between them
 * Added increase of transport HP over time (same ratio as the other survival units)
 * Added message to notify players of drowning ACUs
 * Fixed bug causing Vision Centers to become killable after being captured twice
 * Fixed bug causing Team HP Bonus to be applied twice (once on the total HP and once on the % of HP)
+* The 3 groups of bombers in the strategic bombers random event now spawn with 5 second delay in between them
 
 ## New in version 5.6
 
