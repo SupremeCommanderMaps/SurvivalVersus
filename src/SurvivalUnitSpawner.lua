@@ -1,4 +1,4 @@
-newInstance = function(unitCreator, playerArmies, healthMultiplier, getRandomPlayer, hpIncreaseDelayInSeconds, getAllUnits)
+newInstance = function(unitCreator, playerArmies, getRandomPlayer, hpIncreaseDelayInSeconds, getAllUnits)
     local airSpawnZones = {
         ARMY_9 = {
             minX = 500,
@@ -47,7 +47,8 @@ newInstance = function(unitCreator, playerArmies, healthMultiplier, getRandomPla
                     blueprintName = unitName,
                     armyName = armyName,
                     x = Random(spawnZone.minX, spawnZone.maxX),
-                    y = Random(spawnZone.minY, spawnZone.maxY)
+                    y = Random(spawnZone.minY, spawnZone.maxY),
+                    hpIncreaseDelay = hpIncreaseDelayInSeconds
                 })
             )
         end
@@ -96,8 +97,6 @@ newInstance = function(unitCreator, playerArmies, healthMultiplier, getRandomPla
 
         if targetArmyName ~= nil then
             local units = spawnUnitsFromName(unitNames, armyName)
-
-            healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
 
             ForkThread(sendUnitsInForAttack, units, targetArmyName, armyName)
         end

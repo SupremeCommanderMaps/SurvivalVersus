@@ -247,12 +247,27 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         end
     end
 
+    local function setupHealthMultiplication(unitCreator)
+        if ScenarioInfo.Options.opt_FinalRushHealthIncrease ~= 0 then
+            local healthMultiplier = import('/maps/final_rush_pro_5.7.v0001/src/HealthMultiplier.lua').newInstance(
+                ScenarioInfo.Options.opt_FinalRushHealthIncrease
+            )
+
+            unitCreator.onUnitCreated(function(unit, unitInfo)
+                if unitInfo.hpIncreaseDelay ~= nil then
+                    healthMultiplier.increaseHealth({unit}, unitInfo.hpIncreaseDelay)
+                end
+            end)
+        end
+    end
+
     local function newUnitCreator()
         local unitCreator = import('/maps/final_rush_pro_5.7.v0001/src/UnitCreator.lua').newUnitCreator()
 
         setupAutoReclaim(unitCreator)
         setupUnitTimeouts(unitCreator)
         setupTeamBalanceBonus(unitCreator)
+        setupHealthMultiplication(unitCreator)
 
         return unitCreator
     end
@@ -290,7 +305,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             ScenarioFramework,
             unitCreator,
             playerArmies,
-            healthMultiplier,
             GetRandomPlayer,
             spawnOutEffect,
             TransportDestinations,

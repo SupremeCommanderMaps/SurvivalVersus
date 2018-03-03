@@ -1,4 +1,4 @@
-newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
+newInstance = function(options, unitCreator, getRandomPlayer, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
     local transportDetails = {
         ARMY_9 = {
             spawnPosition = {
@@ -86,7 +86,8 @@ newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, 
             x = spawnPosition.x,
             y = spawnPosition.y,
             z = 80,
-            isTransport = true
+            isTransport = true,
+            hpIncreaseDelay = 0
         })
 
         return transport
@@ -103,8 +104,6 @@ newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, 
         end
 
         local transports = { transport }
-
-        healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
 
         ScenarioFramework.AttachUnitsToTransports(units, transports)
 
@@ -126,7 +125,8 @@ newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, 
                     blueprintName = unitName,
                     armyName = armyName,
                     x = 255.5,
-                    y = 255.5
+                    y = 255.5,
+                    hpIncreaseDelay = hpIncreaseDelayInSeconds
                 }))
         end
 
@@ -137,15 +137,19 @@ newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, 
         spawnWithTransports = function(unitNames, transportName)
             local transportDesination = VECTOR3(Random(220, 290), 80, Random(220, 290))
 
-            spawnUnitsForArmy(spawnUnitsFromName(unitNames, "ARMY_9"),
+            spawnUnitsForArmy(
+                spawnUnitsFromName(unitNames, "ARMY_9"),
                 "ARMY_9",
                 transportDesination,
-                transportName)
+                transportName
+            )
 
-            spawnUnitsForArmy(spawnUnitsFromName(unitNames, "NEUTRAL_CIVILIAN"),
+            spawnUnitsForArmy(
+                spawnUnitsFromName(unitNames, "NEUTRAL_CIVILIAN"),
                 "NEUTRAL_CIVILIAN",
                 transportDesination,
-                transportName)
+                transportName
+            )
         end
     }
 end
