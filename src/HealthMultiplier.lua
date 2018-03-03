@@ -19,7 +19,6 @@ local function newTimeBasedHealthMultiplier(increasePerHundredSeconds, hpIncreas
         if multiplier <= 0 then return end
 
         for _, unit in unitGroup do
-            unit:SetVeterancy(5)
             multiplyUnitHealth(unit, multiplier)
         end
     end

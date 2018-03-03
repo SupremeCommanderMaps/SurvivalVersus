@@ -30,6 +30,13 @@ function newUnitCreator()
             0
         )
 
+        unit:SetVeterancy(5)
+
+        if unitInfo.baseHealth then
+            unit:SetMaxHealth(unitInfo.baseHealth)
+            unit:SetHealth(unit, unitInfo.baseHealth)
+        end
+
         runOnUnitCreated(unit, unitInfo)
 
         return unit
