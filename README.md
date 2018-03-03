@@ -24,6 +24,7 @@ of the Vampire mod.
 Under development
 
 * The 3 groups of bombers in the strategic bombers random event now spawn with 5 second delay in between them
+* Added message to notify players of drowning ACUs
 
 ## New in version 5.6
 
