@@ -1,6 +1,6 @@
 local function multiplyUnitHealth(unit, multiplier)
     unit:SetMaxHealth(unit:GetMaxHealth() * multiplier)
-    unit:SetHealth(unit, unit:GetMaxHealth() * multiplier)
+    unit:SetHealth(unit, unit:GetMaxHealth())
 end
 
 local function newTimeBasedHealthMultiplier(increasePerHundredSeconds, hpIncreaseDelay)
@@ -27,42 +27,11 @@ local function newTimeBasedHealthMultiplier(increasePerHundredSeconds, hpIncreas
     return this
 end
 
-local function newTeamBonusHealthMultiplier(balanceBonus)
-    local function getArmyMultiplier(armyName)
-        local bonusIsForTopTeam = balanceBonus > 0
-
-        if bonusIsForTopTeam ~= ( armyName == "NEUTRAL_CIVILIAN" ) then
-            return 1
-        end
-
-        return 1 - math.abs(balanceBonus) / 100
-    end
-
-    local function constructHealthMultiplicationFunction()
-        if balanceBonus == 0 then
-            return function() end
-        end
-
-        return function(unitGroup)
-            for _, unit in unitGroup do
-                multiplyUnitHealth(unit, getArmyMultiplier(unit:GetAIBrain().Name))
-            end
-        end
-    end
-
-    return {
-        multiplyHealth = constructHealthMultiplicationFunction()
-    }
-end
-
-newInstance = function(difficultyMultiplier, balanceBonus)
-    local bonusHealthMultiplier = newTeamBonusHealthMultiplier(balanceBonus)
-
+newInstance = function(difficultyMultiplier)
     return {
         increaseHealth = function(unitGroup, hpIncreaseDelay)
             local healhMultiplier = newTimeBasedHealthMultiplier(difficultyMultiplier, hpIncreaseDelay)
             healhMultiplier.multiplyHealth(unitGroup)
-            bonusHealthMultiplier.multiplyHealth(unitGroup)
         end
     }
 end

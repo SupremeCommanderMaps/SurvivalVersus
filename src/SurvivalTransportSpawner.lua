@@ -86,6 +86,7 @@ newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, 
             x = spawnPosition.x,
             y = spawnPosition.y,
             z = 80,
+            isTransport = true
         })
 
         return transport

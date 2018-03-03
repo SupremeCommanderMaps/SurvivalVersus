@@ -210,9 +210,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         end
     end
 
-    local runBattle = function(textPrinter, playerArmies)
-        local unitCreator = import('/maps/final_rush_pro_5.7.v0001/src/UnitCreator.lua').newUnitCreator()
-
+    local function setupAutoReclaim(unitCreator)
         if ScenarioInfo.Options.opt_AutoReclaim > 0 then
             unitCreator.onUnitCreated(function(unit, unitInfo)
                 if unitInfo.isSurvivalSpawned then
@@ -220,7 +218,9 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 end
             end)
         end
+    end
 
+    local function setupUnitTimeouts(unitCreator)
         unitCreator.onUnitCreated(function(unit, unitInfo)
             if unitInfo.isSurvivalSpawned then
                 ForkThread(function()
@@ -231,10 +231,37 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 end)
             end
         end)
+    end
+
+    local function setupTeamBalanceBonus(unitCreator)
+        if ScenarioInfo.Options.opt_FinalRushTeamBonusHP ~= 0 then
+            local hpMultiplier = import('/maps/final_rush_pro_5.7.v0001/src/TeamBonusHealthMultiplier.lua').newInstance(
+                ScenarioInfo.Options.opt_FinalRushTeamBonusHP
+            )
+
+            unitCreator.onUnitCreated(function(unit, unitInfo)
+                if unitInfo.isSurvivalSpawned or unitInfo.isTransport then
+                    hpMultiplier.multiplyHealth(unit)
+                end
+            end)
+        end
+    end
+
+    local function newUnitCreator()
+        local unitCreator = import('/maps/final_rush_pro_5.7.v0001/src/UnitCreator.lua').newUnitCreator()
+
+        setupAutoReclaim(unitCreator)
+        setupUnitTimeouts(unitCreator)
+        setupTeamBalanceBonus(unitCreator)
+
+        return unitCreator
+    end
+
+    local runBattle = function(textPrinter, playerArmies)
+        local unitCreator = newUnitCreator()
 
         local healthMultiplier = import('/maps/final_rush_pro_5.7.v0001/src/HealthMultiplier.lua').newInstance(
-            ScenarioInfo.Options.opt_FinalRushHealthIncrease,
-            ScenarioInfo.Options.opt_FinalRushTeamBonusHP
+            ScenarioInfo.Options.opt_FinalRushHealthIncrease
         )
 
         local t1spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay
