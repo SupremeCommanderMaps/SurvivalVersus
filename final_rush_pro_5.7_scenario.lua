@@ -1,6 +1,6 @@
 version = 5
 ScenarioInfo = {
-    name="Final Rush Pro 5.6",
+    name="Final Rush Pro 5.7",
     map_version=1,
     description=[[More comprehensive documentation can be found at bit.ly/final-rush-pro
 

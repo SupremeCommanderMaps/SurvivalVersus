@@ -259,9 +259,12 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             agressionSpawner.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
 
+        local unitCreator = import('/maps/final_rush_pro_5.7.v0001/src/UnitCreator.lua').newUnitCreator()
+
         local unitSpanwerFactory = import('/maps/final_rush_pro_5.7.v0001/src/SurvivalSpawnerFactory.lua').newInstance(
             options,
             ScenarioFramework,
+            unitCreator,
             playerArmies,
             healthMultiplier,
             RemoveWreckage,
@@ -331,6 +334,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         local function runBountyHunters()
             if ScenarioInfo.Options.opt_FinalRushHunters > 0 then
                 local hunters = import('/maps/final_rush_pro_5.7.v0001/src/Hunters.lua').newInstance(
+                    unitCreator,
                     getEventTextPrinter(),
                     healthMultiplier,
                     playerArmies,

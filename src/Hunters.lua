@@ -1,4 +1,4 @@
-newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawnOutEffect, allUnits, spawnEffect)
+newInstance = function(unitCreator, textPrinter, healthMultiplier, playerArmies, acuEn, spawnOutEffect, allUnits, spawnEffect)
     local CommanderUpgrades = function(unit)
         local unitid = unit:GetUnitId()
         if unitid == "ual0001" then 							--Aeon Armored Command Unit
@@ -95,7 +95,12 @@ newInstance = function(textPrinter, healthMultiplier, playerArmies, acuEn, spawn
     end
 
     local function spawnCommander(armyName, unitName)
-        local commander = CreateUnitHPR(unitName, armyName, Random(250,260), 25.9844, Random(250,260),0,0,0)
+        local commander = unitCreator.create({
+            blueprintName = unitName,
+            armyName = armyName,
+            x = Random(250,260),
+            y = Random(250,260)
+        })
 
         ForkThread(spawnEffect, commander)
         ForkThread(CommanderUpgrades, commander)

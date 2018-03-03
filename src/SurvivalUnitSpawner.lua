@@ -1,4 +1,4 @@
-newInstance = function(playerArmies, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, getAllUnits)
+newInstance = function(unitCreator, playerArmies, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, getAllUnits)
     local airSpawnZones = {
         ARMY_9 = {
             minX = 500,
@@ -43,14 +43,12 @@ newInstance = function(playerArmies, healthMultiplier, removeWreckage, getRandom
 
             table.insert(
                 units,
-                CreateUnitHPR(
-                    unitName,
-                    armyName,
-                    Random(spawnZone.minX, spawnZone.maxX),
-                    25.9844,
-                    Random(spawnZone.minY, spawnZone.maxY),
-                    0, 0, 0
-                )
+                unitCreator.create({
+                    blueprintName = unitName,
+                    armyName = armyName,
+                    x = Random(spawnZone.minX, spawnZone.maxX),
+                    y = Random(spawnZone.minY, spawnZone.maxY)
+                })
             )
         end
 

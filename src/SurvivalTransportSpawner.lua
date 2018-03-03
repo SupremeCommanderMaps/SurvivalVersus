@@ -1,4 +1,4 @@
-newInstance = function(options, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
+newInstance = function(options, unitCreator, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
     local transportDetails = {
         ARMY_9 = {
             spawnPosition = {
@@ -79,9 +79,22 @@ newInstance = function(options, healthMultiplier, removeWreckage, getRandomPlaye
         end)
     end
 
-    local function spawnUnitsForArmy(units, armyName, transportDesination, transportName)
+    local function spawnTransport(armyName, transportName)
         local spawnPosition = transportDetails[armyName].spawnPosition
-        local transport = CreateUnitHPR(transportName, armyName, spawnPosition.x, 80, spawnPosition.y, 0, 0, 0)
+
+        local transport = unitCreator.create({
+            blueprintName = transportName,
+            armyName = armyName,
+            x = spawnPosition.x,
+            y = spawnPosition.y,
+            z = 80,
+        })
+
+        return transport
+    end
+
+    local function spawnUnitsForArmy(units, armyName, transportDesination, transportName)
+        local transport = spawnTransport(armyName, transportName)
 
         if not options.canKillTransports() then
             transport:SetReclaimable(false)
@@ -111,7 +124,15 @@ newInstance = function(options, healthMultiplier, removeWreckage, getRandomPlaye
         local units = {}
 
         for _, unitName in unitNames do
-            table.insert(units, CreateUnitHPR(unitName, armyName, 255.5, 25.9844, 255.5, 0, 0, 0))
+            table.insert(
+                units,
+                unitCreator.create({
+                    blueprintName = unitName,
+                    armyName = armyName,
+                    x = 255.5,
+                    y = 255.5
+                })
+            )
         end
 
         return units
