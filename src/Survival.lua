@@ -91,16 +91,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         return Units_FinalFight
     end
 
-    local function RemoveWreckage(unitgroup)
-        local bp
-        if (ScenarioInfo.Options.opt_AutoReclaim > 0) then
-            for _, unit in unitgroup do
-                bp = unit:GetBlueprint()
-                bp.Wreckage = nil
-            end
-        end
-    end
-
     local spawnEffect = function(unit)
         unit:PlayUnitSound('TeleportStart')
         unit:PlayUnitAmbientSound('TeleportLoop')
@@ -230,6 +220,17 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     end
 
     local runBattle = function(textPrinter, playerArmies)
+        local unitCreator = import('/maps/final_rush_pro_5.7.v0001/src/UnitCreator.lua').newUnitCreator()
+
+        if ScenarioInfo.Options.opt_AutoReclaim > 0 then
+            unitCreator.onUnitCreated(function(unit, unitInfo)
+                if unitInfo.isSurvivalSpawned then
+                    bp = unit:GetBlueprint()
+                    bp.Wreckage = nil
+                end
+            end)
+        end
+
         local healthMultiplier = import('/maps/final_rush_pro_5.7.v0001/src/HealthMultiplier.lua').newInstance(
             playerArmies,
             ScenarioInfo.Options.opt_FinalRushHealthIncrease,
@@ -251,7 +252,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 ScenarioFramework,
                 GetRandomPlayer,
                 Killgroup,
-                RemoveWreckage,
                 spawnOutEffect,
                 healthMultiplier
             )
@@ -259,15 +259,12 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             agressionSpawner.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
 
-        local unitCreator = import('/maps/final_rush_pro_5.7.v0001/src/UnitCreator.lua').newUnitCreator()
-
         local unitSpanwerFactory = import('/maps/final_rush_pro_5.7.v0001/src/SurvivalSpawnerFactory.lua').newInstance(
             options,
             ScenarioFramework,
             unitCreator,
             playerArmies,
             healthMultiplier,
-            RemoveWreckage,
             GetRandomPlayer,
             Killgroup,
             spawnOutEffect,

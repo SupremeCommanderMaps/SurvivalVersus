@@ -1,4 +1,4 @@
-newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, TransportDestinations, ScenarioInfo, ScenarioFramework, getRandomPlayer, killgroup, removeWreckage, spawnOutEffect, healthMultiplier)
+newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, TransportDestinations, ScenarioInfo, ScenarioFramework, getRandomPlayer, killgroup, spawnOutEffect, healthMultiplier)
     local Aggression = import('/maps/final_rush_pro_5.7.v0001/lua/Aggression.lua');
 
     local Aggro = {
@@ -110,6 +110,16 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
         end
     end
 
+    local function RemoveWreckage(unitgroup)
+        local bp
+        if ScenarioInfo.Options.opt_AutoReclaim > 0 then
+            for _, unit in unitgroup do
+                bp = unit:GetBlueprint()
+                bp.Wreckage = nil
+            end
+        end
+    end
+
     local SendUnitsToPlayer = function(unit, team, player, hpincreasedelay)
         local AttackerARMY
         local TeamToAttack = team
@@ -150,7 +160,7 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
 
         healthMultiplier.increaseHealth(units, hpincreasedelay)
 
-        removeWreckage(units)
+        RemoveWreckage(units)
 
         ScenarioFramework.AttachUnitsToTransports(units, transports)
         IssueTransportUnload(transports, TransportTo)

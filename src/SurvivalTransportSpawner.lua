@@ -1,4 +1,4 @@
-newInstance = function(options, unitCreator, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
+newInstance = function(options, unitCreator, healthMultiplier, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
     local transportDetails = {
         ARMY_9 = {
             spawnPosition = {
@@ -82,7 +82,7 @@ newInstance = function(options, unitCreator, healthMultiplier, removeWreckage, g
     local function spawnTransport(armyName, transportName)
         local spawnPosition = transportDetails[armyName].spawnPosition
 
-        local transport = unitCreator.create({
+        local transport = unitCreator.spawnSurvivalUnit({
             blueprintName = transportName,
             armyName = armyName,
             x = spawnPosition.x,
@@ -105,8 +105,6 @@ newInstance = function(options, unitCreator, healthMultiplier, removeWreckage, g
 
         local transports = { transport }
 
-        removeWreckage(units)
-
         healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
 
         ScenarioFramework.AttachUnitsToTransports(units, transports)
@@ -126,7 +124,7 @@ newInstance = function(options, unitCreator, healthMultiplier, removeWreckage, g
         for _, unitName in unitNames do
             table.insert(
                 units,
-                unitCreator.create({
+                unitCreator.spawnSurvivalUnit({
                     blueprintName = unitName,
                     armyName = armyName,
                     x = 255.5,

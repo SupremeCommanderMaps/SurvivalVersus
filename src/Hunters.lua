@@ -95,7 +95,7 @@ newInstance = function(unitCreator, textPrinter, healthMultiplier, playerArmies,
     end
 
     local function spawnCommander(armyName, unitName)
-        local commander = unitCreator.create({
+        local commander = unitCreator.spawnSurvivalUnit({
             blueprintName = unitName,
             armyName = armyName,
             x = Random(250,260),

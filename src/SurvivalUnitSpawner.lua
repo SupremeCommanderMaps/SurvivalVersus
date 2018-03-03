@@ -1,4 +1,4 @@
-newInstance = function(unitCreator, playerArmies, healthMultiplier, removeWreckage, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, getAllUnits)
+newInstance = function(unitCreator, playerArmies, healthMultiplier, getRandomPlayer, killUnitsOnceExpired, hpIncreaseDelayInSeconds, getAllUnits)
     local airSpawnZones = {
         ARMY_9 = {
             minX = 500,
@@ -43,7 +43,7 @@ newInstance = function(unitCreator, playerArmies, healthMultiplier, removeWrecka
 
             table.insert(
                 units,
-                unitCreator.create({
+                unitCreator.spawnSurvivalUnit({
                     blueprintName = unitName,
                     armyName = armyName,
                     x = Random(spawnZone.minX, spawnZone.maxX),
@@ -96,8 +96,6 @@ newInstance = function(unitCreator, playerArmies, healthMultiplier, removeWrecka
 
         if targetArmyName ~= nil then
             local units = spawnUnitsFromName(unitNames, armyName)
-
-            removeWreckage(units)
 
             healthMultiplier.increaseHealth(units, hpIncreaseDelayInSeconds)
 
