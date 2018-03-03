@@ -27,7 +27,7 @@ local function newTimeBasedHealthMultiplier(increasePerHundredSeconds, hpIncreas
     return this
 end
 
-local function newTeamBonusHealthMultiplier(playerArmies, balanceBonus)
+local function newTeamBonusHealthMultiplier(balanceBonus)
     local function getArmyMultiplier(armyName)
         local bonusIsForTopTeam = balanceBonus > 0
 
@@ -55,8 +55,8 @@ local function newTeamBonusHealthMultiplier(playerArmies, balanceBonus)
     }
 end
 
-newInstance = function(playerArmies, difficultyMultiplier, balanceBonus)
-    local bonusHealthMultiplier = newTeamBonusHealthMultiplier(playerArmies, balanceBonus)
+newInstance = function(difficultyMultiplier, balanceBonus)
+    local bonusHealthMultiplier = newTeamBonusHealthMultiplier(balanceBonus)
 
     return {
         increaseHealth = function(unitGroup, hpIncreaseDelay)

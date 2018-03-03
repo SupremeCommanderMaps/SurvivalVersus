@@ -233,7 +233,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         end)
 
         local healthMultiplier = import('/maps/final_rush_pro_5.7.v0001/src/HealthMultiplier.lua').newInstance(
-            playerArmies,
             ScenarioInfo.Options.opt_FinalRushHealthIncrease,
             ScenarioInfo.Options.opt_FinalRushTeamBonusHP
         )
