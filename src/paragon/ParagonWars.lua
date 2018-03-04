@@ -54,82 +54,12 @@ newInstance = function(playerArmies, textPrinter)
         ForkThread(paragonTimer, paragon, armyName)
     end
 
-    local newUnitSpanwer = function()
-        local wtfIsThisValue = 25.984375
-
-        return {
-            spawnUnit = function(blueprintName, armyName, x, y, yawInRadians)
-                return CreateUnitHPR(blueprintName, armyName, x, wtfIsThisValue, y, 0, yawInRadians or 0, 0)
-            end
-        }
-    end
-
-    local newBaseSpanwer = function(unitSpanwer, baseCenter, baseOwnerName)
-        local x = baseCenter.x
-        local y = baseCenter.y
-
-        local function spawnAround(blueprintName, options)
-            local radius = options.distance
-            local anglePerElement = 360 / options.numberOfPoints
-            local pointFilter = options.pointFilter or function() return true end
-
-            for pointNumber=1, options.numberOfPoints do
-                if pointFilter(pointNumber) then
-                    local angle = math.rad(anglePerElement * pointNumber)
-
-                    local unit = unitSpanwer.spawnUnit(
-                        blueprintName,
-                        baseOwnerName,
-                        x + radius * math.sin(angle),
-                        y + radius * math.cos(angle),
-                        angle
-                    )
-                end
-            end
-        end
-
-        local function spawnAroundDiagonally(blueprintName, options)
-            spawnAround(
-                blueprintName,
-                {
-                    distance = options.distance,
-                    numberOfPoints = options.numberOfPoints or 8,
-                    pointFilter = function(pointNumber)
-                        return math.mod(pointNumber, 2) == 1
-                    end
-                }
-            )
-        end
-
-        local function spawnAroundStraight(blueprintName, options)
-            spawnAround(
-                blueprintName,
-                {
-                    distance = options.distance,
-                    numberOfPoints = options.numberOfPoints or 8,
-                    pointFilter = function(pointNumber)
-                        return math.mod(pointNumber, 2) == 0
-                    end
-                }
-            )
-        end
-
-        return {
-            spawnCentralStructure = function(blueprintName)
-                return unitSpanwer.spawnUnit(blueprintName, baseOwnerName, x, y)
-            end,
-            spawnAroundDiagonally = spawnAroundDiagonally,
-            spawnAroundStraight = spawnAroundStraight,
-            spawnAround = spawnAround
-        }
-    end
-
     local mapCenter = {
         x = 255,
         y = 255
     }
 
-    local baseSpawner = newBaseSpanwer(newUnitSpanwer(), mapCenter, "NEUTRAL_CIVILIAN")
+    local baseSpawner = import('/maps/final_rush_pro_5.8.v0001/src/lib/BaseSpanwer.lua').newInstance(mapCenter, "NEUTRAL_CIVILIAN")
 
     local createParagonActivator = function()
         local paragonActivator = baseSpawner.spawnCentralStructure("uac1901")
