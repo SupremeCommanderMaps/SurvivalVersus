@@ -1,4 +1,4 @@
-newInstance = function(unitCreator, textPrinter, healthMultiplier, playerArmies, acuEn, spawnOutEffect, allUnits, spawnEffect)
+newInstance = function(initialSpawnDelayInSeconds, unitCreator, textPrinter, playerArmies, acuEn, spawnOutEffect, allUnits, spawnEffect)
     local CommanderUpgrades = function(unit)
         local unitid = unit:GetUnitId()
         if unitid == "ual0001" then 							--Aeon Armored Command Unit
@@ -99,7 +99,9 @@ newInstance = function(unitCreator, textPrinter, healthMultiplier, playerArmies,
             blueprintName = unitName,
             armyName = armyName,
             x = Random(250,260),
-            y = Random(250,260)
+            y = Random(250,260),
+            baseHealth = 75000,
+            hpIncreaseDelay = initialSpawnDelayInSeconds
         })
 
         ForkThread(spawnEffect, commander)
@@ -124,7 +126,7 @@ newInstance = function(unitCreator, textPrinter, healthMultiplier, playerArmies,
         return false
     end
 
-    local huntingThread = function(targetArmyName, hunterArmyName, initialSpawnDelayInSeconds)
+    local huntingThread = function(targetArmyName, hunterArmyName)
         local targetAcu = getAcuByArmyName(targetArmyName)
 
         if targetAcu == false then
@@ -132,6 +134,8 @@ newInstance = function(unitCreator, textPrinter, healthMultiplier, playerArmies,
         end
 
         textPrinter.print("Hunters are targeting " .. getUsername(targetArmyName));
+
+        WaitSeconds(15)
 
         local leadBountyHunter = spawnRandomCommander(hunterArmyName)
         leadBountyHunter:SetCustomName("Bounty Hunter = Target: " .. getUsername(targetArmyName))
@@ -142,8 +146,6 @@ newInstance = function(unitCreator, textPrinter, healthMultiplier, playerArmies,
         local seraHunter = spawnCommander(hunterArmyName, "xsl0301")  --Seraphim T3 Support Armored Command Unit
 
         local bountryHunters = { leadBountyHunter, aeonHunter, cyranHunter, spaceNazi, seraHunter }
-
-        healthMultiplier.increaseHealth(bountryHunters, initialSpawnDelayInSeconds)
 
         IssueAttack(bountryHunters, targetAcu)
 
@@ -166,32 +168,31 @@ newInstance = function(unitCreator, textPrinter, healthMultiplier, playerArmies,
         end
     end
 
-    local function huntRandomArmy(hunterArmyName, initialSpawnDelayInSeconds)
+    local function huntRandomArmy(hunterArmyName)
         local targetArmyName = playerArmies
-            .getTargetsForArmy(hunterArmyName)
-            .filterByName(function(aName)
-                return not ArmyIsOutOfGame(aName)
-            end)
-            .getRandomArmyName()
+        .getTargetsForArmy(hunterArmyName)
+        .filterByName(function(aName)
+            return not ArmyIsOutOfGame(aName)
+        end)
+        .getRandomArmyName()
 
         if targetArmyName ~= nil then
             ForkThread(
                 huntingThread,
                 targetArmyName,
-                hunterArmyName,
-                initialSpawnDelayInSeconds
+                hunterArmyName
             )
         end
     end
 
     return {
-        hunterSpanwer = function(initialSpawnDelayInSeconds, frequency)
+        hunterSpanwer = function(frequency)
             WaitSeconds(initialSpawnDelayInSeconds)
             textPrinter.print("Hunters inbound")
 
             while true do
-                huntRandomArmy("NEUTRAL_CIVILIAN", initialSpawnDelayInSeconds)
-                huntRandomArmy("ARMY_9", initialSpawnDelayInSeconds)
+                huntRandomArmy("NEUTRAL_CIVILIAN")
+                huntRandomArmy("ARMY_9")
                 WaitSeconds(frequency)
             end
         end

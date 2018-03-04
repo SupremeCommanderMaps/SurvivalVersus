@@ -21,7 +21,10 @@ of the Vampire mod.
 
 ## New in version 5.8
 
+Under development
 
+* Massively increased base health of each hunter to 75k
+* Hunters now take 15 seconds to spawn on the map after their announcement (instead of instantly)
 
 ## New in version 5.7
 

@@ -370,9 +370,9 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         local function runBountyHunters()
             if ScenarioInfo.Options.opt_FinalRushHunters > 0 then
                 local hunters = import('/maps/final_rush_pro_5.8.v0001/src/Hunters.lua').newInstance(
+                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushHunterDelay,
                     unitCreator,
                     getEventTextPrinter(),
-                    healthMultiplier,
                     playerArmies,
                     IsBLackOpsAcusEnabled(),
                     spawnOutEffect,
@@ -382,7 +382,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
                 ForkThread(
                     hunters.hunterSpanwer,
-                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushHunterDelay,
                     ScenarioInfo.Options.opt_FinalRushHunters / SpawnMulti
                 )
             end
