@@ -19,6 +19,10 @@ Furthermore since the Auto Reclaim option has been fixed, you probably want to u
 of the Vampire mod.
 
 
+## New in version 5.8
+
+
+
 ## New in version 5.7
 
 Released on 2018-03-04

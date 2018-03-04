@@ -1,6 +1,6 @@
 version = 5
 ScenarioInfo = {
-    name="Final Rush Pro 5.7",
+    name="Final Rush Pro 5.8",
     map_version=1,
     description=[[More comprehensive documentation can be found at bit.ly/final-rush-pro
 
@@ -32,10 +32,10 @@ Version of the 5 adds several new features and fixes many bugs. For more informa
     norushoffsetY_ARMY_7=0,
     norushoffsetY_ARMY_8=0,
     norushradius=110,
-    map="/maps/final_rush_pro_5.7.v0001/final_rush_pro_5.7.scmap",
+    map="/maps/final_rush_pro_5.7.v0001/final_rush_pro_5.8.scmap",
     preview="/maps/final_rush_pro_5.7.v0001/preview.jpg",
-    save="/maps/final_rush_pro_5.7.v0001/final_rush_pro_5.7_save.lua",
-    script="/maps/final_rush_pro_5.7.v0001/final_rush_pro_5.7_script.lua",
+    save="/maps/final_rush_pro_5.7.v0001/final_rush_pro_5.8_save.lua",
+    script="/maps/final_rush_pro_5.7.v0001/final_rush_pro_5.8_script.lua",
     size={ 512, 512 },
     starts=true,
     type="skirmish",
