@@ -8,7 +8,7 @@ newInstance = function(playerArmies)
             ARMY_5 = {x = 206.500000, y = 70.500000},
             ARMY_6 = {x = 136.500000, y = 81.500000},
             ARMY_7 = {x = 75.500000, y = 142.500000},
-            ARMY_8 = {x = 64.500000, y = 200.500000},
+            ARMY_8 = {x = 70.500000, y = 206.500000},
         }
 
         local tentLocation = tentLocations[armyName]
@@ -35,7 +35,6 @@ newInstance = function(playerArmies)
     end
 
     return {
-        -- Spawns tents for all passed in playerArmies; so after some time some of those can be dead
         spawn = function(tentCount)
             for armyName in playerArmies.getNameToIndexMap() do
                 spawnTentsForArmy(armyName, tentCount)
