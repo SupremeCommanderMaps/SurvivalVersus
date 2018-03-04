@@ -77,7 +77,7 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, hpIncreaseDel
     end
 
     local function sendUnitsInForAttack(units, targetArmyName, owningArmyName)
-        IssueMove(units, VECTOR3( Random(220,290), 80, Random(220,290)))
+        IssueMove(units, VECTOR3( Random(235,275), 80, Random(235,275)))
 
         issueAggresiveMoveToAcuLocationByArmyName(units, targetArmyName)
 
