@@ -21,13 +21,14 @@ of the Vampire mod.
 
 ## New in version 5.7
 
-Under development
+Released on 2018-03-04
 
 * Fixed the location of the prebuild hives for player 8 (top team, left edge slot)
 * Added message to notify players of drowning ACUs
 * Fixed bug causing Vision Centers to become killable after being captured twice
 * Fixed bug causing Team HP Bonus to be applied twice (once on the total HP and once on the % of HP)
 * The 3 groups of bombers in the strategic bombers random event now spawn with 5 second delay in between them
+* Slightly decreased pathing randomness of spawned air and navy units
 
 ## New in version 5.6
 
