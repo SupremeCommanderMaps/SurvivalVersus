@@ -86,8 +86,8 @@ newInstance = function(options, unitCreator, getRandomPlayer, hpIncreaseDelayInS
             x = spawnPosition.x,
             y = spawnPosition.y,
             z = 80,
-            isTransport = true,
-            hpIncreaseDelay = 0
+            isTransport = true
+            --hpIncreaseDelay = 0
         })
 
         return transport
