@@ -10,8 +10,8 @@ newInstance = function(getAllUnits, textPrinter)
 
     local function announceDrowning(unit)
         textPrinter.print(
-            GetArmyBrain(unit:GetArmy()).Nickname .. " is drowning!",
-            {size = 15, duration = 1.5, location = "rightcenter"}
+            GetArmyBrain(unit:GetArmy()).Nickname .. " is drowning!   ",
+            {size = 17, duration = 1.5, location = "rightcenter"}
         )
     end
 
