@@ -8,6 +8,8 @@ newInstance = function(baseCenter, baseOwnerName)
         local anglePerElement = 360 / options.numberOfPoints
         local pointFilter = options.pointFilter or function() return true end
 
+        options.numberOfPoints = options.numberOfPoints or 8
+
         for pointNumber=1, options.numberOfPoints do
             if pointFilter(pointNumber) then
                 local angle = math.rad(anglePerElement * pointNumber)
@@ -28,7 +30,7 @@ newInstance = function(baseCenter, baseOwnerName)
             blueprintName,
             {
                 distance = options.distance,
-                numberOfPoints = options.numberOfPoints or 8,
+                numberOfPoints = options.numberOfPoints,
                 pointFilter = function(pointNumber)
                     return math.mod(pointNumber, 2) == 1
                 end
@@ -41,7 +43,7 @@ newInstance = function(baseCenter, baseOwnerName)
             blueprintName,
             {
                 distance = options.distance,
-                numberOfPoints = options.numberOfPoints or 8,
+                numberOfPoints = options.numberOfPoints,
                 pointFilter = function(pointNumber)
                     return math.mod(pointNumber, 2) == 0
                 end

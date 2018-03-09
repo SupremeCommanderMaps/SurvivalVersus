@@ -184,6 +184,8 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         survivalStructures.createBottomParagon("NEUTRAL_CIVILIAN")
         survivalStructures.createBottomOmni("HOSTILE_BOT")
         survivalStructures.createBottomRadar("FRIENDLY_BOT")
+
+        import('/maps/final_rush_pro_5.8.v0001/src/survival/IslandBases.lua').newInstance().spawn()
     end
 
     local setUp = function()
