@@ -21,10 +21,11 @@ of the Vampire mod.
 
 ## New in version 5.8
 
-Under development
+Released on 2018-03-09
 
 * Wrecks of player units now consistently stay on the map (most notably GC and Monkey wrecks no longer vanish) (thanks Speed2!)
-* Added small bases on the central islands to make TAC cheese less viable and reward capture of the base (T3 mex)
+* Added small bases on the central islands to make TAC cheese easier to detect and harder to setup
+* Added T3 mex with double yield on central islands to incentivize paying attention to them
 * Massively increased base health of each hunter to 75k
 * Hunters now take 15 seconds to spawn on the map after their announcement (instead of instantly)
 

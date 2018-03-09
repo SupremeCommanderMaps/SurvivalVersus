@@ -14,7 +14,7 @@ newInstance = function(baseCenter, baseOwnerName)
             if pointFilter(pointNumber) then
                 local angle = math.rad(anglePerElement * pointNumber)
 
-                local unit = spawnUnit(
+                spawnUnit(
                     blueprintName,
                     baseOwnerName,
                     baseCenter.x + radius * math.sin(angle),
