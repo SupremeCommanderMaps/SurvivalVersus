@@ -16,14 +16,14 @@ newInstance = function()
         spawn = function()
             spawnBase(spawnerClass.newInstance(
                 {
-                    x = 359,
+                    x = 360,
                     y = 153
                 },
                 "NEUTRAL_CIVILIAN"
             ))
             spawnBase(spawnerClass.newInstance(
                 {
-                    x = 153,
+                    x = 154,
                     y = 359
                 },
                 "ARMY_9"
