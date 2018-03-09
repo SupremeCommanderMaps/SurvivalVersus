@@ -23,6 +23,7 @@ of the Vampire mod.
 
 Under development
 
+* Wrecks of player units now consistently stay on the map (most notably GC and Monkey wrecks no longer vanish) (thanks Speed2!)
 * Massively increased base health of each hunter to 75k
 * Hunters now take 15 seconds to spawn on the map after their announcement (instead of instantly)
 

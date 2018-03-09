@@ -122,7 +122,7 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
     local function RemoveWreckage(unitgroup)
         if ScenarioInfo.Options.opt_AutoReclaim > 0 then
             for _, unit in unitgroup do
-                unit:GetBlueprint().Wreckage = nil
+                unit.CreateWreckage = function() end
             end
         end
     end

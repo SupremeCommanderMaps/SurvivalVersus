@@ -214,7 +214,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         if ScenarioInfo.Options.opt_AutoReclaim > 0 then
             unitCreator.onUnitCreated(function(unit, unitInfo)
                 if unitInfo.isSurvivalSpawned then
-                    unit:GetBlueprint().Wreckage = nil
+                    unit.CreateWreckage = function() end
                 end
             end)
         end
