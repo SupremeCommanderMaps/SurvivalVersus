@@ -27,6 +27,7 @@ of the Vampire mod.
 
 TODO:
 
+* Fix MMLs
 * Hunters should not drown
 * Bot color not red
 
