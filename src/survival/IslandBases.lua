@@ -15,7 +15,6 @@ newInstance = function()
         baseSpawner.spawnAround("uab4202", {distance = 3, numberOfPoints = 4}) -- T2 shield
         baseSpawner.spawnAroundStraight("uab2301", {distance = 8, numberOfPoints = 8}) -- T2 PD
         baseSpawner.spawnAroundDiagonally("uab2304", {distance = 8, numberOfPoints = 8}) -- T3 AA
-        baseSpawner.spawnAround("uab2109", {distance = 16, numberOfPoints = 16}) -- T1 torp
     end
 
     return {

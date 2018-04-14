@@ -21,11 +21,12 @@ of the Vampire mod.
 
 ## New in version 5.9
 
+* Nerfed island base defences by removing the torpedo launcher ring
+
 TODO:
 
 * Hunters should not drown
 * Bot color not red
-* Island defence nerf
 * Island mex fix
 
 ## New in version 5.8
