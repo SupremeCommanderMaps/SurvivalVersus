@@ -1,5 +1,5 @@
 newInstance = function()
-    local spawnerClass = import('/maps/final_rush_pro_5.8.v0001/src/lib/BaseSpanwer.lua')
+    local spawnerClass = import('/maps/final_rush_pro_5.9.v0001/src/lib/BaseSpanwer.lua')
 
     local function spawnCentralMex(baseSpawner)
         local mex = baseSpawner.spawnCentralStructure("uab1302") -- T3 mex
