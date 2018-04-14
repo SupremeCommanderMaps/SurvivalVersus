@@ -1,12 +1,20 @@
 newInstance = function()
     local spawnerClass = import('/maps/final_rush_pro_5.9.v0001/src/lib/BaseSpanwer.lua')
+    local unitModifier = import('/maps/final_rush_pro_5.9.v0001/src/lib/CapturableUnitModifier.lua').newInstance()
 
     local function spawnCentralMex(baseSpawner)
         local mex = baseSpawner.spawnCentralStructure("uab1302") -- T3 mex
-        mex:SetMaxHealth(31337)
+
+        unitModifier.modify(
+            mex,
+            function(unit)
+                mex:SetMaxHealth(31337)
+                unit:SetProductionPerSecondMass(50)
+                unit:SetCustomName("Capture for 50 mass/s")
+            end
+        )
+
         mex:SetHealth(mex, 9001)
-        mex:SetProductionPerSecondMass(36)
-        mex:SetCustomName("Capture for 36 mass/s")
     end
 
     local function spawnBase(baseSpawner)
