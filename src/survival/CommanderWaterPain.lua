@@ -1,11 +1,11 @@
-newInstance = function(getAllUnits, textPrinter)
+newInstance = function(getAllUnits, textPrinter, isSurvivalUnit)
     local function unitIsInTheWater(unit)
         local layer = unit:GetCurrentLayer()
         return layer == "Water" or layer == "Seabed" or layer == "Sub"
     end
 
     local function shouldHurtUnit(unit)
-        return EntityCategoryContains(categories.COMMAND, unit) and unitIsInTheWater(unit) and unit and not unit:IsDead()
+        return EntityCategoryContains(categories.COMMAND, unit) and unitIsInTheWater(unit) and unit and not unit:IsDead() and isSurvivalUnit(unit)
     end
 
     local function announceDrowning(unit)

@@ -63,6 +63,11 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         return GetUnitsInRect({x0 = 0, x1 = ScenarioInfo.size[1], y0 = 0, y1 = ScenarioInfo.size[2]})
     end
 
+    local function isSurvivalUnit(unit)
+        local armyName = ListArmies()[unit:GetArmy()]
+        return armyName == "ARMY_9" or armyName == "NEUTRAL_CIVILIAN"
+    end
+
     local GetRandomPlayer = function(team)
         local selectplayertoattack = Random(1,4)
         local Units_FinalFight
@@ -146,6 +151,11 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         end
     end
 
+    local function colorBots()
+        SetArmyColor("ARMY_9", 110, 90, 90)
+        SetArmyColor("NEUTRAL_CIVILIAN", 150, 170, 150)
+    end
+
     local function allyBotsWithEachOther()
         SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
         SetAlliance("HOSTILE_BOT", "NEUTRAL_CIVILIAN", 'Ally')
@@ -188,15 +198,8 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         import('/maps/final_rush_pro_5.9.v0001/src/survival/IslandBases.lua').newInstance().spawn()
     end
 
-    local function colorBots()
-        SetArmyColor("ARMY_9", 110, 90, 90)
-        SetArmyColor("NEUTRAL_CIVILIAN", 180, 200, 180)
-    end
-
     local setUp = function()
         disableWalls()
-
-        colorBots()
 
         if options.isSurvivalVersus() then
             setSurvivalVersusAlliances()
@@ -206,6 +209,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             setSurvivalClassicAlliances()
         end
 
+        colorBots()
         allyBotsWithEachOther()
         giveBotsStorage()
         disableBotResourceOverflow()
@@ -213,7 +217,8 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         createSurvivalStructures()
 
         if options.waterKillsAcu() then
-            import('/maps/final_rush_pro_5.9.v0001/src/survival/CommanderWaterPain.lua').newInstance(allUnits, textPrinter).runThread()
+            import('/maps/final_rush_pro_5.9.v0001/src/survival/CommanderWaterPain.lua')
+                .newInstance(allUnits, textPrinter, isSurvivalUnit).runThread()
 
             import('/maps/final_rush_pro_5.9.v0001/src/artifacts/HillGuards.lua').newInstance().createHillGuards()
         end
@@ -366,7 +371,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                     ScenarioInfo,
                     getEventTextPrinter(),
                     allUnits,
-                    ListArmies,
+                    isSurvivalUnit,
                     unitSpanwerFactory
                 )
 

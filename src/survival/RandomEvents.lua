@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survivalSpawnerFactory)
+newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, survivalSpawnerFactory)
 
     local function printText(text)
         textPrinter.print(text, {duration = 3})
@@ -171,11 +171,6 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, ListArmies, survi
             },
             "xea0306"
         )
-    end
-
-    local isSurvivalUnit = function(unit)
-        local armyName = ListArmies()[unit:GetArmy()]
-        return armyName == "ARMY_9" or armyName == "NEUTRAL_CIVILIAN"
     end
 
     local SpeedCurrentUnits = function()
