@@ -22,14 +22,15 @@ of the Vampire mod.
 ## New in version 5.9
 
 * Changed bot colors so they cannot be the same as those of players (thanks JJ!)
+* Tech 2 waves now include MMLs again, unless disabled in the options
+* Tech 2 waves now contain a rhino, riptide, mongoose and rocket bot, instead of 2 rhino and 2 mongoose
+* Tech 3 waves no longer include shield disruptors when T3 arty is disabled in the options
+* Tech 3 waves now include 1 slipper and 1 T3 shield instead of 2 slippers
+* Added new T2 random event that spawns 5x5 rangebots
 * Hunter ACUs no longer drown in the water
 * Nerfed island base defences by removing the torpedo launcher ring
 * Island base mex now yields 50 mass instead of 36
 * Island base mex now retains its altered stats after capture
-
-TODO:
-
-* Fix MMLs
 
 ## New in version 5.8
 

@@ -217,7 +217,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         if elapsedTimeInSeconds > t2spawndelay and elapsedTimeInSeconds <= t3spawndelay then
             table.insert(possibleEvents, {spawnT2Bombers, t3spawndelay})
             table.insert(possibleEvents, {SpawnT2Gunships, t3spawndelay})
-            table.insert(possibleEvents, {spawnT2Rangebots, t3spawndelay})
+            table.insert(possibleEvents, {spawnT2Rangebots, t3spawndelay}) -- TODO: t3?!
         end
 
         if elapsedTimeInSeconds > t3spawndelay then

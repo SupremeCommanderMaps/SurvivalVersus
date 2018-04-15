@@ -207,7 +207,7 @@ function newInstance(ScenarioInfoOptions)
 
     local this = {}
 
-    this. getRawOptions = function()
+    this.getRawOptions = function()
         return rawOptions
     end
 
@@ -245,6 +245,14 @@ function newInstance(ScenarioInfoOptions)
 
     this.isNonDefault = function(optionName)
         return optionsThatGotDefaulted[optionName] or false
+    end
+
+    this.shouldSpawnMML = function()
+        return rawOptions.opt_t2tml == 0
+    end
+
+    this.shouldSpawnT3Arty = function()
+        return rawOptions.opt_t3arty == 0
     end
 
     return this

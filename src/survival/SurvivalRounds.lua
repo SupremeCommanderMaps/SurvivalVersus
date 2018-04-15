@@ -1,4 +1,4 @@
-newInstance = function(textPrinter, unitSpawnerFactory)
+newInstance = function(textPrinter, unitSpawnerFactory, options)
     local Round1 = function(survivalUnitSpanwer)
         survivalUnitSpanwer.spawnWithTransports(
             {
@@ -14,37 +14,47 @@ newInstance = function(textPrinter, unitSpawnerFactory)
     end
 
     local Round2 = function(survivalUnitSpanwer)
+        local units = {
+            "url0202", --Cybran T2 Heavy Tank: Rhino
+            "ual0202", --Aeon T2 Heavy Tank: Obsidian
+            "uel0202", --UEF T2 Heavy Tank: Pillar
+            "del0204", --UEF T2 Gatling Bot: Mongoose
+            "uel0203", --UEF Riptide
+            "drl0204", --Cybran T2 Rocket Bot
+            "xsl0202", --Seraphim T2 Assault Bot: Ilshavoh
+            "xal0203", --Aeon T2 Assault Tank: Blaze
+        }
+
+        if options.shouldSpawnMML() then
+            table.insert(units, "uel0111") --UEF T2 Mobile Missile Launcher
+            table.insert(units, "url0111") --Cybran T2 Mobile Missile Launcher
+        end
+
         survivalUnitSpanwer.spawnWithTransports(
-            {
-                "url0202", --Cybran T2 Heavy Tank: Rhino
-                "ual0202", --Aeon T2 Heavy Tank: Obsidian
-                "uel0202", --UEF T2 Heavy Tank: Pillar
-                "del0204", --UEF T2 Gatling Bot: Mongoose
-                "url0202", --missile  Edit! Changed to: Cybran T2 Heavy Tank: Rhino
-                "del0204", --
-                "xsl0203", -- Edit! Changed to: Sera t2 HoverTank
-                "url0203", --wagner
-                "xsl0202", --Seraphim T2 Assault Bot: Ilshavoh
-                "xal0203", --Aeon T2 Assault Tank: Blaze
-            },
+            units,
             "xea0306"
         )
     end
 
     local Round3 = function(survivalUnitSpanwer)
+        local units = {
+            "url0303", --Cybran T3 Siege Assault Bot: Loyalist
+            "xel0305", --UEF T3 Armored Assault Bot: Percival
+            "uel0303", --UEF T3 Heavy Assault Bot: Titan
+            "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
+            "xrl0305", --Cybran T3 Armored Assault Bot: The Brick
+            "uel0303", --UEF T3 Heavy Assault Bot: Titan
+            "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
+            "xsl0303", --Seraphim T3 Siege Tank: Othuum
+            "xsl0307", --Seraphim T3 Mobile Shield Generator: Athanah
+        }
+
+        if options.shouldSpawnT3Arty() then
+            table.insert(units, "dal0310") --Aeon T3 Shield Disruptor: Absolver
+        end
+
         survivalUnitSpanwer.spawnWithTransports(
-            {
-                "url0303", --Cybran T3 Siege Assault Bot: Loyalist
-                "xel0305", --UEF T3 Armored Assault Bot: Percival
-                "uel0303", --UEF T3 Heavy Assault Bot: Titan
-                "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
-                "xrl0305", --Cybran T3 Armored Assault Bot: The Brick
-                "uel0303", --UEF T3 Heavy Assault Bot: Titan
-                "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
-                "dal0310", --Aeon T3 Shield Disruptor: Absolver
-                "xsl0303", --Seraphim T3 Siege Tank: Othuum
-                "xsl0303", --Seraphim T3 Mobile Shield Generator: Athanah
-            },
+            units,
             "xea0306"
         )
     end
