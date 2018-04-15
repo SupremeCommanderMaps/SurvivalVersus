@@ -339,7 +339,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             local rounds = import('/maps/final_rush_pro_5.9.v0001/src/survival/SurvivalRounds.lua').newInstance(
                 textPrinter,
                 unitSpanwerFactory,
-                options
+
             )
 
             rounds.start({

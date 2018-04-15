@@ -27,6 +27,7 @@ of the Vampire mod.
 * Tech 3 waves no longer include shield disruptors when T3 arty is disabled in the options
 * Tech 3 waves now include 1 slipper and 1 T3 shield instead of 2 slippers
 * Added new T2 random event that spawns 5x5 rangebots
+* Units from T1 and T2 random events now have their HP increase like all other survival units
 * Hunter ACUs no longer drown in the water
 * Nerfed island base defences by removing the torpedo launcher ring
 * Island base mex now yields 50 mass instead of 36
