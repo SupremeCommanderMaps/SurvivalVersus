@@ -1,6 +1,6 @@
 describe("FinalRushOptions", function()
 
-    local FinalRushOptions = require 'FinalRushOptions'
+    local FinalRushOptions = require 'frp/FinalRushOptions'
 
     describe("defaultGameOptions", function()
         it("returns defaulted options when given an empty table", function()

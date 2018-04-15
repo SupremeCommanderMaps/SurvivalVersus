@@ -1,6 +1,6 @@
 describe("PlayerArmies", function()
 
-    local PlayerArmies = require 'PlayerArmies'
+    local PlayerArmies = require 'frp/PlayerArmies'
 
     describe("getNameForIndex", function()
         local armies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_2"})
