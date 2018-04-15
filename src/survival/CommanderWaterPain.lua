@@ -5,7 +5,7 @@ newInstance = function(getAllUnits, textPrinter, isSurvivalUnit)
     end
 
     local function shouldHurtUnit(unit)
-        return EntityCategoryContains(categories.COMMAND, unit) and unitIsInTheWater(unit) and unit and not unit:IsDead() and isSurvivalUnit(unit)
+        return EntityCategoryContains(categories.COMMAND, unit) and unitIsInTheWater(unit) and unit and not unit:IsDead() and not isSurvivalUnit(unit)
     end
 
     local function announceDrowning(unit)
