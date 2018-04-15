@@ -64,6 +64,29 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         )
     end
 
+    local function spawnT2Rangebots(initialDelayInSeconds)
+        printText("Rangebots detected");
+
+        local spawner = survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds)
+        local x = 1
+
+        repeat
+            spawner.spawnWithTransports(
+                {
+                    "del0204",
+                    "del0204",
+                    "del0204",
+                    "del0204",
+                    "del0204",
+                },
+                "xea0306"
+            )
+
+            WaitSeconds(1)
+            x = x + 1
+        until (x > 5)
+    end
+
     local function spawnT3Bombers(initialDelayInSeconds)
         printText("T3 bombers detected");
 
@@ -194,6 +217,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         if elapsedTimeInSeconds > t2spawndelay and elapsedTimeInSeconds <= t3spawndelay then
             table.insert(possibleEvents, {spawnT2Bombers, t3spawndelay})
             table.insert(possibleEvents, {SpawnT2Gunships, t3spawndelay})
+            table.insert(possibleEvents, {spawnT2Rangebots, t3spawndelay})
         end
 
         if elapsedTimeInSeconds > t3spawndelay then
