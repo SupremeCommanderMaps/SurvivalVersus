@@ -21,6 +21,7 @@ of the Vampire mod.
 
 ## New in version 5.9
 
+* Changed bot colors so they cannot be the same as those of players (thanks JJ!)
 * Nerfed island base defences by removing the torpedo launcher ring
 * Island base mex now yields 50 mass instead of 36
 * Island base mex now retains its altered stats after capture
@@ -29,7 +30,6 @@ TODO:
 
 * Fix MMLs
 * Hunters should not drown
-* Bot color not red
 
 ## New in version 5.8
 

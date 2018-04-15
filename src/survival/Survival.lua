@@ -188,8 +188,15 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         import('/maps/final_rush_pro_5.9.v0001/src/survival/IslandBases.lua').newInstance().spawn()
     end
 
+    local function colorBots()
+        SetArmyColor("ARMY_9", 110, 90, 90)
+        SetArmyColor("NEUTRAL_CIVILIAN", 180, 200, 180)
+    end
+
     local setUp = function()
         disableWalls()
+
+        colorBots()
 
         if options.isSurvivalVersus() then
             setSurvivalVersusAlliances()
