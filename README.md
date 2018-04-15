@@ -21,6 +21,8 @@ of the Vampire mod.
 
 ## New in version 5.9
 
+Released on 2018-04-15
+
 * Changed bot colors so they cannot be the same as those of players (thanks JJ!)
 * Tech 2 waves now include MMLs again, unless disabled in the options
 * Tech 2 waves now contain a rhino, riptide, mongoose and rocket bot, instead of 2 rhino and 2 mongoose
