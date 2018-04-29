@@ -19,6 +19,10 @@ Furthermore since the Auto Reclaim option has been fixed, you probably want to u
 of the Vampire mod.
 
 
+## New in version 5.10
+
+* Nerfed island bases further by replacing T2 PD with T1 PD
+
 ## New in version 5.9
 
 Released on 2018-04-15

@@ -8,7 +8,7 @@ newInstance = function()
         unitModifier.modify(
             mex,
             function(unit)
-                mex:SetMaxHealth(31337)
+                mex:SetMaxHealth(13337)
                 unit:SetProductionPerSecondMass(50)
                 unit:SetCustomName("Capture for 50 mass/s")
             end
@@ -21,7 +21,7 @@ newInstance = function()
         spawnCentralMex(baseSpawner)
 
         baseSpawner.spawnAround("uab4202", {distance = 3, numberOfPoints = 4}) -- T2 shield
-        baseSpawner.spawnAroundStraight("uab2301", {distance = 8, numberOfPoints = 8}) -- T2 PD
+        baseSpawner.spawnAroundStraight("uab2101", {distance = 8, numberOfPoints = 8}) -- T1 PD
         baseSpawner.spawnAroundDiagonally("uab2304", {distance = 8, numberOfPoints = 8}) -- T3 AA
     end
 
