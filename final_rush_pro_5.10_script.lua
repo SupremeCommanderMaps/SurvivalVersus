@@ -1,6 +1,6 @@
 function OnPopulate()
 	import('/lua/sim/ScenarioUtilities.lua').InitializeArmies()
-	import('/maps/final_rush_pro_5.10.v0001/src/frp/FinalRushPro.lua').newInstance(ScenarioInfo).setUp()
+	import('/maps/final_rush_pro_5.10.v0002/src/frp/FinalRushPro.lua').newInstance(ScenarioInfo).setUp()
 
 	import('/lua/SimSync.lua')
 end
