@@ -7,19 +7,36 @@ You can [read the documentation][docs].
 
 ## Installation
 
-The easiest way to install the map is to get it via the [Forged Alliance Forever][FAF] map vault.
-Alternatively you can download it from GitHub, using these steps:
+*FAF Map Vault*
 
-* Download the [latest version of the map][download]
-* Extract the zip. The result should be a directory named `final_rush_pro_5.10.v0001`
-* Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
+The easiest way to install the map is to get it via the [Forged Alliance Forever][FAF] map vault.
 
 Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
 Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
 of the Vampire mod.
 
+*From a Friend*
+
+If the map vault does not work for you and a friend has the map, ask them to send you a copy
+of their `final_rush_pro_5.10.v0001` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
+Then place that copy into the `Maps` directory.
+
+*Manual Installation*
+
+You can download the latest development version of the map from GitHub.
+
+Beware that these versions are not the same as the ones typically hosted on the Forged Alliance Forever lobby.
+If not everyone is using the same version of the map, you will get a desync. When using development versions the
+advertised version of the map, ie Final Rush Pro 5.10, is in itself not sufficient to check, as there will be
+many development versions of Final Rush Pro 5.10.
+
+* Download the [latest development version of the map][download]
+* Extract the zip. The result should be a directory named `final_rush_pro_5.10.v0001`
+* Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 ## New in version 5.10
+
+Released on 2018-05-01
 
 * Added beetle random event
 * Nerfed island bases further by replacing T2 PD with T1 PD
@@ -216,7 +233,7 @@ Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview imag
 
 [FAF]: http://www.faforever.com/
 [docs]: https://wiki.faforever.com/index.php?title=Final_Rush_Pro_5
-[download]: https://github.com/JeroenDeDauw/FinalRushPro5/releases/download/v5.2.0/Final.Rush.Pro.5.2.zip
+[download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
 [Busted]: http://olivinelabs.com/busted/
 [Entropy]: https://entropywins.wtf/
