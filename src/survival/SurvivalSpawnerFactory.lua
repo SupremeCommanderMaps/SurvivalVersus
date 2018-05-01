@@ -11,9 +11,9 @@ newInstance = function(options, ScenarioFramework, unitCreator, playerArmies, ge
                 ScenarioFramework, spawnOutEffect, TransportDestinations
             )
         end,
-        newUnitSpawner = function(hpIncreaseDelayInSeconds)
+        newUnitSpawner = function(unitInfo)
             return unitSpawnerClass.newInstance(
-                unitCreator, playerArmies, getRandomPlayer, hpIncreaseDelayInSeconds, getAllUnits
+                unitCreator, playerArmies, getRandomPlayer, getAllUnits, unitInfo
             )
         end
     }

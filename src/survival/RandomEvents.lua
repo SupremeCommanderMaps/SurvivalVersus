@@ -1,13 +1,15 @@
 newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, survivalSpawnerFactory, beetleEvent)
 
+    local survivalUnitSpawner = survivalSpawnerFactory.newUnitSpawner({hpIncrease = true})
+
     local function printText(text)
         textPrinter.print(text, {duration = 3})
     end
     
-    local function spawnBombers(initialDelayInSeconds)
+    local function spawnBombers()
         printText("T1 bombers detected")
 
-        survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
+        survivalUnitSpawner.spawnUnits(
             {
                 "uea0103",
                 "uea0103",
@@ -18,10 +20,10 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         )
     end
 
-    local function spawnT1Gunships(initialDelayInSeconds)
+    local function spawnT1Gunships()
         printText("T1 gunships detected")
 
-        survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
+        survivalUnitSpawner.spawnUnits(
             {
                 "xra0105",
                 "xra0105",
@@ -30,10 +32,10 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         )
     end
 
-    local function spawnT2Bombers(initialDelayInSeconds)
+    local function spawnT2Bombers()
         printText("T2 bombers detected")
 
-        survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
+        survivalUnitSpawner.spawnUnits(
             {
                 "dra0202",
                 "dra0202",
@@ -47,10 +49,10 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         )
     end
 
-    local SpawnT2Gunships = function(initialDelayInSeconds)
+    local SpawnT2Gunships = function()
         printText("T2 gunships detected")
 
-        survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
+        survivalUnitSpawner.spawnUnits(
             {
                 "uea0203",
                 "uea0203",
@@ -87,12 +89,10 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         until (x > 5)
     end
 
-    local function spawnT3Bombers(initialDelayInSeconds)
+    local function spawnT3Bombers()
         printText("T3 bombers detected")
 
-        local spawner = survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds)
-
-        spawner.spawnUnits(
+        survivalUnitSpawner.spawnUnits(
             {
                 "uea0304",
                 "uea0304",
@@ -102,7 +102,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
 
         WaitSeconds(5)
 
-        spawner.spawnUnits(
+        survivalUnitSpawner.spawnUnits(
             {
                 "uea0304",
                 "uea0304",
@@ -112,7 +112,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
 
         WaitSeconds(5)
 
-        spawner.spawnUnits(
+        survivalUnitSpawner.spawnUnits(
             {
                 "uea0304",
                 "uea0304",
@@ -122,10 +122,10 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         )
     end
 
-    local SpawnT3Gunships = function(initialDelayInSeconds)
+    local SpawnT3Gunships = function()
         printText("T3 gunships detected")
 
-        survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
+        survivalUnitSpawner.spawnUnits(
             {
                 "uea0305",
                 "uea0305",
@@ -139,10 +139,10 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         )
     end
 
-    local SpawnT2Destroyers = function(initialDelayInSeconds)
+    local SpawnT2Destroyers = function()
         printText("Destroyers detected")
 
-        survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
+        survivalSpawnerFactory.newUnitSpawner({hpIncrease = categories.TECH3}).spawnUnits(
             {
                 "urs0201",
                 "urs0201",
@@ -215,20 +215,20 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         local possibleEvents = {}
 
         if elapsedTimeInSeconds > t1spawndelay + 1 and elapsedTimeInSeconds <= t2spawndelay then
-            table.insert(possibleEvents, {spawnBombers, t1spawndelay})
-            table.insert(possibleEvents, {spawnT1Gunships, t1spawndelay})
+            table.insert(possibleEvents, {spawnBombers})
+            table.insert(possibleEvents, {spawnT1Gunships})
         end
 
         if elapsedTimeInSeconds > t2spawndelay and elapsedTimeInSeconds <= t3spawndelay then
-            table.insert(possibleEvents, {spawnT2Bombers, t2spawndelay})
-            table.insert(possibleEvents, {SpawnT2Gunships, t2spawndelay})
+            table.insert(possibleEvents, {spawnT2Bombers})
+            table.insert(possibleEvents, {SpawnT2Gunships})
             table.insert(possibleEvents, {spawnT2Rangebots, t2spawndelay})
         end
 
         if elapsedTimeInSeconds > t3spawndelay then
-            table.insert(possibleEvents, {SpawnT2Destroyers, t3spawndelay})
-            table.insert(possibleEvents, {spawnT3Bombers, t3spawndelay})
-            table.insert(possibleEvents, {SpawnT3Gunships, t3spawndelay})
+            table.insert(possibleEvents, {SpawnT2Destroyers})
+            table.insert(possibleEvents, {spawnT3Bombers})
+            table.insert(possibleEvents, {SpawnT3Gunships})
 
             if (ScenarioInfo.Options.opt_t3arty == 0) then
                 table.insert(possibleEvents, {spawnT3Arty, t3spawndelay})

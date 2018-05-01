@@ -1,4 +1,4 @@
-newInstance = function(unitCreator, playerArmies, getRandomPlayer, hpIncreaseDelayInSeconds, getAllUnits)
+newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, extraUnitInfo)
     local airSpawnZones = {
         ARMY_9 = {
             minX = 500,
@@ -33,23 +33,31 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, hpIncreaseDel
         return string.lower(string.sub(unitName, 3, 3)) == "s"
     end
 
-    local function spawnUnitsFromName(unitNames, armyName)
+    local function getUnitInfo(unitName, armyName)
         local airSpawnZone = airSpawnZones[armyName]
         local navySpawnZone = navySpawnZones[armyName]
+
+        local spawnZone = isShipName(unitName) and navySpawnZone or airSpawnZone
+
+        local unitInfo = {
+            blueprintName = unitName,
+            armyName = armyName,
+            x = Random(spawnZone.minX, spawnZone.maxX),
+            y = Random(spawnZone.minY, spawnZone.maxY),
+        }
+
+        for key, value in extraUnitInfo do
+            unitInfo[key] = value
+        end
+    end
+
+    local function spawnUnitsFromName(unitNames, armyName)
         local units = {}
 
         for _, unitName in unitNames do
-            local spawnZone = isShipName(unitName) and navySpawnZone or airSpawnZone
-
             table.insert(
                 units,
-                unitCreator.spawnSurvivalUnit({
-                    blueprintName = unitName,
-                    armyName = armyName,
-                    x = Random(spawnZone.minX, spawnZone.maxX),
-                    y = Random(spawnZone.minY, spawnZone.maxY),
-                    hpIncreaseDelay = hpIncreaseDelayInSeconds
-                })
+                unitCreator.spawnSurvivalUnit(getUnitInfo(unitName, armyName))
             )
         end
 
@@ -96,9 +104,12 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, hpIncreaseDel
             .getRandomArmyName()
 
         if targetArmyName ~= nil then
-            local units = spawnUnitsFromName(unitNames, armyName)
-
-            ForkThread(sendUnitsInForAttack, units, targetArmyName, armyName)
+            ForkThread(
+                sendUnitsInForAttack,
+                spawnUnitsFromName(unitNames, armyName),
+                targetArmyName,
+                armyName
+            )
         end
     end
 

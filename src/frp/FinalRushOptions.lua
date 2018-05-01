@@ -255,5 +255,21 @@ function newInstance(ScenarioInfoOptions)
         return rawOptions.opt_t3arty == 0
     end
 
+    this.getT1spawnDelay = function()
+        return ScenarioInfo.Options.opt_FinalRushSpawnDelay
+    end
+
+    this.getT2spawnDelay = function()
+        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT2Delay
+    end
+
+    this.getT3spawnDelay = function()
+        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT3Delay
+    end
+
+    this.getT4spawnDelay = function()
+        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT4Delay
+    end
+
     return this
 end

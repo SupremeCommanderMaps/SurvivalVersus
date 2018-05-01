@@ -32,6 +32,11 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         ARMY_8 = false
     }
 
+    local t1spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay
+    local t2spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT2Delay
+    local t3spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT3Delay
+    local t4spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT4Delay
+
     local function createStartingPlayersExistance()
         if not ScenarioInfo.ArmySetup["ARMY_1"] == false then
             StartingPlayersExistance.ARMY_1 = true
@@ -268,8 +273,26 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             )
 
             unitCreator.onUnitCreated(function(unit, unitInfo)
-                if unitInfo.hpIncreaseDelay ~= nil then
-                    -- TODO: instead of passing seconds, pass T1-T4/hunter/etc, then map it here based on config
+                if unitInfo.hpIncrease ~= nil then
+                    local hpIncreaseDelays = {
+                        [categories.TECH1] = options.getT1spawnDelay(),
+                        [categories.TECH2] = options.getT2spawnDelay(),
+                        [categories.TECH3] = options.getT3spawnDelay(),
+                        [categories.TECH4] = options.getT4spawnDelay(),
+                    }
+
+                    if unitInfo.hpIncrease == true then
+                        for techCategory, hpIncreaseDelay in hpIncreaseDelays do
+                            if EntityCategoryContains(techCategory, unit) then
+                                healthMultiplier.increaseHealth({unit}, hpIncreaseDelay)
+                                break
+                            end
+                        end
+                    elseif hpIncreaseDelays[unitInfo.hpIncrease] ~= nil then
+                        healthMultiplier.increaseHealth({unit}, hpIncreaseDelays[unitInfo.hpIncrease])
+                    end
+
+                elseif unitInfo.hpIncreaseDelay ~= nil then
                     healthMultiplier.increaseHealth({unit}, unitInfo.hpIncreaseDelay)
                 end
             end)
@@ -293,11 +316,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         local healthMultiplier = import('/maps/final_rush_pro_5.10.v0002/src/survival/HealthMultiplier.lua').newInstance(
             ScenarioInfo.Options.opt_FinalRushHealthIncrease
         )
-
-        local t1spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay
-        local t2spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT2Delay
-        local t3spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT3Delay
-        local t4spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT4Delay
 
         if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
             local agressionSpawner = import('/maps/final_rush_pro_5.10.v0002/src/survival/AggressionSpawner.lua').newInstance(
