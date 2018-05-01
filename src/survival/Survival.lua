@@ -290,7 +290,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         local unitCreator = newUnitCreator()
 
         -- TODO
-        --import('/maps/final_rush_pro_5.10.v0001/src/survival/BeetleEvent.lua').newInstance(unitCreator, spawnEffect).spawn()
+        import('/maps/final_rush_pro_5.10.v0001/src/survival/BeetleEvent.lua').newInstance(unitCreator, spawnEffect).spawn()
 
         local healthMultiplier = import('/maps/final_rush_pro_5.10.v0001/src/survival/HealthMultiplier.lua').newInstance(
             ScenarioInfo.Options.opt_FinalRushHealthIncrease

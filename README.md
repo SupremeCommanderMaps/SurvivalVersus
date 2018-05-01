@@ -21,6 +21,7 @@ of the Vampire mod.
 
 ## New in version 5.10
 
+* Added beetle random event
 * Nerfed island bases further by replacing T2 PD with T1 PD
 
 ## New in version 5.9
