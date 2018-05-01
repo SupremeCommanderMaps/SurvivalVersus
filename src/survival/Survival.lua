@@ -269,6 +269,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
             unitCreator.onUnitCreated(function(unit, unitInfo)
                 if unitInfo.hpIncreaseDelay ~= nil then
+                    -- TODO: instead of passing seconds, pass T1-T4/hunter/etc, then map it here based on config
                     healthMultiplier.increaseHealth({unit}, unitInfo.hpIncreaseDelay)
                 end
             end)
