@@ -1,11 +1,11 @@
-newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, survivalSpawnerFactory)
+newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, survivalSpawnerFactory, beetleEvent)
 
     local function printText(text)
         textPrinter.print(text, {duration = 3})
     end
     
     local function spawnBombers(initialDelayInSeconds)
-        printText("T1 bombers detected");
+        printText("T1 bombers detected")
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -19,7 +19,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local function spawnT1Gunships(initialDelayInSeconds)
-        printText("T1 gunships detected");
+        printText("T1 gunships detected")
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -31,7 +31,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local function spawnT2Bombers(initialDelayInSeconds)
-        printText("T2 bombers detected");
+        printText("T2 bombers detected")
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -48,7 +48,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local SpawnT2Gunships = function(initialDelayInSeconds)
-        printText("T2 gunships detected");
+        printText("T2 gunships detected")
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -65,7 +65,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local function spawnT2Rangebots(initialDelayInSeconds)
-        printText("Rangebots detected");
+        printText("Rangebots detected")
 
         local spawner = survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds)
         local x = 1
@@ -88,7 +88,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local function spawnT3Bombers(initialDelayInSeconds)
-        printText("T3 bombers detected");
+        printText("T3 bombers detected")
 
         local spawner = survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds)
 
@@ -123,7 +123,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local SpawnT3Gunships = function(initialDelayInSeconds)
-        printText("T3 gunships detected");
+        printText("T3 gunships detected")
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -140,7 +140,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local SpawnT2Destroyers = function(initialDelayInSeconds)
-        printText("Destroyers detected");
+        printText("Destroyers detected")
 
         survivalSpawnerFactory.newUnitSpawner(initialDelayInSeconds).spawnUnits(
             {
@@ -156,8 +156,13 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         )
     end
 
+    local function spawnBeetles()
+        printText("Beetles detected")
+        beetleEvent.spawn()
+    end
+
     local function spawnT3Arty(initialDelayInSeconds)
-        printText("T3 mobile artillery detected");
+        printText("T3 mobile artillery detected")
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
@@ -175,7 +180,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local function spawnYthotha(initialDelayInSeconds)
-        printText("Ythotha detected");
+        printText("Ythotha detected")
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
@@ -186,7 +191,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local function spawnFatboy(initialDelayInSeconds)
-        printText("Fatboy detected");
+        printText("Fatboy detected")
 
         survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
             {
@@ -197,7 +202,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local SpeedCurrentUnits = function()
-        printText("Current unit speed boosted");
+        printText("Current unit speed boosted")
 
         for _, unit in getAllUnits() do
             if EntityCategoryContains(categories.LAND + categories.NAVAL, unit) and isSurvivalUnit(unit) then
@@ -228,6 +233,10 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
             if (ScenarioInfo.Options.opt_t3arty == 0) then
                 table.insert(possibleEvents, {spawnT3Arty, t3spawndelay})
             end
+        end
+
+        if elapsedTimeInSeconds > t3spawndelay and elapsedTimeInSeconds <= t4spawndelay then
+            table.insert(possibleEvents, {spawnBeetles})
         end
 
         if elapsedTimeInSeconds > t4spawndelay then
