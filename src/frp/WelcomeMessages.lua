@@ -57,7 +57,7 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         )
 
         textPrinter.print(
-            string.rep(" ", 42) .. "Version 5.x by EntropyWins",
+            string.rep(" ", 41) .. "Version 5.x by EntropyWins",
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter" }
         )
 
