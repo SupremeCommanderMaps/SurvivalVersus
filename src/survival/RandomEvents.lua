@@ -273,6 +273,13 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local randomEventsThread = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
+--        survivalSpawnerFactory.newTransportSpawner(0).spawnWithTransports(
+--            {
+--                "xab1401",
+--            },
+--            "xea0306"
+--        )
+
         while true do
             runRandomEvents(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
             WaitSeconds(RandomFrequency)
