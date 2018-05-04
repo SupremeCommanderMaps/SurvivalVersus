@@ -80,7 +80,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
             WaitSeconds(initialDelayInSeconds)
             textPrinter.print(initialMessage, {duration = 3.5})
 
-            local transportSpawner = unitSpawnerFactory.newTransportSpawner(initialDelayInSeconds)
+            local transportSpawner = unitSpawnerFactory.newTransportSpawner({hpIncrease = true})
 
             while spawnEndInSeconds == nil or GetGameTimeSeconds() < spawnEndInSeconds do
                 ForkThread(spawnFunction, transportSpawner)

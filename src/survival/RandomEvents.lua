@@ -1,6 +1,7 @@
 newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, survivalSpawnerFactory, beetleEvent)
 
     local survivalUnitSpawner = survivalSpawnerFactory.newUnitSpawner({hpIncrease = true})
+    local survivalTransportSpawner = survivalSpawnerFactory.newTransportSpawner({hpIncrease = true})
 
     local function printText(text)
         textPrinter.print(text, {duration = 3})
@@ -66,14 +67,13 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         )
     end
 
-    local function spawnT2Rangebots(initialDelayInSeconds)
+    local function spawnT2Rangebots()
         printText("Rangebots detected")
 
-        local spawner = survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds)
         local x = 1
 
         repeat
-            spawner.spawnWithTransports(
+            survivalTransportSpawner.spawnWithTransports(
                 {
                     "del0204",
                     "del0204",
@@ -164,7 +164,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     local function spawnT3Arty(initialDelayInSeconds)
         printText("T3 mobile artillery detected")
 
-        survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
+        survivalTransportSpawner.spawnWithTransports(
             {
                 "url0304", --Cybran T3 Mobile Heavy Artillery: Trebuchet
                 "url0304",
@@ -182,7 +182,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     local function spawnYthotha(initialDelayInSeconds)
         printText("Ythotha detected")
 
-        survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
+        survivalTransportSpawner.spawnWithTransports(
             {
                 "xsl0401",
             },
@@ -193,7 +193,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     local function spawnFatboy(initialDelayInSeconds)
         printText("Fatboy detected")
 
-        survivalSpawnerFactory.newTransportSpawner(initialDelayInSeconds).spawnWithTransports(
+        survivalTransportSpawner.spawnWithTransports(
             {
                 "uel0401",
             },
@@ -222,7 +222,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         if elapsedTimeInSeconds > t2spawndelay and elapsedTimeInSeconds <= t3spawndelay then
             table.insert(possibleEvents, {spawnT2Bombers})
             table.insert(possibleEvents, {SpawnT2Gunships})
-            table.insert(possibleEvents, {spawnT2Rangebots, t2spawndelay})
+            table.insert(possibleEvents, {spawnT2Rangebots})
         end
 
         if elapsedTimeInSeconds > t3spawndelay then
@@ -231,7 +231,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
             table.insert(possibleEvents, {SpawnT3Gunships})
 
             if (ScenarioInfo.Options.opt_t3arty == 0) then
-                table.insert(possibleEvents, {spawnT3Arty, t3spawndelay})
+                table.insert(possibleEvents, {spawnT3Arty})
             end
         end
 
@@ -240,10 +240,10 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         end
 
         if elapsedTimeInSeconds > t4spawndelay then
-            table.insert(possibleEvents, {spawnYthotha, t4spawndelay})
+            table.insert(possibleEvents, {spawnYthotha})
 
             if Random(1, 2) == 1 then
-                table.insert(possibleEvents, {spawnFatboy, t4spawndelay})
+                table.insert(possibleEvents, {spawnFatboy})
             end
         end
 

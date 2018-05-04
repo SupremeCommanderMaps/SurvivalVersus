@@ -37,6 +37,11 @@ function newInstance(unitCreator, spawnEffect)
         end
     end
 
+    local function multiplyUnitHealth(unit, multiplier)
+        unit:SetMaxHealth(unit:GetMaxHealth() * multiplier)
+        unit:SetHealth(unit, unit:GetMaxHealth())
+    end
+
     local function spawnBeetle(positionOffset, armyName)
         local armyBasedOffset = armyName == "ARMY_9" and 2 or -2
         local armyBasedDirection = armyName == "ARMY_9" and 50 or -50
@@ -47,8 +52,12 @@ function newInstance(unitCreator, spawnEffect)
             blueprintName = "XRL0302",
             armyName = armyName,
             x = spawnX,
-            y = spawnY
+            y = spawnY,
+            hpIncrease = true
         })
+
+        multiplyUnitHealth(beetle, 2)
+        beetle:SetSpeedMult(2)
 
         ForkThread(spawnEffect, beetle)
 

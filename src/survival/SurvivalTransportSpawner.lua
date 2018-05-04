@@ -1,4 +1,4 @@
-newInstance = function(options, unitCreator, getRandomPlayer, hpIncreaseDelayInSeconds, ScenarioFramework, spawnOutEffect, TransportDestinations)
+newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, ScenarioFramework, spawnOutEffect, TransportDestinations)
     local transportDetails = {
         ARMY_9 = {
             spawnPosition = {
@@ -80,17 +80,16 @@ newInstance = function(options, unitCreator, getRandomPlayer, hpIncreaseDelayInS
     local function spawnTransport(armyName, transportName)
         local spawnPosition = transportDetails[armyName].spawnPosition
 
-        local transport = unitCreator.create({
+        local unitInfo = {
             blueprintName = transportName,
             armyName = armyName,
             x = spawnPosition.x,
             y = spawnPosition.y,
             z = 80,
             isTransport = true
-            --hpIncreaseDelay = 0
-        })
+        }
 
-        return transport
+        return unitCreator.create(unitInfo)
     end
 
     local function spawnUnitsForArmy(units, armyName, transportDesination, transportName)
@@ -116,18 +115,24 @@ newInstance = function(options, unitCreator, getRandomPlayer, hpIncreaseDelayInS
         spawnOutOnceNotMoving(transport)
     end
 
+    local function getUnitInfo(unitName, armyName)
+        local unitInfo = {
+            blueprintName = unitName,
+            armyName = armyName,
+            x = 255.5,
+            y = 255.5,
+        }
+
+        for key, value in extraUnitInfo do
+            unitInfo[key] = value
+        end
+    end
+
     local function spawnUnitsFromName(unitNames, armyName)
         local units = {}
 
         for _, unitName in unitNames do
-            table.insert(units,
-                unitCreator.spawnSurvivalUnit({
-                    blueprintName = unitName,
-                    armyName = armyName,
-                    x = 255.5,
-                    y = 255.5,
-                    hpIncreaseDelay = hpIncreaseDelayInSeconds
-                }))
+            table.insert(units, unitCreator.spawnSurvivalUnit(getUnitInfo(unitName, armyName)))
         end
 
         return units
