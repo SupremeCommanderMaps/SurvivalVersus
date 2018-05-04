@@ -57,7 +57,7 @@ function newInstance(unitCreator, spawnEffect)
         })
 
         multiplyUnitHealth(beetle, 2)
-        beetle:SetSpeedMult(2)
+        beetle:SetSpeedMult(1.5)
 
         ForkThread(spawnEffect, beetle)
 

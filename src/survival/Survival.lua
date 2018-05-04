@@ -278,7 +278,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                         [categories.TECH1] = options.getT1spawnDelay(),
                         [categories.TECH2] = options.getT2spawnDelay(),
                         [categories.TECH3] = options.getT3spawnDelay(),
-                        [categories.TECH4] = options.getT4spawnDelay(),
+                        [categories.EXPERIMENTAL] = options.getT4spawnDelay(),
                     }
 
                     if unitInfo.hpIncrease == true then

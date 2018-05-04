@@ -126,6 +126,8 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
         for key, value in extraUnitInfo do
             unitInfo[key] = value
         end
+
+        return unitInfo
     end
 
     local function spawnUnitsFromName(unitNames, armyName)

@@ -39,7 +39,7 @@ many development versions of Final Rush Pro 5.10.
 
 Under development
 
-* Buffed beetle random event: 2x base HP, survival HP increase now applied, 2x speed
+* Buffed beetle random event: 2x base HP, survival HP increase now applied, 1.5x speed
 
 ## New in version 5.10
 
