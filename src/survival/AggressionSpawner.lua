@@ -1,5 +1,6 @@
-newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, TransportDestinations, ScenarioInfo, ScenarioFramework, getRandomPlayer, spawnOutEffect, healthMultiplier)
+newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, TransportDestinations, ScenarioInfo, ScenarioFramework, getRandomPlayer, spawnOutEffect, unitCreator)
     local Aggression = import('/maps/final_rush_pro_5.11.v0001/lua/Aggression.lua');
+    -- TODO: user survival transport spawner
 
     local Aggro = {
         Team1 = {
@@ -15,15 +16,6 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
             Player4 = 0
         }
     }
-
-    local killgroup = function(unitgroup)
-        WaitSeconds(60*5)
-        for _, value in unitgroup do
-            if not value:IsDead() then
-                spawnOutEffect(value)
-            end
-        end
-    end
 
     local function ArmyToPlayerTeam(army)
         local data = {}
@@ -119,15 +111,7 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
         end
     end
 
-    local function RemoveWreckage(unitgroup)
-        if ScenarioInfo.Options.opt_AutoReclaim > 0 then
-            for _, unit in unitgroup do
-                unit.CreateWreckage = function() end
-            end
-        end
-    end
-
-    local SendUnitsToPlayer = function(unit, team, player, hpincreasedelay)
+    local SendUnitsToPlayer = function(unit, team, player)
         local AttackerARMY
         local TeamToAttack = team
         local TransportEnd
@@ -151,23 +135,22 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
             transport:SetCanTakeDamage(false);
         end
 
-        local unit1 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-        local unit2 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-        local unit3 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-        local unit4 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-        local unit5 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-        local unit6 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
-        local unit7 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --Cybran T3 Mobile Heavy Artillery: Trebuchet
-        local unit8 = CreateUnitHPR(unit, AttackerARMY, 255.5, 25.9844, 255.5,0,0,0)  --UEF T3 Mobile Heavy Artillery: Demolisher
+        local units = {}
 
-        local units = {unit1,unit2,unit3,unit4,unit5,unit6,unit7,unit8}
+        for i=1, 8 do
+            table.insert(
+                units,
+                unitCreator.spawnSurvivalUnit({
+                    blueprintName = unit,
+                    armyName = AttackerARMY,
+                    x = 255.5,
+                    y = 255.5,
+                    hpIncrease = true
+                })
+            )
+        end
+
         local transports = {transport}
-
-        ForkThread(killgroup,units)
-
-        healthMultiplier.increaseHealth(units, hpincreasedelay)
-
-        RemoveWreckage(units)
 
         ScenarioFramework.AttachUnitsToTransports(units, transports)
         IssueTransportUnload(transports, TransportTo)
@@ -187,7 +170,6 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
     local function AggressionWatcher(army,t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         local teamplayer = ArmyToPlayerTeam(army)
         local unit
-        local hpincreasedelay
         local timewait
         local aggropercent
         local counter = 0
@@ -198,28 +180,22 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
             if counter > timewait and aggropercent > 5 then
                 if GetGameTimeSeconds() > t4spawndelay then
                     if aggropercent > 100 then
-                        hpincreasedelay = 0
                         unit = randomUnits.getRandomUnit(4)
                     else
-                        hpincreasedelay = t3spawndelay
                         unit = randomUnits.getRandomUnit(3)
                     end
                 elseif GetGameTimeSeconds() > t3spawndelay then
                     if aggropercent > 100 then
-                        hpincreasedelay = 0
                         unit = randomUnits.getRandomUnit(4)
                     else
-                        hpincreasedelay = t3spawndelay
                         unit = randomUnits.getRandomUnit(3)
                     end
                 elseif GetGameTimeSeconds() > t2spawndelay then
                     unit = randomUnits.getRandomUnit(2)
-                    hpincreasedelay = t2spawndelay
                 else
                     unit = randomUnits.getRandomUnit(1)
-                    hpincreasedelay = t1spawndelay
                 end
-                ForkThread(SendUnitsToPlayer,unit,teamplayer.Team,teamplayer.Player, hpincreasedelay)
+                ForkThread(SendUnitsToPlayer,unit,teamplayer.Team,teamplayer.Player)
                 counter = 0
             end
             WaitSeconds(2)

@@ -313,10 +313,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     local runBattle = function(textPrinter, playerArmies)
         local unitCreator = newUnitCreator()
 
-        local healthMultiplier = import('/maps/final_rush_pro_5.11.v0001/src/survival/HealthMultiplier.lua').newInstance(
-            ScenarioInfo.Options.opt_FinalRushHealthIncrease
-        )
-
         if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
             local agressionSpawner = import('/maps/final_rush_pro_5.11.v0001/src/survival/AggressionSpawner.lua').newInstance(
                 StartingPlayersExistance,
@@ -327,7 +323,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 ScenarioFramework,
                 GetRandomPlayer,
                 spawnOutEffect,
-                healthMultiplier
+                unitCreator
             )
 
             agressionSpawner.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
