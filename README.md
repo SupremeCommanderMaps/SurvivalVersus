@@ -35,9 +35,13 @@ many development versions of Final Rush Pro 5.10.
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 
-## New in version 5.11
+## New in version 5.12
 
 Under development
+
+## New in version 5.11
+
+Released on 2018-05-04
 
 * Buffed beetle random event: 2x base HP, survival HP increase now applied, 1.5x speed
 
