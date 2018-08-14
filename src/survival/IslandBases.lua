@@ -31,14 +31,14 @@ newInstance = function()
                     x = 360,
                     y = 153
                 },
-                "NEUTRAL_CIVILIAN"
+                "TOP_BOT"
             ))
             spawnBase(spawnerClass.newInstance(
                 {
                     x = 154,
                     y = 359
                 },
-                "ARMY_9"
+                "BOTTOM_BOT"
             ))
         end
     }

@@ -54,12 +54,12 @@ newInstance = function(textPrinter)
 --            bp.Defense.Health = 3133742
 
             initializeLighthouse(
-                CreateUnitHPR("urc1901", "NEUTRAL_CIVILIAN", 13.816323, 25.730654, 500.078125, 0,0,0),
+                CreateUnitHPR("urc1901", "TOP_BOT", 13.816323, 25.730654, 500.078125, 0,0,0),
                 "leftcenter"
             )
 
             initializeLighthouse(
-                CreateUnitHPR("urc1901", "ARMY_9", 498.060150, 25.724628, 12.122614, 0,0,0),
+                CreateUnitHPR("urc1901", "BOTTOM_BOT", 498.060150, 25.724628, 12.122614, 0,0,0),
                 "rightcenter"
             )
         end

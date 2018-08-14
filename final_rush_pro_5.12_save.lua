@@ -2974,7 +2974,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['NEUTRAL_CIVILIAN'] =  
+        ['TOP_BOT'] =
         {
             personality = '',
             plans = '',
@@ -3007,7 +3007,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['ARMY_9'] =  
+        ['BOTTOM_BOT'] =
         {
             personality = '',
             plans = '',

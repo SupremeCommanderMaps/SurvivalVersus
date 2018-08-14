@@ -1,12 +1,12 @@
 newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, extraUnitInfo)
     local airSpawnZones = {
-        ARMY_9 = {
+        BOTTOM_BOT = {
             minX = 500,
             maxX = 512,
             minY = 0,
             maxY = 10,
         },
-        NEUTRAL_CIVILIAN = {
+        TOP_BOT = {
             minX = 0,
             maxX = 10,
             minY = 500,
@@ -15,13 +15,13 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, 
     }
 
     local navySpawnZones = {
-        ARMY_9 = {
+        BOTTOM_BOT = {
             minX = 480,
             maxX = 490,
             minY = 20,
             maxY = 30,
         },
-        NEUTRAL_CIVILIAN = {
+        TOP_BOT = {
             minX = 20,
             maxX = 30,
             minY = 480,
@@ -91,7 +91,7 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, 
 
         issueAggresiveMoveToAcuLocationByArmyName(units, targetArmyName)
 
-        local teamIndex = owningArmyName == "ARMY_9" and 1 or 2
+        local teamIndex = owningArmyName == "BOTTOM_BOT" and 1 or 2
         IssueAggressiveMove(units, getRandomPlayer(teamIndex))
         IssueAggressiveMove(units, getRandomPlayer(teamIndex))
         IssueAggressiveMove(units, getRandomPlayer(teamIndex))
@@ -117,8 +117,8 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, 
 
     return {
         spawnUnits = function(unitNames)
-            spawnUnitsForArmy(unitNames, "NEUTRAL_CIVILIAN")
-            spawnUnitsForArmy(unitNames, "ARMY_9")
+            spawnUnitsForArmy(unitNames, "TOP_BOT")
+            spawnUnitsForArmy(unitNames, "BOTTOM_BOT")
         end
     }
 end

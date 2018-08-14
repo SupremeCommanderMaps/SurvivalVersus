@@ -7,7 +7,7 @@ function newInstance(balanceBonus)
     local function getArmyMultiplier(armyName)
         local bonusIsForTopTeam = balanceBonus > 0
 
-        if bonusIsForTopTeam ~= ( armyName == "NEUTRAL_CIVILIAN" ) then
+        if bonusIsForTopTeam ~= ( armyName == "TOP_BOT" ) then
             return 1
         end
 

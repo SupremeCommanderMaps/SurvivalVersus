@@ -83,11 +83,11 @@ newInstance = function(fullIndexToNameMap)
     local getTopSideArmies = newFilterMethod(isTopSideArmy)
 
     local function getTargetsForArmy(hunterArmyName)
-        if hunterArmyName == "NEUTRAL_CIVILIAN" then
+        if hunterArmyName == "TOP_BOT" then
             return getTopSideArmies()
         end
 
-        if hunterArmyName == "ARMY_9" then
+        if hunterArmyName == "BOTTOM_BOT" then
             return getBottomSideArmies()
         end
 

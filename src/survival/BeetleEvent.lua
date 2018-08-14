@@ -43,8 +43,8 @@ function newInstance(unitCreator, spawnEffect)
     end
 
     local function spawnBeetle(positionOffset, armyName)
-        local armyBasedOffset = armyName == "ARMY_9" and 2 or -2
-        local armyBasedDirection = armyName == "ARMY_9" and 50 or -50
+        local armyBasedOffset = armyName == "BOTTOM_BOT" and 2 or -2
+        local armyBasedDirection = armyName == "BOTTOM_BOT" and 50 or -50
         local spawnX = 255 + armyBasedOffset + positionOffset
         local spawnY = 255 + armyBasedOffset - positionOffset
 
@@ -77,8 +77,8 @@ function newInstance(unitCreator, spawnEffect)
         spawn = function()
             ForkThread(function()
                 for positionOffset=-34, 34 do
-                    spawnBeetle(positionOffset, "ARMY_9")
-                    spawnBeetle(positionOffset, "NEUTRAL_CIVILIAN")
+                    spawnBeetle(positionOffset, "BOTTOM_BOT")
+                    spawnBeetle(positionOffset, "TOP_BOT")
                 end
             end)
         end

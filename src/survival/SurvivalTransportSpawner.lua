@@ -1,13 +1,13 @@
 newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, ScenarioFramework, spawnOutEffect, TransportDestinations)
     local transportDetails = {
-        ARMY_9 = {
+        BOTTOM_BOT = {
             spawnPosition = {
                 x = 500,
                 y = 10
             },
             finalDestination = TransportDestinations.SouthernAttackerEnd
         },
-        NEUTRAL_CIVILIAN = {
+        TOP_BOT = {
             spawnPosition = {
                 x = 10,
                 y = 500
@@ -43,7 +43,7 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
     end
 
     local function issueAttackCommands(attackingArmyName, unitgroup)
-        if attackingArmyName == "ARMY_9" then
+        if attackingArmyName == "BOTTOM_BOT" then
             IssueAggressiveMove(unitgroup, getRandomPlayer(1))
             IssueAggressiveMove(unitgroup, getRandomPlayer(1))
         else
@@ -145,15 +145,15 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
             local transportDesination = VECTOR3(Random(220, 290), 80, Random(220, 290))
 
             spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "ARMY_9"),
-                "ARMY_9",
+                spawnUnitsFromName(unitNames, "BOTTOM_BOT"),
+                "BOTTOM_BOT",
                 transportDesination,
                 transportName
             )
 
             spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "NEUTRAL_CIVILIAN"),
-                "NEUTRAL_CIVILIAN",
+                spawnUnitsFromName(unitNames, "TOP_BOT"),
+                "TOP_BOT",
                 transportDesination,
                 transportName
             )

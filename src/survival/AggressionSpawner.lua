@@ -119,11 +119,11 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
 
         if TeamToAttack == 1 then
             TransportEnd = TransportDestinations.SouthernAttackerEnd
-            AttackerARMY = "ARMY_9"
+            AttackerARMY = "BOTTOM_BOT"
             transport = CreateUnitHPR("xea0306", AttackerARMY, 500, 80, 10, 0,0,0)
         elseif TeamToAttack == 2 then
             TransportEnd = TransportDestinations.NorthernAttackerEnd
-            AttackerARMY = "NEUTRAL_CIVILIAN"
+            AttackerARMY = "TOP_BOT"
             transport = CreateUnitHPR("xea0306", AttackerARMY, 10, 80, 500, 0,0,0)
         end
 

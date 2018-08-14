@@ -169,7 +169,7 @@ function FirstTech2()
 		units = EntityCategoryFilterDown(categories.TECH2 - categories.xrb0304 - categories.COMMAND, units)
 		if units and table.getn(units) > 0 then 
 			for index,unit in units do 
-				if ListArmies()[unit:GetArmy()] != "ARMY_9" and ListArmies()[unit:GetArmy()] != "NEUTRAL_CIVILIAN" and not unit:IsBeingBuilt() then
+				if ListArmies()[unit:GetArmy()] != "BOTTOM_BOT" and ListArmies()[unit:GetArmy()] != "TOP_BOT" and not unit:IsBeingBuilt() then
 					owner = ListArmies()[unit:GetArmy()]
 				end
 			end
@@ -187,7 +187,7 @@ function FirstTech3()
 		units = EntityCategoryFilterDown(categories.TECH3 - categories.COMMAND, units)
 		if units and table.getn(units) > 0 then 
 			for index,unit in units do 
-				if ListArmies()[unit:GetArmy()] != "ARMY_9" and ListArmies()[unit:GetArmy()] != "NEUTRAL_CIVILIAN" and not unit:IsBeingBuilt() then
+				if ListArmies()[unit:GetArmy()] != "BOTTOM_BOT" and ListArmies()[unit:GetArmy()] != "TOP_BOT" and not unit:IsBeingBuilt() then
 					owner = ListArmies()[unit:GetArmy()]
 				end
 			end
@@ -205,7 +205,7 @@ function FirstTechEXP()
 		units = EntityCategoryFilterDown(categories.EXPERIMENTAL - categories.COMMAND, units)
 		if units and table.getn(units) > 0 then 
 			for index,unit in units do 
-				if ListArmies()[unit:GetArmy()] != "ARMY_9" and ListArmies()[unit:GetArmy()] != "NEUTRAL_CIVILIAN" and not unit:IsBeingBuilt() then
+				if ListArmies()[unit:GetArmy()] != "BOTTOM_BOT" and ListArmies()[unit:GetArmy()] != "TOP_BOT" and not unit:IsBeingBuilt() then
 					owner = ListArmies()[unit:GetArmy()]
 				end
 			end

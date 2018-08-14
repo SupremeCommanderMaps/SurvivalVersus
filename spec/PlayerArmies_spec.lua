@@ -54,8 +54,8 @@ describe("PlayerArmies", function()
         end)
 
         it("returns false for non-player ARMY_ names", function()
-            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_9"))
-            assert.is_false(PlayerArmies({}).isBottomSideArmy("NEUTRAL_CIVILIAN"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("BOTTOM_BOT"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("TOP_BOT"))
         end)
 
         local armies = {
@@ -97,7 +97,7 @@ describe("PlayerArmies", function()
         it("filters out non-player armies", function()
             assert.are.same(
                 {[1] = "ARMY_2", [3] = "ARMY_7"},
-                PlayerArmies({[1] = "ARMY_2", [2] = "NEUTRAL_CIVILIAN", [3] = "ARMY_7", [4] = "ARMY_9"}).getIndexToNameMap()
+                PlayerArmies({[1] = "ARMY_2", [2] = "TOP_BOT", [3] = "ARMY_7", [4] = "BOTTOM_BOT"}).getIndexToNameMap()
             )
         end)
     end)
@@ -159,43 +159,43 @@ describe("PlayerArmies", function()
 
             assert.are.same(
                 {},
-                allArmies.getTargetsForArmy("NEUTRAL_CIVILIAN").getIndexToNameMap()
+                allArmies.getTargetsForArmy("TOP_BOT").getIndexToNameMap()
             )
         end)
 
-        it("returns all NEUTRAL_CIVILIAN armies when there are only armies for NEUTRAL_CIVILIAN", function()
+        it("returns all TOP_BOT armies when there are only armies for TOP_BOT", function()
             local allArmies = PlayerArmies({"ARMY_5", "ARMY_6", "ARMY_8"})
 
             assert.are.same(
                 {"ARMY_5", "ARMY_6", "ARMY_8"},
-                allArmies.getTargetsForArmy("NEUTRAL_CIVILIAN").getIndexToNameMap()
+                allArmies.getTargetsForArmy("TOP_BOT").getIndexToNameMap()
             )
         end)
 
-        it("returns all ARMY_9 armies when there are only armies for ARMY_9", function()
+        it("returns all BOTTOM_BOT armies when there are only armies for BOTTOM_BOT", function()
             local allArmies = PlayerArmies({"ARMY_1", "ARMY_3", "ARMY_4"})
 
             assert.are.same(
                 {"ARMY_1", "ARMY_3", "ARMY_4"},
-                allArmies.getTargetsForArmy("ARMY_9").getIndexToNameMap()
+                allArmies.getTargetsForArmy("BOTTOM_BOT").getIndexToNameMap()
             )
         end)
 
-        it("returns no NEUTRAL_CIVILIAN armies when there are only ARMY_9 armies", function()
+        it("returns no TOP_BOT armies when there are only BOTTOM_BOT armies", function()
             local allArmies = PlayerArmies({"ARMY_1", "ARMY_3", "ARMY_4"})
 
             assert.are.same(
                 {},
-                allArmies.getTargetsForArmy("NEUTRAL_CIVILIAN").getIndexToNameMap()
+                allArmies.getTargetsForArmy("TOP_BOT").getIndexToNameMap()
             )
         end)
 
-        it("returns no ARMY_9 armies when there are only NEUTRAL_CIVILIAN armies", function()
+        it("returns no BOTTOM_BOT armies when there are only TOP_BOT armies", function()
             local allArmies = PlayerArmies({"ARMY_5", "ARMY_6", "ARMY_8"})
 
             assert.are.same(
                 {},
-                allArmies.getTargetsForArmy("ARMY_9").getIndexToNameMap()
+                allArmies.getTargetsForArmy("BOTTOM_BOT").getIndexToNameMap()
             )
         end)
 

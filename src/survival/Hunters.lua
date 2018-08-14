@@ -191,8 +191,8 @@ newInstance = function(initialSpawnDelayInSeconds, unitCreator, textPrinter, pla
             textPrinter.print("Hunters inbound")
 
             while true do
-                huntRandomArmy("NEUTRAL_CIVILIAN")
-                huntRandomArmy("ARMY_9")
+                huntRandomArmy("TOP_BOT")
+                huntRandomArmy("BOTTOM_BOT")
                 WaitSeconds(frequency)
             end
         end

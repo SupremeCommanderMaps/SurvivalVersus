@@ -10,7 +10,7 @@ newInstance = function(playerArmies, textPrinter)
 
         local ExplosionCount = 0
         while ExplosionCount < Random(10, 20) do
-            local killit = CreateUnitHPR("ual0001", "NEUTRAL_CIVILIAN", Random(230,280), 25.984375, Random(230,280), 0, 0, 0)
+            local killit = CreateUnitHPR("ual0001", "TOP_BOT", Random(230,280), 25.984375, Random(230,280), 0, 0, 0)
             killit:Kill()
             WaitSeconds(Random(1, 3))
             ExplosionCount = ExplosionCount + 1
@@ -59,7 +59,7 @@ newInstance = function(playerArmies, textPrinter)
         y = 255
     }
 
-    local baseSpawner = import('/maps/final_rush_pro_5.12.v0001/src/lib/BaseSpanwer.lua').newInstance(mapCenter, "NEUTRAL_CIVILIAN")
+    local baseSpawner = import('/maps/final_rush_pro_5.12.v0001/src/lib/BaseSpanwer.lua').newInstance(mapCenter, "TOP_BOT")
 
     local createParagonActivator = function()
         local paragonActivator = baseSpawner.spawnCentralStructure("uac1901")
@@ -93,7 +93,7 @@ newInstance = function(playerArmies, textPrinter)
 
     local setCivilianAlliance = function()
         for armyName in playerArmies.getNameToIndexMap() do
-            SetAlliance("NEUTRAL_CIVILIAN", armyName, "Enemy")
+            SetAlliance("TOP_BOT", armyName, "Enemy")
         end
     end
     

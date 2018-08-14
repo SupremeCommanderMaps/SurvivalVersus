@@ -70,7 +70,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
     local function isSurvivalUnit(unit)
         local armyName = ListArmies()[unit:GetArmy()]
-        return armyName == "ARMY_9" or armyName == "NEUTRAL_CIVILIAN"
+        return armyName == "BOTTOM_BOT" or armyName == "TOP_BOT"
     end
 
     local GetRandomPlayer = function(team)
@@ -134,12 +134,12 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             SetAlliance(index, "FRIENDLY_BOT", 'Ally')
 
             if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
-                SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
-                SetAlliance(index, "ARMY_9", 'Ally')
+                SetAlliance(index, "TOP_BOT", 'Enemy')
+                SetAlliance(index, "BOTTOM_BOT", 'Ally')
                 SetAlliance(index, "HOSTILE_BOT", 'Enemy')
             elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
-                SetAlliance(index, "ARMY_9", 'Enemy')
-                SetAlliance(index, "NEUTRAL_CIVILIAN", 'Ally')
+                SetAlliance(index, "BOTTOM_BOT", 'Enemy')
+                SetAlliance(index, "TOP_BOT", 'Ally')
                 SetAlliance(index, "HOSTILE_BOT", 'Enemy')
             end
         end
@@ -150,24 +150,24 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         for index in tblArmies do
             SetAlliance(index, "FRIENDLY_BOT", 'Ally')
 
-            SetAlliance(index, "NEUTRAL_CIVILIAN", 'Enemy')
-            SetAlliance(index, "ARMY_9", 'Enemy')
+            SetAlliance(index, "TOP_BOT", 'Enemy')
+            SetAlliance(index, "BOTTOM_BOT", 'Enemy')
             SetAlliance(index, "HOSTILE_BOT", 'Enemy')
         end
     end
 
     local function colorBots()
-        SetArmyColor("ARMY_9", 110, 90, 90)
-        SetArmyColor("NEUTRAL_CIVILIAN", 150, 170, 150)
+        SetArmyColor("BOTTOM_BOT", 110, 90, 90)
+        SetArmyColor("TOP_BOT", 150, 170, 150)
     end
 
     local function allyBotsWithEachOther()
-        SetAlliance("ARMY_9", "NEUTRAL_CIVILIAN", 'Ally')
-        SetAlliance("HOSTILE_BOT", "NEUTRAL_CIVILIAN", 'Ally')
-        SetAlliance("HOSTILE_BOT", "ARMY_9", 'Ally')
+        SetAlliance("BOTTOM_BOT", "TOP_BOT", 'Ally')
+        SetAlliance("HOSTILE_BOT", "TOP_BOT", 'Ally')
+        SetAlliance("HOSTILE_BOT", "BOTTOM_BOT", 'Ally')
 
-        SetAlliance("FRIENDLY_BOT", "NEUTRAL_CIVILIAN", 'Ally')
-        SetAlliance("FRIENDLY_BOT", "ARMY_9", 'Ally')
+        SetAlliance("FRIENDLY_BOT", "TOP_BOT", 'Ally')
+        SetAlliance("FRIENDLY_BOT", "BOTTOM_BOT", 'Ally')
         SetAlliance("FRIENDLY_BOT", "HOSTILE_BOT", 'Ally')
     end
 
@@ -178,8 +178,8 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     end
 
     local function giveBotsStorage()
-        giveStorage("ARMY_9")
-        giveStorage("NEUTRAL_CIVILIAN")
+        giveStorage("BOTTOM_BOT")
+        giveStorage("TOP_BOT")
         giveStorage("HOSTILE_BOT")
         giveStorage("FRIENDLY_BOT")
     end
@@ -192,11 +192,11 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     local function createSurvivalStructures()
         local survivalStructures = import('/maps/final_rush_pro_5.12.v0001/src/survival/SurvivalStructures.lua').newInstance()
 
-        survivalStructures.createTopParagon("ARMY_9")
+        survivalStructures.createTopParagon("BOTTOM_BOT")
         survivalStructures.createTopOmni("HOSTILE_BOT")
         survivalStructures.createTopRadar("FRIENDLY_BOT")
 
-        survivalStructures.createBottomParagon("NEUTRAL_CIVILIAN")
+        survivalStructures.createBottomParagon("TOP_BOT")
         survivalStructures.createBottomOmni("HOSTILE_BOT")
         survivalStructures.createBottomRadar("FRIENDLY_BOT")
 
