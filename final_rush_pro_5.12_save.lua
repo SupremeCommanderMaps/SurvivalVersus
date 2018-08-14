@@ -72,7 +72,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, -0, 0 ),
                     ['position'] = VECTOR3( 152.5, 25.9844, 209.5 ),
                 },
-                ['ARMY_5'] = {
+                ['ARMY_TOP_RIGHT'] = {
                     ['color'] = STRING( 'ff800080' ),
                     ['type'] = STRING( 'Blank Marker' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
@@ -273,7 +273,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, -0, 0 ),
                     ['position'] = VECTOR3( 42.5, 25.9844, 282.5 ),
                 },
-                ['ARMY_8'] = {
+                ['ARMY_TOP_LEFT'] = {
                     ['color'] = STRING( 'ff800080' ),
                     ['type'] = STRING( 'Blank Marker' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
@@ -720,7 +720,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, -0, 0 ),
                     ['position'] = VECTOR3( 443.5, 25.9844, 313.5 ),
                 },
-                ['ARMY_1'] = {
+                ['ARMY_BOTTOM_LEFT'] = {
                     ['color'] = STRING( 'ff800080' ),
                     ['type'] = STRING( 'Blank Marker' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
@@ -959,7 +959,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, -0, 0 ),
                     ['position'] = VECTOR3( 449.5, 25.9844, 307.5 ),
                 },
-                ['ARMY_7'] = {
+                ['ARMY_TOP_LMID'] = {
                     ['color'] = STRING( 'ff800080' ),
                     ['type'] = STRING( 'Blank Marker' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
@@ -1895,7 +1895,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, -0, 0 ),
                     ['position'] = VECTOR3( 499.5, 25.7188, 13.5 ),
                 },
-                ['ARMY_3'] = {
+                ['ARMY_BOTTOM_RMID'] = {
                     ['color'] = STRING( 'ff800080' ),
                     ['type'] = STRING( 'Blank Marker' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
@@ -2045,7 +2045,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, -0, 0 ),
                     ['position'] = VECTOR3( 433.5, 25.9844, 385.5 ),
                 },
-                ['ARMY_6'] = {
+                ['ARMY_TOP_RMID'] = {
                     ['color'] = STRING( 'ff800080' ),
                     ['type'] = STRING( 'Blank Marker' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
@@ -2381,7 +2381,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, -0, 0 ),
                     ['position'] = VECTOR3( 433.5, 25.9844, 373.5 ),
                 },
-                ['ARMY_2'] = {
+                ['ARMY_BOTTOM_LMID'] = {
                     ['color'] = STRING( 'ff800080' ),
                     ['type'] = STRING( 'Blank Marker' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
@@ -2611,7 +2611,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, -0, 0 ),
                     ['position'] = VECTOR3( 61.5, 25.9922, 134.5 ),
                 },
-                ['ARMY_4'] = {
+                ['ARMY_BOTTOM_RIGHT'] = {
                     ['color'] = STRING( 'ff800080' ),
                     ['type'] = STRING( 'Blank Marker' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
@@ -2875,7 +2875,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['ARMY_3'] =  
+        ['ARMY_BOTTOM_RMID'] =
         {
             personality = '',
             plans = '',
@@ -2908,7 +2908,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['ARMY_1'] =  
+        ['ARMY_BOTTOM_LEFT'] =
         {
             personality = '',
             plans = '',
@@ -2941,7 +2941,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['ARMY_4'] =  
+        ['ARMY_BOTTOM_RIGHT'] =
         {
             personality = '',
             plans = '',
@@ -3040,7 +3040,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['ARMY_8'] =  
+        ['ARMY_TOP_LEFT'] =
         {
             personality = '',
             plans = '',
@@ -3073,7 +3073,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['ARMY_2'] =  
+        ['ARMY_BOTTOM_LMID'] =
         {
             personality = '',
             plans = '',
@@ -3106,7 +3106,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['ARMY_5'] =  
+        ['ARMY_TOP_RIGHT'] =
         {
             personality = '',
             plans = '',
@@ -3139,7 +3139,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['ARMY_7'] =  
+        ['ARMY_TOP_LMID'] =
         {
             personality = '',
             plans = '',
@@ -3172,7 +3172,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  Army                                                                     ]]--
         --[[                                                                           ]]--
-        ['ARMY_6'] =  
+        ['ARMY_TOP_RMID'] =
         {
             personality = '',
             plans = '',

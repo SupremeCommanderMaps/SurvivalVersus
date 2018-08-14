@@ -3,10 +3,10 @@ describe("PlayerArmies", function()
     local PlayerArmies = require 'frp/PlayerArmies'
 
     describe("getNameForIndex", function()
-        local armies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_2"})
+        local armies = PlayerArmies({[1] = "ARMY_BOTTOM_LEFT", [2] = "ARMY_BOTTOM_LMID"})
 
         it("returns army name when the index is known", function()
-            assert.are.equal("ARMY_2", armies.getNameForIndex(2))
+            assert.are.equal("ARMY_BOTTOM_LMID", armies.getNameForIndex(2))
         end)
 
         it("returns nil when the index is unknown", function()
@@ -20,37 +20,37 @@ describe("PlayerArmies", function()
         end)
 
         it("returns the same armies as the constructor got", function()
-            local armyMap = {[1] = "ARMY_1", [2] = "ARMY_2"}
+            local armyMap = {[1] = "ARMY_BOTTOM_LEFT", [2] = "ARMY_BOTTOM_LMID"}
             assert.are.same(armyMap, PlayerArmies(armyMap).getIndexToNameMap())
         end)
     end)
 
     describe("getIndexForName", function()
         it("returns nil when the army name is not known", function()
-            assert.is_nil(PlayerArmies({}).getIndexForName("ARMY_1"))
+            assert.is_nil(PlayerArmies({}).getIndexForName("ARMY_BOTTOM_LEFT"))
         end)
 
         it("returns the index of known armies", function()
             assert.is.equal(
                 2,
-                PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_5"}).getIndexForName("ARMY_5")
+                PlayerArmies({[1] = "ARMY_BOTTOM_LEFT", [2] = "ARMY_TOP_RIGHT"}).getIndexForName("ARMY_TOP_RIGHT")
             )
         end)
     end)
 
     describe("isBottomSideArmy", function()
         it("returns true for bottom side ARMY_ names", function()
-            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_1"))
-            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_2"))
-            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_3"))
-            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_4"))
+            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_BOTTOM_LEFT"))
+            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_BOTTOM_LMID"))
+            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_BOTTOM_RMID"))
+            assert.is_true(PlayerArmies({}).isBottomSideArmy("ARMY_BOTTOM_RIGHT"))
         end)
 
         it("returns false for top side ARMY_ names", function()
-            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_5"))
-            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_6"))
-            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_7"))
-            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_8"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_TOP_RIGHT"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_TOP_RMID"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_TOP_LMID"))
+            assert.is_false(PlayerArmies({}).isBottomSideArmy("ARMY_TOP_LEFT"))
         end)
 
         it("returns false for non-player ARMY_ names", function()
@@ -59,10 +59,10 @@ describe("PlayerArmies", function()
         end)
 
         local armies = {
-            [1] = "ARMY_1",
-            [2] = "ARMY_3",
-            [3] = "ARMY_6",
-            [4] = "ARMY_7",
+            [1] = "ARMY_BOTTOM_LEFT",
+            [2] = "ARMY_BOTTOM_RMID",
+            [3] = "ARMY_TOP_RMID",
+            [4] = "ARMY_TOP_LMID",
         }
 
         it("returns true for bottom side army indexes", function()
@@ -87,8 +87,8 @@ describe("PlayerArmies", function()
 
         it("returns reversed constructor map", function()
             assert.are.same(
-                {ARMY_2 = 1, ARMY_7 = 2},
-                PlayerArmies({[1] = "ARMY_2", [2] = "ARMY_7"}).getNameToIndexMap()
+                {ARMY_BOTTOM_LMID = 1, ARMY_TOP_LMID = 2},
+                PlayerArmies({[1] = "ARMY_BOTTOM_LMID", [2] = "ARMY_TOP_LMID"}).getNameToIndexMap()
             )
         end)
     end)
@@ -96,8 +96,8 @@ describe("PlayerArmies", function()
     describe("constructor", function()
         it("filters out non-player armies", function()
             assert.are.same(
-                {[1] = "ARMY_2", [3] = "ARMY_7"},
-                PlayerArmies({[1] = "ARMY_2", [2] = "TOP_BOT", [3] = "ARMY_7", [4] = "BOTTOM_BOT"}).getIndexToNameMap()
+                {[1] = "ARMY_BOTTOM_LMID", [3] = "ARMY_TOP_LMID"},
+                PlayerArmies({[1] = "ARMY_BOTTOM_LMID", [2] = "TOP_BOT", [3] = "ARMY_TOP_LMID", [4] = "BOTTOM_BOT"}).getIndexToNameMap()
             )
         end)
     end)
@@ -106,14 +106,14 @@ describe("PlayerArmies", function()
         it("works on the return value of getIndexToNameMap", function()
             assert.are.equal(
                 3,
-                table.getn(PlayerArmies({[1] = "ARMY_2", [2] = "ARMY_7", [3] = "ARMY_8"}).getIndexToNameMap())
+                table.getn(PlayerArmies({[1] = "ARMY_BOTTOM_LMID", [2] = "ARMY_TOP_LMID", [3] = "ARMY_TOP_LEFT"}).getIndexToNameMap())
             )
         end)
     end)
 
     describe("getBottomSideArmies", function()
         it("returns no armies when there are only top side armies", function()
-            local allArmies = PlayerArmies({[1] = "ARMY_5", [2] = "ARMY_6", [3] = "ARMY_8"})
+            local allArmies = PlayerArmies({[1] = "ARMY_TOP_RIGHT", [2] = "ARMY_TOP_RMID", [3] = "ARMY_TOP_LEFT"})
 
             assert.are.same(
                 {},
@@ -122,8 +122,8 @@ describe("PlayerArmies", function()
         end)
 
         it("returns only top side armies when there are on both sides", function()
-            local allArmies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_4", [3] = "ARMY_5", [4] = "ARMY_8"})
-            local bottomArmies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_4"})
+            local allArmies = PlayerArmies({[1] = "ARMY_BOTTOM_LEFT", [2] = "ARMY_BOTTOM_RIGHT", [3] = "ARMY_TOP_RIGHT", [4] = "ARMY_TOP_LEFT"})
+            local bottomArmies = PlayerArmies({[1] = "ARMY_BOTTOM_LEFT", [2] = "ARMY_BOTTOM_RIGHT"})
 
             assert.are.same(
                 bottomArmies.getIndexToNameMap(),
@@ -134,7 +134,7 @@ describe("PlayerArmies", function()
 
     describe("getTopSideArmies", function()
         it("returns no armies when there are only bottom side armies", function()
-            local allArmies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_2", [3] = "ARMY_4"})
+            local allArmies = PlayerArmies({[1] = "ARMY_BOTTOM_LEFT", [2] = "ARMY_BOTTOM_LMID", [3] = "ARMY_BOTTOM_RIGHT"})
 
             assert.are.same(
                 {},
@@ -143,8 +143,8 @@ describe("PlayerArmies", function()
         end)
 
         it("returns only top side armies when there are on both sides", function()
-            local allArmies = PlayerArmies({[1] = "ARMY_1", [2] = "ARMY_4", [3] = "ARMY_5", [4] = "ARMY_8"})
-            local topArmies = PlayerArmies({[3] = "ARMY_5", [4] = "ARMY_8"})
+            local allArmies = PlayerArmies({[1] = "ARMY_BOTTOM_LEFT", [2] = "ARMY_BOTTOM_RIGHT", [3] = "ARMY_TOP_RIGHT", [4] = "ARMY_TOP_LEFT"})
+            local topArmies = PlayerArmies({[3] = "ARMY_TOP_RIGHT", [4] = "ARMY_TOP_LEFT"})
 
             assert.are.same(
                 topArmies.getIndexToNameMap(),
@@ -164,25 +164,25 @@ describe("PlayerArmies", function()
         end)
 
         it("returns all TOP_BOT armies when there are only armies for TOP_BOT", function()
-            local allArmies = PlayerArmies({"ARMY_5", "ARMY_6", "ARMY_8"})
+            local allArmies = PlayerArmies({"ARMY_TOP_RIGHT", "ARMY_TOP_RMID", "ARMY_TOP_LEFT"})
 
             assert.are.same(
-                {"ARMY_5", "ARMY_6", "ARMY_8"},
+                {"ARMY_TOP_RIGHT", "ARMY_TOP_RMID", "ARMY_TOP_LEFT"},
                 allArmies.getTargetsForArmy("TOP_BOT").getIndexToNameMap()
             )
         end)
 
         it("returns all BOTTOM_BOT armies when there are only armies for BOTTOM_BOT", function()
-            local allArmies = PlayerArmies({"ARMY_1", "ARMY_3", "ARMY_4"})
+            local allArmies = PlayerArmies({"ARMY_BOTTOM_LEFT", "ARMY_BOTTOM_RMID", "ARMY_BOTTOM_RIGHT"})
 
             assert.are.same(
-                {"ARMY_1", "ARMY_3", "ARMY_4"},
+                {"ARMY_BOTTOM_LEFT", "ARMY_BOTTOM_RMID", "ARMY_BOTTOM_RIGHT"},
                 allArmies.getTargetsForArmy("BOTTOM_BOT").getIndexToNameMap()
             )
         end)
 
         it("returns no TOP_BOT armies when there are only BOTTOM_BOT armies", function()
-            local allArmies = PlayerArmies({"ARMY_1", "ARMY_3", "ARMY_4"})
+            local allArmies = PlayerArmies({"ARMY_BOTTOM_LEFT", "ARMY_BOTTOM_RMID", "ARMY_BOTTOM_RIGHT"})
 
             assert.are.same(
                 {},
@@ -191,7 +191,7 @@ describe("PlayerArmies", function()
         end)
 
         it("returns no BOTTOM_BOT armies when there are only TOP_BOT armies", function()
-            local allArmies = PlayerArmies({"ARMY_5", "ARMY_6", "ARMY_8"})
+            local allArmies = PlayerArmies({"ARMY_TOP_RIGHT", "ARMY_TOP_RMID", "ARMY_TOP_LEFT"})
 
             assert.are.same(
                 {},
@@ -200,7 +200,7 @@ describe("PlayerArmies", function()
         end)
 
         it("returns no armies for invalid army name", function()
-            local allArmies = PlayerArmies({"ARMY_1", "ARMY_5"})
+            local allArmies = PlayerArmies({"ARMY_BOTTOM_LEFT", "ARMY_TOP_RIGHT"})
 
             assert.are.same(
                 {},
@@ -217,33 +217,33 @@ describe("PlayerArmies", function()
         end)
 
         it("returns the army when there is only one army", function()
-            local armies = PlayerArmies({"ARMY_5"})
+            local armies = PlayerArmies({"ARMY_TOP_RIGHT"})
 
-            assert.is.equal("ARMY_5", armies.getRandomArmyName())
+            assert.is.equal("ARMY_TOP_RIGHT", armies.getRandomArmyName())
         end)
 
         it("returns one of the armies if there are multiple", function()
-            local armies = PlayerArmies({"ARMY_1", "ARMY_5"})
+            local armies = PlayerArmies({"ARMY_BOTTOM_LEFT", "ARMY_TOP_RIGHT"})
             local randomArmyName = armies.getRandomArmyName()
 
-            assert.is_true(randomArmyName == "ARMY_1" or randomArmyName == "ARMY_5")
+            assert.is_true(randomArmyName == "ARMY_BOTTOM_LEFT" or randomArmyName == "ARMY_TOP_RIGHT")
         end)
 
         it("works when there is no army with key 1", function()
-            local armies = PlayerArmies({[2] = "ARMY_5"})
+            local armies = PlayerArmies({[2] = "ARMY_TOP_RIGHT"})
 
-            assert.is.equal("ARMY_5", armies.getRandomArmyName())
+            assert.is.equal("ARMY_TOP_RIGHT", armies.getRandomArmyName())
         end)
     end)
 
     describe("filterByName", function()
         it("returns only elements matching the filter function", function()
-            local armies = PlayerArmies({"ARMY_1", "ARMY_5", "ARMY_6", "ARMY_8"})
+            local armies = PlayerArmies({"ARMY_BOTTOM_LEFT", "ARMY_TOP_RIGHT", "ARMY_TOP_RMID", "ARMY_TOP_LEFT"})
 
             assert.are.same(
-                {[2] = "ARMY_5", [3] = "ARMY_6"},
+                {[2] = "ARMY_TOP_RIGHT", [3] = "ARMY_TOP_RMID"},
                 armies.filterByName(function(armyName)
-                    return armyName == "ARMY_5" or armyName == "ARMY_6"
+                    return armyName == "ARMY_TOP_RIGHT" or armyName == "ARMY_TOP_RMID"
                 end).getIndexToNameMap()
             )
         end)

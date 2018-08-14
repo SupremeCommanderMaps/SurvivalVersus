@@ -22,14 +22,14 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     }
 
     local StartingPlayersExistance = {
-        ARMY_1 = false,
-        ARMY_2 = false,
-        ARMY_3 = false,
-        ARMY_4 = false,
-        ARMY_5 = false,
-        ARMY_6 = false,
-        ARMY_7 = false,
-        ARMY_8 = false
+        ARMY_BOTTOM_LEFT = false,
+        ARMY_BOTTOM_LMID = false,
+        ARMY_BOTTOM_RMID = false,
+        ARMY_BOTTOM_RIGHT = false,
+        ARMY_TOP_RIGHT = false,
+        ARMY_TOP_RMID = false,
+        ARMY_TOP_LMID = false,
+        ARMY_TOP_LEFT = false
     }
 
     local t1spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay
@@ -38,29 +38,29 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     local t4spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT4Delay
 
     local function createStartingPlayersExistance()
-        if not ScenarioInfo.ArmySetup["ARMY_1"] == false then
-            StartingPlayersExistance.ARMY_1 = true
+        if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_LEFT"] == false then
+            StartingPlayersExistance.ARMY_BOTTOM_LEFT = true
         end
-        if not ScenarioInfo.ArmySetup["ARMY_2"] == false then
-            StartingPlayersExistance.ARMY_2 = true
+        if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_LMID"] == false then
+            StartingPlayersExistance.ARMY_BOTTOM_LMID = true
         end
-        if not ScenarioInfo.ArmySetup["ARMY_3"] == false then
-            StartingPlayersExistance.ARMY_3 = true
+        if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_RMID"] == false then
+            StartingPlayersExistance.ARMY_BOTTOM_RMID = true
         end
-        if not ScenarioInfo.ArmySetup["ARMY_4"] == false then
-            StartingPlayersExistance.ARMY_4 = true
+        if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_RIGHT"] == false then
+            StartingPlayersExistance.ARMY_BOTTOM_RIGHT = true
         end
-        if not ScenarioInfo.ArmySetup["ARMY_5"] == false then
-            StartingPlayersExistance.ARMY_5 = true
+        if not ScenarioInfo.ArmySetup["ARMY_TOP_RIGHT"] == false then
+            StartingPlayersExistance.ARMY_TOP_RIGHT = true
         end
-        if not ScenarioInfo.ArmySetup["ARMY_6"] == false then
-            StartingPlayersExistance.ARMY_6 = true
+        if not ScenarioInfo.ArmySetup["ARMY_TOP_RMID"] == false then
+            StartingPlayersExistance.ARMY_TOP_RMID = true
         end
-        if not ScenarioInfo.ArmySetup["ARMY_7"] == false then
-            StartingPlayersExistance.ARMY_7 = true
+        if not ScenarioInfo.ArmySetup["ARMY_TOP_LMID"] == false then
+            StartingPlayersExistance.ARMY_TOP_LMID = true
         end
-        if not ScenarioInfo.ArmySetup["ARMY_8"] == false then
-            StartingPlayersExistance.ARMY_8 = true
+        if not ScenarioInfo.ArmySetup["ARMY_TOP_LEFT"] == false then
+            StartingPlayersExistance.ARMY_TOP_LEFT = true
         end
     end
 
@@ -133,11 +133,11 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         for index, name in tblArmies do
             SetAlliance(index, "FRIENDLY_BOT", 'Ally')
 
-            if name == "ARMY_5" or name == "ARMY_6" or name == "ARMY_7" or name == "ARMY_8" then
+            if name == "ARMY_TOP_RIGHT" or name == "ARMY_TOP_RMID" or name == "ARMY_TOP_LMID" or name == "ARMY_TOP_LEFT" then
                 SetAlliance(index, "TOP_BOT", 'Enemy')
                 SetAlliance(index, "BOTTOM_BOT", 'Ally')
                 SetAlliance(index, "HOSTILE_BOT", 'Enemy')
-            elseif name == "ARMY_1" or name == "ARMY_2" or name == "ARMY_3" or name == "ARMY_4" then
+            elseif name == "ARMY_BOTTOM_LEFT" or name == "ARMY_BOTTOM_LMID" or name == "ARMY_BOTTOM_RMID" or name == "ARMY_BOTTOM_RIGHT" then
                 SetAlliance(index, "BOTTOM_BOT", 'Enemy')
                 SetAlliance(index, "TOP_BOT", 'Ally')
                 SetAlliance(index, "HOSTILE_BOT", 'Enemy')

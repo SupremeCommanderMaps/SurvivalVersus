@@ -19,42 +19,42 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
 
     local function ArmyToPlayerTeam(army)
         local data = {}
-        if army == "ARMY_1" then
+        if army == "ARMY_BOTTOM_LEFT" then
             data = { Team = 1, Player = 1 }
-        elseif army == "ARMY_2" then
+        elseif army == "ARMY_BOTTOM_LMID" then
             data = { Team = 1, Player = 2 }
-        elseif army == "ARMY_3" then
+        elseif army == "ARMY_BOTTOM_RMID" then
             data = { Team = 1, Player = 3 }
-        elseif army == "ARMY_4" then
+        elseif army == "ARMY_BOTTOM_RIGHT" then
             data = { Team = 1, Player = 4 }
-        elseif army == "ARMY_5" then
+        elseif army == "ARMY_TOP_RIGHT" then
             data = { Team = 2, Player = 1 }
-        elseif army == "ARMY_6" then
+        elseif army == "ARMY_TOP_RMID" then
             data = { Team = 2, Player = 2 }
-        elseif army == "ARMY_7" then
+        elseif army == "ARMY_TOP_LMID" then
             data = { Team = 2, Player = 3 }
-        elseif army == "ARMY_8" then
+        elseif army == "ARMY_TOP_LEFT" then
             data = { Team = 2, Player = 4 }
         end
         return data
     end
 
     local function ArmyToAggro(army)
-        if army == "ARMY_1" then
+        if army == "ARMY_BOTTOM_LEFT" then
             return Aggro.Team1.Player1
-        elseif army == "ARMY_2" then
+        elseif army == "ARMY_BOTTOM_LMID" then
             return Aggro.Team1.Player2
-        elseif army == "ARMY_3" then
+        elseif army == "ARMY_BOTTOM_RMID" then
             return Aggro.Team1.Player3
-        elseif army == "ARMY_4" then
+        elseif army == "ARMY_BOTTOM_RIGHT" then
             return Aggro.Team1.Player4
-        elseif army == "ARMY_5" then
+        elseif army == "ARMY_TOP_RIGHT" then
             return Aggro.Team2.Player1
-        elseif army == "ARMY_6" then
+        elseif army == "ARMY_TOP_RMID" then
             return Aggro.Team2.Player2
-        elseif army == "ARMY_7" then
+        elseif army == "ARMY_TOP_LMID" then
             return Aggro.Team2.Player3
-        elseif army == "ARMY_8" then
+        elseif army == "ARMY_TOP_LEFT" then
             return Aggro.Team2.Player4
         end
     end
@@ -215,29 +215,29 @@ newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, T
     end
 
     local function AggressionSpawner(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-        if StartingPlayersExistance.ARMY_1 then
-            ForkThread(AggressionWatcher,"ARMY_1",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        if StartingPlayersExistance.ARMY_BOTTOM_LEFT then
+            ForkThread(AggressionWatcher,"ARMY_BOTTOM_LEFT",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
-        if StartingPlayersExistance.ARMY_2 then
-            ForkThread(AggressionWatcher,"ARMY_2",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        if StartingPlayersExistance.ARMY_BOTTOM_LMID then
+            ForkThread(AggressionWatcher,"ARMY_BOTTOM_LMID",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
-        if StartingPlayersExistance.ARMY_3 then
-            ForkThread(AggressionWatcher,"ARMY_3",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        if StartingPlayersExistance.ARMY_BOTTOM_RMID then
+            ForkThread(AggressionWatcher,"ARMY_BOTTOM_RMID",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
-        if StartingPlayersExistance.ARMY_4 then
-            ForkThread(AggressionWatcher,"ARMY_4",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        if StartingPlayersExistance.ARMY_BOTTOM_RIGHT then
+            ForkThread(AggressionWatcher,"ARMY_BOTTOM_RIGHT",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
-        if StartingPlayersExistance.ARMY_5 then
-            ForkThread(AggressionWatcher,"ARMY_5",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        if StartingPlayersExistance.ARMY_TOP_RIGHT then
+            ForkThread(AggressionWatcher,"ARMY_TOP_RIGHT",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
-        if StartingPlayersExistance.ARMY_6 then
-            ForkThread(AggressionWatcher,"ARMY_6",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        if StartingPlayersExistance.ARMY_TOP_RMID then
+            ForkThread(AggressionWatcher,"ARMY_TOP_RMID",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
-        if StartingPlayersExistance.ARMY_7 then
-            ForkThread(AggressionWatcher,"ARMY_7",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        if StartingPlayersExistance.ARMY_TOP_LMID then
+            ForkThread(AggressionWatcher,"ARMY_TOP_LMID",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
-        if StartingPlayersExistance.ARMY_8 then
-            ForkThread(AggressionWatcher,"ARMY_8",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        if StartingPlayersExistance.ARMY_TOP_LEFT then
+            ForkThread(AggressionWatcher,"ARMY_TOP_LEFT",t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
         end
     end
 

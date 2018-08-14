@@ -1,14 +1,14 @@
 newInstance = function(fullIndexToNameMap)
     local function isPlayerArmyName(armyName)
         local names = {
-            ARMY_1 = true,
-            ARMY_2 = true,
-            ARMY_3 = true,
-            ARMY_4 = true,
-            ARMY_5 = true,
-            ARMY_6 = true,
-            ARMY_7 = true,
-            ARMY_8 = true,
+            ARMY_BOTTOM_LEFT = true,
+            ARMY_BOTTOM_LMID = true,
+            ARMY_BOTTOM_RMID = true,
+            ARMY_BOTTOM_RIGHT = true,
+            ARMY_TOP_RIGHT = true,
+            ARMY_TOP_RMID = true,
+            ARMY_TOP_LMID = true,
+            ARMY_TOP_LEFT = true,
         }
 
         return names[armyName] or false
@@ -39,10 +39,10 @@ newInstance = function(fullIndexToNameMap)
 
     local function isBottomSideArmy(armyNameOrIndex)
         local bottomArmies = {
-            ARMY_1 = true,
-            ARMY_2 = true,
-            ARMY_3 = true,
-            ARMY_4 = true,
+            ARMY_BOTTOM_LEFT = true,
+            ARMY_BOTTOM_LMID = true,
+            ARMY_BOTTOM_RMID = true,
+            ARMY_BOTTOM_RIGHT = true,
         }
 
         local armyName = tonumber(armyNameOrIndex) and indexToNameMap[armyNameOrIndex] or armyNameOrIndex
@@ -51,10 +51,10 @@ newInstance = function(fullIndexToNameMap)
 
     local function isTopSideArmy(armyNameOrIndex)
         local bottomArmies = {
-            ARMY_5 = true,
-            ARMY_6 = true,
-            ARMY_7 = true,
-            ARMY_8 = true,
+            ARMY_TOP_RIGHT = true,
+            ARMY_TOP_RMID = true,
+            ARMY_TOP_LMID = true,
+            ARMY_TOP_LEFT = true,
         }
 
         local armyName = tonumber(armyNameOrIndex) and indexToNameMap[armyNameOrIndex] or armyNameOrIndex

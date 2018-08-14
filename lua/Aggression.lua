@@ -218,29 +218,29 @@ end
 
 function CheckCommandersInMiddle()
 	while true do
-		if not ScenarioInfo.ArmySetup["ARMY_1"] == false and not ArmyIsOutOfGame("ARMY_1") and CommInMiddle("ARMY_1") then
-			AddAggro("ARMY_1",AggroCreators.ComminMiddle)
+		if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_LEFT"] == false and not ArmyIsOutOfGame("ARMY_BOTTOM_LEFT") and CommInMiddle("ARMY_BOTTOM_LEFT") then
+			AddAggro("ARMY_BOTTOM_LEFT",AggroCreators.ComminMiddle)
 		end
-		if not ScenarioInfo.ArmySetup["ARMY_2"] == false and not ArmyIsOutOfGame("ARMY_2") and CommInMiddle("ARMY_2") then
-			AddAggro("ARMY_2",AggroCreators.ComminMiddle)
+		if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_LMID"] == false and not ArmyIsOutOfGame("ARMY_BOTTOM_LMID") and CommInMiddle("ARMY_BOTTOM_LMID") then
+			AddAggro("ARMY_BOTTOM_LMID",AggroCreators.ComminMiddle)
 		end
-		if not ScenarioInfo.ArmySetup["ARMY_3"] == false and not ArmyIsOutOfGame("ARMY_3") and CommInMiddle("ARMY_3") then
-			AddAggro("ARMY_3",AggroCreators.ComminMiddle)
+		if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_RMID"] == false and not ArmyIsOutOfGame("ARMY_BOTTOM_RMID") and CommInMiddle("ARMY_BOTTOM_RMID") then
+			AddAggro("ARMY_BOTTOM_RMID",AggroCreators.ComminMiddle)
 		end
-		if not ScenarioInfo.ArmySetup["ARMY_4"] == false and not ArmyIsOutOfGame("ARMY_4") and CommInMiddle("ARMY_4") then
-			AddAggro("ARMY_4",AggroCreators.ComminMiddle)
+		if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_RIGHT"] == false and not ArmyIsOutOfGame("ARMY_BOTTOM_RIGHT") and CommInMiddle("ARMY_BOTTOM_RIGHT") then
+			AddAggro("ARMY_BOTTOM_RIGHT",AggroCreators.ComminMiddle)
 		end
-		if not ScenarioInfo.ArmySetup["ARMY_5"] == false and not ArmyIsOutOfGame("ARMY_5") and CommInMiddle("ARMY_5") then
-			AddAggro("ARMY_5",AggroCreators.ComminMiddle)
+		if not ScenarioInfo.ArmySetup["ARMY_TOP_RIGHT"] == false and not ArmyIsOutOfGame("ARMY_TOP_RIGHT") and CommInMiddle("ARMY_TOP_RIGHT") then
+			AddAggro("ARMY_TOP_RIGHT",AggroCreators.ComminMiddle)
 		end
-		if not ScenarioInfo.ArmySetup["ARMY_6"] == false and not ArmyIsOutOfGame("ARMY_6") and CommInMiddle("ARMY_6") then
-			AddAggro("ARMY_6",AggroCreators.ComminMiddle)
+		if not ScenarioInfo.ArmySetup["ARMY_TOP_RMID"] == false and not ArmyIsOutOfGame("ARMY_TOP_RMID") and CommInMiddle("ARMY_TOP_RMID") then
+			AddAggro("ARMY_TOP_RMID",AggroCreators.ComminMiddle)
 		end
-		if not ScenarioInfo.ArmySetup["ARMY_7"] == false and not ArmyIsOutOfGame("ARMY_7") and CommInMiddle("ARMY_7") then
-			AddAggro("ARMY_7",AggroCreators.ComminMiddle)
+		if not ScenarioInfo.ArmySetup["ARMY_TOP_LMID"] == false and not ArmyIsOutOfGame("ARMY_TOP_LMID") and CommInMiddle("ARMY_TOP_LMID") then
+			AddAggro("ARMY_TOP_LMID",AggroCreators.ComminMiddle)
 		end
-		if not ScenarioInfo.ArmySetup["ARMY_8"] == false and not ArmyIsOutOfGame("ARMY_8") and CommInMiddle("ARMY_8") then
-			AddAggro("ARMY_8",AggroCreators.ComminMiddle)
+		if not ScenarioInfo.ArmySetup["ARMY_TOP_LEFT"] == false and not ArmyIsOutOfGame("ARMY_TOP_LEFT") and CommInMiddle("ARMY_TOP_LEFT") then
+			AddAggro("ARMY_TOP_LEFT",AggroCreators.ComminMiddle)
 		end
 		WaitSeconds(5)
 	end
@@ -255,73 +255,73 @@ allUnits = function()
 end 
 
 function AddAggro(army, amount)
-	if army == "ARMY_1" then
+	if army == "ARMY_BOTTOM_LEFT" then
 		Aggro.Current.Team1.Player1 = Aggro.Current.Team1.Player1 + amount
-	elseif army == "ARMY_2" then
+	elseif army == "ARMY_BOTTOM_LMID" then
 		Aggro.Current.Team1.Player2 = Aggro.Current.Team1.Player2 + amount
-	elseif army == "ARMY_3" then
+	elseif army == "ARMY_BOTTOM_RMID" then
 		Aggro.Current.Team1.Player3 = Aggro.Current.Team1.Player3 + amount
-	elseif army == "ARMY_4" then
+	elseif army == "ARMY_BOTTOM_RIGHT" then
 		Aggro.Current.Team1.Player4 = Aggro.Current.Team1.Player4 + amount
-	elseif army == "ARMY_5" then
+	elseif army == "ARMY_TOP_RIGHT" then
 		Aggro.Current.Team2.Player1 = Aggro.Current.Team2.Player1 + amount
-	elseif army == "ARMY_6" then
+	elseif army == "ARMY_TOP_RMID" then
 		Aggro.Current.Team2.Player2 = Aggro.Current.Team2.Player2 + amount
-	elseif army == "ARMY_7" then
+	elseif army == "ARMY_TOP_LMID" then
 		Aggro.Current.Team2.Player3 = Aggro.Current.Team2.Player3 + amount
-	elseif army == "ARMY_8" then
+	elseif army == "ARMY_TOP_LEFT" then
 		Aggro.Current.Team2.Player4 = Aggro.Current.Team2.Player4 + amount
 	end
 end
 
 function CreateMonitor()
-	if not ScenarioInfo.ArmySetup["ARMY_1"] == false then
-		ForkThread(MexMonitor,"ARMY_1")
-		ForkThread(ArtyMonitor,"ARMY_1")
-		ForkThread(NukeMonitor,"ARMY_1")
-		ForkThread(MassFabMonitor,"ARMY_1")
+	if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_LEFT"] == false then
+		ForkThread(MexMonitor,"ARMY_BOTTOM_LEFT")
+		ForkThread(ArtyMonitor,"ARMY_BOTTOM_LEFT")
+		ForkThread(NukeMonitor,"ARMY_BOTTOM_LEFT")
+		ForkThread(MassFabMonitor,"ARMY_BOTTOM_LEFT")
 	end
-	if not ScenarioInfo.ArmySetup["ARMY_2"] == false then
-		ForkThread(MexMonitor,"ARMY_2")
-		ForkThread(ArtyMonitor,"ARMY_2")
-		ForkThread(NukeMonitor,"ARMY_2")
-		ForkThread(MassFabMonitor,"ARMY_2")
+	if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_LMID"] == false then
+		ForkThread(MexMonitor,"ARMY_BOTTOM_LMID")
+		ForkThread(ArtyMonitor,"ARMY_BOTTOM_LMID")
+		ForkThread(NukeMonitor,"ARMY_BOTTOM_LMID")
+		ForkThread(MassFabMonitor,"ARMY_BOTTOM_LMID")
 	end
-	if not ScenarioInfo.ArmySetup["ARMY_3"] == false then
-		ForkThread(MexMonitor,"ARMY_3")
-		ForkThread(ArtyMonitor,"ARMY_3")
-		ForkThread(NukeMonitor,"ARMY_3")
-		ForkThread(MassFabMonitor,"ARMY_3")
+	if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_RMID"] == false then
+		ForkThread(MexMonitor,"ARMY_BOTTOM_RMID")
+		ForkThread(ArtyMonitor,"ARMY_BOTTOM_RMID")
+		ForkThread(NukeMonitor,"ARMY_BOTTOM_RMID")
+		ForkThread(MassFabMonitor,"ARMY_BOTTOM_RMID")
 	end
-	if not ScenarioInfo.ArmySetup["ARMY_4"] == false then
-		ForkThread(MexMonitor,"ARMY_4")
-		ForkThread(ArtyMonitor,"ARMY_4")
-		ForkThread(NukeMonitor,"ARMY_4")
-		ForkThread(MassFabMonitor,"ARMY_4")
+	if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_RIGHT"] == false then
+		ForkThread(MexMonitor,"ARMY_BOTTOM_RIGHT")
+		ForkThread(ArtyMonitor,"ARMY_BOTTOM_RIGHT")
+		ForkThread(NukeMonitor,"ARMY_BOTTOM_RIGHT")
+		ForkThread(MassFabMonitor,"ARMY_BOTTOM_RIGHT")
 	end
-	if not ScenarioInfo.ArmySetup["ARMY_5"] == false then
-		ForkThread(MexMonitor,"ARMY_5")
-		ForkThread(ArtyMonitor,"ARMY_5")
-		ForkThread(NukeMonitor,"ARMY_5")
-		ForkThread(MassFabMonitor,"ARMY_5")
+	if not ScenarioInfo.ArmySetup["ARMY_TOP_RIGHT"] == false then
+		ForkThread(MexMonitor,"ARMY_TOP_RIGHT")
+		ForkThread(ArtyMonitor,"ARMY_TOP_RIGHT")
+		ForkThread(NukeMonitor,"ARMY_TOP_RIGHT")
+		ForkThread(MassFabMonitor,"ARMY_TOP_RIGHT")
 	end
-	if not ScenarioInfo.ArmySetup["ARMY_6"] == false then
-		ForkThread(MexMonitor,"ARMY_6")
-		ForkThread(ArtyMonitor,"ARMY_6")
-		ForkThread(NukeMonitor,"ARMY_6")
-		ForkThread(MassFabMonitor,"ARMY_6")
+	if not ScenarioInfo.ArmySetup["ARMY_TOP_RMID"] == false then
+		ForkThread(MexMonitor,"ARMY_TOP_RMID")
+		ForkThread(ArtyMonitor,"ARMY_TOP_RMID")
+		ForkThread(NukeMonitor,"ARMY_TOP_RMID")
+		ForkThread(MassFabMonitor,"ARMY_TOP_RMID")
 	end
-	if not ScenarioInfo.ArmySetup["ARMY_7"] == false then
-		ForkThread(MexMonitor,"ARMY_7")
-		ForkThread(ArtyMonitor,"ARMY_7")
-		ForkThread(NukeMonitor,"ARMY_7")
-		ForkThread(MassFabMonitor,"ARMY_7")
+	if not ScenarioInfo.ArmySetup["ARMY_TOP_LMID"] == false then
+		ForkThread(MexMonitor,"ARMY_TOP_LMID")
+		ForkThread(ArtyMonitor,"ARMY_TOP_LMID")
+		ForkThread(NukeMonitor,"ARMY_TOP_LMID")
+		ForkThread(MassFabMonitor,"ARMY_TOP_LMID")
 	end
-	if not ScenarioInfo.ArmySetup["ARMY_8"] == false then
-		ForkThread(MexMonitor,"ARMY_8")
-		ForkThread(ArtyMonitor,"ARMY_8")
-		ForkThread(NukeMonitor,"ARMY_8")
-		ForkThread(MassFabMonitor,"ARMY_8")
+	if not ScenarioInfo.ArmySetup["ARMY_TOP_LEFT"] == false then
+		ForkThread(MexMonitor,"ARMY_TOP_LEFT")
+		ForkThread(ArtyMonitor,"ARMY_TOP_LEFT")
+		ForkThread(NukeMonitor,"ARMY_TOP_LEFT")
+		ForkThread(MassFabMonitor,"ARMY_TOP_LEFT")
 	end
 end
 
@@ -422,81 +422,81 @@ function CommInMiddle(army)
 end
 
 function SetArtyAggro(army,num)
-	if army == "ARMY_1" then
+	if army == "ARMY_BOTTOM_LEFT" then
 		MinAggroStore.Arty.Team1.Player1 = num
-	elseif army == "ARMY_2" then
+	elseif army == "ARMY_BOTTOM_LMID" then
 		MinAggroStore.Arty.Team1.Player2 = num
-	elseif army == "ARMY_3" then
+	elseif army == "ARMY_BOTTOM_RMID" then
 		MinAggroStore.Arty.Team1.Player3 = num
-	elseif army == "ARMY_4" then
+	elseif army == "ARMY_BOTTOM_RIGHT" then
 		MinAggroStore.Arty.Team1.Player4 = num
-	elseif army == "ARMY_5" then
+	elseif army == "ARMY_TOP_RIGHT" then
 		MinAggroStore.Arty.Team2.Player1 = num
-	elseif army == "ARMY_6" then
+	elseif army == "ARMY_TOP_RMID" then
 		MinAggroStore.Arty.Team2.Player2 = num
-	elseif army == "ARMY_7" then
+	elseif army == "ARMY_TOP_LMID" then
 		MinAggroStore.Arty.Team2.Player3 = num
-	elseif army == "ARMY_8" then
+	elseif army == "ARMY_TOP_LEFT" then
 		MinAggroStore.Arty.Team2.Player4 = num
 	end 
 end
 
 function SetMexAggro(army,num)
-	if army == "ARMY_1" then
+	if army == "ARMY_BOTTOM_LEFT" then
 		MinAggroStore.Mex.Team1.Player1 = num
-	elseif army == "ARMY_2" then
+	elseif army == "ARMY_BOTTOM_LMID" then
 		MinAggroStore.Mex.Team1.Player2 = num
-	elseif army == "ARMY_3" then
+	elseif army == "ARMY_BOTTOM_RMID" then
 		MinAggroStore.Mex.Team1.Player3 = num
-	elseif army == "ARMY_4" then
+	elseif army == "ARMY_BOTTOM_RIGHT" then
 		MinAggroStore.Mex.Team1.Player4 = num
-	elseif army == "ARMY_5" then
+	elseif army == "ARMY_TOP_RIGHT" then
 		MinAggroStore.Mex.Team2.Player1 = num
-	elseif army == "ARMY_6" then
+	elseif army == "ARMY_TOP_RMID" then
 		MinAggroStore.Mex.Team2.Player2 = num
-	elseif army == "ARMY_7" then
+	elseif army == "ARMY_TOP_LMID" then
 		MinAggroStore.Mex.Team2.Player3 = num
-	elseif army == "ARMY_8" then
+	elseif army == "ARMY_TOP_LEFT" then
 		MinAggroStore.Mex.Team2.Player4 = num
 	end 
 end
 
 function SetNukeAggro(army,num)
-	if army == "ARMY_1" then
+	if army == "ARMY_BOTTOM_LEFT" then
 		MinAggroStore.Nuke.Team1.Player1 = num
-	elseif army == "ARMY_2" then
+	elseif army == "ARMY_BOTTOM_LMID" then
 		MinAggroStore.Nuke.Team1.Player2 = num
-	elseif army == "ARMY_3" then
+	elseif army == "ARMY_BOTTOM_RMID" then
 		MinAggroStore.Nuke.Team1.Player3 = num
-	elseif army == "ARMY_4" then
+	elseif army == "ARMY_BOTTOM_RIGHT" then
 		MinAggroStore.Nuke.Team1.Player4 = num
-	elseif army == "ARMY_5" then
+	elseif army == "ARMY_TOP_RIGHT" then
 		MinAggroStore.Nuke.Team2.Player1 = num
-	elseif army == "ARMY_6" then
+	elseif army == "ARMY_TOP_RMID" then
 		MinAggroStore.Nuke.Team2.Player2 = num
-	elseif army == "ARMY_7" then
+	elseif army == "ARMY_TOP_LMID" then
 		MinAggroStore.Nuke.Team2.Player3 = num
-	elseif army == "ARMY_8" then
+	elseif army == "ARMY_TOP_LEFT" then
 		MinAggroStore.Nuke.Team2.Player4 = num
 	end 
 end
 
 function SetMassFabAggro(army,num)
-	if army == "ARMY_1" then
+	if army == "ARMY_BOTTOM_LEFT" then
 		MinAggroStore.MassFab.Team1.Player1 = num
-	elseif army == "ARMY_2" then
+	elseif army == "ARMY_BOTTOM_LMID" then
 		MinAggroStore.MassFab.Team1.Player2 = num
-	elseif army == "ARMY_3" then
+	elseif army == "ARMY_BOTTOM_RMID" then
 		MinAggroStore.MassFab.Team1.Player3 = num
-	elseif army == "ARMY_4" then
+	elseif army == "ARMY_BOTTOM_RIGHT" then
 		MinAggroStore.MassFab.Team1.Player4 = num
-	elseif army == "ARMY_5" then
+	elseif army == "ARMY_TOP_RIGHT" then
 		MinAggroStore.MassFab.Team2.Player1 = num
-	elseif army == "ARMY_6" then
+	elseif army == "ARMY_TOP_RMID" then
 		MinAggroStore.MassFab.Team2.Player2 = num
-	elseif army == "ARMY_7" then
+	elseif army == "ARMY_TOP_LMID" then
 		MinAggroStore.MassFab.Team2.Player3 = num
-	elseif army == "ARMY_8" then
+	elseif army == "ARMY_TOP_LEFT" then
 		MinAggroStore.MassFab.Team2.Player4 = num
 	end 
 end

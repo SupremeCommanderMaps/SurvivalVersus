@@ -1,14 +1,14 @@
 newInstance = function(playerArmies)
     local function getTentLocationsForArmy(armyName)
         local tentLocations = {
-            ARMY_1 = {x = 309.500000, y = 445.500000},
-            ARMY_2 = {x = 375.500000, y = 429.500000},
-            ARMY_3 = {x = 435.500000, y = 369.500000},
-            ARMY_4 = {x = 445.500000, y = 309.500000},
-            ARMY_5 = {x = 206.500000, y = 70.500000},
-            ARMY_6 = {x = 136.500000, y = 81.500000},
-            ARMY_7 = {x = 75.500000, y = 142.500000},
-            ARMY_8 = {x = 70.500000, y = 206.500000},
+            ARMY_BOTTOM_LEFT = {x = 309.500000, y = 445.500000},
+            ARMY_BOTTOM_LMID = {x = 375.500000, y = 429.500000},
+            ARMY_BOTTOM_RMID = {x = 435.500000, y = 369.500000},
+            ARMY_BOTTOM_RIGHT = {x = 445.500000, y = 309.500000},
+            ARMY_TOP_RIGHT = {x = 206.500000, y = 70.500000},
+            ARMY_TOP_RMID = {x = 136.500000, y = 81.500000},
+            ARMY_TOP_LMID = {x = 75.500000, y = 142.500000},
+            ARMY_TOP_LEFT = {x = 70.500000, y = 206.500000},
         }
 
         local tentLocation = tentLocations[armyName]
