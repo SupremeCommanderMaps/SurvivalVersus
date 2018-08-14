@@ -39,6 +39,9 @@ many development versions of Final Rush Pro 5.10.
 
 Under development
 
+* Nered islands bases even further by removing the T2 shields
+* Reduced income of island base mex from 50 mass/s to 36 mass/s
+
 ## New in version 5.11
 
 Released on 2018-05-04
