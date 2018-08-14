@@ -157,10 +157,10 @@ newInstance = function(ScenarioInfo, options, textPrinter)
                 showGameVersionMessage(newPrinter(WELCOME_MESSAGE_DURATION))
 
                 if options.isSurvivalGame() then
-                    WaitSeconds(WELCOME_MESSAGE_DURATION + 0.01)
+                    WaitSeconds(WELCOME_MESSAGE_DURATION + 0.05)
                     showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
 
-                    WaitSeconds(SETTINGS_MESSAGE_DURATION + 0.01)
+                    WaitSeconds(SETTINGS_MESSAGE_DURATION + 0.05)
                     showTeamBonusMessage(newPrinter(BONUS_MESSAGE_DURATION))
                 end
             end)
