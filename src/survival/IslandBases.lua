@@ -8,7 +8,7 @@ newInstance = function()
         unitModifier.modify(
             mex,
             function(unit)
-                mex:SetMaxHealth(13337)
+                unit:SetMaxHealth(13337)
                 unit:SetProductionPerSecondMass(36)
                 unit:SetCustomName("Capture for 36 mass/s")
             end
