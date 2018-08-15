@@ -77,12 +77,19 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
         end)
     end
 
-    local function spawnTransport(armyName, transportName)
+    local function spawnTransport(armyName, transportOptions)
+        if type(transportOptions) == "string" then
+            transportOptions = {
+                blueprintName = transportOptions
+            }
+        end
+
         local spawnPosition = transportDetails[armyName].spawnPosition
 
         local unitInfo = {
-            blueprintName = transportName,
             armyName = armyName,
+            blueprintName = transportOptions.blueprintName,
+            baseHealth = transportOptions.baseHealth,
             x = spawnPosition.x,
             y = spawnPosition.y,
             z = 80,
@@ -92,8 +99,8 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
         return unitCreator.create(unitInfo)
     end
 
-    local function spawnUnitsForArmy(units, armyName, transportDesination, transportName)
-        local transport = spawnTransport(armyName, transportName)
+    local function createTransport(armyName, transportOptions)
+        local transport = spawnTransport(armyName, transportOptions)
 
         if not options.canKillTransports() then
             transport:SetReclaimable(false)
@@ -102,11 +109,15 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
             transport:SetCanBeKilled(false)
         end
 
+        return transport
+    end
+
+    local function spawnUnitsForArmy(units, armyName, transport)
         local transports = { transport }
 
         ScenarioFramework.AttachUnitsToTransports(units, transports)
 
-        IssueTransportUnload(transports, transportDesination)
+        IssueTransportUnload(transports, VECTOR3(Random(220, 290), 0, Random(220, 290)))
 
         ForkThread(issueAttackCommands, armyName, units)
 
@@ -141,21 +152,16 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
     end
 
     return {
-        spawnWithTransports = function(unitNames, transportName)
-            local transportDesination = VECTOR3(Random(220, 290), 80, Random(220, 290))
-
-            spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "BOTTOM_BOT"),
+        -- transportOptions: either string blueprint name or map with blueprintName key
+        spawnWithTransports = function(unitNames, transportOptions)
+            spawnUnitsForArmy(spawnUnitsFromName(unitNames, "BOTTOM_BOT"),
                 "BOTTOM_BOT",
-                transportDesination,
-                transportName
+                createTransport("BOTTOM_BOT", transportOptions)
             )
 
-            spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "TOP_BOT"),
+            spawnUnitsForArmy(spawnUnitsFromName(unitNames, "TOP_BOT"),
                 "TOP_BOT",
-                transportDesination,
-                transportName
+                createTransport("TOP_BOT", transportOptions)
             )
         end
     }

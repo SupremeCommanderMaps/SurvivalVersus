@@ -1,4 +1,13 @@
 newInstance = function(textPrinter, unitSpawnerFactory, options)
+
+    local T2_TRANSPORT = "ura0107"
+    local T3_TRANSPORT = "xea0306"
+
+    local EXPERIMENTAL_TRANSPORT = {
+        blueprintName = "uaa0107",
+        baseHealth = 8500
+    }
+
     local Round1 = function(survivalUnitSpanwer)
         survivalUnitSpanwer.spawnWithTransports(
             {
@@ -9,7 +18,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
                 "uel0201", --UEF T1 Medium Tank: MA12 Striker
                 "ual0201", --Aeon T1 Light Tank: Aurora
             },
-            "ura0107"
+            T2_TRANSPORT
         )
     end
 
@@ -32,7 +41,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
 
         survivalUnitSpanwer.spawnWithTransports(
             units,
-            "xea0306"
+            T3_TRANSPORT
         )
     end
 
@@ -55,7 +64,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
 
         survivalUnitSpanwer.spawnWithTransports(
             units,
-            "xea0306"
+            T3_TRANSPORT
         )
     end
 
@@ -64,14 +73,14 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
             {
                 "ual0401",
             },
-            "xea0306"
+            EXPERIMENTAL_TRANSPORT
         )
-        WaitSeconds(1)
+        WaitSeconds(2)
         survivalUnitSpanwer.spawnWithTransports(
             {
                 "url0402",
             },
-            "xea0306"
+            EXPERIMENTAL_TRANSPORT
         )
     end
 

@@ -1,5 +1,12 @@
 newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, survivalSpawnerFactory, beetleEvent)
 
+    local T3_TRANSPORT = "xea0306"
+
+    local EXPERIMENTAL_TRANSPORT = {
+        blueprintName = "uaa0107",
+        baseHealth = 8500
+    }
+
     local survivalUnitSpawner = survivalSpawnerFactory.newUnitSpawner({hpIncrease = true})
     local survivalTransportSpawner = survivalSpawnerFactory.newTransportSpawner({hpIncrease = true})
 
@@ -81,7 +88,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
                     "del0204",
                     "del0204",
                 },
-                "xea0306"
+                T3_TRANSPORT
             )
 
             WaitSeconds(1)
@@ -161,7 +168,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
         beetleEvent.spawn()
     end
 
-    local function spawnT3Arty(initialDelayInSeconds)
+    local function spawnT3Arty()
         printText("T3 mobile artillery detected")
 
         survivalTransportSpawner.spawnWithTransports(
@@ -175,29 +182,29 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
                 "uel0304",
                 "uel0304",
             },
-            "xea0306"
+            T3_TRANSPORT
         )
     end
 
-    local function spawnYthotha(initialDelayInSeconds)
+    local function spawnYthotha()
         printText("Ythotha detected")
 
         survivalTransportSpawner.spawnWithTransports(
             {
                 "xsl0401",
             },
-            "xea0306"
+            EXPERIMENTAL_TRANSPORT
         )
     end
 
-    local function spawnFatboy(initialDelayInSeconds)
+    local function spawnFatboy()
         printText("Fatboy detected")
 
         survivalTransportSpawner.spawnWithTransports(
             {
                 "uel0401",
             },
-            "xea0306"
+            EXPERIMENTAL_TRANSPORT
         )
     end
 
@@ -273,11 +280,11 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     end
 
     local randomEventsThread = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
---        survivalSpawnerFactory.newTransportSpawner(0).spawnWithTransports(
+--        survivalTransportSpawner.spawnWithTransports(
 --            {
 --                "xab1401",
 --            },
---            "xea0306"
+--            EXPERIMENTAL_TRANSPORT
 --        )
 
         while true do
