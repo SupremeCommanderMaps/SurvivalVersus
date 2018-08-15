@@ -39,6 +39,7 @@ many development versions of Final Rush Pro 5.10.
 
 Under development
 
+* Removed central mexes
 * Experimentals are now brought in with a special transport instead of with a Continental
 * Nered islands bases even further by removing the T2 shields
 * Reduced income of island base mex from 50 mass/s to 36 mass/s
