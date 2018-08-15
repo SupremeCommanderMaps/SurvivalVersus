@@ -44,6 +44,7 @@ Released on 2018-08-15
 * Nered islands bases even further by removing the T2 shields
 * Reduced income of island base mex from 50 mass/s to 36 mass/s
 * The island base mex now retains its modified max health after capture
+* Improved map preview in the FAF client
 
 ## New in version 5.11
 
