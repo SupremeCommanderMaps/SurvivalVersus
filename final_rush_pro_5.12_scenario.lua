@@ -1,4 +1,4 @@
-version = 5
+version = 3
 ScenarioInfo = {
     name="Final Rush Pro 5.12",
     map_version=1,
