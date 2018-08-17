@@ -35,6 +35,12 @@ many development versions of Final Rush Pro 5.10.
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 
+## New in version 5.13
+
+Under development
+
+* Building a paragon will now result in your enemy bot building one as well. Better have AA ready!
+
 ## New in version 5.12
 
 Released on 2018-08-15

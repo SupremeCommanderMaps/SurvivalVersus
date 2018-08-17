@@ -1,25 +1,37 @@
 newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     local ScenarioFramework = import('/lua/ScenarioFramework.lua')
 
-    local TransportDestinations = {
-        SouthernAttackerEnd = VECTOR3(500,80,10),
-        NorthernAttackerEnd = VECTOR3(10,80,500)
-    }
+    local spawnEffect = function(unit)
+        unit:PlayUnitSound('TeleportStart')
+        unit:PlayUnitAmbientSound('TeleportLoop')
+        WaitSeconds( 0.1 )
+        unit:PlayTeleportInEffects()
+        WaitSeconds( 0.1 )
+        unit:StopUnitAmbientSound('TeleportLoop')
+        unit:PlayUnitSound('TeleportEnd')
+    end
 
-    local AttackLocations = {
-        Team1 = {
-            Player1 = VECTOR3( 305.5, 25.9844, 451.5 ),
-            Player2 = VECTOR3( 375.5, 25.9844, 435.5 ),
-            Player3 = VECTOR3( 435.5, 25.9844, 375.5 ),
-            Player4 = VECTOR3( 451.5, 25.9844, 305.5 )
-        },
-        Team2 = {
-            Player1 = VECTOR3( 206.5, 25.9844, 60.5 ),
-            Player2 = VECTOR3( 132.5, 25.9922, 71.5 ),
-            Player3 = VECTOR3( 71.5, 25.9922, 132.5 ),
-            Player4 = VECTOR3( 68.5, 25.9844, 214.5 )
-        }
-    }
+    local spawnOutEffect = function(unit)
+        unit:PlayUnitSound('TeleportStart')
+        unit:PlayUnitAmbientSound('TeleportLoop')
+        WaitSeconds( 0.1 )
+        unit:PlayTeleportInEffects()
+        WaitSeconds( 0.1 )
+        unit:StopUnitAmbientSound('TeleportLoop')
+        unit:PlayUnitSound('TeleportEnd')
+        unit:Destroy()
+    end
+
+    local unitCreator = import('/maps/final_rush_pro_5.v0013/src/survival/SurvivalUnitCreator.lua').newUnitCreator(
+        ScenarioInfo,
+        options,
+        spawnOutEffect
+    )
+
+    local positions = import('/maps/final_rush_pro_5.v0013/src/survival/Positions.lua').newInstance()
+
+    local TransportDestinations = positions.TransportDestinations
+    local AttackLocations = positions.AttackLocations
 
     local StartingPlayersExistance = {
         ARMY_BOTTOM_LEFT = false,
@@ -99,27 +111,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             end
         end
         return Units_FinalFight
-    end
-
-    local spawnEffect = function(unit)
-        unit:PlayUnitSound('TeleportStart')
-        unit:PlayUnitAmbientSound('TeleportLoop')
-        WaitSeconds( 0.1 )
-        unit:PlayTeleportInEffects()
-        WaitSeconds( 0.1 )
-        unit:StopUnitAmbientSound('TeleportLoop')
-        unit:PlayUnitSound('TeleportEnd')
-    end
-
-    local spawnOutEffect = function(unit)
-        unit:PlayUnitSound('TeleportStart')
-        unit:PlayUnitAmbientSound('TeleportLoop')
-        WaitSeconds( 0.1 )
-        unit:PlayTeleportInEffects()
-        WaitSeconds( 0.1 )
-        unit:StopUnitAmbientSound('TeleportLoop')
-        unit:PlayUnitSound('TeleportEnd')
-        unit:Destroy()
     end
 
     local function disableWalls()
@@ -227,92 +218,16 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
             import('/maps/final_rush_pro_5.v0013/src/artifacts/HillGuards.lua').newInstance().createHillGuards()
         end
-    end
 
-    local function setupAutoReclaim(unitCreator)
-        if ScenarioInfo.Options.opt_AutoReclaim > 0 then
-            unitCreator.onUnitCreated(function(unit, unitInfo)
-                if unitInfo.isSurvivalSpawned then
-                    unit.CreateWreckage = function() end
-                end
-            end)
-        end
-    end
-
-    local function setupUnitTimeouts(unitCreator)
-        unitCreator.onUnitCreated(function(unit, unitInfo)
-            if unitInfo.isSurvivalSpawned then
-                ForkThread(function()
-                    WaitSeconds(60*5)
-                    if not unit:IsDead() then
-                        spawnOutEffect(unit)
-                    end
-                end)
-            end
-        end)
-    end
-
-    local function setupTeamBalanceBonus(unitCreator)
-        if ScenarioInfo.Options.opt_FinalRushTeamBonusHP ~= 0 then
-            local hpMultiplier = import('/maps/final_rush_pro_5.v0013/src/survival/TeamBonusHealthMultiplier.lua').newInstance(
-                ScenarioInfo.Options.opt_FinalRushTeamBonusHP
-            )
-
-            unitCreator.onUnitCreated(function(unit, unitInfo)
-                if unitInfo.isSurvivalSpawned or unitInfo.isTransport then
-                    hpMultiplier.multiplyHealth(unit)
-                end
-            end)
-        end
-    end
-
-    local function setupHealthMultiplication(unitCreator)
-        if ScenarioInfo.Options.opt_FinalRushHealthIncrease ~= 0 then
-            local healthMultiplier = import('/maps/final_rush_pro_5.v0013/src/survival/HealthMultiplier.lua').newInstance(
-                ScenarioInfo.Options.opt_FinalRushHealthIncrease
-            )
-
-            unitCreator.onUnitCreated(function(unit, unitInfo)
-                if unitInfo.hpIncrease ~= nil then
-                    local hpIncreaseDelays = {
-                        [categories.TECH1] = options.getT1spawnDelay(),
-                        [categories.TECH2] = options.getT2spawnDelay(),
-                        [categories.TECH3] = options.getT3spawnDelay(),
-                        [categories.EXPERIMENTAL] = options.getT4spawnDelay(),
-                    }
-
-                    if unitInfo.hpIncrease == true then
-                        for techCategory, hpIncreaseDelay in hpIncreaseDelays do
-                            if EntityCategoryContains(techCategory, unit) then
-                                healthMultiplier.increaseHealth({unit}, hpIncreaseDelay)
-                                break
-                            end
-                        end
-                    elseif hpIncreaseDelays[unitInfo.hpIncrease] ~= nil then
-                        healthMultiplier.increaseHealth({unit}, hpIncreaseDelays[unitInfo.hpIncrease])
-                    end
-
-                elseif unitInfo.hpIncreaseDelay ~= nil then
-                    healthMultiplier.increaseHealth({unit}, unitInfo.hpIncreaseDelay)
-                end
-            end)
-        end
-    end
-
-    local function newUnitCreator()
-        local unitCreator = import('/maps/final_rush_pro_5.v0013/src/lib/UnitCreator.lua').newUnitCreator()
-
-        setupAutoReclaim(unitCreator)
-        setupUnitTimeouts(unitCreator)
-        setupTeamBalanceBonus(unitCreator)
-        setupHealthMultiplication(unitCreator)
-
-        return unitCreator
+        import('/maps/final_rush_pro_5.v0013/src/survival/ParagonEvent.lua').newInstance(
+            ScenarioFramework,
+            unitCreator,
+            playerArmies,
+            positions
+        ).setUp()
     end
 
     local runBattle = function(textPrinter, playerArmies)
-        local unitCreator = newUnitCreator()
-
         if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
             local agressionSpawner = import('/maps/final_rush_pro_5.v0013/src/survival/AggressionSpawner.lua').newInstance(
                 StartingPlayersExistance,
