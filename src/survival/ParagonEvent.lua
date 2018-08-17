@@ -25,13 +25,17 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions)
     end
 
     local function createParagon(armyName)
-        return unitCreator.create({
+        local paragon = unitCreator.create({
             armyName = armyName,
             blueprintName = "xab1401",
             baseHealth = 13337,
             x = 0,
             y = 0
         })
+
+        paragon.CreateWreckage = function() end
+
+        return paragon
     end
 
     local function loadParagonIntoTransports(transports, armyName)
