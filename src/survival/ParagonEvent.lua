@@ -5,14 +5,14 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions)
         local transport = unitCreator.create({
             armyName = botArmyName,
             blueprintName = "uaa0107",
-            baseHealth = 9001,
+            baseHealth = 13337,
             x = spawnPosition.x,
             y = spawnPosition.y,
             z = 80,
             isTransport = true
         })
 
-        transport:SetSpeedMult(1.5)
+        transport:SetSpeedMult(2)
 
         return transport
     end
@@ -28,7 +28,7 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions)
         return unitCreator.create({
             armyName = armyName,
             blueprintName = "xab1401",
-            baseHealth = 9001,
+            baseHealth = 13337,
             x = 0,
             y = 0
         })
