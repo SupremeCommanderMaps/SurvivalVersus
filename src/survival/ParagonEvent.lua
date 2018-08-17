@@ -62,7 +62,7 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions)
                 ArmyBrains[armyIndex],
                 "DeliverParagon",
                 {{
-                    StatType = "Units_Active",
+                    StatType = "Units_Active", -- TODO: Units_History
                     CompareType = 'GreaterThanOrEqual',
                     Value = 1,
                     Category = categories.xab1401

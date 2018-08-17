@@ -39,7 +39,7 @@ many development versions of Final Rush Pro 5.10.
 
 Under development
 
-* Building a paragon will now result in your enemy bot building one as well. Better have AA ready!
+* Building a paragon will now result in your enemy bot building one as well. Better have AA ready! (thanks Speed2!)
 
 ## New in version 5.12
 
