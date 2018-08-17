@@ -1,5 +1,5 @@
 newInstance = function(StartingPlayersExistance, randomUnits, AttackLocations, TransportDestinations, ScenarioInfo, ScenarioFramework, getRandomPlayer, spawnOutEffect, unitCreator)
-    local Aggression = import('/maps/final_rush_pro_5.v0012/lua/Aggression.lua');
+    local Aggression = import('/maps/final_rush_pro_5.v0013/lua/Aggression.lua');
     -- TODO: user survival transport spawner
 
     local Aggro = {
