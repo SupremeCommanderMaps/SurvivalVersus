@@ -10,7 +10,7 @@ function newInstance(getAllUnits)
 
     local function findNewUnits()
         for _, unit in getAllUnits() do
-            if unit and not unit:IsDead()and not knownEntityIds[unit:GetEntityId()] then
+            if unit and not unit:IsBeingBuilt() and not unit:IsDead()and not knownEntityIds[unit:GetEntityId()] then
                 knownEntityIds[unit:GetEntityId()] = true
                 runCallbacks(unit)
             end
