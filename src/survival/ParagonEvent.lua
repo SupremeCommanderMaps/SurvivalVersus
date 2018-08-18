@@ -49,6 +49,12 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
             blueprintName = "xsl0307"
         })
 
+        outerShield.CreateWreckage = function() end
+        outerShield.MyShield:SetRechargeTime(30)
+        outerShield.MyShield.SpillOverDmgMod = 0
+        outerShield.MyShield:SetMaxHealth(OUTER_SHIELD_HP)
+        outerShield.MyShield:SetHealth(outerShield.MyShield, OUTER_SHIELD_HP)
+
         ScenarioFramework.AttachUnitsToTransports(
             {
                 createParagon(armyName),
@@ -56,6 +62,8 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
             },
             transports
         )
+
+        outerShield:EnableShield()
 
         transports[1]:CreateShield({
             ImpactEffects="SeraphimShieldHit01",
@@ -73,12 +81,6 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
             ShieldVerticalOffset=-3,
             TransportShield = true
         })
-
-        outerShield.MyShield:SetRechargeTime(30)
-        outerShield.MyShield.SpillOverDmgMod = 0
-        outerShield.MyShield:SetMaxHealth(OUTER_SHIELD_HP)
-        outerShield.MyShield:SetHealth(outerShield.MyShield, OUTER_SHIELD_HP)
-        outerShield:EnableShield()
     end
 
     local function onParagonBuild(paragon)
