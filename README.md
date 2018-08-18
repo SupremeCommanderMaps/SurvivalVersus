@@ -37,7 +37,7 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.14
 
-*
+* Fixed paragon event to only be triggered by completed paragons
 
 ## New in version 5.13
 
