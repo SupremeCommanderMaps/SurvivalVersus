@@ -39,6 +39,8 @@ many development versions of Final Rush Pro 5.10.
 
 Under development
 
+* Player nukes and T3/T4 arty are now disabled by default
+* Added option to enable or disable player nukes and T3/T4 arty
 * Building a paragon will now result in your enemy bot building one as well. Better have AA ready! (thanks Speed2!)
 
 ## New in version 5.12

@@ -4,7 +4,7 @@ newInstance = function(ScenarioInfo)
 
     local textPrinter = import('/maps/final_rush_pro_5.v0013/src/lib/TextPrinter.lua').newInstance()
     local playerArmies = import('/maps/final_rush_pro_5.v0013/src/frp/PlayerArmies.lua').newInstance(ListArmies())
-    local buildRestrictor = import('/maps/final_rush_pro_5.v0013/src/frp/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo)
+    local buildRestrictor = import('/maps/final_rush_pro_5.v0013/src/frp/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo, options)
 
     local function setupTents()
         if ScenarioInfo.Options.opt_tents > 0 then

@@ -1,6 +1,6 @@
 newInstance = function(ScenarioInfo, options, textPrinter)
     local WELCOME_MESSAGE_DURATION = 7
-    local SETTINGS_MESSAGE_DURATION = 13
+    local SETTINGS_MESSAGE_DURATION = 14
     local BONUS_MESSAGE_DURATION = 5
 
     local function newPrinter(durationInSeconds)
@@ -77,12 +77,17 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     local function showGameSettingsMessage(printer)
         printer.printBlankLine()
         printer.printBlankLine()
-        printer.printBlankLine()
 
         if ScenarioInfo.Options.opt_FinalRushAir ~= 0 then
             printer.printOption("opt_FinalRushAir", "Player air is ON")
         else
             printer.printBlankLine()
+        end
+
+        if options.shouldDisableNukesAndArty() then
+            printer.printBlankLine()
+        else
+            printer.printOption("opt_FinalRushNukesAndArty", "Player nukes and T3/T4 arty are ON")
         end
 
         printer.printOption("opt_FinalRushWaterKillsACUs", "Can hide ACU: " .. (options.waterKillsAcu() and "no" or "yes"))

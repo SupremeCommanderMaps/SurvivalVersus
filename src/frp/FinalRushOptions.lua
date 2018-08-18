@@ -30,6 +30,7 @@ local defaults = {
     opt_FinalRushEventNotifications = 1,
     opt_FinalRushKillableTransports = 0,
     opt_FinalRushWaterKillsACUs = 2,
+    opt_FinalRushNukesAndArty = 0,
     opt_FinalRushRandomEvents = SET_BY_PRESET,
     opt_FinalRushSpawnDelay = SET_BY_PRESET,
     opt_FinalRushT1Frequency = SET_BY_PRESET,
@@ -269,6 +270,10 @@ function newInstance(ScenarioInfoOptions)
 
     this.getT4spawnDelay = function()
         return ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT4Delay
+    end
+
+    this.shouldDisableNukesAndArty = function()
+        return rawOptions.opt_FinalRushNukesAndArty == 0
     end
 
     return this

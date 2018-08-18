@@ -1,4 +1,4 @@
-newInstance = function(playerArmies, ScenarioInfo)
+newInstance = function(playerArmies, ScenarioInfo, options)
     local function enableUefTransportsAndScouts(index)
         AddBuildRestriction(index, categories.uea0103) --UEF T1 Attack Bomber: Scorcher
         AddBuildRestriction(index, categories.uea0102) --UEF T1 Interceptor: Cyclone
@@ -159,6 +159,14 @@ newInstance = function(playerArmies, ScenarioInfo)
 
                 if enableNovax then
                     RemoveBuildRestriction(armyIndex, categories.xea0002)
+                end
+            end
+
+            if options.shouldDisableNukesAndArty() then
+                for armyIndex in playerArmies.getIndexToNameMap() do
+                    AddBuildRestriction(armyIndex, categories.NUKE)
+                    AddBuildRestriction(armyIndex, categories.ARTILLERY * categories.STRUCTURE * categories.TECH3)
+                    AddBuildRestriction(armyIndex, categories.ARTILLERY * categories.STRUCTURE * categories.EXPERIMENTAL)
                 end
             end
         end

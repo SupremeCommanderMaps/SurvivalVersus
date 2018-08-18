@@ -130,18 +130,6 @@ options =
     },
     {
         default = 1,
-        label = "Player Air",
-        help = "The degree to which air should be enabled for the players",
-        key = 'opt_FinalRushAir',
-        pref = 'opt_FinalRushAir',
-        values = {
-            { text = "Disabled", help = "No air units at all", key = 0, },
-            { text = "Scouts and Transports", help = "Scouts and transports only", key = 1, },
-            { text = "Enabled", help = "All air units are enabled. NOTE: the incomming waves do NOT contain AA even with this option.", key = 2, },
-        },
-    },
-    {
-        default = 1,
         label = "Health Increase",
         help = "(Survival modes only) Determines how much extra health the enemy units that spawn in get for every 100 seconds since units of that type started spawning. 25 percent for normal difficulty",
         key = 'opt_FinalRushHealthIncrease',
@@ -475,24 +463,6 @@ options =
     },
     {
         default = 1,
-        label = "Player Tech Delay",
-        help = "Players start with only tech 1. Higher tech tiers get unlocked at the specified interval. This does not effect the spawned enemy units.",
-        key = 'opt_timeunlocked',
-        pref = 'opt_timeunlocked',
-        values = {
-            { text = "Disabled", help = "Disabled", key = 0, },
-            { text = "1 minute", help = "1 minute", key = 60, },
-            { text = "2 minutes", help = "2 minutes", key = 120, },
-            { text = "3 minutes", help = "3 minutes", key = 180, },
-            { text = "5 minutes", help = "5 minutes", key = 300, },
-            { text = "10 minutes", help = "10 minutes", key = 600, },
-            { text = "15 minutes", help = "15 minutes", key = 900, },
-            { text = "20 minutes", help = "20 minutes", key = 1200, },
-            { text = "24 hours", help = "Who needs tech anyway. Such hipsters", key = 86400, },
-        },
-    },
-    {
-        default = 1,
         label = "Enemy T2 MMLs",
         help = "(Survival modes only) T2 MMLs",
         key = 'opt_t2tml',
@@ -522,6 +492,47 @@ options =
         values = {
             { text = "Enabled", help = "Enabled", key = 0, },
             { text = "Disabled", help = "Disabled", key = 1, },
+        },
+    },
+    {
+        default = 1,
+        label = "Player Air",
+        help = "The degree to which air should be enabled for the players",
+        key = 'opt_FinalRushAir',
+        pref = 'opt_FinalRushAir',
+        values = {
+            { text = "Disabled", help = "No air units at all", key = 0, },
+            { text = "Scouts and Transports", help = "Scouts and transports only", key = 1, },
+            { text = "Enabled", help = "All air units are enabled. NOTE: the incomming waves do NOT contain AA even with this option.", key = 2, },
+        },
+    },
+    {
+        default = 1,
+        label = "Player Nukes and T3 Arty",
+        help = "If players should be able to build nukes, T3 arty and T4 arty",
+        key = 'opt_FinalRushNukesAndArty',
+        pref = 'opt_FinalRushNukesAndArty',
+        values = {
+            { text = "Disabled", help = "Players cannot build nukes, T3 arty and T4 arty", key = 0, },
+            { text = "Enabled", help = "No build restrictions for nukes, T3 arty and T4 arty on top of what is selected in the lobby", key = 1, },
+        },
+    },
+    {
+        default = 1,
+        label = "Player Tech Delay",
+        help = "Players start with only tech 1. Higher tech tiers get unlocked at the specified interval. This does not effect the spawned enemy units.",
+        key = 'opt_timeunlocked',
+        pref = 'opt_timeunlocked',
+        values = {
+            { text = "Disabled", help = "Disabled", key = 0, },
+            { text = "1 minute", help = "1 minute", key = 60, },
+            { text = "2 minutes", help = "2 minutes", key = 120, },
+            { text = "3 minutes", help = "3 minutes", key = 180, },
+            { text = "5 minutes", help = "5 minutes", key = 300, },
+            { text = "10 minutes", help = "10 minutes", key = 600, },
+            { text = "15 minutes", help = "15 minutes", key = 900, },
+            { text = "20 minutes", help = "20 minutes", key = 1200, },
+            { text = "24 hours", help = "Who needs tech anyway. Such hipsters", key = 86400, },
         },
     }
 };
