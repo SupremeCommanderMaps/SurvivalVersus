@@ -1,7 +1,7 @@
 version = 3
 ScenarioInfo = {
     name="Final Rush Pro 5",
-    map_version=13,
+    map_version=14,
     description=[[More comprehensive documentation can be found at bit.ly/final-rush-pro
 
 This map supports multiple game modes: Survival, Survival Versus, Paragon Wars and Normal.

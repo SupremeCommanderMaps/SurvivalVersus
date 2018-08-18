@@ -37,7 +37,7 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.13
 
-Under development
+Released on 2018-08-18
 
 * Player nukes and T3/T4 arty are now disabled by default
 * Added option to enable or disable player nukes and T3/T4 arty
