@@ -1,11 +1,15 @@
 function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, unitCreation, textPrinter)
+    local BASE_HEALTH = 7500
+    local OUTER_SHIELD_HP = 7500
+    local INNER_SHIELD_HP = 10000
+
     local function spawnTransport(botArmyName)
         local spawnPosition = positions.transports[botArmyName].spawnPosition
 
         local transport = unitCreator.create({
             armyName = botArmyName,
             blueprintName = "uaa0107",
-            baseHealth = 7500,
+            baseHealth = BASE_HEALTH,
             x = spawnPosition.x,
             y = spawnPosition.y,
             z = 80,
@@ -30,7 +34,7 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
         local paragon = unitCreator.create({
             armyName = armyName,
             blueprintName = "xab1401",
-            baseHealth = 7500,
+            baseHealth = BASE_HEALTH,
         })
 
         paragon.CreateWreckage = function() end
@@ -60,7 +64,7 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
             MeshZ="/effects/entities/Shield01/Shield01z_mesh",
             RegenAssistMult=60,
             ShieldEnergyDrainRechargeTime=5,
-            ShieldMaxHealth=10000,
+            ShieldMaxHealth=INNER_SHIELD_HP,
             ShieldRechargeTime=45,
             ShieldRegenRate=133,
             ShieldRegenStartTime=3,
@@ -72,8 +76,8 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
 
         outerShield.MyShield:SetRechargeTime(30)
         outerShield.MyShield.SpillOverDmgMod = 0
-        outerShield.MyShield:SetMaxHealth(7500)
-        outerShield.MyShield:SetHealth(outerShield.MyShield, 7500)
+        outerShield.MyShield:SetMaxHealth(OUTER_SHIELD_HP)
+        outerShield.MyShield:SetHealth(outerShield.MyShield, OUTER_SHIELD_HP)
         outerShield:EnableShield()
     end
 
