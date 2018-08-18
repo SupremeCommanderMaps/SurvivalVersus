@@ -14,6 +14,7 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
 
         transport:SetSpeedMult(2)
         transport:SetCustomName("I heard you like Paragons")
+        transport.CreateWreckage = function() end
 
         return transport
     end
