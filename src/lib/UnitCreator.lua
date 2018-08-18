@@ -16,6 +16,8 @@ function newUnitCreator()
     this.create = function(unitInfo)
         unitInfo.blueprintName = unitInfo.blueprintName or unitInfo[1]
         unitInfo.armyName = unitInfo.armyName or unitInfo[2]
+        unitInfo.x = unitInfo.x or 0
+        unitInfo.y = unitInfo.y or 0
         unitInfo.z = unitInfo.z or 25.9844
         unitInfo.yawInRadians = unitInfo.yawInRadians or 0
 

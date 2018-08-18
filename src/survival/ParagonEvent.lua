@@ -1,11 +1,11 @@
-function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, unitCreation)
+function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, unitCreation, textPrinter)
     local function spawnTransport(botArmyName)
         local spawnPosition = positions.transports[botArmyName].spawnPosition
 
         local transport = unitCreator.create({
             armyName = botArmyName,
             blueprintName = "uaa0107",
-            baseHealth = 13337,
+            baseHealth = 7000,
             x = spawnPosition.x,
             y = spawnPosition.y,
             z = 80,
@@ -13,6 +13,7 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
         })
 
         transport:SetSpeedMult(2)
+        transport:SetCustomName("I heard you like Paragons")
 
         return transport
     end
@@ -28,21 +29,56 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
         local paragon = unitCreator.create({
             armyName = armyName,
             blueprintName = "xab1401",
-            baseHealth = 13337,
-            x = 0,
-            y = 0
+            baseHealth = 7000,
         })
 
         paragon.CreateWreckage = function() end
+        paragon:SetDoNotTarget(true)
 
         return paragon
     end
 
     local function loadParagonIntoTransports(transports, armyName)
-        ScenarioFramework.AttachUnitsToTransports({createParagon(armyName)}, transports)
+        local outerShield = unitCreator.spawnSurvivalUnit({
+            armyName = armyName,
+            blueprintName = "xsl0307"
+        })
+
+        ScenarioFramework.AttachUnitsToTransports(
+            {
+                createParagon(armyName),
+                outerShield
+            },
+            transports
+        )
+
+        transports[1]:CreateShield({
+            ImpactEffects="SeraphimShieldHit01",
+            ImpactMesh="/effects/entities/ShieldSection01/ShieldSection01_mesh",
+            Mesh="/effects/entities/AeonShield01/AeonShield01_mesh",
+            MeshZ="/effects/entities/Shield01/Shield01z_mesh",
+            RegenAssistMult=60,
+            ShieldEnergyDrainRechargeTime=5,
+            ShieldMaxHealth=6500,
+            ShieldRechargeTime=45,
+            ShieldRegenRate=133,
+            ShieldRegenStartTime=3,
+            ShieldSize=12,
+            ShieldSpillOverDamageMod=0,
+            ShieldVerticalOffset=-3,
+            TransportShield = true
+        })
+
+        outerShield.MyShield:SetRechargeTime(30)
+        outerShield.MyShield.SpillOverDmgMod = 0
+        outerShield.MyShield:SetMaxHealth(6500)
+        outerShield.MyShield:SetHealth(outerShield.MyShield, 6500)
+        outerShield:EnableShield()
     end
 
     local function onParagonBuild(paragon)
+        textPrinter.print("Paragon detected! Ready AA!", {color = "ffffd4d4"})
+
         local botArmyName = playerArmies.isTopSideArmy(paragon:GetArmy()) and "TOP_BOT" or "BOTTOM_BOT"
 
         local transports = {spawnTransport(botArmyName)}
@@ -51,6 +87,7 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
 
         IssueMove(transports, positions.mapCenter)
         IssueMove(transports, paragon:GetPosition())
+        IssueKillSelf(transports)
     end
 
     local function isPlayerParagon(unit)
