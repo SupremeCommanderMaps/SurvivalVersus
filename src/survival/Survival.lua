@@ -223,7 +223,8 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             ScenarioFramework,
             unitCreator,
             playerArmies,
-            positions
+            positions,
+            import('/maps/final_rush_pro_5.v0013/src/lib/UnitCreationCallbacks.lua').newInstance(allUnits)
         ).setUp()
     end
 

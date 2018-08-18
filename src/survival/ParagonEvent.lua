@@ -1,4 +1,4 @@
-function newInstance(ScenarioFramework, unitCreator, playerArmies, positions)
+function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, unitCreation)
     local function spawnTransport(botArmyName)
         local spawnPosition = positions.transports[botArmyName].spawnPosition
 
@@ -17,12 +17,12 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions)
         return transport
     end
 
-    local function getParagonPosition(armyBrain)
-        local CAN_BE_IDLE = false
-        local NEEDS_TO_BE_BUILD = true
-        local paragon = armyBrain:GetListOfUnits(categories.xab1401, CAN_BE_IDLE, NEEDS_TO_BE_BUILD)[1]
-        return paragon:GetPosition()
-    end
+--    local function getParagonPosition(armyBrain)
+--        local CAN_BE_IDLE = false
+--        local NEEDS_TO_BE_BUILD = true
+--        local paragon = armyBrain:GetListOfUnits(categories.xab1401, CAN_BE_IDLE, NEEDS_TO_BE_BUILD)[1]
+--        return paragon:GetPosition()
+--    end
 
     local function createParagon(armyName)
         local paragon = unitCreator.create({
@@ -42,37 +42,27 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions)
         ScenarioFramework.AttachUnitsToTransports({createParagon(armyName)}, transports)
     end
 
-    local function onParagonBuild(armyName, armyBrain)
-        local botArmyName = playerArmies.isTopSideArmy(armyName) and "TOP_BOT" or "BOTTOM_BOT"
+    local function onParagonBuild(paragon)
+        local botArmyName = playerArmies.isTopSideArmy(paragon:GetArmy()) and "TOP_BOT" or "BOTTOM_BOT"
 
         local transports = {spawnTransport(botArmyName)}
 
         loadParagonIntoTransports(transports, botArmyName)
 
         IssueMove(transports, positions.mapCenter)
-        IssueMove(transports, getParagonPosition(armyBrain))
+        IssueMove(transports, paragon:GetPosition())
     end
 
-    local function newOnParagonBuildFunction(armyName)
-        return function(armyBrain)
-            return onParagonBuild(armyName, armyBrain)
-        end
+    local function isPlayerParagon(unit)
+        return EntityCategoryContains(categories.xab1401, unit) and playerArmies.getIndexToNameMap()[unit:GetArmy()]
     end
 
     local function setUp()
-        for armyIndex, armyName in playerArmies.getIndexToNameMap() do
-            ScenarioFramework.CreateArmyStatTrigger(
-                newOnParagonBuildFunction(armyName),
-                ArmyBrains[armyIndex],
-                "DeliverParagon",
-                {{
-                    StatType = "Units_Active", -- TODO: Units_History
-                    CompareType = 'GreaterThanOrEqual',
-                    Value = 1,
-                    Category = categories.xab1401
-                }}
-            )
-        end
+        unitCreation.addCallback(function(unit)
+            if isPlayerParagon(unit) then
+                onParagonBuild(unit)
+            end
+        end)
     end
 
     return {
