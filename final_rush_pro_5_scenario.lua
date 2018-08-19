@@ -1,8 +1,8 @@
 version = 3
 ScenarioInfo = {
     name="Final Rush Pro 5",
-    map_version=14,
-    description=[[Version 5.14
+    map_version=15,
+    description=[[Version 5.15
 
 This map supports multiple game modes: Survival, Survival Versus, Paragon Wars and Normal.
 
@@ -16,7 +16,7 @@ At the left and right corners of the map, civilian lighthouses get spawned. Thes
 
 More comprehensive documentation can be found at bit.ly/final-rush-pro
 
-Version of the 5 adds several new features and fixes many bugs. For more information, see the README.md (text file) located in "Maps/final_rush_pro_5.v0014", or visit the site at https://github.com/JeroenDeDauw/FinalRushPro5]],
+Version of the 5 adds several new features and fixes many bugs. For more information, see the README.md (text file) located in "Maps/final_rush_pro_5.v0015", or visit the site at https://github.com/JeroenDeDauw/FinalRushPro5]],
     norushoffsetX_ARMY_BOTTOM_LEFT=0,
     norushoffsetX_ARMY_BOTTOM_LMID=0,
     norushoffsetX_ARMY_BOTTOM_RMID=0,
@@ -34,10 +34,10 @@ Version of the 5 adds several new features and fixes many bugs. For more informa
     norushoffsetY_ARMY_TOP_LMID=0,
     norushoffsetY_ARMY_TOP_LEFT=0,
     norushradius=110,
-    map="/maps/final_rush_pro_5.v0014/final_rush_pro_5.scmap",
-    preview="/maps/final_rush_pro_5.v0014/preview.jpg",
-    save="/maps/final_rush_pro_5.v0014/final_rush_pro_5_save.lua",
-    script="/maps/final_rush_pro_5.v0014/final_rush_pro_5_script.lua",
+    map="/maps/final_rush_pro_5.v0015/final_rush_pro_5.scmap",
+    preview="/maps/final_rush_pro_5.v0015/preview.jpg",
+    save="/maps/final_rush_pro_5.v0015/final_rush_pro_5_save.lua",
+    script="/maps/final_rush_pro_5.v0015/final_rush_pro_5_script.lua",
     size={ 512, 512 },
     starts=true,
     type="skirmish",
