@@ -37,7 +37,10 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.14
 
+Released on 2018-08-19
+
 * Fixed paragon event to only be triggered by completed paragons
+* Added visible area around the flying paragon so all players can see what is going on (thanks Speed2!)
 
 ## New in version 5.13
 

@@ -43,29 +43,8 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
         return paragon
     end
 
-    local function loadParagonIntoTransports(transports, armyName)
-        local outerShield = unitCreator.spawnSurvivalUnit({
-            armyName = armyName,
-            blueprintName = "xsl0307"
-        })
-
-        outerShield.CreateWreckage = function() end
-        outerShield.MyShield:SetRechargeTime(30)
-        outerShield.MyShield.SpillOverDmgMod = 0
-        outerShield.MyShield:SetMaxHealth(OUTER_SHIELD_HP)
-        outerShield.MyShield:SetHealth(outerShield.MyShield, OUTER_SHIELD_HP)
-
-        ScenarioFramework.AttachUnitsToTransports(
-            {
-                createParagon(armyName),
-                outerShield
-            },
-            transports
-        )
-
-        outerShield:EnableShield()
-
-        transports[1]:CreateShield({
+    local function addSingleUseShieldToTransport(transport)
+        transport:CreateShield({
             ImpactEffects="SeraphimShieldHit01",
             ImpactMesh="/effects/entities/ShieldSection01/ShieldSection01_mesh",
             Mesh="/effects/entities/AeonShield01/AeonShield01_mesh",
@@ -83,6 +62,65 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
         })
     end
 
+    local function createMobileShield(armyName)
+        local shieldGenerator = unitCreator.spawnSurvivalUnit({
+            armyName = armyName,
+            blueprintName = "xsl0307"
+        })
+
+        shieldGenerator.CreateWreckage = function() end
+        shieldGenerator.MyShield:SetRechargeTime(30)
+        shieldGenerator.MyShield.SpillOverDmgMod = 0
+        shieldGenerator.MyShield:SetMaxHealth(OUTER_SHIELD_HP)
+        shieldGenerator.MyShield:SetHealth(shieldGenerator.MyShield, OUTER_SHIELD_HP)
+
+        return shieldGenerator
+    end
+
+    local function loadParagonIntoTransports(transports, armyName)
+        local outerShield = createMobileShield(armyName)
+
+        ScenarioFramework.AttachUnitsToTransports(
+            {
+                createParagon(armyName),
+                outerShield
+            },
+            transports
+        )
+
+        outerShield:EnableShield()
+
+        addSingleUseShieldToTransport(transports[1])
+    end
+
+    local function revealUnitToArmy(unit, armyName)
+        local vizMarker = ScenarioFramework.CreateVisibleAreaAtUnit(18, unit, 0, GetArmyBrain(armyName))
+        vizMarker:AttachBoneTo(-1, unit, -1)
+        return vizMarker
+    end
+
+    local function destoryVizMarkersOnUnitKilled(unit, vizMarkers)
+        local onKilledFunction = unit.OnKilled
+
+        unit.OnKilled = function(self, instigator, type, overkillRatio)
+            for _, vizMarker in vizMarkers do
+                vizMarker:Destroy()
+            end
+
+            onKilledFunction(self, instigator, type, overkillRatio)
+        end
+    end
+
+    local function revealUnitToPlayers(unit)
+        local vizMarkers = {}
+
+        for armyName in playerArmies.getIndexToNameMap() do
+            table.insert(vizMarkers, revealUnitToArmy(unit, armyName))
+        end
+
+        destoryVizMarkersOnUnitKilled(unit, vizMarkers)
+    end
+
     local function onParagonBuild(paragon)
         textPrinter.print("Paragon detected! Ready AA!", {color = "ffffd4d4"})
 
@@ -95,6 +133,8 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
         IssueMove(transports, positions.mapCenter)
         IssueMove(transports, paragon:GetPosition())
         IssueKillSelf(transports)
+
+        revealUnitToPlayers(transports[1])
     end
 
     local function isPlayerParagon(unit)
