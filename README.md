@@ -38,6 +38,7 @@ many development versions of Final Rush Pro 5.10.
 ## New in version 5.15
 
 * Fixed paragon event to not be re-triggered when gifting a paragon
+* The nukes/T3/T4 arty option now also affects T4 *mobile* arty
 
 ## New in version 5.14
 

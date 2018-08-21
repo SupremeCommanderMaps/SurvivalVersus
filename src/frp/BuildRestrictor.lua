@@ -166,7 +166,7 @@ newInstance = function(playerArmies, ScenarioInfo, options)
                 for armyIndex in playerArmies.getIndexToNameMap() do
                     AddBuildRestriction(armyIndex, categories.NUKE)
                     AddBuildRestriction(armyIndex, categories.ARTILLERY * categories.STRUCTURE * categories.TECH3)
-                    AddBuildRestriction(armyIndex, categories.ARTILLERY * categories.STRUCTURE * categories.EXPERIMENTAL)
+                    AddBuildRestriction(armyIndex, categories.ARTILLERY * categories.EXPERIMENTAL)
                 end
             end
         end
