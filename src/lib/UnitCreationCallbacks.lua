@@ -12,7 +12,10 @@ function newInstance(getAllUnits)
         for _, unit in getAllUnits() do
             if unit and not unit:IsBeingBuilt() and not unit:IsDead()and not knownEntityIds[unit:GetEntityId()] then
                 knownEntityIds[unit:GetEntityId()] = true
-                runCallbacks(unit)
+
+                if unit.originalBuilder ~= nil then
+                    runCallbacks(unit)
+                end
             end
         end
     end

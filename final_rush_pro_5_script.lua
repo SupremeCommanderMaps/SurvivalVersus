@@ -4,3 +4,9 @@ function OnPopulate()
 
 	import('/lua/SimSync.lua')
 end
+
+--                    local keyset={}
+--                    for k in pairs(unit.originalBuilder) do
+--                        table.insert(keyset, k)
+--                    end
+--                    LOG(repr(keyset))

@@ -35,6 +35,10 @@ many development versions of Final Rush Pro 5.10.
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 
+## New in version 5.15
+
+* Fixed paragon event to not be re-triggered when gifting a paragon
+
 ## New in version 5.14
 
 Released on 2018-08-19

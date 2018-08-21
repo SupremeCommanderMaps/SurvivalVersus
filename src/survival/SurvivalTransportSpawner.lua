@@ -69,6 +69,9 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
         ForkThread(function()
             WaitSeconds(5)
 
+            -- TODO
+            -- cmd = IssueMove()
+            -- IsCommandDone(cmd)
             while unit:IsUnitState('Moving') do
                 WaitSeconds(0.5)
             end
