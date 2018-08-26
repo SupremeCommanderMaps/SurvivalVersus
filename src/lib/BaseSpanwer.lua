@@ -4,11 +4,11 @@ newInstance = function(baseCenter, baseOwnerName)
     end
 
     local function spawnAround(blueprintName, options)
+        options.numberOfPoints = options.numberOfPoints or 8
+
         local radius = options.distance
         local anglePerElement = 360 / options.numberOfPoints
         local pointFilter = options.pointFilter or function() return true end
-
-        options.numberOfPoints = options.numberOfPoints or 8
 
         for pointNumber=1, options.numberOfPoints do
             if pointFilter(pointNumber) then
