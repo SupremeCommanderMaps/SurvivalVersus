@@ -132,16 +132,6 @@ newInstance = function(playerArmies, ScenarioInfo, options)
         end
     end
 
-    local function novaxIsEnabledInOptions()
-        for _, value in ScenarioInfo.Options.RestrictedCategories do
-            if value == "xea0002" then
-                return false
-            end
-        end
-
-        return true
-    end
-
     return {
         resetToStartingRestrictions = function()
             resetStartingRestrictions()
@@ -150,15 +140,9 @@ newInstance = function(playerArmies, ScenarioInfo, options)
                 disableAirExceptTransportsAndScouts()
             end
 
-            local enableNovax = novaxIsEnabledInOptions()
-
             for armyIndex in playerArmies.getIndexToNameMap() do
                 if (ScenarioInfo.Options.opt_FinalRushAir == 0) then
                     AddBuildRestriction(armyIndex, categories.AIR)
-                end
-
-                if enableNovax then
-                    RemoveBuildRestriction(armyIndex, categories.xea0002)
                 end
             end
 
@@ -167,6 +151,7 @@ newInstance = function(playerArmies, ScenarioInfo, options)
                     AddBuildRestriction(armyIndex, categories.NUKE)
                     AddBuildRestriction(armyIndex, categories.ARTILLERY * categories.STRUCTURE * categories.TECH3)
                     AddBuildRestriction(armyIndex, categories.ARTILLERY * categories.EXPERIMENTAL)
+                    RemoveBuildRestriction(armyIndex, categories.uel0401)
                 end
             end
         end

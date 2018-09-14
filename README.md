@@ -35,6 +35,10 @@ many development versions of Final Rush Pro 5.10.
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 
+## New in version 5.16
+
+* Fatboys can now be build when artillery and nukes are disabled
+
 ## New in version 5.15
 
 Released on 2018-08-28
