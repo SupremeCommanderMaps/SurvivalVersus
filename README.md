@@ -18,7 +18,7 @@ of the Vampire mod.
 *From a Friend*
 
 If the map vault does not work for you and a friend has the map, ask them to send you a copy
-of their `final_rush_pro_5.v0015` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
+of their `final_rush_pro_5.v0016` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
 Then place that copy into the `Maps` directory.
 
 *Manual Installation*
@@ -31,7 +31,7 @@ advertised version of the map, ie Final Rush Pro 5.10, is in itself not sufficie
 many development versions of Final Rush Pro 5.10.
 
 * Download the [latest development version of the map][download]
-* Extract the zip. The result should be a directory named `final_rush_pro_5.v0015`
+* Extract the zip. The result should be a directory named `final_rush_pro_5.v0016`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 
