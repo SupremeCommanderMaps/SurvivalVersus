@@ -2,7 +2,7 @@
 -- Table of which resources belong to which player, it is sorted in such a way that the first line
 -- corresponds to player one, the second to player 2 and so on...
 
-maxPlayerOnMap = 10
+maxPlayerOnMap = 8
 
 
 
