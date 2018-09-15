@@ -41,7 +41,28 @@ newInstance = function()
                 y = positionVector[3]
             }
 
+            CreateResourceDeposit("Mass", mexInfo.x, mexInfo.z, mexInfo.y, 1.00)
 
+            CreatePropHPR(
+                '/env/common/props/massDeposit01_prop.bp',
+                mexInfo.x,
+                mexInfo.z,
+                mexInfo.y,
+                0, -- heading
+                0, -- pitch
+                0 -- roll
+            )
+
+            CreateSplat(
+                { mexInfo.x, mexInfo.z, mexInfo.y },
+                0, -- Heading (rotation)
+                "/env/common/splats/mass_marker.dds", -- Texture name for albedo
+                2, 2, -- SizeX/Z
+                100, -- LOD
+                0, -- Duration (0 == does not expire)
+                -1, -- army (-1 == not owned by any single army)
+                0
+            )
         end
     }
 end

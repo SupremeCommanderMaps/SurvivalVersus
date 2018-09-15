@@ -1,4 +1,4 @@
-newInstance = function(resourceCreator, playerArmies)
+newInstance = function(resourceCreator, mapEditorTables, scenarioMarkers, playerArmies)
     local spawnHydroFunctionsByArmyName = {
         ARMY_BOTTOM_LEFT = function()
             resourceCreator.createHydro(VECTOR3(295.5, 25.9844, 443.5))
@@ -20,7 +20,6 @@ newInstance = function(resourceCreator, playerArmies)
             resourceCreator.createHydro(VECTOR3(461.5, 25.9844, 313.5))
             resourceCreator.createHydro(VECTOR3(443.5, 25.9844, 313.5))
         end,
-
         ARMY_TOP_LEFT = function()
             resourceCreator.createHydro(VECTOR3(50.5, 25.9844, 198.5))
             resourceCreator.createHydro(VECTOR3(68.5, 25.9844, 198.5))
@@ -43,10 +42,27 @@ newInstance = function(resourceCreator, playerArmies)
         end,
     }
 
+    local function mexNumberToMarkerName(mexNumber)
+        return "Mass " .. (mexNumber < 10 and "0" .. mexNumber or mexNumber)
+    end
+
+    local function spawnMex(mexNumber)
+        local markerName = mexNumberToMarkerName(mexNumber)
+        LOG("Spawning mex: " .. markerName)
+        resourceCreator.createMex(scenarioMarkers[markerName].position)
+    end
+
+    local function spawnMexesForArmyIndex(armyIndex)
+        for _, mexNumber in mapEditorTables.spwnMexArmy[armyIndex] do
+            spawnMex(mexNumber)
+        end
+    end
+
     return {
         spawnResources = function()
-            for armyName in playerArmies.getNameToIndexMap() do
+            for armyName, armyIndex in playerArmies.getNameToIndexMap() do
                 spawnHydroFunctionsByArmyName[armyName]()
+                spawnMexesForArmyIndex(armyIndex)
             end
         end
     }
