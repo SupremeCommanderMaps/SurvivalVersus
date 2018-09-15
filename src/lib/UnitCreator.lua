@@ -39,6 +39,10 @@ function newUnitCreator()
             unit:SetHealth(unit, unitInfo.baseHealth)
         end
 
+        if unitInfo.speedMultiplier then
+            unit:SetSpeedMult(unitInfo.speedMultiplier)
+        end
+
         runOnUnitCreated(unit, unitInfo)
 
         return unit

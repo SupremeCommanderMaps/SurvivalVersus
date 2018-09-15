@@ -93,15 +93,14 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
             armyName = armyName,
             blueprintName = transportOptions.blueprintName,
             baseHealth = transportOptions.baseHealth,
+            speedMultiplier = transportOptions.speedMultiplier,
             x = spawnPosition.x,
             y = spawnPosition.y,
             z = 80,
             isTransport = true
         }
 
-        local transport = unitCreator.create(unitInfo)
-
-        return transport
+        return unitCreator.create(unitInfo)
     end
 
     local function createTransport(armyName, transportOptions)

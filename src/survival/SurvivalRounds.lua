@@ -21,8 +21,8 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         textPrinter.print(
             message,
             {
-                duration = 4,
-                size = 24,
+                duration = 4.5,
+                size = 25,
                 color = "ffffd4d4"
             }
         )
@@ -88,7 +88,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         )
     end
 
-    local spawnTierFourWave = function()
+    local spawnStage4Wave = function()
         transportSpawner.spawnWithTransports(
             {
                 "ual0401", -- GC
@@ -104,7 +104,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         )
     end
 
-    local spawnTierFourStageTwoWave = function()
+    local spawnStage5Wave = function()
         if options.shouldSpawnT3Arty() then
             local units = {
                 "dal0310", --Aeon T3 Shield Disruptor: Absolver
@@ -125,7 +125,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         } )
     end
 
-    local spawnTierFourStageThreeWave = function()
+    local spawnStage6Wave = function()
         if Random(1, 3) == 1 then
             unitSpawner.spawnUnits( {
                 "xea0002" -- Sattelite
@@ -147,7 +147,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         )
     end
 
-    local spawnTierFourStageFourWave = function()
+    local spawnStage7Wave = function()
         if options.shouldSpawnT3Arty() then
             transportSpawner.spawnWithTransports(
                 { "uel0401" }, --Fatboy
@@ -211,32 +211,32 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
                 spawnOptions.T4.initialDelayInSeconds,
                 spawnOptions.T4.frequencyInSeconds,
                 spawnOptions.T4.spawnEndInSeconds,
-                "Experimentals inbound",
-                spawnTierFourWave
+                "Stage 4: Experimentals",
+                spawnStage4Wave
             ))
 
             ForkThread(createRoundSpawner(
                 spawnOptions.T42.initialDelayInSeconds,
                 spawnOptions.T42.frequencyInSeconds,
                 spawnOptions.T42.spawnEndInSeconds,
-                "Tier 4 stage 2 inbound",
-                spawnTierFourStageTwoWave
+                "Stage 5: Bugs replace T3",
+                spawnStage5Wave
             ))
 
             ForkThread(createRoundSpawner(
                 spawnOptions.T43.initialDelayInSeconds,
                 spawnOptions.T43.frequencyInSeconds,
                 spawnOptions.T43.spawnEndInSeconds,
-                "Tier 4 stage 3 inbound",
-                spawnTierFourStageThreeWave
+                "Stage 6: Megas, Chickens and Sattelites",
+                spawnStage6Wave
             ))
 
             ForkThread(createRoundSpawner(
                 spawnOptions.T44.initialDelayInSeconds,
                 spawnOptions.T44.frequencyInSeconds,
                 spawnOptions.T44.spawnEndInSeconds,
-                "Tier 4 stage 4 inbound",
-                spawnTierFourStageFourWave
+                "Stage 7: Fatboys and stronger air",
+                spawnStage7Wave
             ))
         end
     }
