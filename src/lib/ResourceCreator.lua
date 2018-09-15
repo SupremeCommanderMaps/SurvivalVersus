@@ -32,6 +32,16 @@ newInstance = function()
                 -1, -- army (-1 == not owned by any single army)
                 0
             )
+        end,
+
+        createMex = function(positionVector)
+            local mexInfo = {
+                x = positionVector[1],
+                z = positionVector[2],
+                y = positionVector[3]
+            }
+
+
         end
     }
 end
