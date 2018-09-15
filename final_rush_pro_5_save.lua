@@ -60,12 +60,12 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 73.5, 25.9922, 126.5 ),
                 },
-                ['ARMY_TOP_RIGHT'] = {
-                    ['color'] = STRING( 'ff800080' ),
-                    ['type'] = STRING( 'Blank Marker' ),
+                ['Naval Link 05'] = {
+                    ['color'] = STRING( 'ffff0000' ),
+                    ['type'] = STRING( 'Naval Link' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 206.5, 25.9844, 60.5 ),
+                    ['position'] = VECTOR3( 346.5, 25, 236.5 ),
                 },
                 ['Hydrocarbon 23'] = {
                     ['size'] = FLOAT( 3.000000 ),
@@ -204,16 +204,6 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 71.5, 25.9922, 150.5 ),
                 },
-                ['Hydrocarbon 05'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 427.5, 25.9844, 385.5 ),
-                },
                 ['Mass 119'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
@@ -249,13 +239,6 @@ Scenario = {
                     ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 42.5, 25.9844, 282.5 ),
-                },
-                ['ARMY_TOP_LEFT'] = {
-                    ['color'] = STRING( 'ff800080' ),
-                    ['type'] = STRING( 'Blank Marker' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 60.5, 25.9844, 206.5 ),
                 },
                 ['Mass 89'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -332,6 +315,13 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 268.5, 25, 151.5 ),
                 },
+                ['ARMY_BOTTOM_LEFT'] = {
+                    ['color'] = STRING( 'ff800080' ),
+                    ['type'] = STRING( 'Blank Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 305.5, 25.9844, 451.5 ),
+                },
                 ['Mass 109'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
@@ -401,16 +391,6 @@ Scenario = {
                     ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 150.5, 25.9922, 184.5 ),
-                },
-                ['Hydrocarbon 04'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 367.5, 25.9844, 427.5 ),
                 },
                 ['LandPN12'] = {
                     ['color'] = STRING( 'ff00ff00' ),
@@ -483,15 +463,13 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 445.5, 25.9844, 373.5 ),
                 },
-                ['Hydrocarbon 03'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
+                ['Protected Experimental Construction 03'] = {
+                    ['color'] = STRING( 'ff0000AA' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['type'] = STRING( 'Protected Experimental Construction' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Expansion_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 313.5, 25.9844, 443.5 ),
+                    ['position'] = VECTOR3( 451.5, 25.9844, 322.5 ),
                 },
                 ['Mass 07'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -514,16 +492,6 @@ Scenario = {
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 437.5, 25.9844, 373.5 ),
-                },
-                ['Hydrocarbon 01'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 367.5, 25.9844, 445.5 ),
                 },
                 ['Mass 111'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -561,6 +529,14 @@ Scenario = {
                     ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 203.5, 25.9844, 172.5 ),
+                },
+                ['Combat Zone 01'] = {
+                    ['color'] = STRING( 'ff800000' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['type'] = STRING( 'Combat Zone' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_CombatZone_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 154.5, 25.7656, 360.5 ),
                 },
                 ['LandPN07'] = {
                     ['color'] = STRING( 'ff00ff00' ),
@@ -618,22 +594,15 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 354.5, 25.9844, 311.5 ),
                 },
-                ['Hydrocarbon 09'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
+                ['WaterPN03'] = {
+                    ['color'] = STRING( 'ff0000ff' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultWater' ),
+                    ['adjacentTo'] = STRING( 'WaterPN04 WaterPN05 WaterPN07 WaterPN08 WaterPN09' ),
+                    ['type'] = STRING( 'Water Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 443.5, 25.9844, 313.5 ),
-                },
-                ['ARMY_BOTTOM_LEFT'] = {
-                    ['color'] = STRING( 'ff800080' ),
-                    ['type'] = STRING( 'Blank Marker' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 305.5, 25.9844, 451.5 ),
+                    ['position'] = VECTOR3( 78.5, 25, 319.5 ),
                 },
                 ['Protected Experimental Construction 05'] = {
                     ['color'] = STRING( 'ff0000AA' ),
@@ -676,15 +645,12 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 377.5, 25.9844, 441.5 ),
                 },
-                ['Hydrocarbon 11'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
+                ['ARMY_BOTTOM_RMID'] = {
+                    ['color'] = STRING( 'ff800080' ),
+                    ['type'] = STRING( 'Blank Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 443.5, 25.9844, 295.5 ),
+                    ['position'] = VECTOR3( 435.5, 25.9844, 375.5 ),
                 },
                 ['Mass 83'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -715,6 +681,13 @@ Scenario = {
                     ['prop'] = STRING( '/env/common/props/markers/M_CombatZone_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 98.5, 25, 415.5 ),
+                },
+                ['ARMY_TOP_RMID'] = {
+                    ['color'] = STRING( 'ff800080' ),
+                    ['type'] = STRING( 'Blank Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 132.5, 25.9922, 71.5 ),
                 },
                 ['Naval Link 14'] = {
                     ['color'] = STRING( 'ffff0000' ),
@@ -843,12 +816,13 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 449.5, 25.9844, 307.5 ),
                 },
-                ['ARMY_TOP_LMID'] = {
-                    ['color'] = STRING( 'ff800080' ),
-                    ['type'] = STRING( 'Blank Marker' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                ['Defensive Point 02'] = {
+                    ['color'] = STRING( 'ff008000' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['type'] = STRING( 'Defensive Point' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 71.5, 25.9922, 132.5 ),
+                    ['position'] = VECTOR3( 434.5, 25.9844, 246.5 ),
                 },
                 ['Mass 70'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -887,16 +861,6 @@ Scenario = {
                     ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 460.5, 25, 175.5 ),
-                },
-                ['Hydrocarbon 02'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 295.5, 25.9844, 443.5 ),
                 },
                 ['Mass 35'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -1066,6 +1030,13 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 307.5, 25.9844, 453.5 ),
                 },
+                ['ARMY_BOTTOM_RIGHT'] = {
+                    ['color'] = STRING( 'ff800080' ),
+                    ['type'] = STRING( 'Blank Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 451.5, 25.9844, 305.5 ),
+                },
                 ['Mass 101'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
@@ -1178,15 +1149,12 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 248.5, 25.9844, 439.5 ),
                 },
-                ['Hydrocarbon 10'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
+                ['Naval Link 13'] = {
+                    ['color'] = STRING( 'ffff0000' ),
+                    ['type'] = STRING( 'Naval Link' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 461.5, 25.9844, 313.5 ),
+                    ['position'] = VECTOR3( 78.5, 25, 299.5 ),
                 },
                 ['LandPN04'] = {
                     ['color'] = STRING( 'ff00ff00' ),
@@ -1308,15 +1276,16 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 43.5, 25.9844, 281.5 ),
                 },
-                ['Hydrocarbon 00'] = {
-                    ['size'] = FLOAT( 3.000000 ),
+                ['Mass 62'] = {
+                    ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 385.5, 25.9844, 427.5 ),
+                    ['position'] = VECTOR3( 449.5, 25.9844, 303.5 ),
                 },
                 ['WaterPN01'] = {
                     ['color'] = STRING( 'ff0000ff' ),
@@ -1356,6 +1325,13 @@ Scenario = {
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 295.5, 25.9844, 449.5 ),
+                },
+                ['Transport Marker 08'] = {
+                    ['color'] = STRING( 'ff80A088' ),
+                    ['type'] = STRING( 'Transport Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 346.5, 25.9844, 470.5 ),
                 },
                 ['AmphPN02'] = {
                     ['color'] = STRING( 'ff00ffff' ),
@@ -1460,16 +1436,6 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 197.5, 25, 438.5 ),
                 },
-                ['Hydrocarbon 07'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 445.5, 25.9844, 367.5 ),
-                },
                 ['Naval Link 23'] = {
                     ['color'] = STRING( 'ffff0000' ),
                     ['type'] = STRING( 'Naval Link' ),
@@ -1507,31 +1473,6 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 269.5, 25.9844, 268.5 ),
                 },
-                ['Naval Link 19'] = {
-                    ['color'] = STRING( 'ffff0000' ),
-                    ['type'] = STRING( 'Naval Link' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 245.5, 25, 391.5 ),
-                },
-                ['Naval Link 13'] = {
-                    ['color'] = STRING( 'ffff0000' ),
-                    ['type'] = STRING( 'Naval Link' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 78.5, 25, 299.5 ),
-                },
-                ['Mass 100'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 130.5, 25.9922, 65.5 ),
-                },
                 ['Mass 135'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
@@ -1543,13 +1484,6 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 206.5, 25.9844, 123.5 ),
                 },
-                ['Naval Link 11'] = {
-                    ['color'] = STRING( 'ffff0000' ),
-                    ['type'] = STRING( 'Naval Link' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 312.5, 25, 20.5 ),
-                },
                 ['LandPN22'] = {
                     ['color'] = STRING( 'ff00ff00' ),
                     ['hint'] = BOOLEAN( true ),
@@ -1560,35 +1494,6 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 270.5, 25.9375, 307.5 ),
                 },
-                ['Mass 36'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 373.5, 25.9844, 433.5 ),
-                },
-                ['Naval Link 05'] = {
-                    ['color'] = STRING( 'ffff0000' ),
-                    ['type'] = STRING( 'Naval Link' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 346.5, 25, 236.5 ),
-                },
-                ['Mass 97'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 69.5, 25.9922, 134.5 ),
-                },
                 ['Naval Defensive Point 01'] = {
                     ['color'] = STRING( 'ff0080FF' ),
                     ['hint'] = BOOLEAN( true ),
@@ -1597,44 +1502,12 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 397.5, 25, 202.5 ),
                 },
-                ['Hydrocarbon 06'] = {
-                    ['size'] = FLOAT( 3.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 427.5, 25.9844, 367.5 ),
-                },
-                ['Mass 115'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 204.5, 25.9844, 62.5 ),
-                },
                 ['Naval Link 15'] = {
                     ['color'] = STRING( 'ffff0000' ),
                     ['type'] = STRING( 'Naval Link' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 168.5, 25, 270.5 ),
-                },
-                ['Mass 47'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 307.5, 25.9844, 461.5 ),
                 },
                 ['Mass 93'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -1647,13 +1520,12 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 65.5, 25.9922, 134.5 ),
                 },
-                ['Defensive Point 01'] = {
-                    ['color'] = STRING( 'ff008000' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Defensive Point' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
+                ['ARMY_TOP_RIGHT'] = {
+                    ['color'] = STRING( 'ff800080' ),
+                    ['type'] = STRING( 'Blank Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 227.5, 25.9766, 228.5 ),
+                    ['position'] = VECTOR3( 206.5, 25.9844, 60.5 ),
                 },
                 ['Mass 132'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -1666,14 +1538,6 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 98.5, 25.9922, 139.5 ),
                 },
-                ['Combat Zone 01'] = {
-                    ['color'] = STRING( 'ff800000' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Combat Zone' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_CombatZone_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 154.5, 25.7656, 360.5 ),
-                },
                 ['Hydrocarbon 12'] = {
                     ['size'] = FLOAT( 3.000000 ),
                     ['resource'] = BOOLEAN( true ),
@@ -1683,23 +1547,6 @@ Scenario = {
                     ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 68.5, 25.9844, 216.5 ),
-                },
-                ['LandPN26'] = {
-                    ['color'] = STRING( 'ff00ff00' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultLand' ),
-                    ['adjacentTo'] = STRING( 'LandPN06 LandPN15 LandPN27' ),
-                    ['type'] = STRING( 'Land Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 477.5, 25.9688, 242.5 ),
-                },
-                ['ARMY_BOTTOM_RMID'] = {
-                    ['color'] = STRING( 'ff800080' ),
-                    ['type'] = STRING( 'Blank Marker' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 435.5, 25.9844, 375.5 ),
                 },
                 ['Hydrocarbon 21'] = {
                     ['size'] = FLOAT( 3.000000 ),
@@ -1711,17 +1558,6 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 198.5, 25.9844, 50.5 ),
                 },
-                ['Mass 114'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 208.5, 25.9844, 62.5 ),
-                },
                 ['AirPN03'] = {
                     ['color'] = STRING( 'ffffffff' ),
                     ['hint'] = BOOLEAN( true ),
@@ -1732,14 +1568,6 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 164.5, 25.9922, 40.5 ),
                 },
-                ['Defensive Point 04'] = {
-                    ['color'] = STRING( 'ff008000' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Defensive Point' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 76.5, 25.9844, 266.5 ),
-                },
                 ['Naval Defensive Point 03'] = {
                     ['color'] = STRING( 'ff0080FF' ),
                     ['hint'] = BOOLEAN( true ),
@@ -1748,58 +1576,26 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 109.5, 25, 305.5 ),
                 },
-                ['Defensive Point 05'] = {
-                    ['color'] = STRING( 'ff008000' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Defensive Point' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 264.5, 25.9844, 59.5 ),
-                },
-                ['Mass 50'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 359.5, 25.9844, 306.5 ),
-                },
-                ['Transport Marker 08'] = {
-                    ['color'] = STRING( 'ff80A088' ),
-                    ['type'] = STRING( 'Transport Marker' ),
+                ['Naval Link 20'] = {
+                    ['color'] = STRING( 'ffff0000' ),
+                    ['type'] = STRING( 'Naval Link' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 346.5, 25.9844, 470.5 ),
+                    ['position'] = VECTOR3( 231.5, 25, 429.5 ),
                 },
-                ['WaterPN14'] = {
-                    ['color'] = STRING( 'ff0000ff' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultWater' ),
-                    ['adjacentTo'] = STRING( 'WaterPN01 WaterPN02 WaterPN12 WaterPN13' ),
-                    ['type'] = STRING( 'Water Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 503.5, 25, 167.5 ),
-                },
-                ['WaterPN13'] = {
-                    ['color'] = STRING( 'ff0000ff' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultWater' ),
-                    ['adjacentTo'] = STRING( 'WaterPN01 WaterPN02 WaterPN12 WaterPN14' ),
-                    ['type'] = STRING( 'Water Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 349.5, 25, 10.5 ),
-                },
-                ['Transport Marker 10'] = {
-                    ['color'] = STRING( 'ff80A088' ),
-                    ['type'] = STRING( 'Transport Marker' ),
+                ['Naval Link 19'] = {
+                    ['color'] = STRING( 'ffff0000' ),
+                    ['type'] = STRING( 'Naval Link' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 477.5, 25.9688, 240.5 ),
+                    ['position'] = VECTOR3( 245.5, 25, 391.5 ),
+                },
+                ['Naval Link 18'] = {
+                    ['color'] = STRING( 'ffff0000' ),
+                    ['type'] = STRING( 'Naval Link' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 247.5, 25, 350.5 ),
                 },
                 ['Mass 43'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -1812,20 +1608,34 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 433.5, 25.9844, 385.5 ),
                 },
-                ['ARMY_TOP_RMID'] = {
-                    ['color'] = STRING( 'ff800080' ),
-                    ['type'] = STRING( 'Blank Marker' ),
+                ['Mass 47'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 307.5, 25.9844, 461.5 ),
+                },
+                ['Mass 36'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 373.5, 25.9844, 433.5 ),
+                },
+                ['Naval Link 02'] = {
+                    ['color'] = STRING( 'ffff0000' ),
+                    ['type'] = STRING( 'Naval Link' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 132.5, 25.9922, 71.5 ),
-                },
-                ['Protected Experimental Construction 03'] = {
-                    ['color'] = STRING( 'ff0000AA' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Protected Experimental Construction' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Expansion_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 451.5, 25.9844, 322.5 ),
+                    ['position'] = VECTOR3( 453.5, 25, 204.5 ),
                 },
                 ['LandPN29'] = {
                     ['color'] = STRING( 'ff00ff00' ),
@@ -1847,7 +1657,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 140.5, 25.9922, 61.5 ),
                 },
-                ['Mass 91'] = {
+                ['Mass 115'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
@@ -1856,7 +1666,7 @@ Scenario = {
                     ['type'] = STRING( 'Mass' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 61.5, 25.9922, 134.5 ),
+                    ['position'] = VECTOR3( 204.5, 25.9844, 62.5 ),
                 },
                 ['LandPN21'] = {
                     ['color'] = STRING( 'ff00ff00' ),
@@ -1875,24 +1685,35 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 278.5, 25, 189.5 ),
                 },
-                ['Mass 112'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 216.5, 25.9844, 62.5 ),
-                },
-                ['Protected Experimental Construction 06'] = {
-                    ['color'] = STRING( 'ff0000AA' ),
+                ['LandPN10'] = {
+                    ['color'] = STRING( 'ff00ff00' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Protected Experimental Construction' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Expansion_prop.bp' ),
+                    ['graph'] = STRING( 'DefaultLand' ),
+                    ['adjacentTo'] = STRING( 'LandPN04 LandPN11 LandPN17 LandPN18 LandPN19' ),
+                    ['type'] = STRING( 'Land Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 154.5, 25.9922, 70.5 ),
+                    ['position'] = VECTOR3( 208.5, 25.9844, 60.5 ),
+                },
+                ['AirPN06'] = {
+                    ['color'] = STRING( 'ffffffff' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultAir' ),
+                    ['adjacentTo'] = STRING( 'AirPN01 AirPN02 AirPN03 AirPN04 AirPN07 AirPN08' ),
+                    ['type'] = STRING( 'Air Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 479.5, 25.9844, 340.5 ),
+                },
+                ['AirPN04'] = {
+                    ['color'] = STRING( 'ffffffff' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultAir' ),
+                    ['adjacentTo'] = STRING( 'AirPN03 AirPN06 AirPN07 AirPN08' ),
+                    ['type'] = STRING( 'Air Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 499.5, 25.7188, 13.5 ),
                 },
                 ['LandPN08'] = {
                     ['color'] = STRING( 'ff00ff00' ),
@@ -1904,55 +1725,42 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 377.5, 25.9844, 437.5 ),
                 },
-                ['Combat Zone 03'] = {
-                    ['color'] = STRING( 'ff800000' ),
+                ['LandPN28'] = {
+                    ['color'] = STRING( 'ff00ff00' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Combat Zone' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_CombatZone_prop.bp' ),
+                    ['graph'] = STRING( 'DefaultLand' ),
+                    ['adjacentTo'] = STRING( 'LandPN01 LandPN09 LandPN22 LandPN29' ),
+                    ['type'] = STRING( 'Land Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 243.5, 25.9844, 243.5 ),
+                    ['position'] = VECTOR3( 270.5, 25.9844, 384.5 ),
                 },
-                ['Mass 85'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 58.5, 25.9844, 212.5 ),
-                },
-                ['Mass 94'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 65.5, 25.9922, 130.5 ),
-                },
-                ['WaterPN02'] = {
+                ['WaterPN13'] = {
                     ['color'] = STRING( 'ff0000ff' ),
                     ['hint'] = BOOLEAN( true ),
                     ['graph'] = STRING( 'DefaultWater' ),
-                    ['adjacentTo'] = STRING( 'WaterPN01 WaterPN11 WaterPN12 WaterPN13 WaterPN14' ),
+                    ['adjacentTo'] = STRING( 'WaterPN01 WaterPN02 WaterPN12 WaterPN14' ),
                     ['type'] = STRING( 'Water Path Node' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 327.5, 25, 62.5 ),
+                    ['position'] = VECTOR3( 349.5, 25, 10.5 ),
                 },
-                ['WaterPN03'] = {
-                    ['color'] = STRING( 'ff0000ff' ),
+                ['ARMY_TOP_LEFT'] = {
+                    ['color'] = STRING( 'ff800080' ),
+                    ['type'] = STRING( 'Blank Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 60.5, 25.9844, 206.5 ),
+                },
+                ['LandPN23'] = {
+                    ['color'] = STRING( 'ff00ff00' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultWater' ),
-                    ['adjacentTo'] = STRING( 'WaterPN04 WaterPN05 WaterPN07 WaterPN08 WaterPN09' ),
-                    ['type'] = STRING( 'Water Path Node' ),
+                    ['graph'] = STRING( 'DefaultLand' ),
+                    ['adjacentTo'] = STRING( 'LandPN02 LandPN04 LandPN20 LandPN21 LandPN22 LandPN24' ),
+                    ['type'] = STRING( 'Land Path Node' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 78.5, 25, 319.5 ),
+                    ['position'] = VECTOR3( 200.5, 25.8984, 235.5 ),
                 },
                 ['AirPN08'] = {
                     ['color'] = STRING( 'ffffffff' ),
@@ -1974,40 +1782,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 345.5, 25.9844, 467.5 ),
                 },
-                ['LandPN17'] = {
-                    ['color'] = STRING( 'ff00ff00' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultLand' ),
-                    ['adjacentTo'] = STRING( 'LandPN10 LandPN11 LandPN19' ),
-                    ['type'] = STRING( 'Land Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 164.5, 25.9922, 38.5 ),
-                },
-                ['Rally Point 03'] = {
-                    ['color'] = STRING( 'FF808000' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Rally Point' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 170.5, 25.9844, 196.5 ),
-                },
-                ['Protected Experimental Construction 02'] = {
-                    ['color'] = STRING( 'ff0000AA' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Protected Experimental Construction' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Expansion_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 379.5, 25.9844, 416.5 ),
-                },
-                ['Transport Marker 05'] = {
-                    ['color'] = STRING( 'ff80A088' ),
-                    ['type'] = STRING( 'Transport Marker' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 124.5, 25.9922, 125.5 ),
-                },
-                ['Mass 125'] = {
+                ['Mass 05'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
@@ -2016,7 +1791,47 @@ Scenario = {
                     ['type'] = STRING( 'Mass' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 175.5, 25.9922, 150.5 ),
+                    ['position'] = VECTOR3( 381.5, 25.9844, 437.5 ),
+                },
+                ['Protected Experimental Construction 06'] = {
+                    ['color'] = STRING( 'ff0000AA' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['type'] = STRING( 'Protected Experimental Construction' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Expansion_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 154.5, 25.9922, 70.5 ),
+                },
+                ['LandPN18'] = {
+                    ['color'] = STRING( 'ff00ff00' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultLand' ),
+                    ['adjacentTo'] = STRING( 'LandPN04 LandPN10 LandPN19 LandPN20' ),
+                    ['type'] = STRING( 'Land Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 247.5, 26, 130.5 ),
+                },
+                ['Mass 85'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 58.5, 25.9844, 212.5 ),
+                },
+                ['Mass 106'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 134.5, 25.9922, 61.5 ),
                 },
                 ['LandPN24'] = {
                     ['color'] = STRING( 'ff00ff00' ),
@@ -2039,35 +1854,35 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 54.5, 25.9844, 208.5 ),
                 },
-                ['Naval Link 03'] = {
-                    ['color'] = STRING( 'ffff0000' ),
-                    ['type'] = STRING( 'Naval Link' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 424.5, 25, 217.5 ),
-                },
-                ['Mass 68'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 449.5, 25.9844, 299.5 ),
-                },
-                ['LandPN09'] = {
-                    ['color'] = STRING( 'ff00ff00' ),
+                ['Rally Point 03'] = {
+                    ['color'] = STRING( 'FF808000' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultLand' ),
-                    ['adjacentTo'] = STRING( 'LandPN01 LandPN08 LandPN14 LandPN28 LandPN29' ),
-                    ['type'] = STRING( 'Land Path Node' ),
+                    ['type'] = STRING( 'Rally Point' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 170.5, 25.9844, 196.5 ),
+                },
+                ['WaterPN08'] = {
+                    ['color'] = STRING( 'ff0000ff' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultWater' ),
+                    ['adjacentTo'] = STRING( 'WaterPN03 WaterPN04 WaterPN05 WaterPN09' ),
+                    ['type'] = STRING( 'Water Path Node' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 302.5, 25.9844, 454.5 ),
+                    ['position'] = VECTOR3( 17.5, 25, 358.5 ),
                 },
-                ['Mass 104'] = {
+                ['AmphPN05'] = {
+                    ['color'] = STRING( 'ff00ffff' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultAmphibious' ),
+                    ['adjacentTo'] = STRING( 'AmphPN03 AmphPN04' ),
+                    ['type'] = STRING( 'Amphibious Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 414.5, 25, 89.5 ),
+                },
+                ['Mass 99'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
@@ -2076,7 +1891,7 @@ Scenario = {
                     ['type'] = STRING( 'Mass' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 130.5, 25.9922, 73.5 ),
+                    ['position'] = VECTOR3( 139.5, 25.9922, 98.5 ),
                 },
                 ['Mass 45'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -2089,7 +1904,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 441.5, 25.9844, 377.5 ),
                 },
-                ['Mass 102'] = {
+                ['Mass 91'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
@@ -2098,18 +1913,15 @@ Scenario = {
                     ['type'] = STRING( 'Mass' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 126.5, 25.9922, 73.5 ),
+                    ['position'] = VECTOR3( 61.5, 25.9922, 134.5 ),
                 },
-                ['Mass 129'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                ['Naval Defensive Point 05'] = {
+                    ['color'] = STRING( 'ff0080FF' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['type'] = STRING( 'Naval Defensive Point' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 205.5, 25.9844, 152.5 ),
+                    ['position'] = VECTOR3( 182.5, 25, 463.5 ),
                 },
                 ['Mass 44'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -2122,22 +1934,37 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 433.5, 25.9844, 373.5 ),
                 },
-                ['ARMY_BOTTOM_LMID'] = {
-                    ['color'] = STRING( 'ff800080' ),
-                    ['type'] = STRING( 'Blank Marker' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                ['Mass 104'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 375.5, 25.9844, 435.5 ),
+                    ['position'] = VECTOR3( 130.5, 25.9922, 73.5 ),
                 },
-                ['Naval Defensive Point 09'] = {
+                ['Mass 129'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 205.5, 25.9844, 152.5 ),
+                },
+                ['Naval Defensive Point 04'] = {
                     ['color'] = STRING( 'ff0080FF' ),
                     ['hint'] = BOOLEAN( true ),
                     ['type'] = STRING( 'Naval Defensive Point' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 313.5, 25, 89.5 ),
+                    ['position'] = VECTOR3( 45.5, 25, 328.5 ),
                 },
-                ['Mass 110'] = {
+                ['Mass 16'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
@@ -2146,18 +1973,7 @@ Scenario = {
                     ['type'] = STRING( 'Mass' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 212.5, 25.9844, 62.5 ),
-                },
-                ['Mass 62'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 449.5, 25.9844, 303.5 ),
+                    ['position'] = VECTOR3( 299.5, 25.9844, 449.5 ),
                 },
                 ['Mass 42'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -2189,7 +2005,27 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 381.5, 25.9844, 433.5 ),
                 },
-                ['Mass 06'] = {
+                ['LandPN16'] = {
+                    ['color'] = STRING( 'ff00ff00' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultLand' ),
+                    ['adjacentTo'] = STRING( 'LandPN12 LandPN13 LandPN25' ),
+                    ['type'] = STRING( 'Land Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 29.5, 25.9922, 174.5 ),
+                },
+                ['AirPN05'] = {
+                    ['color'] = STRING( 'ffffffff' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultAir' ),
+                    ['adjacentTo'] = STRING( 'AirPN01 AirPN02 AirPN07 AirPN08' ),
+                    ['type'] = STRING( 'Air Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 15.5, 25.6797, 499.5 ),
+                },
+                ['Mass 94'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
@@ -2198,7 +2034,7 @@ Scenario = {
                     ['type'] = STRING( 'Mass' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 373.5, 25.9844, 445.5 ),
+                    ['position'] = VECTOR3( 65.5, 25.9922, 130.5 ),
                 },
                 ['Mass 72'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -2211,25 +2047,24 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 408.5, 25.9844, 368.5 ),
                 },
-                ['AirPN05'] = {
-                    ['color'] = STRING( 'ffffffff' ),
+                ['Protected Experimental Construction 02'] = {
+                    ['color'] = STRING( 'ff0000AA' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultAir' ),
-                    ['adjacentTo'] = STRING( 'AirPN01 AirPN02 AirPN07 AirPN08' ),
-                    ['type'] = STRING( 'Air Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['type'] = STRING( 'Protected Experimental Construction' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Expansion_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 15.5, 25.6797, 499.5 ),
+                    ['position'] = VECTOR3( 379.5, 25.9844, 416.5 ),
                 },
-                ['LandPN16'] = {
-                    ['color'] = STRING( 'ff00ff00' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultLand' ),
-                    ['adjacentTo'] = STRING( 'LandPN12 LandPN13 LandPN25' ),
-                    ['type'] = STRING( 'Land Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                ['Mass 06'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 29.5, 25.9922, 174.5 ),
+                    ['position'] = VECTOR3( 373.5, 25.9844, 445.5 ),
                 },
                 ['Mass 90'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -2242,15 +2077,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 69.5, 25.9922, 126.5 ),
                 },
-                ['Defensive Point 02'] = {
-                    ['color'] = STRING( 'ff008000' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Defensive Point' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 434.5, 25.9844, 246.5 ),
-                },
-                ['Mass 16'] = {
+                ['Mass 110'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
@@ -2259,15 +2086,33 @@ Scenario = {
                     ['type'] = STRING( 'Mass' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 299.5, 25.9844, 449.5 ),
+                    ['position'] = VECTOR3( 212.5, 25.9844, 62.5 ),
                 },
-                ['Naval Defensive Point 04'] = {
+                ['Naval Defensive Point 09'] = {
                     ['color'] = STRING( 'ff0080FF' ),
                     ['hint'] = BOOLEAN( true ),
                     ['type'] = STRING( 'Naval Defensive Point' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 45.5, 25, 328.5 ),
+                    ['position'] = VECTOR3( 313.5, 25, 89.5 ),
+                },
+                ['ARMY_BOTTOM_LMID'] = {
+                    ['color'] = STRING( 'ff800080' ),
+                    ['type'] = STRING( 'Blank Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 375.5, 25.9844, 435.5 ),
+                },
+                ['Mass 102'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 126.5, 25.9922, 73.5 ),
                 },
                 ['Transport Marker 01'] = {
                     ['color'] = STRING( 'ff80A088' ),
@@ -2276,15 +2121,17 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 278.5, 25.9609, 38.5 ),
                 },
-                ['Naval Defensive Point 05'] = {
-                    ['color'] = STRING( 'ff0080FF' ),
+                ['LandPN09'] = {
+                    ['color'] = STRING( 'ff00ff00' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['type'] = STRING( 'Naval Defensive Point' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
+                    ['graph'] = STRING( 'DefaultLand' ),
+                    ['adjacentTo'] = STRING( 'LandPN01 LandPN08 LandPN14 LandPN28 LandPN29' ),
+                    ['type'] = STRING( 'Land Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 182.5, 25, 463.5 ),
+                    ['position'] = VECTOR3( 302.5, 25.9844, 454.5 ),
                 },
-                ['Mass 99'] = {
+                ['Mass 68'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
@@ -2293,34 +2140,32 @@ Scenario = {
                     ['type'] = STRING( 'Mass' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 139.5, 25.9922, 98.5 ),
+                    ['position'] = VECTOR3( 449.5, 25.9844, 299.5 ),
                 },
-                ['AmphPN05'] = {
-                    ['color'] = STRING( 'ff00ffff' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultAmphibious' ),
-                    ['adjacentTo'] = STRING( 'AmphPN03 AmphPN04' ),
-                    ['type'] = STRING( 'Amphibious Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 414.5, 25, 89.5 ),
-                },
-                ['WaterPN08'] = {
-                    ['color'] = STRING( 'ff0000ff' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultWater' ),
-                    ['adjacentTo'] = STRING( 'WaterPN03 WaterPN04 WaterPN05 WaterPN09' ),
-                    ['type'] = STRING( 'Water Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 17.5, 25, 358.5 ),
-                },
-                ['ARMY_BOTTOM_RIGHT'] = {
-                    ['color'] = STRING( 'ff800080' ),
-                    ['type'] = STRING( 'Blank Marker' ),
+                ['Naval Link 03'] = {
+                    ['color'] = STRING( 'ffff0000' ),
+                    ['type'] = STRING( 'Naval Link' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 451.5, 25.9844, 305.5 ),
+                    ['position'] = VECTOR3( 424.5, 25, 217.5 ),
+                },
+                ['Mass 125'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 175.5, 25.9922, 150.5 ),
+                },
+                ['Transport Marker 05'] = {
+                    ['color'] = STRING( 'ff80A088' ),
+                    ['type'] = STRING( 'Transport Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 124.5, 25.9922, 125.5 ),
                 },
                 ['AmphPN04'] = {
                     ['color'] = STRING( 'ff00ffff' ),
@@ -2332,16 +2177,25 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 210.5, 25.9844, 59.5 ),
                 },
-                ['Mass 106'] = {
-                    ['size'] = FLOAT( 1.000000 ),
-                    ['resource'] = BOOLEAN( true ),
-                    ['amount'] = FLOAT( 100.000000 ),
-                    ['color'] = STRING( 'ff808080' ),
-                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
-                    ['type'] = STRING( 'Mass' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                ['LandPN17'] = {
+                    ['color'] = STRING( 'ff00ff00' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultLand' ),
+                    ['adjacentTo'] = STRING( 'LandPN10 LandPN11 LandPN19' ),
+                    ['type'] = STRING( 'Land Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 134.5, 25.9922, 61.5 ),
+                    ['position'] = VECTOR3( 164.5, 25.9922, 38.5 ),
+                },
+                ['WaterPN02'] = {
+                    ['color'] = STRING( 'ff0000ff' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['graph'] = STRING( 'DefaultWater' ),
+                    ['adjacentTo'] = STRING( 'WaterPN01 WaterPN11 WaterPN12 WaterPN13 WaterPN14' ),
+                    ['type'] = STRING( 'Water Path Node' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 327.5, 25, 62.5 ),
                 },
                 ['Mass 69'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -2354,15 +2208,13 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 453.5, 25.9844, 299.5 ),
                 },
-                ['LandPN18'] = {
-                    ['color'] = STRING( 'ff00ff00' ),
+                ['Combat Zone 03'] = {
+                    ['color'] = STRING( 'ff800000' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultLand' ),
-                    ['adjacentTo'] = STRING( 'LandPN04 LandPN10 LandPN19 LandPN20' ),
-                    ['type'] = STRING( 'Land Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['type'] = STRING( 'Combat Zone' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_CombatZone_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 247.5, 26, 130.5 ),
+                    ['position'] = VECTOR3( 243.5, 25.9844, 243.5 ),
                 },
                 ['WaterPN11'] = {
                     ['color'] = STRING( 'ff0000ff' ),
@@ -2374,7 +2226,7 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 279.5, 25, 151.5 ),
                 },
-                ['Mass 05'] = {
+                ['Mass 112'] = {
                     ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
@@ -2383,17 +2235,14 @@ Scenario = {
                     ['type'] = STRING( 'Mass' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 381.5, 25.9844, 437.5 ),
+                    ['position'] = VECTOR3( 216.5, 25.9844, 62.5 ),
                 },
-                ['LandPN23'] = {
-                    ['color'] = STRING( 'ff00ff00' ),
-                    ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultLand' ),
-                    ['adjacentTo'] = STRING( 'LandPN02 LandPN04 LandPN20 LandPN21 LandPN22 LandPN24' ),
-                    ['type'] = STRING( 'Land Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                ['Transport Marker 10'] = {
+                    ['color'] = STRING( 'ff80A088' ),
+                    ['type'] = STRING( 'Transport Marker' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 200.5, 25.8984, 235.5 ),
+                    ['position'] = VECTOR3( 477.5, 25.9688, 240.5 ),
                 },
                 ['Mass 120'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -2406,55 +2255,82 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 123.5, 25.9844, 206.5 ),
                 },
-                ['LandPN28'] = {
-                    ['color'] = STRING( 'ff00ff00' ),
+                ['WaterPN14'] = {
+                    ['color'] = STRING( 'ff0000ff' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultLand' ),
-                    ['adjacentTo'] = STRING( 'LandPN01 LandPN09 LandPN22 LandPN29' ),
-                    ['type'] = STRING( 'Land Path Node' ),
+                    ['graph'] = STRING( 'DefaultWater' ),
+                    ['adjacentTo'] = STRING( 'WaterPN01 WaterPN02 WaterPN12 WaterPN13' ),
+                    ['type'] = STRING( 'Water Path Node' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 270.5, 25.9844, 384.5 ),
+                    ['position'] = VECTOR3( 503.5, 25, 167.5 ),
                 },
-                ['Hydrocarbon 08'] = {
-                    ['size'] = FLOAT( 3.000000 ),
+                ['Mass 50'] = {
+                    ['size'] = FLOAT( 1.000000 ),
                     ['resource'] = BOOLEAN( true ),
                     ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 359.5, 25.9844, 306.5 ),
+                },
+                ['Defensive Point 05'] = {
                     ['color'] = STRING( 'ff008000' ),
-                    ['type'] = STRING( 'Hydrocarbon' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Hydrocarbon_prop.bp' ),
-                    ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 313.5, 25.9844, 461.5 ),
-                },
-                ['AirPN04'] = {
-                    ['color'] = STRING( 'ffffffff' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultAir' ),
-                    ['adjacentTo'] = STRING( 'AirPN03 AirPN06 AirPN07 AirPN08' ),
-                    ['type'] = STRING( 'Air Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['type'] = STRING( 'Defensive Point' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 499.5, 25.7188, 13.5 ),
+                    ['position'] = VECTOR3( 264.5, 25.9844, 59.5 ),
                 },
-                ['AirPN06'] = {
-                    ['color'] = STRING( 'ffffffff' ),
+                ['Defensive Point 04'] = {
+                    ['color'] = STRING( 'ff008000' ),
                     ['hint'] = BOOLEAN( true ),
-                    ['graph'] = STRING( 'DefaultAir' ),
-                    ['adjacentTo'] = STRING( 'AirPN01 AirPN02 AirPN03 AirPN04 AirPN07 AirPN08' ),
-                    ['type'] = STRING( 'Air Path Node' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
+                    ['type'] = STRING( 'Defensive Point' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 479.5, 25.9844, 340.5 ),
+                    ['position'] = VECTOR3( 76.5, 25.9844, 266.5 ),
                 },
-                ['LandPN10'] = {
+                ['Mass 114'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 208.5, 25.9844, 62.5 ),
+                },
+                ['Mass 97'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 69.5, 25.9922, 134.5 ),
+                },
+                ['LandPN26'] = {
                     ['color'] = STRING( 'ff00ff00' ),
                     ['hint'] = BOOLEAN( true ),
                     ['graph'] = STRING( 'DefaultLand' ),
-                    ['adjacentTo'] = STRING( 'LandPN04 LandPN11 LandPN17 LandPN18 LandPN19' ),
+                    ['adjacentTo'] = STRING( 'LandPN06 LandPN15 LandPN27' ),
                     ['type'] = STRING( 'Land Path Node' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Path_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 208.5, 25.9844, 60.5 ),
+                    ['position'] = VECTOR3( 477.5, 25.9688, 242.5 ),
+                },
+                ['Defensive Point 01'] = {
+                    ['color'] = STRING( 'ff008000' ),
+                    ['hint'] = BOOLEAN( true ),
+                    ['type'] = STRING( 'Defensive Point' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Defensive_prop.bp' ),
+                    ['orientation'] = VECTOR3( 0, 0, 0 ),
+                    ['position'] = VECTOR3( 227.5, 25.9766, 228.5 ),
                 },
                 ['Mass 66'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -2467,12 +2343,16 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 457.5, 25.9844, 307.5 ),
                 },
-                ['Naval Link 02'] = {
-                    ['color'] = STRING( 'ffff0000' ),
-                    ['type'] = STRING( 'Naval Link' ),
-                    ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
+                ['Mass 100'] = {
+                    ['size'] = FLOAT( 1.000000 ),
+                    ['resource'] = BOOLEAN( true ),
+                    ['amount'] = FLOAT( 100.000000 ),
+                    ['color'] = STRING( 'ff808080' ),
+                    ['editorIcon'] = STRING( '/textures/editor/marker_mass.bmp' ),
+                    ['type'] = STRING( 'Mass' ),
+                    ['prop'] = STRING( '/env/common/props/markers/M_Mass_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 453.5, 25, 204.5 ),
+                    ['position'] = VECTOR3( 130.5, 25.9922, 65.5 ),
                 },
                 ['Naval Link 09'] = {
                     ['color'] = STRING( 'ffff0000' ),
@@ -2481,12 +2361,12 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 274.5, 25, 113.5 ),
                 },
-                ['Naval Link 18'] = {
+                ['Naval Link 11'] = {
                     ['color'] = STRING( 'ffff0000' ),
                     ['type'] = STRING( 'Naval Link' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 247.5, 25, 350.5 ),
+                    ['position'] = VECTOR3( 312.5, 25, 20.5 ),
                 },
                 ['Mass 131'] = {
                     ['size'] = FLOAT( 1.000000 ),
@@ -2499,12 +2379,12 @@ Scenario = {
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
                     ['position'] = VECTOR3( 126.5, 25.9922, 158.5 ),
                 },
-                ['Naval Link 20'] = {
-                    ['color'] = STRING( 'ffff0000' ),
-                    ['type'] = STRING( 'Naval Link' ),
+                ['ARMY_TOP_LMID'] = {
+                    ['color'] = STRING( 'ff800080' ),
+                    ['type'] = STRING( 'Blank Marker' ),
                     ['prop'] = STRING( '/env/common/props/markers/M_Blank_prop.bp' ),
                     ['orientation'] = VECTOR3( 0, 0, 0 ),
-                    ['position'] = VECTOR3( 231.5, 25, 429.5 ),
+                    ['position'] = VECTOR3( 71.5, 25.9922, 132.5 ),
                 },
             },
         },
@@ -2531,9 +2411,9 @@ Scenario = {
     --[[                                                                           ]]--
     Armies = {
         --[[                                                                           ]]--
-        --[[  ARMY_BOTTOM_LEFT                                                                   ]]--
+        --[[  ARMY_BOTTOM_LEFT                                                         ]]--
         --[[                                                                           ]]--
-        ['ARMY_BOTTOM_LEFT'] =
+        ['ARMY_BOTTOM_LEFT'] = 
         {
             personality = '',
             plans = '',
@@ -2564,9 +2444,9 @@ Scenario = {
             },
         },
         --[[                                                                           ]]--
-        --[[  ARMY_BOTTOM_LMID                                                                   ]]--
+        --[[  ARMY_BOTTOM_LMID                                                         ]]--
         --[[                                                                           ]]--
-        ['ARMY_BOTTOM_LMID'] =
+        ['ARMY_BOTTOM_LMID'] = 
         {
             personality = '',
             plans = '',
@@ -2597,9 +2477,9 @@ Scenario = {
             },
         },
         --[[                                                                           ]]--
-        --[[  ARMY_BOTTOM_RMID                                                                   ]]--
+        --[[  ARMY_BOTTOM_RMID                                                         ]]--
         --[[                                                                           ]]--
-        ['ARMY_BOTTOM_RMID'] =
+        ['ARMY_BOTTOM_RMID'] = 
         {
             personality = '',
             plans = '',
@@ -2630,9 +2510,9 @@ Scenario = {
             },
         },
         --[[                                                                           ]]--
-        --[[  ARMY_BOTTOM_RIGHT                                                                   ]]--
+        --[[  ARMY_BOTTOM_RIGHT                                                        ]]--
         --[[                                                                           ]]--
-        ['ARMY_BOTTOM_RIGHT'] =
+        ['ARMY_BOTTOM_RIGHT'] = 
         {
             personality = '',
             plans = '',
@@ -2663,9 +2543,9 @@ Scenario = {
             },
         },
         --[[                                                                           ]]--
-        --[[  ARMY_TOP_RIGHT                                                                   ]]--
+        --[[  ARMY_TOP_RIGHT                                                           ]]--
         --[[                                                                           ]]--
-        ['ARMY_TOP_RIGHT'] =
+        ['ARMY_TOP_RIGHT'] = 
         {
             personality = '',
             plans = '',
@@ -2696,9 +2576,9 @@ Scenario = {
             },
         },
         --[[                                                                           ]]--
-        --[[  ARMY_TOP_RMID                                                                   ]]--
+        --[[  ARMY_TOP_RMID                                                            ]]--
         --[[                                                                           ]]--
-        ['ARMY_TOP_RMID'] =
+        ['ARMY_TOP_RMID'] = 
         {
             personality = '',
             plans = '',
@@ -2729,9 +2609,9 @@ Scenario = {
             },
         },
         --[[                                                                           ]]--
-        --[[  ARMY_TOP_LMID                                                                   ]]--
+        --[[  ARMY_TOP_LMID                                                            ]]--
         --[[                                                                           ]]--
-        ['ARMY_TOP_LMID'] =
+        ['ARMY_TOP_LMID'] = 
         {
             personality = '',
             plans = '',
@@ -2762,42 +2642,9 @@ Scenario = {
             },
         },
         --[[                                                                           ]]--
-        --[[  ARMY_TOP_LEFT                                                                   ]]--
+        --[[  ARMY_TOP_LEFT                                                            ]]--
         --[[                                                                           ]]--
-        ['ARMY_TOP_LEFT'] =
-        {
-            personality = '',
-            plans = '',
-            color = 0,
-            faction = 0,
-            Economy = {
-                mass = 0,
-                energy = 0,
-            },
-            Alliances = {
-            },
-            ['Units'] = GROUP {
-                orders = '',
-                platoon = '',
-                Units = {
-                    ['INITIAL'] = GROUP {
-                        orders = '',
-                        platoon = '',
-                        Units = {
-                        },
-                    },
-                },
-            },
-            PlatoonBuilders = {
-                next_platoon_builder_id = '1',
-                Builders = {
-                },
-            },
-        },
-        --[[                                                                           ]]--
-        --[[  ARMY_9                                                                   ]]--
-        --[[                                                                           ]]--
-        ['ARMY_9'] =
+        ['ARMY_TOP_LEFT'] = 
         {
             personality = '',
             plans = '',
@@ -2830,7 +2677,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  NEUTRAL_CIVILIAN                                                         ]]--
         --[[                                                                           ]]--
-        ['NEUTRAL_CIVILIAN'] =
+        ['NEUTRAL_CIVILIAN'] = 
         {
             personality = '',
             plans = '',
@@ -2861,9 +2708,96 @@ Scenario = {
             },
         },
         --[[                                                                           ]]--
+        --[[  ARMY_9                                                                   ]]--
+        --[[                                                                           ]]--
+        ['ARMY_9'] = 
+        {
+            personality = '',
+            plans = '',
+            color = 0,
+            faction = 0,
+            Economy = {
+                mass = 0,
+                energy = 0,
+            },
+            Alliances = {
+            },
+            ['Units'] = GROUP {
+                orders = '',
+                platoon = '',
+                Units = {
+                    ['INITIAL'] = GROUP {
+                        orders = '',
+                        platoon = '',
+                        Units = {
+                        },
+                    },
+                },
+            },
+            PlatoonBuilders = {
+                next_platoon_builder_id = '1',
+                Builders = {
+                },
+            },
+        },
+        --[[                                                                           ]]--
+        --[[  BOTTOM_BOT                                                               ]]--
+        --[[                                                                           ]]--
+        ['BOTTOM_BOT'] = 
+        {
+            personality = '',
+            plans = '',
+            color = 0,
+            faction = 0,
+            Economy = {
+                mass = 0,
+                energy = 0,
+            },
+            Alliances = {
+            },
+            ['Units'] = GROUP {
+                orders = '',
+                platoon = '',
+                Units = {
+                },
+            },
+            PlatoonBuilders = {
+                next_platoon_builder_id = '1',
+                Builders = {
+                },
+            },
+        },
+        --[[                                                                           ]]--
+        --[[  TOP_BOT                                                                  ]]--
+        --[[                                                                           ]]--
+        ['TOP_BOT'] = 
+        {
+            personality = '',
+            plans = '',
+            color = 0,
+            faction = 0,
+            Economy = {
+                mass = 0,
+                energy = 0,
+            },
+            Alliances = {
+            },
+            ['Units'] = GROUP {
+                orders = '',
+                platoon = '',
+                Units = {
+                },
+            },
+            PlatoonBuilders = {
+                next_platoon_builder_id = '1',
+                Builders = {
+                },
+            },
+        },
+        --[[                                                                           ]]--
         --[[  HOSTILE_BOT                                                              ]]--
         --[[                                                                           ]]--
-        ['HOSTILE_BOT'] =
+        ['HOSTILE_BOT'] = 
         {
             personality = '',
             plans = '',
@@ -2890,7 +2824,7 @@ Scenario = {
         --[[                                                                           ]]--
         --[[  FRIENDLY_BOT                                                             ]]--
         --[[                                                                           ]]--
-        ['FRIENDLY_BOT'] =
+        ['FRIENDLY_BOT'] = 
         {
             personality = '',
             plans = '',

@@ -60,6 +60,14 @@ newInstance = function(ScenarioInfo)
         welcomeMessages.startDisplay()
     end
 
+    local function setupResourceDeposits()
+        local resourcesSpawner = import('/maps/final_rush_pro_5.v0017/src/frp/ResourcesSpawner.lua').newInstance(
+            import('/maps/final_rush_pro_5.v0017/src/lib/ResourceCreator.lua').newInstance(),
+            playerArmies
+        )
+        resourcesSpawner.spawnResources()
+    end
+
     return {
         setUp = function()
             showWelcomeMessage()
@@ -70,6 +78,7 @@ newInstance = function(ScenarioInfo)
             setupParagonWars()
             setupServival()
             setupAutoReclaim()
+            setupResourceDeposits()
         end
     }
 end

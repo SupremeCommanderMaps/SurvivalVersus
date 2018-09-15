@@ -28,7 +28,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         spawnOutEffect
     )
 
-    local positions = import('/maps/final_rush_pro_5.v0017/src/survival/Positions.lua').newInstance()
+    local positions = import('/maps/final_rush_pro_5.v0017/src/frp/Positions.lua').newInstance()
 
     local TransportDestinations = positions.TransportDestinations
     local AttackLocations = positions.AttackLocations
