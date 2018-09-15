@@ -295,10 +295,15 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 T42 = {
                     initialDelayInSeconds = t4spawndelay + 600,
                     frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
-                    spawnEndInSeconds = nil,
+                    spawnEndInSeconds = t4spawndelay + 1800,
                 },
                 T43 = {
                     initialDelayInSeconds = t4spawndelay + 1200,
+                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
+                    spawnEndInSeconds = nil,
+                },
+                T44 = {
+                    initialDelayInSeconds = t4spawndelay + 1800,
                     frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
                     spawnEndInSeconds = nil,
                 },

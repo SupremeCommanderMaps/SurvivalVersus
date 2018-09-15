@@ -3,16 +3,29 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
     local T2_TRANSPORT = "ura0107"
     local T3_TRANSPORT = "xea0306"
 
-    local EXPERIMENTAL_TRANSPORT = {
+    local T4_TRANSPORT_LVL1 = {
         blueprintName = "uaa0107",
         baseHealth = 8500
+    }
+
+    local T4_TRANSPORT_LVL2 = {
+        blueprintName = "uaa0107",
+        baseHealth = 13337,
+        speedMultiplier = 2
     }
 
     local transportSpawner = unitSpawnerFactory.newTransportSpawner({hpIncrease = true})
     local unitSpawner = unitSpawnerFactory.newUnitSpawner({})
 
     local function printMessage(message)
-        textPrinter.print(message, {duration = 4, 24})
+        textPrinter.print(
+            message,
+            {
+                duration = 4,
+                size = 24,
+                color = "ffffd4d4"
+            }
+        )
     end
 
     local spawnTierOneWave = function()
@@ -78,16 +91,16 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
     local spawnTierFourWave = function()
         transportSpawner.spawnWithTransports(
             {
-                "ual0401",
+                "ual0401", -- GC
             },
-            EXPERIMENTAL_TRANSPORT
+            T4_TRANSPORT_LVL1
         )
         WaitSeconds(2)
         transportSpawner.spawnWithTransports(
             {
-                "url0402",
+                "url0402", -- Monkey
             },
-            EXPERIMENTAL_TRANSPORT
+            T4_TRANSPORT_LVL1
         )
     end
 
@@ -95,9 +108,11 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         if options.shouldSpawnT3Arty() then
             local units = {
                 "dal0310", --Aeon T3 Shield Disruptor: Absolver
-                "url0304", --Cybran T3 Mobile Heavy Artillery: Trebuchet
-                "uel0304", --UEF T3 Mobile Heavy Artillery: Demolisher
             }
+
+            if Random(1, 2) == 1 then
+                table.insert(units, "url0304") --Cybran T3 Mobile Heavy Artillery: Trebuchet
+            end
 
             transportSpawner.spawnWithTransports(
                 units,
@@ -106,30 +121,52 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         end
 
         unitSpawner.spawnUnits( {
-            "ura0401"
+            "ura0401" -- Bug
         } )
     end
 
     local spawnTierFourStageThreeWave = function()
         if Random(1, 3) == 1 then
             unitSpawner.spawnUnits( {
-                "xea0002"
+                "xea0002" -- Sattelite
             } )
         end
 
         transportSpawner.spawnWithTransports(
             {
-                "xrl0403",
+                "xrl0403", -- Mega
             },
-            EXPERIMENTAL_TRANSPORT
+            T4_TRANSPORT_LVL2
         )
         WaitSeconds(2)
         transportSpawner.spawnWithTransports(
             {
-                "xsl0401",
+                "xsl0401", -- Ythotha
             },
-            EXPERIMENTAL_TRANSPORT
+            T4_TRANSPORT_LVL2
         )
+    end
+
+    local spawnTierFourStageFourWave = function()
+        if options.shouldSpawnT3Arty() then
+            transportSpawner.spawnWithTransports(
+                { "uel0401" }, --Fatboy
+                T4_TRANSPORT_LVL2
+            )
+        end
+
+        transportSpawner.spawnWithTransports(
+            { "url0402" }, --Monkey
+            T4_TRANSPORT_LVL2
+        )
+
+        unitSpawner.spawnUnits( {
+            "xsa0402" -- T4 bomber
+        } )
+        WaitSeconds(2)
+        unitSpawner.spawnUnits( {
+            "uaa0310" -- CZAR
+        } )
     end
 
     local function createRoundSpawner(initialDelayInSeconds, frequencyInSeconds, spawnEndInSeconds, initialMessage, spawnFunction)
@@ -192,6 +229,14 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
                 spawnOptions.T43.spawnEndInSeconds,
                 "Tier 4 stage 3 inbound",
                 spawnTierFourStageThreeWave
+            ))
+
+            ForkThread(createRoundSpawner(
+                spawnOptions.T44.initialDelayInSeconds,
+                spawnOptions.T44.frequencyInSeconds,
+                spawnOptions.T44.spawnEndInSeconds,
+                "Tier 4 stage 4 inbound",
+                spawnTierFourStageFourWave
             ))
         end
     }

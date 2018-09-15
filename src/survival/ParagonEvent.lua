@@ -122,7 +122,7 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
     end
 
     local function onParagonBuild(paragon)
-        textPrinter.print("Paragon detected! Ready AA!", {color = "ffffd4d4"})
+        textPrinter.print("Paragon detected! Ready AA!", {color = "ffffd4d4", size = 24})
 
         local botArmyName = playerArmies.isTopSideArmy(paragon:GetArmy()) and "TOP_BOT" or "BOTTOM_BOT"
 

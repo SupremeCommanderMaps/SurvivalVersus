@@ -99,7 +99,9 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
             isTransport = true
         }
 
-        return unitCreator.create(unitInfo)
+        local transport = unitCreator.create(unitInfo)
+
+        return transport
     end
 
     local function createTransport(armyName, transportOptions)

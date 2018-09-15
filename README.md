@@ -38,6 +38,9 @@ many development versions of Final Rush Pro 5.10.
 ## New in version 5.16
 
 * Fatboys can now be build when artillery and nukes are disabled
+* Added Tech 4 stage 2: tier 3 units stop spawning and instead bugs and arty spawn
+* Added Tech 4 stage 3: monkeys and GCs stop spawning and instead megas and chickens spawn, plus the occasional satellite
+* Added Tech 4 stage 4: stage 2 stops spawning and instead CZARs, T4 bombers, fatboys and monkeys spawn
 
 ## New in version 5.15
 
