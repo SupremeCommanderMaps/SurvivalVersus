@@ -37,6 +37,7 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.17
 
+* Hydros now only spawn at occupied player positions
 * Stage 6 and 7 transports now have double speed
 * Improved stage notification messages
 
