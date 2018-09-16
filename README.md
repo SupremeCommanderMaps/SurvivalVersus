@@ -37,6 +37,8 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.17
 
+Released on 2018-09-16
+
 * Resources now only spawn for players present in the game
 * Stage 6 and 7 transports now have double speed
 * Improved stage notification messages
