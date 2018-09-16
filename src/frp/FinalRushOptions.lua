@@ -278,3 +278,5 @@ function newInstance(ScenarioInfoOptions)
 
     return this
 end
+
+return newInstance

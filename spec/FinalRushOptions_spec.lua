@@ -4,49 +4,45 @@ describe("FinalRushOptions", function()
 
     describe("defaultGameOptions", function()
         it("returns defaulted options when given an empty table", function()
-            local defaultedOptions = FinalRushOptions.defaultOptions({})
+            local options = FinalRushOptions({}).getRawOptions()
 
-            assert.are.equal(0, defaultedOptions.opt_gamemode)
-            assert.are.equal(50, defaultedOptions.opt_AutoReclaim)
-            assert.are.equal(-1, defaultedOptions.opt_FinalRushRandomEvents)
+            assert.are.equal(0, options.opt_gamemode)
+            assert.are.equal(50, options.opt_AutoReclaim)
+            assert.are.equal(70, options.opt_FinalRushRandomEvents)
         end)
 
         it("does not default options present in the table", function()
-            local defaultedOptions = FinalRushOptions.defaultOptions({
+            local options = FinalRushOptions({
                 opt_AutoReclaim = 42,
                 opt_FinalRushRandomEvents = 1
-            })
+            }).getRawOptions()
 
-            assert.are.equal(42, defaultedOptions.opt_AutoReclaim)
-            assert.are.equal(1, defaultedOptions.opt_FinalRushRandomEvents)
+            assert.are.equal(42, options.opt_AutoReclaim)
+            assert.are.equal(1, options.opt_FinalRushRandomEvents)
         end)
     end)
 
     describe("applyPresets", function()
         it("sets defaults for very easy", function()
-            local inputOptions = FinalRushOptions.defaultOptions({
+            local options = FinalRushOptions({
                 opt_FinalRushDifficulty = 1
-            })
+            }).getRawOptions()
 
-            local returnedOptions = FinalRushOptions.applyPresets(inputOptions)
-
-            assert.are.equal(180, returnedOptions.opt_FinalRushSpawnDelay)
-            assert.are.equal(0, returnedOptions.opt_FinalRushAggression)
-            assert.are.equal(600, returnedOptions.opt_FinalRushRandomEvents)
-            assert.are.equal(0, returnedOptions.opt_FinalRushHunters)
+            assert.are.equal(180, options.opt_FinalRushSpawnDelay)
+            assert.are.equal(0, options.opt_FinalRushAggression)
+            assert.are.equal(600, options.opt_FinalRushRandomEvents)
+            assert.are.equal(0, options.opt_FinalRushHunters)
         end)
 
         it("sets defaults for easy", function()
-            local inputOptions = FinalRushOptions.defaultOptions({
+            local options = FinalRushOptions({
                 opt_FinalRushDifficulty = 2
-            })
+            }).getRawOptions()
 
-            local returnedOptions = FinalRushOptions.applyPresets(inputOptions)
-
-            assert.are.equal(10, returnedOptions.opt_FinalRushSpawnDelay)
-            assert.are.equal(1, returnedOptions.opt_FinalRushAggression)
-            assert.are.equal(90, returnedOptions.opt_FinalRushRandomEvents)
-            assert.are.equal(480, returnedOptions.opt_FinalRushHunters)
+            assert.are.equal(10, options.opt_FinalRushSpawnDelay)
+            assert.are.equal(0, options.opt_FinalRushAggression)
+            assert.are.equal(90, options.opt_FinalRushRandomEvents)
+            assert.are.equal(480, options.opt_FinalRushHunters)
         end)
     end)
 

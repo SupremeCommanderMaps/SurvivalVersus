@@ -105,6 +105,10 @@ newInstance = function(fullIndexToNameMap)
     end
 
     local function getRandomArmyName()
+        if next(indexToNameMap) == nil then
+            return nil
+        end
+
         local keyset = getTableKeys(indexToNameMap)
         local randomFunction = Random or math.random
         return indexToNameMap[keyset[randomFunction(1, table.getn(keyset))]]
