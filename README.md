@@ -278,6 +278,10 @@ Some of the code that does not bind to FA(F) directly is tested using the
 [Busted unit testing framework][Busted]. To run the tests on Linux, execute `busted` in the project
 root directory. To run them on Windows, well, I don't know how to work with Windows.
 
+If you have Docker and Docker Compose installed, you can run the tests with
+
+    docker-compose run --rm app busted
+
 ## Authors
 
 The authors of the original map are Commander-Chronicles, TV-Nobby and Diegobah. Fixes where later
