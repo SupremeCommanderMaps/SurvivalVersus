@@ -76,5 +76,16 @@ function newUnitCreator(ScenarioInfo, options, spawnOutEffect)
     setupTeamBalanceBonus(unitCreator, ScenarioInfo)
     setupHealthMultiplication(unitCreator, ScenarioInfo, options)
 
-    return unitCreator
+    return {
+        create = function(unitInfo)
+            return unitCreator.create(unitInfo)
+        end,
+
+        -- Create a unit with the "isSurvivalSpawned" flag
+        -- These are units send in to fight the players
+        spawnSurvivalUnit = function(unitInfo)
+            unitInfo.isSurvivalSpawned = true
+            return unitCreator.create(unitInfo)
+        end,
+    }
 end
