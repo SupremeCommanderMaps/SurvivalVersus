@@ -8,14 +8,14 @@ newInstance = function(ScenarioInfo)
 
     local function setupTents()
         if ScenarioInfo.Options.opt_tents > 0 then
-            local tents = import('/maps/final_rush_pro_5.v0017/src/artifacts/PrebuildTents.lua').newInstance(playerArmies);
+            local tents = import('/maps/final_rush_pro_5.v0017/src/frp/PrebuildTents.lua').newInstance(playerArmies);
             LOG("Spawning " .. ScenarioInfo.Options.opt_tents .. " tents")
             tents.spawn(ScenarioInfo.Options.opt_tents)
         end
     end
 
     local function setupLighthouses()
-        import('/maps/final_rush_pro_5.v0017/src/artifacts/CivilianLighthouses.lua').newInstance(textPrinter, playerArmies).spawn();
+        import('/maps/final_rush_pro_5.v0017/src/frp/CivilianLighthouses.lua').newInstance(textPrinter, playerArmies).spawn();
     end
 
     local function restrictTechs()

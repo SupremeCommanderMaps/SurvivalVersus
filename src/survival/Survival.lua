@@ -216,7 +216,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             import('/maps/final_rush_pro_5.v0017/src/survival/CommanderWaterPain.lua')
                 .newInstance(allUnits, textPrinter, isSurvivalUnit).runThread()
 
-            import('/maps/final_rush_pro_5.v0017/src/artifacts/HillGuards.lua').newInstance().createHillGuards()
+            import('/maps/final_rush_pro_5.v0017/src/frp/HillGuards.lua').newInstance().createHillGuards()
         end
 
         import('/maps/final_rush_pro_5.v0017/src/survival/ParagonEvent.lua').newInstance(
