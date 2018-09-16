@@ -51,4 +51,8 @@ function newInstance(getAllUnits)
     }
 end
 
-
+--                    local keyset={}
+--                    for k in pairs(unit.originalBuilder) do
+--                        table.insert(keyset, k)
+--                    end
+--                    LOG(repr(keyset))
