@@ -52,17 +52,32 @@ newInstance = function(resourceCreator, mapEditorTables, scenarioMarkers, player
         resourceCreator.createMex(scenarioMarkers[markerName].position)
     end
 
-    local function spawnMexesForArmyIndex(armyIndex)
-        for _, mexNumber in mapEditorTables.spwnMexArmy[armyIndex] do
+    local function armyNameToArmySpawnIndex(armyName)
+        local map = {
+            ARMY_BOTTOM_LEFT = 1,
+            ARMY_BOTTOM_LMID = 2,
+            ARMY_BOTTOM_RMID = 3,
+            ARMY_BOTTOM_RIGHT = 4,
+            ARMY_TOP_RIGHT = 5,
+            ARMY_TOP_RMID = 6,
+            ARMY_TOP_LMID = 7,
+            ARMY_TOP_LEFT = 8,
+        }
+
+        return map[armyName]
+    end
+
+    local function spawnMexesForArmyIndex(armyName)
+        for _, mexNumber in mapEditorTables.spwnMexArmy[armyNameToArmySpawnIndex(armyName)] do
             spawnMex(mexNumber)
         end
     end
 
     return {
         spawnResources = function()
-            for armyName, armyIndex in playerArmies.getNameToIndexMap() do
+            for armyName in playerArmies.getNameToIndexMap() do
                 spawnHydroFunctionsByArmyName[armyName]()
-                spawnMexesForArmyIndex(armyIndex)
+                spawnMexesForArmyIndex(armyName)
             end
         end
     }
