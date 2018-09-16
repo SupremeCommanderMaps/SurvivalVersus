@@ -40,6 +40,7 @@ many development versions of Final Rush Pro 5.10.
 * Resources now only spawn for players present in the game
 * Stage 6 and 7 transports now have double speed
 * Improved stage notification messages
+* Removed aggression tracking (was disabled by default except on very hard and insane)
 
 ## New in version 5.16
 

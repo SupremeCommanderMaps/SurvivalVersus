@@ -230,22 +230,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     end
 
     local runBattle = function(textPrinter, playerArmies)
-        if ScenarioInfo.Options.opt_FinalRushAggression == 1 then
-            local agressionSpawner = import('/maps/final_rush_pro_5.v0017/src/survival/AggressionSpawner.lua').newInstance(
-                StartingPlayersExistance,
-                import('/maps/final_rush_pro_5.v0017/src/survival/RandomUnits.lua').newInstance(ScenarioInfo, ScenarioFramework),
-                AttackLocations,
-                TransportDestinations,
-                ScenarioInfo,
-                ScenarioFramework,
-                GetRandomPlayer,
-                spawnOutEffect,
-                unitCreator
-            )
-
-            agressionSpawner.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
-        end
-
         local unitSpanwerFactory = import('/maps/final_rush_pro_5.v0017/src/survival/SurvivalSpawnerFactory.lua').newInstance(
             options,
             ScenarioFramework,

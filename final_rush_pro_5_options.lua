@@ -458,7 +458,6 @@ options =
         values = {
             { text = "Difficulty preset", help = "Automatically pick a value based on the selected difficulty", key = -1, },
             { text = "Disabled", help = "Disabled", key = 0, },
-            { text = "Enabled", help = "Enabled", key = 1, },
         },
     },
     {
