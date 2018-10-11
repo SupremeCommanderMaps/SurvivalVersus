@@ -15,7 +15,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options, unitAmountMulti
     }
 
     local transportSpawner = unitSpawnerFactory.newTransportSpawner({hpIncrease = true})
-    local unitSpawner = unitSpawnerFactory.newUnitSpawner({})
+    local unitSpawner = unitSpawnerFactory.newUnitSpawner({hpIncrease = true})
 
     local function printMessage(message)
         textPrinter.print(
@@ -249,7 +249,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options, unitAmountMulti
             }))
 
             ForkThread(createRoundSpawner({
-                roundNumber = 7,
+                roundNumber = 1,
                 tillRound = 1000,
                 spawnFunction = spawnStage7Wave,
                 frequency = 11,

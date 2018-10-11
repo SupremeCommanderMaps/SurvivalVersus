@@ -121,6 +121,12 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
 
         ScenarioFramework.AttachUnitsToTransports(units, transports)
 
+        for _, unit in units do
+            if EntityCategoryContains(categories.SHIELD + categories.uel0401, unit) then
+                unit:EnableShield()
+            end
+        end
+
         IssueTransportUnload(transports, VECTOR3(Random(220, 290), 0, Random(220, 290)))
 
         ForkThread(issueAttackCommands, armyName, units)

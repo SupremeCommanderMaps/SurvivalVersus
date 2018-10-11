@@ -37,13 +37,17 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.18
 
+ArmyBrains[Rhiza]:GetListOfUnits(categories.SHIELD, false)
+
 Under development
 
 * Added Escalation Speed lobby option which allows modifying how fast the game escalates to higher tier stages
 * Added Unit Amount lobby option which allows modifying how many survival units spawn
 * Removed spawn delay lobby options for T1, T2, T3 and T4 stages (replaced by new Escalation Speed option)
 * Removed spawn frequency lobby options for T1, T2, T3 and T4 stages (replaced by new Unit Amount option)
-* Reduced survival air experimental base health, reducing effective health by 2x to 3x
+* Reduced survival air experimental base health to 25000
+* Added health increase to survival air experimentals
+* Survival units inside transports now have their shields on
 
 ## New in version 5.17
 
