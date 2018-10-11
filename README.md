@@ -35,6 +35,12 @@ many development versions of Final Rush Pro 5.10.
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 
+## New in version 5.18
+
+Under development
+
+* Reduced survival air experimental base health, reducing effective health by 2x to 3x
+
 ## New in version 5.17
 
 Released on 2018-09-16
