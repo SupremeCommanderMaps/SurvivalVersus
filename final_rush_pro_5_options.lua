@@ -352,17 +352,6 @@ options =
     },
     {
         default = 1,
-        label = "Aggression Tracking",
-        help = "(Survival modes only) Aggressive players get more units. If artilery is not disabled, the extra units will mainly be artilery. Things that generate agression: reaching tech 2, reaching tech 3, creating your first experimental, building mexes, building massfabs, building nukes, building arty and walking your ACU to the center.",
-        key = 'opt_FinalRushAggression',
-        pref = 'opt_FinalRushAggression',
-        values = {
-            { text = "Difficulty preset", help = "Automatically pick a value based on the selected difficulty", key = -1, },
-            { text = "Disabled", help = "Disabled", key = 0, },
-        },
-    },
-    {
-        default = 1,
         label = "Enemy T2 MMLs",
         help = "(Survival modes only) T2 MMLs",
         key = 'opt_t2tml',

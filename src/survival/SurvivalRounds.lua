@@ -1,4 +1,4 @@
-newInstance = function(textPrinter, unitSpawnerFactory, options)
+newInstance = function(textPrinter, unitSpawnerFactory, options, unitAmountMultiplier)
 
     local T2_TRANSPORT = "ura0107"
     local T3_TRANSPORT = "xea0306"
@@ -178,75 +178,83 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         } )
     end
 
-    local function createRoundSpawner(initialDelayInSeconds, frequencyInSeconds, spawnEndInSeconds, initialMessage, spawnFunction)
+    local function createRoundSpawner(params)
+        params.tillRound = params.tillRound or params.roundNumber + 1
+
+        local initialDelayInSeconds = ScenarioInfo.Options.opt_FinalRushSpawnDelay
+                + (params.roundNumber - 1) * ScenarioInfo.Options.opt_FinalRushEscalationSpeed
+
+        local spawnEndInSeconds = ScenarioInfo.Options.opt_FinalRushSpawnDelay
+                + (params.tillRound - 1) * ScenarioInfo.Options.opt_FinalRushEscalationSpeed
+
+        local frequencyInSeconds = params.frequency / unitAmountMultiplier
+
         return function()
             WaitSeconds(initialDelayInSeconds)
-            printMessage(initialMessage)
+            printMessage(params.message)
 
             while spawnEndInSeconds == nil or GetGameTimeSeconds() < spawnEndInSeconds do
-                ForkThread(spawnFunction)
+                ForkThread(params.spawnFunction)
                 WaitSeconds(frequencyInSeconds)
             end
         end
     end
 
     return {
-        start = function(spawnOptions)
-            ForkThread(createRoundSpawner(
-                spawnOptions.T1.initialDelayInSeconds,
-                spawnOptions.T1.frequencyInSeconds,
-                spawnOptions.T1.spawnEndInSeconds,
-                "And so it begins! Tech 1 inbound",
-                spawnTierOneWave
-            ))
+        start = function()
+            ForkThread(createRoundSpawner({
+                roundNumber = 1,
+                spawnFunction = spawnTierOneWave,
+                frequency = 6,
+                message = "And so it begins! Tech 1 inbound"
+            } ))
 
-            ForkThread(createRoundSpawner(
-                spawnOptions.T2.initialDelayInSeconds,
-                spawnOptions.T2.frequencyInSeconds,
-                spawnOptions.T2.spawnEndInSeconds,
-                "Tech 2 inbound",
-                spawnTierTwoWave
-            ))
+            ForkThread(createRoundSpawner({
+                roundNumber = 2,
+                spawnFunction = spawnTierTwoWave,
+                frequency = 7,
+                message = "Tech 2 inbound"
+            }))
 
-            ForkThread(createRoundSpawner(
-                spawnOptions.T3.initialDelayInSeconds,
-                spawnOptions.T3.frequencyInSeconds,
-                spawnOptions.T3.spawnEndInSeconds,
-                "Tech 3 inbound",
-                spawnTierThreeWave
-            ))
+            ForkThread(createRoundSpawner({
+                roundNumber = 3,
+                tillRound = 5,
+                spawnFunction = spawnTierThreeWave,
+                frequency = 10,
+                message = "Tech 3 inbound"
+            }))
 
-            ForkThread(createRoundSpawner(
-                spawnOptions.T4.initialDelayInSeconds,
-                spawnOptions.T4.frequencyInSeconds,
-                spawnOptions.T4.spawnEndInSeconds,
-                "Stage 4: Experimentals",
-                spawnStage4Wave
-            ))
+            ForkThread(createRoundSpawner({
+                roundNumber = 4,
+                tillRound = 6,
+                spawnFunction = spawnStage4Wave,
+                frequency = 11,
+                message = "Stage 4: Experimentals"
+            }))
 
-            ForkThread(createRoundSpawner(
-                spawnOptions.T42.initialDelayInSeconds,
-                spawnOptions.T42.frequencyInSeconds,
-                spawnOptions.T42.spawnEndInSeconds,
-                "Stage 5: Bugs replace T3",
-                spawnStage5Wave
-            ))
+            ForkThread(createRoundSpawner({
+                roundNumber = 5,
+                tillRound = 7,
+                spawnFunction = spawnStage5Wave,
+                frequency = 11,
+                message = "Stage 5: Bugs replace T3"
+            }))
 
-            ForkThread(createRoundSpawner(
-                spawnOptions.T43.initialDelayInSeconds,
-                spawnOptions.T43.frequencyInSeconds,
-                spawnOptions.T43.spawnEndInSeconds,
-                "Stage 6: Megas, Chickens and Sattelites",
-                spawnStage6Wave
-            ))
+            ForkThread(createRoundSpawner({
+                roundNumber = 6,
+                tillRound = 1000,
+                spawnFunction = spawnStage6Wave,
+                frequency = 11,
+                message = "Stage 6: Megas, Chickens and Sattelites"
+            }))
 
-            ForkThread(createRoundSpawner(
-                spawnOptions.T44.initialDelayInSeconds,
-                spawnOptions.T44.frequencyInSeconds,
-                spawnOptions.T44.spawnEndInSeconds,
-                "Stage 7: Fatboys and stronger air",
-                spawnStage7Wave
-            ))
+            ForkThread(createRoundSpawner({
+                roundNumber = 7,
+                tillRound = 1000,
+                spawnFunction = spawnStage7Wave,
+                frequency = 11,
+                message = "Stage 7: Fatboys and stronger air"
+            }))
         end
     }
 end

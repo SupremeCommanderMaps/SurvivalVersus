@@ -96,26 +96,10 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         printer.printBlankLine()
 
         printer.printOption("opt_FinalRushDifficulty", "Difficulty preset: " .. getDifficuly())
-        printer.printOption("opt_AutoReclaim", "Auto reclaim: " .. ScenarioInfo.Options.opt_AutoReclaim .. "%")
+        printer.printOption("opt_FinalRushEscalationSpeed", "Escalation speed: " .. ScenarioInfo.Options.opt_FinalRushEscalationSpeed / 60 .. " minutes/stage")
+        printer.printOption("opt_FinalRushUnitCount", "Unit count: " .. ScenarioInfo.Options.opt_FinalRushUnitCount * 100 .. "%")
         printer.printOption("opt_FinalRushHealthIncrease", "Health increase: " .. ScenarioInfo.Options.opt_FinalRushHealthIncrease * 100 .. "% every 100 seconds")
-
-        printer.printBlankLine()
-
-        printer.printOption(
-            "opt_FinalRushSpawnDelay",
-            "Spawn delay: T1 after " .. ScenarioInfo.Options.opt_FinalRushSpawnDelay .. "s, "
-                .. "T2 " .. ScenarioInfo.Options.opt_FinalRushT2Delay / 60 .. "m, "
-                .. "T3 " .. ScenarioInfo.Options.opt_FinalRushT3Delay / 60 .. "m, "
-                .. "T4 " .. ScenarioInfo.Options.opt_FinalRushT4Delay / 60 .. "m"
-        )
-
-        printer.printOption(
-            "opt_FinalRushT1Frequency",
-            "Spawn frequency: T1 every " .. ScenarioInfo.Options.opt_FinalRushT1Frequency .. "s, "
-                .. "T2 " .. ScenarioInfo.Options.opt_FinalRushT2Frequency .. "s, "
-                .. "T3 " .. ScenarioInfo.Options.opt_FinalRushT3Frequency .. "s, "
-                .. "T4 " .. ScenarioInfo.Options.opt_FinalRushT4Frequency .. "s"
-        )
+        printer.printOption("opt_AutoReclaim", "Auto reclaim: " .. ScenarioInfo.Options.opt_AutoReclaim .. "%")
 
         printer.printBlankLine()
 

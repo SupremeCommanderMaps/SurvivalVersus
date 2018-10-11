@@ -44,11 +44,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         ARMY_TOP_LEFT = false
     }
 
-    local t1spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay
-    local t2spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT2Delay
-    local t3spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT3Delay
-    local t4spawndelay = ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT4Delay
-
     local function createStartingPlayersExistance()
         if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_LEFT"] == false then
             StartingPlayersExistance.ARMY_BOTTOM_LEFT = true
@@ -241,7 +236,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             allUnits
         )
 
-        local SpawnMulti = table.getn(playerArmies.getIndexToNameMap()) / 8
+        local SpawnMulti = ScenarioInfo.Options.opt_FinalRushUnitCount * table.getn(playerArmies.getIndexToNameMap()) / 8
 
         local function getEventTextPrinter()
             return ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
@@ -252,46 +247,11 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             local rounds = import('/maps/final_rush_pro_5.v0018/src/survival/SurvivalRounds.lua').newInstance(
                 textPrinter,
                 unitSpanwerFactory,
-                options
+                options,
+                SpawnMulti
             )
 
-            rounds.start({
-                T1 = {
-                    initialDelayInSeconds = t1spawndelay,
-                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT1Frequency / SpawnMulti,
-                    spawnEndInSeconds = t2spawndelay,
-                },
-                T2 = {
-                    initialDelayInSeconds = t2spawndelay,
-                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT2Frequency / SpawnMulti,
-                    spawnEndInSeconds = t4spawndelay,
-                },
-                T3 = {
-                    initialDelayInSeconds = t3spawndelay,
-                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT3Frequency / SpawnMulti,
-                    spawnEndInSeconds = t4spawndelay + 600,
-                },
-                T4 = {
-                    initialDelayInSeconds = t4spawndelay,
-                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
-                    spawnEndInSeconds = t4spawndelay + 1200,
-                },
-                T42 = {
-                    initialDelayInSeconds = t4spawndelay + 600,
-                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
-                    spawnEndInSeconds = t4spawndelay + 1800,
-                },
-                T43 = {
-                    initialDelayInSeconds = t4spawndelay + 1200,
-                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
-                    spawnEndInSeconds = nil,
-                },
-                T44 = {
-                    initialDelayInSeconds = t4spawndelay + 1800,
-                    frequencyInSeconds = ScenarioInfo.Options.opt_FinalRushT4Frequency / SpawnMulti,
-                    spawnEndInSeconds = nil,
-                },
-            })
+            rounds.start()
         end
 
         local function runRandomEvents()
@@ -305,7 +265,13 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                     import('/maps/final_rush_pro_5.v0018/src/survival/BeetleEvent.lua').newInstance(unitCreator, spawnEffect)
                 )
 
-                randomEvents.start(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, ScenarioInfo.Options.opt_FinalRushRandomEvents)
+                randomEvents.start(
+                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + 0 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + 1 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + 2 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + 3 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+                    ScenarioInfo.Options.opt_FinalRushRandomEvents
+                )
             end
         end
 

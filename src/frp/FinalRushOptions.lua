@@ -33,17 +33,11 @@ local defaults = {
     opt_FinalRushNukesAndArty = 0,
     opt_FinalRushRandomEvents = SET_BY_PRESET,
     opt_FinalRushSpawnDelay = SET_BY_PRESET,
-    opt_FinalRushT1Frequency = SET_BY_PRESET,
-    opt_FinalRushT2Delay = SET_BY_PRESET,
-    opt_FinalRushT2Frequency = SET_BY_PRESET,
-    opt_FinalRushT3Delay = SET_BY_PRESET,
-    opt_FinalRushT3Frequency = SET_BY_PRESET,
-    opt_FinalRushT4Delay = SET_BY_PRESET,
-    opt_FinalRushT4Frequency = SET_BY_PRESET,
+    opt_FinalRushEscalationSpeed = SET_BY_PRESET,
+    opt_FinalRushUnitCount = SET_BY_PRESET,
     opt_FinalRushHunterDelay = SET_BY_PRESET,
     opt_FinalRushHunters = SET_BY_PRESET,
     opt_FinalRushHealthIncrease = SET_BY_PRESET,
-    opt_FinalRushAggression = SET_BY_PRESET
 }
 
 local optionsThatGotDefaulted = {}
@@ -72,85 +66,25 @@ local function applyPresets(scenarioOptions)
             [VERY_HARD] = 0,
             [INSANE] = 0,
         },
-        opt_FinalRushT2Delay = {
+        opt_FinalRushEscalationSpeed = {
             [VERY_EASY] = 8 * 60,
-            [EASIER] = 6 * 60,
+            [EASIER] = 7 * 60,
             [EASY] = 6 * 60,
             [NORMAL] = 6 * 60,
             [HARD] = 6 * 60,
-            [HARDER] = 6 * 60,
+            [HARDER] = 5.5 * 60,
             [VERY_HARD] = 5 * 60,
-            [INSANE] = 4 * 60,
+            [INSANE] = 4.5 * 60,
         },
-        opt_FinalRushT3Delay = {
-            [VERY_EASY] = 16 * 60,
-            [EASIER] = 15 * 60,
-            [EASY] = 14 * 60,
-            [NORMAL] = 13 * 60,
-            [HARD] = 12 * 60,
-            [HARDER] = 11 * 60,
-            [VERY_HARD] = 10 * 60,
-            [INSANE] = 8 * 60,
-        },
-        opt_FinalRushT4Delay = {
-            [VERY_EASY] = 24 * 60,
-            [EASIER] = 22 * 60,
-            [EASY] = 20 * 60,
-            [NORMAL] = 19 * 60,
-            [HARD] = 18 * 60,
-            [HARDER] = 17 * 60,
-            [VERY_HARD] = 16 * 60,
-            [INSANE] = 14 * 60,
-        },
-        opt_FinalRushT1Frequency = {
-            [VERY_EASY] = 6,
-            [EASIER] = 6,
-            [EASY] = 6,
-            [NORMAL] = 6,
-            [HARD] = 6,
-            [HARDER] = 6,
-            [VERY_HARD] = 6,
-            [INSANE] = 6,
-        },
-        opt_FinalRushT2Frequency = {
-            [VERY_EASY] = 8,
-            [EASIER] = 8,
-            [EASY] = 7,
-            [NORMAL] = 7,
-            [HARD] = 6,
-            [HARDER] = 6,
-            [VERY_HARD] = 6,
-            [INSANE] = 6,
-        },
-        opt_FinalRushT3Frequency = {
-            [VERY_EASY] = 13,
-            [EASIER] = 12,
-            [EASY] = 11,
-            [NORMAL] = 10,
-            [HARD] = 10,
-            [HARDER] = 9,
-            [VERY_HARD] = 9,
-            [INSANE] = 10,
-        },
-        opt_FinalRushT4Frequency = {
-            [VERY_EASY] = 13,
-            [EASIER] = 12,
-            [EASY] = 12,
-            [NORMAL] = 11,
-            [HARD] = 10,
-            [HARDER] = 10,
-            [VERY_HARD] = 10,
-            [INSANE] = 8,
-        },
-        opt_FinalRushAggression = {
-            [VERY_EASY] = 0,
-            [EASIER] = 0,
-            [EASY] = 0,
-            [NORMAL] = 0,
-            [HARD] = 0,
-            [HARDER] = 0,
-            [VERY_HARD] = 1,
-            [INSANE] = 1,
+        opt_FinalRushUnitCount = {
+            [VERY_EASY] = 0.7,
+            [EASIER] = 0.85,
+            [EASY] = 1,
+            [NORMAL] = 1,
+            [HARD] = 1,
+            [HARDER] = 1.05,
+            [VERY_HARD] = 1.15,
+            [INSANE] = 1.3,
         },
         opt_FinalRushRandomEvents = {
             [VERY_EASY] = 600,
@@ -261,15 +195,15 @@ function newInstance(ScenarioInfoOptions)
     end
 
     this.getT2spawnDelay = function()
-        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT2Delay
+        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + 1 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed
     end
 
     this.getT3spawnDelay = function()
-        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT3Delay
+        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + 2 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed
     end
 
     this.getT4spawnDelay = function()
-        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushT4Delay
+        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + 3 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed
     end
 
     this.shouldDisableNukesAndArty = function()
