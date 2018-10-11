@@ -121,7 +121,10 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         end
 
         unitSpawner.spawnUnits( {
-            "ura0401" -- Bug
+            {
+                blueprintName = "ura0401", -- Bug
+                baseHealth = 25000,
+            }
         } )
     end
 
@@ -161,11 +164,17 @@ newInstance = function(textPrinter, unitSpawnerFactory, options)
         )
 
         unitSpawner.spawnUnits( {
-            "xsa0402" -- T4 bomber
+            {
+                blueprintName = "xsa0402", -- T4 bomber
+                baseHealth = 25000,
+            }
         } )
         WaitSeconds(2)
         unitSpawner.spawnUnits( {
-            "uaa0310" -- CZAR
+            {
+                blueprintName = "uaa0310", -- CZAR
+                baseHealth = 25000,
+            }
         } )
     end
 

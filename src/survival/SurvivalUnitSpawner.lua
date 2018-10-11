@@ -33,18 +33,21 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, 
         return string.lower(string.sub(unitName, 3, 3)) == "s"
     end
 
-    local function getUnitInfo(unitName, armyName)
+    local function getFullUnitInfo(unitInfo, armyName)
+        if type(unitInfo) == "string" then
+            unitInfo = {
+                blueprintName = unitInfo
+            }
+        end
+
         local airSpawnZone = airSpawnZones[armyName]
         local navySpawnZone = navySpawnZones[armyName]
 
-        local spawnZone = isShipName(unitName) and navySpawnZone or airSpawnZone
+        local spawnZone = isShipName(unitInfo.blueprintName) and navySpawnZone or airSpawnZone
 
-        local unitInfo = {
-            blueprintName = unitName,
-            armyName = armyName,
-            x = Random(spawnZone.minX, spawnZone.maxX),
-            y = Random(spawnZone.minY, spawnZone.maxY),
-        }
+        unitInfo.armyName = armyName
+        unitInfo.x = Random(spawnZone.minX, spawnZone.maxX)
+        unitInfo.y = Random(spawnZone.minY, spawnZone.maxY)
 
         for key, value in extraUnitInfo do
             unitInfo[key] = value
@@ -53,13 +56,13 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, 
         return unitInfo
     end
 
-    local function spawnUnitsFromName(unitNames, armyName)
+    local function spawnUnitsFromName(unitInfos, armyName)
         local units = {}
 
-        for _, unitName in unitNames do
+        for _, unitInfo in unitInfos do
             table.insert(
                 units,
-                unitCreator.spawnSurvivalUnit(getUnitInfo(unitName, armyName))
+                unitCreator.spawnSurvivalUnit(getFullUnitInfo(unitInfo, armyName))
             )
         end
 
@@ -97,7 +100,7 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, 
         IssueAggressiveMove(units, getRandomPlayer(teamIndex))
     end
 
-    local function spawnUnitsForArmy(unitNames, armyName)
+    local function spawnUnitsForArmy(unitInfos, armyName)
         local targetArmyName =
             playerArmies.getTargetsForArmy(armyName)
             .filterByName(function(aName)
@@ -108,7 +111,7 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, 
         if targetArmyName ~= nil then
             ForkThread(
                 sendUnitsInForAttack,
-                spawnUnitsFromName(unitNames, armyName),
+                spawnUnitsFromName(unitInfos, armyName),
                 targetArmyName,
                 armyName
             )
@@ -116,9 +119,11 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, 
     end
 
     return {
-        spawnUnits = function(unitNames)
-            spawnUnitsForArmy(unitNames, "TOP_BOT")
-            spawnUnitsForArmy(unitNames, "BOTTOM_BOT")
+        -- unitInfos is an array of unitInfo maps. They need to at least contain blueprintName.
+        -- For legacy reasons the array elements can also be a string with the blueprintName.
+        spawnUnits = function(unitInfos)
+            spawnUnitsForArmy(unitInfos, "TOP_BOT")
+            spawnUnitsForArmy(unitInfos, "BOTTOM_BOT")
         end
     }
 end
