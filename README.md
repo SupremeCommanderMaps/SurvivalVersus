@@ -48,6 +48,7 @@ Under development
 * Reduced survival air experimental base health to 25000
 * Added health increase to survival air experimentals
 * Survival units inside transports now have their shields on
+* Removed Aggression Tracking option from the lobby (already non functional since 5.17)
 
 ## New in version 5.17
 
