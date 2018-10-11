@@ -249,7 +249,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options, unitAmountMulti
             }))
 
             ForkThread(createRoundSpawner({
-                roundNumber = 1,
+                roundNumber = 7,
                 tillRound = 1000,
                 spawnFunction = spawnStage7Wave,
                 frequency = 11,
