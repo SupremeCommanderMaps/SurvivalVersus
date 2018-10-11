@@ -39,6 +39,10 @@ many development versions of Final Rush Pro 5.10.
 
 Under development
 
+* Added Escalation Speed lobby option which allows modifying how fast the game escalates to higher tier stages
+* Added Unit Amount lobby option which allows modifying how many survival units spawn
+* Removed spawn delay lobby options for T1, T2, T3 and T4 stages (replaced by new Escalation Speed option)
+* Removed spawn frequency lobby options for T1, T2, T3 and T4 stages (replaced by new Unit Amount option)
 * Reduced survival air experimental base health, reducing effective health by 2x to 3x
 
 ## New in version 5.17
