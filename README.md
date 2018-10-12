@@ -37,8 +37,6 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.18
 
-ArmyBrains[Rhiza]:GetListOfUnits(categories.SHIELD, false)
-
 Under development
 
 * Added timed objectives for each survival stage

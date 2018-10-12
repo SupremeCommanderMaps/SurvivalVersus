@@ -22,3 +22,4 @@ end
 --	ScenarioFramework.EndOperation(ScenarioInfo.OpComplete, ScenarioInfo.OpComplete, secondary, bonus)
 --end
 
+-- ArmyBrains[Rhiza]:GetListOfUnits(categories.SHIELD, false)
