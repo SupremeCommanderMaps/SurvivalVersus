@@ -38,6 +38,7 @@ options =
         pref = 'opt_FinalRushEscalationSpeed',
         values = {
             { text = "Difficulty preset", help = "Automatically pick a value based on the selected difficulty", key = -1, },
+            { text = "1 minute per stage", help = "1 minute per stage", key = 60, },
             { text = "3 minutes per stage", help = "3 minutes per stage", key = 180, },
             { text = "4 minutes per stage (fast)", help = "4 minutes per stage (fast)", key = 240, },
             { text = "5 minutes per stage", help = "5 minutes per stage", key = 300, },

@@ -41,8 +41,10 @@ ArmyBrains[Rhiza]:GetListOfUnits(categories.SHIELD, false)
 
 Under development
 
+* Added timed objectives for each survival stage
 * Added Escalation Speed lobby option which allows modifying how fast the game escalates to higher tier stages
 * Added Unit Amount lobby option which allows modifying how many survival units spawn
+* Survival Classic games now end in victory when the final stage has been completed
 * Removed spawn delay lobby options for T1, T2, T3 and T4 stages (replaced by new Escalation Speed option)
 * Removed spawn frequency lobby options for T1, T2, T3 and T4 stages (replaced by new Unit Amount option)
 * Reduced survival air experimental base health to 25000

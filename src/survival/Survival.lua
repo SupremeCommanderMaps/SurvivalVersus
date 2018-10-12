@@ -245,6 +245,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         local function runSurvivalRounds()
             local rounds = import('/maps/final_rush_pro_5.v0018/src/survival/SurvivalRounds.lua').newInstance(
+                ScenarioInfo,
                 textPrinter,
                 unitSpanwerFactory,
                 options,

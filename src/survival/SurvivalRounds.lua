@@ -1,4 +1,5 @@
-newInstance = function(textPrinter, unitSpawnerFactory, options, unitAmountMultiplier)
+newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, unitAmountMultiplier)
+    local Objectives = import('/lua/ScenarioFramework.lua').Objectives
 
     local T2_TRANSPORT = "ura0107"
     local T3_TRANSPORT = "xea0306"
@@ -28,67 +29,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options, unitAmountMulti
         )
     end
 
-    local spawnTierOneWave = function()
-        transportSpawner.spawnWithTransports(
-            {
-                "url0103", --Cybran T1 Mobile Light Artillery: Medusa
-                "uel0103", --UEF T1 Mobile Light Artillery: Lobo
-                "xsl0201", --Seraphim T1 Medium Tank: Thaam
-                "url0107", --Cybran T1 Assault Bot: Mantis
-                "uel0201", --UEF T1 Medium Tank: MA12 Striker
-                "ual0201", --Aeon T1 Light Tank: Aurora
-            },
-            T2_TRANSPORT
-        )
-    end
-
-    local spawnTierTwoWave = function()
-        local units = {
-            "url0202", --Cybran T2 Heavy Tank: Rhino
-            "ual0202", --Aeon T2 Heavy Tank: Obsidian
-            "uel0202", --UEF T2 Heavy Tank: Pillar
-            "del0204", --UEF T2 Gatling Bot: Mongoose
-            "uel0203", --UEF Riptide
-            "drl0204", --Cybran T2 Rocket Bot
-            "xsl0202", --Seraphim T2 Assault Bot: Ilshavoh
-            "xal0203", --Aeon T2 Assault Tank: Blaze
-        }
-
-        if options.shouldSpawnMML() then
-            table.insert(units, "uel0111") --UEF T2 Mobile Missile Launcher
-            table.insert(units, "url0111") --Cybran T2 Mobile Missile Launcher
-        end
-
-        transportSpawner.spawnWithTransports(
-            units,
-            T3_TRANSPORT
-        )
-    end
-
-    local spawnTierThreeWave = function()
-        local units = {
-            "url0303", --Cybran T3 Siege Assault Bot: Loyalist
-            "xel0305", --UEF T3 Armored Assault Bot: Percival
-            "uel0303", --UEF T3 Heavy Assault Bot: Titan
-            "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
-            "xrl0305", --Cybran T3 Armored Assault Bot: The Brick
-            "uel0303", --UEF T3 Heavy Assault Bot: Titan
-            "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
-            "xsl0303", --Seraphim T3 Siege Tank: Othuum
-            "xsl0307", --Seraphim T3 Mobile Shield Generator: Athanah
-        }
-
-        if options.shouldSpawnT3Arty() then
-            table.insert(units, "dal0310") --Aeon T3 Shield Disruptor: Absolver
-        end
-
-        transportSpawner.spawnWithTransports(
-            units,
-            T3_TRANSPORT
-        )
-    end
-
-    local spawnStage4Wave = function()
+    local spawnGcAndMonkey = function()
         transportSpawner.spawnWithTransports(
             {
                 "ual0401", -- GC
@@ -104,7 +45,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options, unitAmountMulti
         )
     end
 
-    local spawnStage5Wave = function()
+    local spawnBugAndArty = function()
         if options.shouldSpawnT3Arty() then
             local units = {
                 "dal0310", --Aeon T3 Shield Disruptor: Absolver
@@ -128,7 +69,7 @@ newInstance = function(textPrinter, unitSpawnerFactory, options, unitAmountMulti
         } )
     end
 
-    local spawnStage6Wave = function()
+    local spawnMegaYthothaAndSattelite = function()
         if Random(1, 3) == 1 then
             unitSpawner.spawnUnits( {
                 "xea0002" -- Sattelite
@@ -178,83 +119,233 @@ newInstance = function(textPrinter, unitSpawnerFactory, options, unitAmountMulti
         } )
     end
 
-    local function createRoundSpawner(params)
-        params.tillRound = params.tillRound or params.roundNumber + 1
+    local function spawnT3Land()
+        local units = {
+            "url0303", --Cybran T3 Siege Assault Bot: Loyalist
+            "xel0305", --UEF T3 Armored Assault Bot: Percival
+            "uel0303", --UEF T3 Heavy Assault Bot: Titan
+            "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
+            "xrl0305", --Cybran T3 Armored Assault Bot: The Brick
+            "uel0303", --UEF T3 Heavy Assault Bot: Titan
+            "ual0303", --Aeon T3 Heavy Assault Bot: Harbinger Mark IV
+            "xsl0303", --Seraphim T3 Siege Tank: Othuum
+            "xsl0307", --Seraphim T3 Mobile Shield Generator: Athanah
+        }
 
-        local initialDelayInSeconds = ScenarioInfo.Options.opt_FinalRushSpawnDelay
-                + (params.roundNumber - 1) * ScenarioInfo.Options.opt_FinalRushEscalationSpeed
+        if options.shouldSpawnT3Arty() then
+            table.insert(units, "dal0310") --Aeon T3 Shield Disruptor: Absolver
+        end
 
-        local spawnEndInSeconds = ScenarioInfo.Options.opt_FinalRushSpawnDelay
-                + (params.tillRound - 1) * ScenarioInfo.Options.opt_FinalRushEscalationSpeed
+        transportSpawner.spawnWithTransports(
+            units,
+            T3_TRANSPORT
+        )
+    end
+
+    local function startStage(params)
+        printMessage(params.message)
+
+        local objective = Objectives.Timer(
+            'primary',
+            'incomplete',
+            params.title,
+            params.description,
+            {
+                Timer = params.duration,
+                ExpireResult = 'complete',
+            }
+        )
+
+        objective:AddResultCallback(
+            function(result)
+                if result and params.onComplete ~= nil then
+                    params.onComplete()
+                end
+            end
+        )
 
         local frequencyInSeconds = params.frequency / unitAmountMultiplier
 
-        return function()
-            WaitSeconds(initialDelayInSeconds)
-            printMessage(params.message)
-
-            while spawnEndInSeconds == nil or GetGameTimeSeconds() < spawnEndInSeconds do
+        ForkThread(function()
+            while objective.Active do
                 ForkThread(params.spawnFunction)
                 WaitSeconds(frequencyInSeconds)
             end
-        end
+        end)
+    end
+
+    local function startStage7()
+        startStage({
+            frequency = 11,
+            message = "Stage 7: Fatboys and stronger air",
+            title = "Survive stage 7",
+            description = "Stage 6 consists of high tier T4 land units, Bugs, T3 mobile arty and the occasional Sattelite",
+            duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+            spawnFunction = function()
+                spawnBugAndArty()
+                spawnMegaYthothaAndSattelite()
+            end,
+            onComplete = function()
+                ForkThread(function()
+                    if options.isSurvivalClassic() then
+                        textPrinter.print(
+                            "You survived the final stage!",
+                            {
+                                duration = 6,
+                                size = 30,
+                                color = "ffffd4d4"
+                            }
+                        )
+
+                        for _, army in ListArmies() do
+                            GetArmyBrain(army):OnVictory()
+                        end
+
+                        WaitSeconds(7)
+                        EndGame()
+                    else
+                        textPrinter.print(
+                            "Final stage continues till one team wins",
+                            {
+                                duration = 6,
+                                size = 25,
+                                color = "ffffd4d4"
+                            }
+                        )
+
+                        while true do
+                            ForkThread(function()
+                                spawnBugAndArty()
+                                spawnMegaYthothaAndSattelite()
+                            end)
+                            WaitSeconds(11 / unitAmountMultiplier)
+                        end
+                    end
+                end)
+            end
+        })
+    end
+
+    local function startStage6()
+        startStage({
+            frequency = 11,
+            message = "Stage 6: Megas, Chickens and Sattelites",
+            title = "Survive stage 6",
+            description = "Stage 6 consists of high tier T4 land units, Bugs, T3 mobile arty and the occasional Sattelite",
+            duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+            spawnFunction = function()
+                spawnBugAndArty()
+                spawnMegaYthothaAndSattelite()
+            end,
+            onComplete = startStage7
+        })
+    end
+
+    local function startStage5()
+        startStage({
+            frequency = 11,
+            message = "Stage 5: Bugs replace T3",
+            title = "Survive stage 5",
+            description = "Stage 5 consists of T4 land units, Bugs and T3 mobile arty",
+            duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+            spawnFunction = function()
+                spawnGcAndMonkey()
+                spawnBugAndArty()
+            end,
+            onComplete = startStage6
+        })
+    end
+
+    local function startStage4()
+        startStage({
+            frequency = 11,
+            message = "Stage 4: Experimentals inbound",
+            title = "Survive stage 4",
+            description = "Stage 4 consists of T3 and T4 land units",
+            duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+            spawnFunction = function()
+                spawnT3Land()
+                spawnGcAndMonkey()
+            end,
+            onComplete = startStage5
+        })
+    end
+
+    local function startStage3()
+        startStage({
+            frequency = 10,
+            message = "Tech 3 inbound",
+            title = "Survive stage 3",
+            description = "Stage 2 consists of T3 land units and random events with T3 air units and Salemns",
+            duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+            spawnFunction = spawnT3Land,
+            onComplete = startStage4
+        })
+    end
+
+    local function startStage2()
+        startStage({
+            frequency = 7,
+            message = "Tech 2 inbound",
+            title = "Survive stage 2",
+            description = "Stage 2 consists of T2 land units and random events with T2 air units",
+            duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+            spawnFunction = function()
+                local units = {
+                    "url0202", --Cybran T2 Heavy Tank: Rhino
+                    "ual0202", --Aeon T2 Heavy Tank: Obsidian
+                    "uel0202", --UEF T2 Heavy Tank: Pillar
+                    "del0204", --UEF T2 Gatling Bot: Mongoose
+                    "uel0203", --UEF Riptide
+                    "drl0204", --Cybran T2 Rocket Bot
+                    "xsl0202", --Seraphim T2 Assault Bot: Ilshavoh
+                    "xal0203", --Aeon T2 Assault Tank: Blaze
+                }
+
+                if options.shouldSpawnMML() then
+                    table.insert(units, "uel0111") --UEF T2 Mobile Missile Launcher
+                    table.insert(units, "url0111") --Cybran T2 Mobile Missile Launcher
+                end
+
+                transportSpawner.spawnWithTransports(
+                    units,
+                    T3_TRANSPORT
+                )
+            end,
+            onComplete = startStage3
+        })
+    end
+
+    local function startStage1()
+        startStage({
+            frequency = 6,
+            message = "And so it begins! Tech 1 inbound",
+            title = "Survive stage 1",
+            description = "Stage 1 consists of T1 land units and random events with T1 air units",
+            duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+            spawnFunction = function()
+                transportSpawner.spawnWithTransports(
+                    {
+                        "url0103", --Cybran T1 Mobile Light Artillery: Medusa
+                        "uel0103", --UEF T1 Mobile Light Artillery: Lobo
+                        "xsl0201", --Seraphim T1 Medium Tank: Thaam
+                        "url0107", --Cybran T1 Assault Bot: Mantis
+                        "uel0201", --UEF T1 Medium Tank: MA12 Striker
+                        "ual0201", --Aeon T1 Light Tank: Aurora
+                    },
+                    T2_TRANSPORT
+                )
+            end,
+            onComplete = startStage2
+        })
     end
 
     return {
         start = function()
-            ForkThread(createRoundSpawner({
-                roundNumber = 1,
-                spawnFunction = spawnTierOneWave,
-                frequency = 6,
-                message = "And so it begins! Tech 1 inbound"
-            } ))
-
-            ForkThread(createRoundSpawner({
-                roundNumber = 2,
-                spawnFunction = spawnTierTwoWave,
-                frequency = 7,
-                message = "Tech 2 inbound"
-            }))
-
-            ForkThread(createRoundSpawner({
-                roundNumber = 3,
-                tillRound = 5,
-                spawnFunction = spawnTierThreeWave,
-                frequency = 10,
-                message = "Tech 3 inbound"
-            }))
-
-            ForkThread(createRoundSpawner({
-                roundNumber = 4,
-                tillRound = 6,
-                spawnFunction = spawnStage4Wave,
-                frequency = 11,
-                message = "Stage 4: Experimentals"
-            }))
-
-            ForkThread(createRoundSpawner({
-                roundNumber = 5,
-                tillRound = 7,
-                spawnFunction = spawnStage5Wave,
-                frequency = 11,
-                message = "Stage 5: Bugs replace T3"
-            }))
-
-            ForkThread(createRoundSpawner({
-                roundNumber = 6,
-                tillRound = 1000,
-                spawnFunction = spawnStage6Wave,
-                frequency = 11,
-                message = "Stage 6: Megas, Chickens and Sattelites"
-            }))
-
-            ForkThread(createRoundSpawner({
-                roundNumber = 7,
-                tillRound = 1000,
-                spawnFunction = spawnStage7Wave,
-                frequency = 11,
-                message = "Stage 7: Fatboys and stronger air"
-            }))
+            ForkThread(function()
+                WaitSeconds(ScenarioInfo.Options.opt_FinalRushSpawnDelay)
+                startStage1()
+            end)
         end
     }
 end
