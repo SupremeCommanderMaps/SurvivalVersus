@@ -229,10 +229,10 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 )
 
                 randomEvents.start(
-                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + 0 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
-                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + 1 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
-                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + 2 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
-                    ScenarioInfo.Options.opt_FinalRushSpawnDelay + 3 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
+                    options.getT1spawnDelay(),
+                    options.getT2spawnDelay(),
+                    options.getT3spawnDelay(),
+                    options.getT4spawnDelay(),
                     ScenarioInfo.Options.opt_FinalRushRandomEvents
                 )
             end
