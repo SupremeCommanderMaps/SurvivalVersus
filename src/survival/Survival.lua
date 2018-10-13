@@ -37,11 +37,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         return GetUnitsInRect({x0 = 0, x1 = ScenarioInfo.size[1], y0 = 0, y1 = ScenarioInfo.size[2]})
     end
 
-    local function isSurvivalUnit(unit)
-        local armyName = ListArmies()[unit:GetArmy()]
-        return armyName == "BOTTOM_BOT" or armyName == "TOP_BOT"
-    end
-
     local getRandomPlayer = function(team)
         local randomNumber = Random(1,4)
 
@@ -169,7 +164,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         if options.waterKillsAcu() then
             import('/maps/final_rush_pro_5.v0018/src/survival/CommanderWaterPain.lua')
-                .newInstance(allUnits, textPrinter, isSurvivalUnit).runThread()
+                .newInstance(playerArmies, textPrinter).runThread()
 
             import('/maps/final_rush_pro_5.v0018/src/frp/HillGuards.lua').newInstance().createHillGuards()
         end
@@ -221,7 +216,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                     ScenarioInfo,
                     getEventTextPrinter(),
                     allUnits,
-                    isSurvivalUnit,
                     unitSpanwerFactory,
                     import('/maps/final_rush_pro_5.v0018/src/survival/BeetleEvent.lua').newInstance(unitCreator, spawnEffect)
                 )

@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, survivalSpawnerFactory, beetleEvent)
+newInstance = function(ScenarioInfo, textPrinter, getAllUnits, survivalSpawnerFactory, beetleEvent)
 
     local T3_TRANSPORT = "xea0306"
 
@@ -13,7 +13,7 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
     local function printText(text)
         textPrinter.print(text, {duration = 3})
     end
-    
+
     local function spawnBombers()
         printText("T1 bombers detected")
 
@@ -206,6 +206,11 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, isSurvivalUnit, s
             },
             EXPERIMENTAL_TRANSPORT
         )
+    end
+
+    local function isSurvivalUnit(unit)
+        local armyName = ListArmies()[unit:GetArmy()]
+        return armyName == "BOTTOM_BOT" or armyName == "TOP_BOT"
     end
 
     local SpeedCurrentUnits = function()
