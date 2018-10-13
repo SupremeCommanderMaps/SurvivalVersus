@@ -10,14 +10,16 @@ newInstance = function(ScenarioInfo)
 
     local function setupTents()
         if ScenarioInfo.Options.opt_tents > 0 then
-            local tents = import('/maps/final_rush_pro_5.v0018/src/frp/PrebuildTents.lua').newInstance(playerArmies);
-            LOG("Spawning " .. ScenarioInfo.Options.opt_tents .. " tents")
-            tents.spawn(ScenarioInfo.Options.opt_tents)
+            import('/maps/final_rush_pro_5.v0018/src/frp/PrebuildTents.lua')
+                .newInstance(playerArmies)
+                .spawn(ScenarioInfo.Options.opt_tents)
         end
     end
 
     local function setupLighthouses()
-        import('/maps/final_rush_pro_5.v0018/src/frp/CivilianLighthouses.lua').newInstance(textPrinter, playerArmies).spawn();
+        import('/maps/final_rush_pro_5.v0018/src/frp/CivilianLighthouses.lua')
+            .newInstance(textPrinter, playerArmies)
+            .spawn()
     end
 
     local function restrictTechs()
@@ -35,15 +37,17 @@ newInstance = function(ScenarioInfo)
 
     local function setupParagonWars()
         if options.isParagonWars() then
-            local paragonWars = import('/maps/final_rush_pro_5.v0018/src/paragon/ParagonWars.lua').newInstance(playerArmies, textPrinter)
-            paragonWars.setUp()
+            import('/maps/final_rush_pro_5.v0018/src/paragon/ParagonWars.lua')
+                .newInstance(playerArmies, textPrinter)
+                .setUp()
         end
     end
 
     local function setupServival()
         if options.isSurvivalGame() then
-            local survival = import('/maps/final_rush_pro_5.v0018/src/survival/Survival.lua').newInstance(ScenarioInfo, options, textPrinter, playerArmies)
-            survival.start()
+            import('/maps/final_rush_pro_5.v0018/src/survival/Survival.lua')
+                .newInstance(ScenarioInfo, options, textPrinter, playerArmies)
+                .start()
         end
     end
 
