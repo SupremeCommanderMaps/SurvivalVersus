@@ -82,12 +82,12 @@ newInstance = function(fullIndexToNameMap)
     local getBottomSideArmies = newFilterMethod(isBottomSideArmy)
     local getTopSideArmies = newFilterMethod(isTopSideArmy)
 
-    local function getTargetsForArmy(hunterArmyName)
-        if hunterArmyName == "TOP_BOT" then
+    local function getTargetsForArmy(botArmyName)
+        if botArmyName == "TOP_BOT" then
             return getTopSideArmies()
         end
 
-        if hunterArmyName == "BOTTOM_BOT" then
+        if botArmyName == "BOTTOM_BOT" then
             return getBottomSideArmies()
         end
 
@@ -114,6 +114,22 @@ newInstance = function(fullIndexToNameMap)
         return indexToNameMap[keyset[randomFunction(1, table.getn(keyset))]]
     end
 
+    -- category: categories enum, ie categories.COMMAND
+    local function getUnitsInCategory(category)
+        local CAN_BE_IDLE = true
+        local NEEDS_TO_BE_BUILD = true
+
+        local units = {}
+
+        for armyIndex in indexToNameMap do
+            for _, unit in ArmyBrains[armyIndex]:GetListOfUnits(category, CAN_BE_IDLE, NEEDS_TO_BE_BUILD) do
+                table.insert(units, unit)
+            end
+        end
+
+        return units
+    end
+
     return {
         getNameForIndex = function(armyIndex)
             return indexToNameMap[armyIndex]
@@ -135,7 +151,8 @@ newInstance = function(fullIndexToNameMap)
         getTopSideArmies = getTopSideArmies,
         getTargetsForArmy = getTargetsForArmy,
         getRandomArmyName = getRandomArmyName,
-        filterByName = filter
+        filterByName = filter,
+        getUnitsInCategory = getUnitsInCategory
     }
 end
 

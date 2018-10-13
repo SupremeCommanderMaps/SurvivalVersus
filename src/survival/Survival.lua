@@ -70,18 +70,35 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     end
 
     local function setSurvivalVersusAlliances()
-        local tblArmies = ListArmies()
-        for index, name in tblArmies do
-            SetAlliance(index, "FRIENDLY_BOT", 'Ally')
+        for armyIndex in ListArmies() do
+            SetAlliance(armyIndex, "FRIENDLY_BOT", 'Ally')
+        end
 
-            if name == "ARMY_TOP_RIGHT" or name == "ARMY_TOP_RMID" or name == "ARMY_TOP_LMID" or name == "ARMY_TOP_LEFT" then
-                SetAlliance(index, "TOP_BOT", 'Enemy')
-                SetAlliance(index, "BOTTOM_BOT", 'Ally')
-                SetAlliance(index, "HOSTILE_BOT", 'Enemy')
-            elseif name == "ARMY_BOTTOM_LEFT" or name == "ARMY_BOTTOM_LMID" or name == "ARMY_BOTTOM_RMID" or name == "ARMY_BOTTOM_RIGHT" then
-                SetAlliance(index, "BOTTOM_BOT", 'Enemy')
-                SetAlliance(index, "TOP_BOT", 'Ally')
-                SetAlliance(index, "HOSTILE_BOT", 'Enemy')
+        local topArmies = playerArmies.getTopSideArmies().getNameToIndexMap()
+
+        for armyName in topArmies do
+            SetAlliance(armyName, "TOP_BOT", 'Enemy')
+            SetAlliance(armyName, "BOTTOM_BOT", 'Ally')
+            SetAlliance(armyName, "HOSTILE_BOT", 'Enemy')
+
+            for otherArmyName in topArmies do
+                if armyName ~= otherArmyName then
+                    SetAlliance(armyName, otherArmyName, 'Ally')
+                end
+            end
+        end
+
+        local bottomArmies = playerArmies.getBottomSideArmies().getNameToIndexMap()
+
+        for armyName in bottomArmies do
+            SetAlliance(armyName, "TOP_BOT", 'Ally')
+            SetAlliance(armyName, "BOTTOM_BOT", 'Enemy')
+            SetAlliance(armyName, "HOSTILE_BOT", 'Enemy')
+
+            for otherArmyName in bottomArmies do
+                if armyName ~= otherArmyName then
+                    SetAlliance(armyName, otherArmyName, 'Ally')
+                end
             end
         end
     end
@@ -199,7 +216,12 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 textPrinter,
                 unitSpanwerFactory,
                 options,
-                SpawnMulti
+                SpawnMulti,
+                import('/maps/final_rush_pro_5.v0018/src/survival/SurvivalVictory.lua').newInstance(
+                    options,
+                    textPrinter,
+                    playerArmies
+                )
             )
 
             rounds.start()

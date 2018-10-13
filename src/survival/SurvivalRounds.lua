@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, unitAmountMultiplier)
+newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, unitAmountMultiplier, survivalVictory)
     local Objectives = import('/lua/ScenarioFramework.lua').Objectives
 
     local T2_TRANSPORT = "ura0107"
@@ -91,7 +91,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
         )
     end
 
-    local spawnStage7Wave = function()
+    local spawnBattyMonkeyBomberAndCzar = function()
         if options.shouldSpawnT3Arty() then
             transportSpawner.spawnWithTransports(
                 { "uel0401" }, --Fatboy
@@ -179,47 +179,22 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             frequency = 11,
             message = "Stage 7: Fatboys and stronger air",
             title = "Survive stage 7",
-            description = "Stage 6 consists of high tier T4 land units, Bugs, T3 mobile arty and the occasional Sattelite",
+            description = "Stage 7 consists of high tier T4 land units, high tier T4 air units, T3 mobile arty and the occasional Sattelite",
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = function()
-                spawnBugAndArty()
+                spawnBattyMonkeyBomberAndCzar()
                 spawnMegaYthothaAndSattelite()
             end,
             onComplete = function()
                 ForkThread(function()
-                    if options.isSurvivalClassic() then
-                        textPrinter.print(
-                            "You survived the final stage!",
-                            {
-                                duration = 6,
-                                size = 30,
-                                color = "ffffd4d4"
-                            }
-                        )
+                    survivalVictory.finalStageComplete()
 
-                        for _, army in ListArmies() do
-                            GetArmyBrain(army):OnVictory()
-                        end
-
-                        WaitSeconds(7)
-                        EndGame()
-                    else
-                        textPrinter.print(
-                            "Final stage continues till one team wins",
-                            {
-                                duration = 6,
-                                size = 25,
-                                color = "ffffd4d4"
-                            }
-                        )
-
-                        while true do
-                            ForkThread(function()
-                                spawnBugAndArty()
-                                spawnMegaYthothaAndSattelite()
-                            end)
-                            WaitSeconds(11 / unitAmountMultiplier)
-                        end
+                    while true do
+                        ForkThread(function()
+                            spawnBattyMonkeyBomberAndCzar()
+                            spawnMegaYthothaAndSattelite()
+                        end)
+                        WaitSeconds(11 / unitAmountMultiplier)
                     end
                 end)
             end
@@ -342,6 +317,9 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
 
     return {
         start = function()
+            ScenarioInfo.Options.Victory = 'sandbox'
+            survivalVictory.watchForTeamDeath()
+
             ForkThread(function()
                 WaitSeconds(ScenarioInfo.Options.opt_FinalRushSpawnDelay)
                 startStage1()

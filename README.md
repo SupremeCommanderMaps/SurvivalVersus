@@ -37,17 +37,19 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.18
 
-Under development
+Released on 2018-10-13
 
+* When beating the other team in Survival Versus you can now keep on playing to beat the final stage
+* Survival Classic games now end in victory when the final stage has been completed
 * Added timed objectives for each survival stage
 * Added Escalation Speed lobby option which allows modifying how fast the game escalates to higher tier stages
 * Added Unit Amount lobby option which allows modifying how many survival units spawn
-* Survival Classic games now end in victory when the final stage has been completed
-* Removed spawn delay lobby options for T1, T2, T3 and T4 stages (replaced by new Escalation Speed option)
-* Removed spawn frequency lobby options for T1, T2, T3 and T4 stages (replaced by new Unit Amount option)
+* Players on one side of the map are now always allied in Survival Versus (no need to set teams in the lobby)
 * Reduced survival air experimental base health to 25000
 * Added health increase to survival air experimentals
 * Survival units inside transports now have their shields on
+* Removed spawn delay lobby options for T1, T2, T3 and T4 stages (replaced by new Escalation Speed option)
+* Removed spawn frequency lobby options for T1, T2, T3 and T4 stages (replaced by new Unit Amount option)
 * Removed Aggression Tracking option from the lobby (already non functional since 5.17)
 
 ## New in version 5.17

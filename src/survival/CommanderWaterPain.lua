@@ -32,17 +32,9 @@ newInstance = function(playerArmies, textPrinter)
     end
 
     local function waterPainThread()
-        local CAN_BE_IDLE = false
-        local NEEDS_TO_BE_BUILD = true
-
         while true do
             WaitSeconds(1)
-
-            for armyIndex in playerArmies.getIndexToNameMap() do
-                killUnitsInTheWater(
-                    ArmyBrains[armyIndex]:GetListOfUnits(categories.COMMAND, CAN_BE_IDLE, NEEDS_TO_BE_BUILD)
-                )
-            end
+            killUnitsInTheWater(playerArmies.getUnitsInCategory(categories.COMMAND))
         end
     end
 
