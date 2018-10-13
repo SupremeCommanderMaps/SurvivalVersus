@@ -200,11 +200,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         local SpawnMulti = ScenarioInfo.Options.opt_FinalRushUnitCount * table.getn(playerArmies.getIndexToNameMap()) / 8
 
-        local function getEventTextPrinter()
-            return ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
-                    or import('/maps/final_rush_pro_5.v0018/src/lib/NullTextPrinter.lua').newInstance()
-        end
-
         local function runSurvivalRounds()
             local rounds = import('/maps/final_rush_pro_5.v0018/src/survival/SurvivalRounds.lua').newInstance(
                 ScenarioInfo,
@@ -215,6 +210,11 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             )
 
             rounds.start()
+        end
+
+        local function getEventTextPrinter()
+            return ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
+                    or import('/maps/final_rush_pro_5.v0018/src/lib/NullTextPrinter.lua').newInstance()
         end
 
         local function runRandomEvents()
