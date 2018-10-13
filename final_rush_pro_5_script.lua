@@ -1,9 +1,16 @@
 import('/lua/sim/ScenarioUtilities.lua').CreateResources = function() end
 
+local finalRush
+
 function OnPopulate()
 	import('/lua/sim/ScenarioUtilities.lua').InitializeArmies()
-	import('/maps/final_rush_pro_5.v0018/src/frp/FinalRushPro.lua').newInstance(ScenarioInfo).setUp()
+	finalRush = import('/maps/final_rush_pro_5.v0018/src/frp/FinalRushPro.lua').newInstance(ScenarioInfo)
+	finalRush.setUp()
 	Sync.CampaignMode = true
+end
+
+function OnShiftF3()
+	finalRush.printSettings()
 end
 
 -- -- Not a special name, needs to be manually called
@@ -23,3 +30,4 @@ end
 --end
 
 -- ArmyBrains[Rhiza]:GetListOfUnits(categories.SHIELD, false)
+

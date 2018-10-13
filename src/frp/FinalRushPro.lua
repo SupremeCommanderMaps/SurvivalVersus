@@ -6,6 +6,8 @@ newInstance = function(ScenarioInfo)
     local playerArmies = import('/maps/final_rush_pro_5.v0018/src/frp/PlayerArmies.lua').newInstance(ListArmies())
     local buildRestrictor = import('/maps/final_rush_pro_5.v0018/src/frp/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo, options)
 
+    local welcomeMessages = import('/maps/final_rush_pro_5.v0018/src/frp/WelcomeMessages.lua').newInstance(ScenarioInfo, options, textPrinter)
+
     local function setupTents()
         if ScenarioInfo.Options.opt_tents > 0 then
             local tents = import('/maps/final_rush_pro_5.v0018/src/frp/PrebuildTents.lua').newInstance(playerArmies);
@@ -56,7 +58,6 @@ newInstance = function(ScenarioInfo)
     end
 
     local function showWelcomeMessage()
-        local welcomeMessages = import('/maps/final_rush_pro_5.v0018/src/frp/WelcomeMessages.lua').newInstance(ScenarioInfo, options, textPrinter)
         welcomeMessages.startDisplay()
     end
 
@@ -81,6 +82,9 @@ newInstance = function(ScenarioInfo)
             setupServival()
             setupAutoReclaim()
             setupResourceDeposits()
+        end,
+        printSettings = function()
+            welcomeMessages.showSettings()
         end
     }
 end

@@ -153,6 +153,16 @@ newInstance = function(ScenarioInfo, options, textPrinter)
                     showTeamBonusMessage(newPrinter(BONUS_MESSAGE_DURATION))
                 end
             end)
+        end,
+        showSettings = function()
+            if options.isSurvivalGame() then
+                ForkThread(function()
+                    showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
+
+                    WaitSeconds(SETTINGS_MESSAGE_DURATION + 0.05)
+                    showTeamBonusMessage(newPrinter(BONUS_MESSAGE_DURATION))
+                end)
+            end
         end
     }
 end
