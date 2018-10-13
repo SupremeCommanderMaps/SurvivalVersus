@@ -33,44 +33,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     local TransportDestinations = positions.TransportDestinations
     local AttackLocations = positions.AttackLocations
 
-    local StartingPlayersExistance = {
-        ARMY_BOTTOM_LEFT = false,
-        ARMY_BOTTOM_LMID = false,
-        ARMY_BOTTOM_RMID = false,
-        ARMY_BOTTOM_RIGHT = false,
-        ARMY_TOP_RIGHT = false,
-        ARMY_TOP_RMID = false,
-        ARMY_TOP_LMID = false,
-        ARMY_TOP_LEFT = false
-    }
-
-    local function createStartingPlayersExistance()
-        if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_LEFT"] == false then
-            StartingPlayersExistance.ARMY_BOTTOM_LEFT = true
-        end
-        if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_LMID"] == false then
-            StartingPlayersExistance.ARMY_BOTTOM_LMID = true
-        end
-        if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_RMID"] == false then
-            StartingPlayersExistance.ARMY_BOTTOM_RMID = true
-        end
-        if not ScenarioInfo.ArmySetup["ARMY_BOTTOM_RIGHT"] == false then
-            StartingPlayersExistance.ARMY_BOTTOM_RIGHT = true
-        end
-        if not ScenarioInfo.ArmySetup["ARMY_TOP_RIGHT"] == false then
-            StartingPlayersExistance.ARMY_TOP_RIGHT = true
-        end
-        if not ScenarioInfo.ArmySetup["ARMY_TOP_RMID"] == false then
-            StartingPlayersExistance.ARMY_TOP_RMID = true
-        end
-        if not ScenarioInfo.ArmySetup["ARMY_TOP_LMID"] == false then
-            StartingPlayersExistance.ARMY_TOP_LMID = true
-        end
-        if not ScenarioInfo.ArmySetup["ARMY_TOP_LEFT"] == false then
-            StartingPlayersExistance.ARMY_TOP_LEFT = true
-        end
-    end
-
     local allUnits = function()
         return GetUnitsInRect({x0 = 0, x1 = ScenarioInfo.size[1], y0 = 0, y1 = ScenarioInfo.size[2]})
     end
@@ -308,7 +270,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
     return {
         start = function()
-            createStartingPlayersExistance()
             setUp()
             ForkThread(runBattle, textPrinter, playerArmies)
         end
