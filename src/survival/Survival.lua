@@ -42,32 +42,30 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         return armyName == "BOTTOM_BOT" or armyName == "TOP_BOT"
     end
 
-    local GetRandomPlayer = function(team)
-        local selectplayertoattack = Random(1,4)
-        local Units_FinalFight
+    local getRandomPlayer = function(team)
+        local randomNumber = Random(1,4)
 
         if team == 1 then
-            if selectplayertoattack == 1 then
-                Units_FinalFight = AttackLocations.Team1.Player1
-            elseif selectplayertoattack == 2 then
-                Units_FinalFight = AttackLocations.Team1.Player2
-            elseif selectplayertoattack == 3 then
-                Units_FinalFight = AttackLocations.Team1.Player3
-            elseif selectplayertoattack == 4 then
-                Units_FinalFight = AttackLocations.Team1.Player4
+            if randomNumber == 1 then
+                return AttackLocations.Team1.Player1
+            elseif randomNumber == 2 then
+                return AttackLocations.Team1.Player2
+            elseif randomNumber == 3 then
+                return AttackLocations.Team1.Player3
+            elseif randomNumber == 4 then
+                return AttackLocations.Team1.Player4
             end
         elseif team == 2 then
-            if selectplayertoattack == 1 then
-                Units_FinalFight = AttackLocations.Team2.Player1
-            elseif selectplayertoattack == 2 then
-                Units_FinalFight = AttackLocations.Team2.Player2
-            elseif selectplayertoattack == 3 then
-                Units_FinalFight = AttackLocations.Team2.Player3
-            elseif selectplayertoattack == 4 then
-                Units_FinalFight = AttackLocations.Team2.Player4
+            if randomNumber == 1 then
+                return AttackLocations.Team2.Player1
+            elseif randomNumber == 2 then
+                return AttackLocations.Team2.Player2
+            elseif randomNumber == 3 then
+                return AttackLocations.Team2.Player3
+            elseif randomNumber == 4 then
+                return AttackLocations.Team2.Player4
             end
         end
-        return Units_FinalFight
     end
 
     local function disableWalls()
@@ -192,7 +190,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             ScenarioFramework,
             unitCreator,
             playerArmies,
-            GetRandomPlayer,
+            getRandomPlayer,
             spawnOutEffect,
             TransportDestinations,
             allUnits
