@@ -176,7 +176,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
 
     local function startStage7()
         startStage({
-            frequency = 11,
+            frequency = 13,
             message = "Stage 7: Fatboys and stronger air",
             title = "Survive stage 7",
             description = "Stage 7 consists of high tier T4 land units, high tier T4 air units, T3 mobile arty and the occasional Sattelite",
@@ -203,7 +203,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
 
     local function startStage6()
         startStage({
-            frequency = 11,
+            frequency = 13,
             message = "Stage 6: Megas, Chickens and Sattelites",
             title = "Survive stage 6",
             description = "Stage 6 consists of high tier T4 land units, Bugs, T3 mobile arty and the occasional Sattelite",
@@ -218,7 +218,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
 
     local function startStage5()
         startStage({
-            frequency = 11,
+            frequency = 13,
             message = "Stage 5: Bugs replace T3",
             title = "Survive stage 5",
             description = "Stage 5 consists of T4 land units, Bugs and T3 mobile arty",
@@ -233,7 +233,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
 
     local function startStage4()
         startStage({
-            frequency = 11,
+            frequency = 13,
             message = "Stage 4: Experimentals inbound",
             title = "Survive stage 4",
             description = "Stage 4 consists of T3 and T4 land units",
