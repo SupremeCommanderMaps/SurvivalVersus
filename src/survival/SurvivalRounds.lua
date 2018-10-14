@@ -322,7 +322,6 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
 
             ForkThread(function()
                 WaitSeconds(ScenarioInfo.Options.opt_FinalRushSpawnDelay)
-                survivalVictory.finalStageComplete()
                 startStage1()
             end)
         end

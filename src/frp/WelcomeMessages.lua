@@ -99,7 +99,12 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         printer.printOption("opt_FinalRushEscalationSpeed", "Escalation speed: " .. ScenarioInfo.Options.opt_FinalRushEscalationSpeed / 60 .. " minutes/stage")
         printer.printOption("opt_FinalRushUnitCount", "Unit count: " .. ScenarioInfo.Options.opt_FinalRushUnitCount * 100 .. "%")
         printer.printOption("opt_FinalRushHealthIncrease", "Health increase: " .. ScenarioInfo.Options.opt_FinalRushHealthIncrease * 100 .. "% every 100 seconds")
-        printer.printOption("opt_FinalRushAutoReclaim", "Auto reclaim: " .. math.abs(ScenarioInfo.Options.opt_FinalRushAutoReclaim) .. "%")
+        printer.printOption(
+            "opt_FinalRushAutoReclaim",
+            "Auto reclaim: "
+                    .. (options.autoRelciamDeclines() and "declining " or "fixed ")
+                    .. math.abs(ScenarioInfo.Options.opt_FinalRushAutoReclaim) .. "%"
+        )
 
         printer.printBlankLine()
 
