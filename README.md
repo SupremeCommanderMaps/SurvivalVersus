@@ -37,7 +37,7 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.19
 
-Under development
+Released on 2018-10-14
 
 * Rebalancing to make Normal and Easy difficulties less hard
 * Default Auto-reclaim has been nerfed. It now linearly decreases to 0 at minute 60. This can be changed in the lobby

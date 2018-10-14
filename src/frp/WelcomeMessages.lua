@@ -52,7 +52,7 @@ newInstance = function(ScenarioInfo, options, textPrinter)
 
     local function showGameVersionMessage(printer)
         textPrinter.print(
-            string.rep(" ", 12) .. "Welcome to Final Rush Pro 5.19 ALPHA",
+            string.rep(" ", 12) .. "Welcome to Final Rush Pro 5.19",
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter", size = 35 }
         )
 
