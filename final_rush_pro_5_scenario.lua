@@ -1,22 +1,34 @@
 version = 3
 ScenarioInfo = {
     name="Final Rush Pro 5",
-    map_version=18,
-    description=[[Version 5.18
+    map_version=19,
+    description=[[This map supports multiple game modes.
 
-This map supports multiple game modes: Survival, Survival Versus, Paragon Wars and Normal.
+1. Survival Versus
+-----------------------
 
-In the Survival modes, waves of increasingly strong enemy units get spawned and your mission is to survive as long as possible. Beware that you cannot put your ACU into the water or hide in the hills behind your base; both will result in it being destroyed.
+Survive longer than the other team to win the game. Survive till the end of the final stage for full victory.
 
-In Survival Versus, two teams, each on their side of the map, get waves of enemy units. The team that holds out the longest wins. If the pressure is not high enough, you can attack the enemy team, to put them out of their misery faster :)
+Waves of increasingly strong survival units assault your base from the center of the map. This makes it difficult to attack the enemy team and hasten their demise, though this is certainly possible.
+
+2. Survival Classic
+-----------------------
+
+Survive till the end of the final stage to win the game. Playable with 1 to 8 people. Best played with 2 groups of 4.
+
+Waves of increasingly strong survival units assault your base from the center of the map.
+
+3. Paragon Wars
+----------------------
 
 In Paragon Wars, the two teams fight for control over the centre of the map, where an enemy civilian base guards the Paragon Activator. Whoever captures the Paragon Activator gets a paragon for one minute. Once the minute expires, the centre of the map gets cleared and a new civilian base with Paragon Activator spawns.
 
-At the left and right corners of the map, civilian lighthouses get spawned. These can be captured for extra map vision.
+4. Normal
+------------
 
-More comprehensive documentation can be found at bit.ly/final-rush-pro
+The Normal mode allows you to play on the map without survival units being spawned.
 
-Version of the 5 adds several new features and fixes many bugs. For more information, see the README.md (text file) located in "Maps/final_rush_pro_5.v0019", or visit the site at https://github.com/JeroenDeDauw/FinalRushPro5]],
+For more information, see the README.md (text file) located in "Maps/final_rush_pro_5.v0019", or visit the site at https://github.com/JeroenDeDauw/FinalRushPro5]],
     norushoffsetX_ARMY_BOTTOM_LEFT=0,
     norushoffsetX_ARMY_BOTTOM_LMID=0,
     norushoffsetX_ARMY_BOTTOM_RMID=0,
