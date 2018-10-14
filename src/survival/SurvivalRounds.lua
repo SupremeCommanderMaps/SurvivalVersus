@@ -251,7 +251,8 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             frequency = 10,
             message = "Tech 3 inbound",
             title = "Survive stage 3",
-            description = "Stage 2 consists of T3 land units and random events with T3 air units and Salemns",
+            description = "Units: T3 land" .. (options.shouldSpawnMML() and " and the occasional shield disruptor" or "")
+                .. ". Random events: T3 bombers, T3 gunships" .. (options.shouldSpawnMML() and " and T3 artillery" or ""),
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = spawnT3Land,
             onComplete = startStage4
@@ -263,7 +264,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             frequency = 7,
             message = "Tech 2 inbound",
             title = "Survive stage 2",
-            description = "Stage 2 consists of T2 land units and random events with T2 air units",
+            description = "Units: T2 tanks" .. (options.shouldSpawnMML() and " and MMLs" or "") .. ". Random events: T2 bombers, T2 gunships and rangebots",
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = function()
                 local units = {
@@ -296,7 +297,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             frequency = 6,
             message = "And so it begins! Tech 1 inbound",
             title = "Survive stage 1",
-            description = "Stage 1 consists of T1 land units and random events with T1 air units",
+            description = "Units: T1 tanks and artillery. Random events: T1 bombers and gunships",
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = function()
                 transportSpawner.spawnWithTransports(
