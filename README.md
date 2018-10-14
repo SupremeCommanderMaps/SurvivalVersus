@@ -41,6 +41,7 @@ Under development
 
 * Rebalancing to make Normal and Easy difficulties less hard
 * Default Auto-reclaim has been nerfed. It now linearly decreases to 0 at minute 60. This can be changed in the lobby
+* Default Auto-reclaim is now affected by the difficulty preset
 * You can now no longer lose during the 8 seconds the game runs after winning
 
 ## New in version 5.18
