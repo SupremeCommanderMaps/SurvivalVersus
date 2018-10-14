@@ -59,7 +59,7 @@ newInstance = function(playerArmies, textPrinter)
         y = 255
     }
 
-    local baseSpawner = import('/maps/final_rush_pro_5.v0018/src/lib/BaseSpanwer.lua').newInstance(mapCenter, "TOP_BOT")
+    local baseSpawner = import('/maps/final_rush_pro_5.v0019/src/lib/BaseSpanwer.lua').newInstance(mapCenter, "TOP_BOT")
 
     local createParagonActivator = function()
         local paragonActivator = baseSpawner.spawnCentralStructure("uac1901")
