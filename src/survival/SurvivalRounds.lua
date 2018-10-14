@@ -91,7 +91,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
         )
     end
 
-    local spawnBattyMonkeyBomberAndCzar = function()
+    local spawnFattyMonkeyBomberAndCzar = function()
         if options.shouldSpawnT3Arty() then
             transportSpawner.spawnWithTransports(
                 { "uel0401" }, --Fatboy
@@ -182,7 +182,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             description = "Stage 7 consists of high tier T4 land units, high tier T4 air units, T3 mobile arty and the occasional Sattelite",
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = function()
-                spawnBattyMonkeyBomberAndCzar()
+                spawnFattyMonkeyBomberAndCzar()
                 spawnMegaYthothaAndSattelite()
             end,
             onComplete = function()
@@ -191,10 +191,10 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
 
                     while true do
                         ForkThread(function()
-                            spawnBattyMonkeyBomberAndCzar()
+                            spawnFattyMonkeyBomberAndCzar()
                             spawnMegaYthothaAndSattelite()
                         end)
-                        WaitSeconds(11 / unitAmountMultiplier)
+                        WaitSeconds(10 / unitAmountMultiplier)
                     end
                 end)
             end
@@ -322,6 +322,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
 
             ForkThread(function()
                 WaitSeconds(ScenarioInfo.Options.opt_FinalRushSpawnDelay)
+                survivalVictory.finalStageComplete()
                 startStage1()
             end)
         end

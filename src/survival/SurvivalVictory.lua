@@ -28,10 +28,7 @@ function newInstance(options, textPrinter, playerArmies)
             GetArmyBrain(army):OnVictory()
         end
 
-        ForkThread(function()
-            WaitSeconds(7)
-            EndGame()
-        end)
+        endGameAfterSeconds(7)
     end
 
     local function printWaveContinues()
@@ -46,7 +43,8 @@ function newInstance(options, textPrinter, playerArmies)
         )
     end
 
-    local function functionEndgameAfterSeconds(seconds)
+    local function endGameAfterSeconds(seconds)
+        deathEvents.stopMonitoring()
         ForkThread(function()
             WaitSeconds(seconds)
             EndGame()
@@ -68,7 +66,7 @@ function newInstance(options, textPrinter, playerArmies)
             GetArmyBrain(army):OnVictory()
         end
 
-        functionEndgameAfterSeconds(7)
+        endGameAfterSeconds(7)
     end
 
     return {
@@ -122,7 +120,7 @@ function newInstance(options, textPrinter, playerArmies)
                                     color = "ffffd4d4"
                                 }
                             )
-                            functionEndgameAfterSeconds(7)
+                            endGameAfterSeconds(7)
                         end
                     end
                 end)

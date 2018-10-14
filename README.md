@@ -40,6 +40,7 @@ many development versions of Final Rush Pro 5.10.
 Under development
 
 * Rebalancing to make Normal and Easy difficulties less hard
+* You can now no longer lose during the 8 seconds the game runs after winning
 
 ## New in version 5.18
 
