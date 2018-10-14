@@ -51,11 +51,20 @@ function AutoReclaimThread(options, playerArmies)
 	local reclaimer = newAutoReclaimer(playerArmies, options.getRawOptions().opt_FinalRushTeamBonusReclaim)
 	reclaimer.setup()
 
-	local massMultiplier = options.getRawOptions().opt_AutoReclaim / 100
-	local energyMultiplier = massMultiplier
+	local multiplier = options.getAutoReclaimPercentage() / 100
+	local reclaimEndTimeInSeconds = 3600 + options.getT1spawnDelay()
 
-	while true do
-		WaitSeconds(0.1)
-		reclaimer.autoReclaim(massMultiplier, energyMultiplier)
+	if options.autoRelciamDeclines() then
+		while GetGameTimeSeconds() < reclaimEndTimeInSeconds do
+			WaitSeconds(0.1)
+			reclaimer.autoReclaim(multiplier, multiplier)
+			multiplier = options.getAutoReclaimPercentage() / 100 * (reclaimEndTimeInSeconds - GetGameTimeSeconds()) / reclaimEndTimeInSeconds
+			LOG("Auto Reclaim: " .. multiplier)
+		end
+	else
+		while true do
+			WaitSeconds(0.1)
+			reclaimer.autoReclaim(multiplier, multiplier)
+		end
 	end
 end

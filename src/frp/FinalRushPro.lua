@@ -52,7 +52,7 @@ newInstance = function(ScenarioInfo)
     end
 
     local function setupAutoReclaim()
-        if ScenarioInfo.Options.opt_AutoReclaim > 0 then
+        if options.getAutoReclaimPercentage() ~= 0 then
             ForkThread(
                 import('/maps/final_rush_pro_5.v0019/src/frp/AutoReclaim.lua').AutoReclaimThread,
                 options,

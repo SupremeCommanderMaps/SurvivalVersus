@@ -1,5 +1,5 @@
-local function setupAutoReclaim(unitCreator, ScenarioInfo)
-    if ScenarioInfo.Options.opt_AutoReclaim > 0 then
+local function setupDisappearingWreckages(unitCreator, options)
+    if options.shouldDisableWreckages() then
         unitCreator.onUnitCreated(function(unit, unitInfo)
             if unitInfo.isSurvivalSpawned then
                 unit.CreateWreckage = function() end
@@ -71,7 +71,7 @@ end
 function newUnitCreator(ScenarioInfo, options, spawnOutEffect)
     local unitCreator = import('/maps/final_rush_pro_5.v0019/src/lib/UnitCreator.lua').newUnitCreator()
 
-    setupAutoReclaim(unitCreator, ScenarioInfo)
+    setupDisappearingWreckages(unitCreator, options)
     setupUnitTimeouts(unitCreator, spawnOutEffect)
     setupTeamBalanceBonus(unitCreator, ScenarioInfo)
     setupHealthMultiplication(unitCreator, ScenarioInfo, options)

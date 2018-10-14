@@ -1,7 +1,6 @@
 local SURVIVAL_VERSUS = 0
 local SURVIVAL_CLASSIC = 1
 local PARAGON_WARS = 2
-local GAME_MODE_PLAIN = 3
 
 local VERY_EASY = 1
 local EASIER = 2
@@ -12,7 +11,7 @@ local HARDER = 6
 local VERY_HARD = 7
 local INSANE = 8
 
-local SET_BY_PRESET = -1
+local SET_BY_PRESET = -1337
 
 local defaults = {
     RestrictedCategories = {},
@@ -21,7 +20,7 @@ local defaults = {
     opt_FinalRushTeamBonusReclaim = 0,
     opt_FinalRushTeamBonusHP = 0,
     opt_tents = 9,
-    opt_AutoReclaim = 50,
+    opt_FinalRushAutoReclaim = SET_BY_PRESET,
     opt_FinalRushAir = 0,
     opt_timeunlocked = 0,
     opt_t2tml = 0,
@@ -125,6 +124,16 @@ local function applyPresets(scenarioOptions)
             [HARDER] = 0.3,
             [VERY_HARD] = 1,
             [INSANE] = 2,
+        },
+        opt_FinalRushAutoReclaim = {
+            [VERY_EASY] = 50,
+            [EASIER] = -100,
+            [EASY] = -50,
+            [NORMAL] = -50,
+            [HARD] = -50,
+            [HARDER] = -50,
+            [VERY_HARD] = -50,
+            [INSANE] = -50,
         }
     }
 
@@ -208,6 +217,18 @@ function newInstance(ScenarioInfoOptions)
 
     this.shouldDisableNukesAndArty = function()
         return rawOptions.opt_FinalRushNukesAndArty == 0
+    end
+
+    this.shouldDisableWreckages = function()
+        return rawOptions.opt_FinalRushAutoReclaim ~= 0
+    end
+
+    this.getAutoReclaimPercentage = function()
+        return math.abs(rawOptions.opt_FinalRushAutoReclaim)
+    end
+
+    this.autoRelciamDeclines = function()
+        return rawOptions.opt_FinalRushAutoReclaim < 0
     end
 
     return this
