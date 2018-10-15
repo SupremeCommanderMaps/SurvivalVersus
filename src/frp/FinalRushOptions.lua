@@ -118,7 +118,7 @@ local function applyPresets(scenarioOptions)
             [VERY_EASY] = 0,
             [EASIER] = 0.1,
             [EASY] = 0.14,
-            [NORMAL] = 0.18,
+            [NORMAL] = 0.175,
             [HARD] = 0.22,
             [HARDER] = 0.25,
             [VERY_HARD] = 0.75,
