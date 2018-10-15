@@ -40,6 +40,9 @@ many development versions of Final Rush Pro 5.10.
 Under development
 
 * Removed unused Sniper Bots option from the lobby
+* The "Enemy T2 MMLs" and "Enemy Mobile T3 Artillery" lobby options are now affected by the difficulty preset
+* Mobile Arty no longer spawns by default on Very Easy
+* MMLs no longer spawns by default on Very Easy and Easier
 
 ## New in version 5.19
 

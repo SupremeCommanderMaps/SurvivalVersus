@@ -363,7 +363,8 @@ options =
         key = 'opt_t2tml',
         pref = 'opt_t2tml',
         values = {
-            { text = "Enabled", help = "Enabled", key = 0, },
+            { text = "Difficulty preset", help = "Automatically pick a value based on the selected difficulty", key = -1337, },
+            { text = "Enabled (standard)", help = "Enabled (standard)", key = 0, },
             { text = "Disabled", help = "Disabled", key = 1, },
         },
     },
@@ -374,7 +375,8 @@ options =
         key = 'opt_t3arty',
         pref = 'opt_t3arty',
         values = {
-            { text = "Enabled", help = "Enabled", key = 0, },
+            { text = "Difficulty preset", help = "Automatically pick a value based on the selected difficulty", key = -1337, },
+            { text = "Enabled (standard)", help = "Enabled (standard)", key = 0, },
             { text = "Disabled", help = "Disabled", key = 1, },
         },
     },

@@ -23,8 +23,8 @@ local defaults = {
     opt_FinalRushAutoReclaim = SET_BY_PRESET,
     opt_FinalRushAir = 0,
     opt_timeunlocked = 0,
-    opt_t2tml = 0,
-    opt_t3arty = 0,
+    opt_t2tml = SET_BY_PRESET,
+    opt_t3arty = SET_BY_PRESET,
     opt_FinalRushEventNotifications = 1,
     opt_FinalRushKillableTransports = 0,
     opt_FinalRushWaterKillsACUs = 2,
@@ -133,6 +133,26 @@ local function applyPresets(scenarioOptions)
             [HARDER] = -50,
             [VERY_HARD] = -50,
             [INSANE] = -50,
+        },
+        opt_t2tml = {
+            [VERY_EASY] = 1,
+            [EASIER] = 1,
+            [EASY] = 0,
+            [NORMAL] = 0,
+            [HARD] = 0,
+            [HARDER] = 0,
+            [VERY_HARD] = 0,
+            [INSANE] = 0,
+        },
+        opt_t3arty = {
+            [VERY_EASY] = 1,
+            [EASIER] = 0,
+            [EASY] = 0,
+            [NORMAL] = 0,
+            [HARD] = 0,
+            [HARDER] = 0,
+            [VERY_HARD] = 0,
+            [INSANE] = 0,
         }
     }
 
