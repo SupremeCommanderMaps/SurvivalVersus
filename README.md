@@ -10,6 +10,7 @@ You can [read the documentation][docs].
 *FAF Map Vault*
 
 The easiest way to install the map is to get it via the [Forged Alliance Forever][FAF] map vault.
+The name of the map there is **Final Rush Pro 5**.
 
 Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
 Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
@@ -35,7 +36,9 @@ many development versions of Final Rush Pro 5.10.
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 
 
-## New in version 5.20
+## Release notes
+
+### New in version 5.20
 
 Released on 2018-10-16
 
@@ -48,7 +51,7 @@ Released on 2018-10-16
 * Improved stage descriptions in the timed objectives
 * Removed unused Sniper Bots option from the lobby
 
-## New in version 5.19
+### New in version 5.19
 
 Released on 2018-10-14
 
@@ -57,7 +60,7 @@ Released on 2018-10-14
 * Default Auto-reclaim is now affected by the difficulty preset
 * You can now no longer lose during the 8 seconds the game runs after winning
 
-## New in version 5.18
+### New in version 5.18
 
 Released on 2018-10-13
 
@@ -74,7 +77,7 @@ Released on 2018-10-13
 * Removed spawn frequency lobby options for T1, T2, T3 and T4 stages (replaced by new Unit Amount option)
 * Removed Aggression Tracking option from the lobby (already non functional since 5.17)
 
-## New in version 5.17
+### New in version 5.17
 
 Released on 2018-09-16
 
@@ -83,7 +86,7 @@ Released on 2018-09-16
 * Improved stage notification messages
 * Removed aggression tracking (was disabled by default except on very hard and insane)
 
-## New in version 5.16
+### New in version 5.16
 
 Released on 2018-09-15
 
@@ -92,7 +95,7 @@ Released on 2018-09-15
 * Added Stage 6: monkeys and GCs stop spawning and instead megas and chickens spawn, plus the occasional satellite
 * Added Stage 7: stage 5 stops spawning and instead CZARs, T4 bombers, fatboys and monkeys spawn
 
-## New in version 5.15
+### New in version 5.15
 
 Released on 2018-08-28
 
@@ -100,14 +103,14 @@ Released on 2018-08-28
 * The nukes/T3/T4 arty option now also affects T4 *mobile* arty
 * Fixed Paragon Wars game mode: the central base with the activator now actually spawns
 
-## New in version 5.14
+### New in version 5.14
 
 Released on 2018-08-19
 
 * Fixed paragon event to only be triggered by completed paragons
 * Added visible area around the flying paragon so all players can see what is going on (thanks Speed2!)
 
-## New in version 5.13
+### New in version 5.13
 
 Released on 2018-08-18
 
@@ -115,7 +118,7 @@ Released on 2018-08-18
 * Added option to enable or disable player nukes and T3/T4 arty
 * Building a paragon will now result in your enemy bot building one as well. Better have AA ready! (thanks Speed2!)
 
-## New in version 5.12
+### New in version 5.12
 
 Released on 2018-08-15
 
@@ -126,20 +129,20 @@ Released on 2018-08-15
 * The island base mex now retains its modified max health after capture
 * Improved map preview in the FAF client
 
-## New in version 5.11
+### New in version 5.11
 
 Released on 2018-05-04
 
 * Buffed beetle random event: 2x base HP, survival HP increase now applied, 1.5x speed
 
-## New in version 5.10
+### New in version 5.10
 
 Released on 2018-05-01
 
 * Added beetle random event
 * Nerfed island bases further by replacing T2 PD with T1 PD
 
-## New in version 5.9
+### New in version 5.9
 
 Released on 2018-04-15
 
@@ -155,7 +158,7 @@ Released on 2018-04-15
 * Island base mex now yields 50 mass instead of 36
 * Island base mex now retains its altered stats after capture
 
-## New in version 5.8
+### New in version 5.8
 
 Released on 2018-03-09
 
@@ -165,7 +168,7 @@ Released on 2018-03-09
 * Massively increased base health of each hunter to 75k
 * Hunters now take 15 seconds to spawn on the map after their announcement (instead of instantly)
 
-## New in version 5.7
+### New in version 5.7
 
 Released on 2018-03-04
 
@@ -176,7 +179,7 @@ Released on 2018-03-04
 * The 3 groups of bombers in the strategic bombers random event now spawn with 5 second delay in between them
 * Slightly decreased pathing randomness of spawned air and navy units
 
-## New in version 5.6
+### New in version 5.6
 
 Released on 2018-02-19
 
@@ -187,7 +190,7 @@ Released on 2018-02-19
 * Removed (recently broken) lobby option to disable teleporting (in favour of the lobby unit restriction tool)
 * The shields of the bots units (most notably the T3 transports) no longer flicker due to power shortage
 
-## New in version 5.5
+### New in version 5.5
 
 Released on 2018-02-15
 
@@ -195,7 +198,7 @@ Released on 2018-02-15
   3 groups (1 group of 4 and 2 groups of 3) each going for a random player
 * Added team bonus options to welcome message (only shown in case there is a bonus)
 
-## New in version 5.4
+### New in version 5.4
 
 Released on 2018-02-10
 
@@ -215,7 +218,7 @@ Released on 2018-02-10
 * Aggression Tracking is now disabled by default for all difficulties except Very hard and Insane
 * Fixed HP increase when playing with Total Veterancy (HP will now increase rather than stay the same)
 
-## New in version 5.3
+### New in version 5.3
 
 Released on 2017-12-25
 
@@ -225,7 +228,7 @@ Released on 2017-12-25
 * Added 125% and 150% values to the Auto Reclaim option
 * Fixed "Can kill transports" showing the opposite of the actual option in the welcome message
 
-## New in version 5.2
+### New in version 5.2
 
 Released on 2017-12-10
 
@@ -233,7 +236,7 @@ Released on 2017-12-10
 * Added option to set if ACU hiding should be prevented
 * Fixed Novax not being buildable
 
-## New in version 5.1
+### New in version 5.1
 
 Released on 2017-10-29
 
@@ -241,7 +244,7 @@ Released on 2017-10-29
 * Added messages showing detailed game settings at the start of the game
 * Decreased default HP increase on easy from 11.11% to 10%
 
-## New in version 5
+### New in version 5
 
 Released on 2016-11-20 (changes since v4.0007)
 
