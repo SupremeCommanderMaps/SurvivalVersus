@@ -1,7 +1,7 @@
 version = 3
 ScenarioInfo = {
     name="Final Rush Pro 5",
-    map_version=19,
+    map_version=20,
     description=[[This map supports multiple game modes.
 
 1. Survival Versus
@@ -28,7 +28,7 @@ In Paragon Wars, the two teams fight for control over the centre of the map, whe
 
 The Normal mode allows you to play on the map without survival units being spawned.
 
-For more information, see the README.md (text file) located in "Maps/final_rush_pro_5.v0019", or visit the site at https://github.com/JeroenDeDauw/FinalRushPro5]],
+For more information, see the README.md (text file) located in "Maps/final_rush_pro_5.v0020", or visit the site at https://github.com/JeroenDeDauw/FinalRushPro5]],
     norushoffsetX_ARMY_BOTTOM_LEFT=0,
     norushoffsetX_ARMY_BOTTOM_LMID=0,
     norushoffsetX_ARMY_BOTTOM_RMID=0,
@@ -46,10 +46,10 @@ For more information, see the README.md (text file) located in "Maps/final_rush_
     norushoffsetY_ARMY_TOP_LMID=0,
     norushoffsetY_ARMY_TOP_LEFT=0,
     norushradius=110,
-    map="/maps/final_rush_pro_5.v0019/final_rush_pro_5.scmap",
-    preview="/maps/final_rush_pro_5.v0019/preview.jpg",
-    save="/maps/final_rush_pro_5.v0019/final_rush_pro_5_save.lua",
-    script="/maps/final_rush_pro_5.v0019/final_rush_pro_5_script.lua",
+    map="/maps/final_rush_pro_5.v0020/final_rush_pro_5.scmap",
+    preview="/maps/final_rush_pro_5.v0020/preview.jpg",
+    save="/maps/final_rush_pro_5.v0020/final_rush_pro_5_save.lua",
+    script="/maps/final_rush_pro_5.v0020/final_rush_pro_5_script.lua",
     size={ 512, 512 },
     starts=true,
     type="skirmish",
