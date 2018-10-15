@@ -234,6 +234,10 @@ function newInstance(ScenarioInfoOptions)
         return ScenarioInfo.Options.opt_FinalRushSpawnDelay + 3 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed
     end
 
+    this.getStage6StartTime = function()
+        return ScenarioInfo.Options.opt_FinalRushSpawnDelay + 5 * ScenarioInfo.Options.opt_FinalRushEscalationSpeed
+    end
+
     this.shouldDisableNukesAndArty = function()
         return rawOptions.opt_FinalRushNukesAndArty == 0
     end

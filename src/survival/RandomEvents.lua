@@ -223,21 +223,21 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, survivalSpawnerFa
         end
     end
 
-    local function getPossibleEvents(elapsedTimeInSeconds, t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+    local function getPossibleEvents(elapsedTimeInSeconds, options)
         local possibleEvents = {}
 
-        if elapsedTimeInSeconds > t1spawndelay + 1 and elapsedTimeInSeconds <= t2spawndelay then
+        if elapsedTimeInSeconds > options.getT1spawnDelay() + 1 and elapsedTimeInSeconds <= options.getT2spawnDelay() then
             table.insert(possibleEvents, {spawnBombers})
             table.insert(possibleEvents, {spawnT1Gunships})
         end
 
-        if elapsedTimeInSeconds > t2spawndelay and elapsedTimeInSeconds <= t3spawndelay then
+        if elapsedTimeInSeconds > options.getT2spawnDelay() and elapsedTimeInSeconds <= options.getT3spawnDelay() then
             table.insert(possibleEvents, {spawnT2Bombers})
             table.insert(possibleEvents, {SpawnT2Gunships})
             table.insert(possibleEvents, {spawnT2Rangebots})
         end
 
-        if elapsedTimeInSeconds > t3spawndelay then
+        if elapsedTimeInSeconds > options.getT3spawnDelay() then
             table.insert(possibleEvents, {SpawnT2Destroyers})
             table.insert(possibleEvents, {spawnT3Bombers})
             table.insert(possibleEvents, {SpawnT3Gunships})
@@ -247,11 +247,11 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, survivalSpawnerFa
             end
         end
 
-        if elapsedTimeInSeconds > t3spawndelay and elapsedTimeInSeconds <= t4spawndelay then
+        if elapsedTimeInSeconds > options.getT3spawnDelay() and elapsedTimeInSeconds <= options.getT4spawnDelay() then
             table.insert(possibleEvents, {spawnBeetles})
         end
 
-        if elapsedTimeInSeconds > t4spawndelay then
+        if elapsedTimeInSeconds > options.getT4spawnDelay() and elapsedTimeInSeconds < options.getStage6StartTime() then
             table.insert(possibleEvents, {spawnYthotha})
 
             if Random(1, 2) == 1 then
@@ -268,32 +268,32 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, survivalSpawnerFa
         end
     end
 
-    local function runRandomEvents(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+    local function runRandomEvents(options)
         local elapsedTimeInSeconds = GetGameTimeSeconds()
 
-        local possibleEvents = getPossibleEvents(elapsedTimeInSeconds, t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+        local possibleEvents = getPossibleEvents(elapsedTimeInSeconds, options)
 
         runEvent(possibleEvents[Random(1, table.getn(possibleEvents))])
 
-        if elapsedTimeInSeconds >= t4spawndelay then
+        if elapsedTimeInSeconds >= options.getT4spawnDelay() then
             runEvent(possibleEvents[Random(1, table.getn(possibleEvents))])
         end
 
-        if elapsedTimeInSeconds >= t1spawndelay and Random(1, 5) == 1 then
+        if elapsedTimeInSeconds >= options.getT1spawnDelay() and Random(1, 5) == 1 then
             ForkThread(SpeedCurrentUnits)
         end
     end
 
-    local randomEventsThread = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
+    local randomEventsThread = function(options, RandomFrequency)
         while true do
-            runRandomEvents(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay)
+            runRandomEvents(options)
             WaitSeconds(RandomFrequency)
         end
     end
 
     return {
-        start = function(t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
-            ForkThread(randomEventsThread, t1spawndelay, t2spawndelay, t3spawndelay, t4spawndelay, RandomFrequency)
+        start = function(options, RandomFrequency)
+            ForkThread(randomEventsThread, options, RandomFrequency)
         end
     }
 end
