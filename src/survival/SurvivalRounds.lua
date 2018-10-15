@@ -251,8 +251,8 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             frequency = 10,
             message = "Tech 3 inbound",
             title = "Survive stage 3",
-            description = "Units: T3 land" .. (options.shouldSpawnMML() and " and the occasional shield disruptor" or "")
-                .. ". Random events: T3 bombers, T3 gunships" .. (options.shouldSpawnMML() and " and T3 artillery" or ""),
+            description = "Units: T3 land" .. (options.shouldSpawnT3Arty() and " and the occasional shield disruptor" or "")
+                .. ". Random events: T3 bombers, T3 gunships" .. (options.shouldSpawnT3Arty() and " and T3 artillery" or ""),
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = spawnT3Land,
             onComplete = startStage4
