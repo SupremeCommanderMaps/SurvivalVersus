@@ -39,11 +39,13 @@ many development versions of Final Rush Pro 5.10.
 
 Released on 2018-10-15
 
-* Removed unused Sniper Bots option from the lobby
+* Fixed regression from 5.19 that broke detection of full victory
 * The "Enemy T2 MMLs" and "Enemy Mobile T3 Artillery" lobby options are now affected by the difficulty preset
 * Mobile Arty no longer spawns by default on Very Easy
 * MMLs no longer spawns by default on Very Easy and Easier
-* Fixed regression from 5.19 that broke detection of full victory
+* Fatboy and Ythota random events now stop at the beginning of stage 6
+* Improved stage descriptions in the timed objectives
+* Removed unused Sniper Bots option from the lobby
 
 ## New in version 5.19
 

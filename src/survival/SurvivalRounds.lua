@@ -179,7 +179,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             frequency = 13,
             message = "Stage 7: Fatboys and stronger air",
             title = "Survive stage 7/7",
-            description = "Stage 7 consists of high tier T4 land units, high tier T4 air units, T3 mobile arty and the occasional Sattelite",
+            description = "Units: Ythothas, Megas, Czars, T4 bombers, Fatboys, Monkeys and the occasional sattelite. Random events: T3 bombers, T3 gunships and Salems",
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = function()
                 spawnFattyMonkeyBomberAndCzar()
@@ -206,7 +206,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             frequency = 13,
             message = "Stage 6: Megas, Chickens and Sattelites",
             title = "Survive stage 6/7",
-            description = "Stage 6 consists of high tier T4 land units, Bugs, T3 mobile arty and the occasional Sattelite",
+            description = "Units: Ythothas, Megas, Bugs, T3 Mobile Arty, shield disruptors and the occasional sattelite. Random events: T3 bombers, T3 gunships and Salems",
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = function()
                 spawnBugAndArty()
@@ -221,7 +221,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             frequency = 13,
             message = "Stage 5: Bugs replace T3",
             title = "Survive stage 5/7",
-            description = "Stage 5 consists of T4 land units, Bugs and T3 mobile arty",
+            description = "Units: GCs, Monkeys, Bugs, T3 Mobile Arty and shield disruptors. Random events: T3 bombers, T3 gunships, Salems, Ythothas and the occasional Fatboy",
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = function()
                 spawnGcAndMonkey()
@@ -237,7 +237,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
             message = "Stage 4: Experimentals inbound",
             title = "Survive stage 4/7",
             description = "Units: GCs, Monkeys, T3 land" .. (options.shouldSpawnT3Arty() and " and the occasional shield disruptor" or "")
-                    .. ". Random events: T3 bombers, T3 gunships" .. (options.shouldSpawnT3Arty() and ", T3 artillery" or "")
+                    .. ". Random events: T3 bombers, T3 gunships, Salems" .. (options.shouldSpawnT3Arty() and ", T3 artillery" or "")
                     .. ", Ythothas and the occasional Fatboy",
             duration = ScenarioInfo.Options.opt_FinalRushEscalationSpeed,
             spawnFunction = function()
