@@ -16,7 +16,8 @@ newInstance = function(playerArmies, textPrinter)
     end
 
     local function hurtUnit(unit)
-        unit:SetHealth(unit, unit:GetHealth() - unit:GetMaxHealth() / 20)
+        unit:AdjustHealth(unit, unit:GetMaxHealth() / -20)
+
         if unit:GetHealth() < 0.5 then
             unit:Kill()
         end

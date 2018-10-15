@@ -37,7 +37,7 @@ many development versions of Final Rush Pro 5.10.
 
 ## New in version 5.20
 
-Released on 2018-10-15
+Released on 2018-10-16
 
 * Fixed regression from 5.19 that broke detection of full victory
 * All Factions mod has been integrated and is on by default. This can be disabled via the new "All Factions" lobby option
