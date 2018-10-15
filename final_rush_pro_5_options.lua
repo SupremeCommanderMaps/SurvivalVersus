@@ -89,6 +89,17 @@ options =
     },
     {
         default = 1,
+        label = "All Factions",
+        help = "When enabled, all players start with 4 ACUs, one for each faction",
+        key = 'opt_FinalRushAllFactions',
+        pref = 'opt_FinalRushAllFactions',
+        values = {
+            { text = "Enabled", help = "Each player gets 4 ACUs", key = 1, },
+            { text = "Disabled", help = "Each player only gets 1 ACU", key = 0, },
+        }
+    },
+    {
+        default = 1,
         label = "Team Bonus - HP Reduction",
         help = "Affects both survival modes. Make it easier for one team to improve balance. Decreases the HP of the incomming enemy units for one team by the selected percentage.",
         key = 'opt_FinalRushTeamBonusHP',

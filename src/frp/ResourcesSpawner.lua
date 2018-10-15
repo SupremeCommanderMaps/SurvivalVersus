@@ -48,7 +48,6 @@ newInstance = function(resourceCreator, mapEditorTables, scenarioMarkers, player
 
     local function spawnMex(mexNumber)
         local markerName = mexNumberToMarkerName(mexNumber)
-        LOG("Spawning mex: " .. markerName)
         resourceCreator.createMex(scenarioMarkers[markerName].position)
     end
 

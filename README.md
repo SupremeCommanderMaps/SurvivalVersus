@@ -40,6 +40,7 @@ many development versions of Final Rush Pro 5.10.
 Released on 2018-10-15
 
 * Fixed regression from 5.19 that broke detection of full victory
+* All Factions mod has been integrated and is on by default. This can be disabled via the new "All Factions" lobby option
 * The "Enemy T2 MMLs" and "Enemy Mobile T3 Artillery" lobby options are now affected by the difficulty preset
 * Mobile Arty no longer spawns by default on Very Easy
 * MMLs no longer spawns by default on Very Easy and Easier

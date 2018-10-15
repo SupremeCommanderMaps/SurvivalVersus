@@ -75,9 +75,46 @@ newInstance = function(ScenarioInfo)
         resourcesSpawner.spawnResources()
     end
 
+    local function spawnExtraAcus(armyBrain)
+        local UEF_ACU = "UEL0001"
+        local AEON_ACU = "UAL0001"
+        local CYBRAN_ACU = "URL0001"
+        local SERA_ACU = "XSL0001"
+
+        local extraACUs = {}
+        local factionIndex = armyBrain:GetFactionIndex()
+
+        if factionIndex ~= 1 then
+            table.insert(extraACUs, UEF_ACU)
+        end
+        if factionIndex ~= 2 then
+            table.insert(extraACUs, AEON_ACU)
+        end
+        if factionIndex ~= 3 then
+            table.insert(extraACUs, CYBRAN_ACU)
+        end
+        if factionIndex ~= 4 then
+            table.insert(extraACUs, SERA_ACU)
+        end
+
+        local posX, posY = armyBrain:GetArmyStartPos()
+
+        for _, acu in extraACUs do
+            armyBrain:CreateUnitNearSpot(acu, posX, posY)
+        end
+    end
+
+    local function setupAllFactions()
+        if options.allFactionsIsEnabled() then
+            for armyIndex in playerArmies.getIndexToNameMap() do
+                spawnExtraAcus(ArmyBrains[armyIndex])
+            end
+        end
+    end
+
     return {
         setUp = function()
-            showWelcomeMessage()
+            setupResourceDeposits()
             buildRestrictor.resetToStartingRestrictions()
             setupTents()
             setupLighthouses()
@@ -85,7 +122,8 @@ newInstance = function(ScenarioInfo)
             setupParagonWars()
             setupServival()
             setupAutoReclaim()
-            setupResourceDeposits()
+            showWelcomeMessage()
+            setupAllFactions()
         end,
         printSettings = function()
             welcomeMessages.showSettings()

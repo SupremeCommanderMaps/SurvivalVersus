@@ -36,6 +36,7 @@ local defaults = {
     opt_FinalRushHunterDelay = SET_BY_PRESET,
     opt_FinalRushHunters = SET_BY_PRESET,
     opt_FinalRushHealthIncrease = SET_BY_PRESET,
+    opt_FinalRushAllFactions = 1
 }
 
 local optionsThatGotDefaulted = {}
@@ -252,6 +253,10 @@ function newInstance(ScenarioInfoOptions)
 
     this.autoRelciamDeclines = function()
         return rawOptions.opt_FinalRushAutoReclaim < 0
+    end
+
+    this.allFactionsIsEnabled = function()
+        return rawOptions.opt_FinalRushAllFactions == 1
     end
 
     return this
