@@ -13,6 +13,14 @@ function newInstance(options, textPrinter, playerArmies)
         return deathEvents.topTeamIsAlive() and deathEvents.bottomTeamIsAlive()
     end
 
+    local function endGameAfterSeconds(seconds)
+        deathEvents.stopMonitoring()
+        ForkThread(function()
+            WaitSeconds(seconds)
+            EndGame()
+        end)
+    end
+
     local function printTeamVictoryAndEndGame()
         LOG("SurvivalVictory: printTeamVictoryAndEndGame")
         textPrinter.print(
@@ -43,14 +51,6 @@ function newInstance(options, textPrinter, playerArmies)
         )
     end
 
-    local function endGameAfterSeconds(seconds)
-        deathEvents.stopMonitoring()
-        ForkThread(function()
-            WaitSeconds(seconds)
-            EndGame()
-        end)
-    end
-
     local function printCongratsAndEndGame()
         LOG("SurvivalVictory: printCongratsAndEndGame")
         textPrinter.print(
@@ -75,14 +75,17 @@ function newInstance(options, textPrinter, playerArmies)
             finalStageWasReached = true
 
             if options.isSurvivalClassic() then
+                LOG("SurvivalVictory: finalStageComplete: is classic")
                 printCongratsAndEndGame()
             elseif teamFightIsOngoing() then
+                LOG("SurvivalVictory: finalStageComplete: ongoing fight")
                 printWaveContinues()
 
                 deathEvents.onTeamDeath(function()
                     printTeamVictoryAndEndGame()
                 end)
             else
+                LOG("SurvivalVictory: finalStageComplete: full victory")
                 printTeamVictoryAndEndGame()
             end
         end,
