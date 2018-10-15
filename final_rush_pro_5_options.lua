@@ -380,17 +380,6 @@ options =
     },
     {
         default = 1,
-        label = "Enemy Sniper Bots",
-        help = "(Survival modes only) Sniper Bots",
-        key = 'opt_snipers',
-        pref = 'opt_snipers',
-        values = {
-            { text = "Enabled", help = "Enabled", key = 0, },
-            { text = "Disabled", help = "Disabled", key = 1, },
-        },
-    },
-    {
-        default = 1,
         label = "Player Air",
         help = "The degree to which air should be enabled for the players",
         key = 'opt_FinalRushAir',

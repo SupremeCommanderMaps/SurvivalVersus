@@ -39,7 +39,7 @@ many development versions of Final Rush Pro 5.10.
 
 Under development
 
-
+* Removed unused Sniper Bots option from the lobby
 
 ## New in version 5.19
 
