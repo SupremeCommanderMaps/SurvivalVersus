@@ -59,7 +59,6 @@ function AutoReclaimThread(options, playerArmies)
 			WaitSeconds(0.1)
 			reclaimer.autoReclaim(multiplier, multiplier)
 			multiplier = options.getAutoReclaimPercentage() / 100 * (reclaimEndTimeInSeconds - GetGameTimeSeconds()) / reclaimEndTimeInSeconds
-			LOG("Auto Reclaim: " .. multiplier)
 		end
 	else
 		while true do
