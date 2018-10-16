@@ -261,7 +261,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                     playerArmies,
                     IsBLackOpsAcusEnabled(),
                     spawnOutEffect,
-                    allUnits,
                     spawnEffect
                 )
 

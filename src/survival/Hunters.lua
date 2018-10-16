@@ -1,4 +1,4 @@
-newInstance = function(initialSpawnDelayInSeconds, unitCreator, textPrinter, playerArmies, acuEn, spawnOutEffect, allUnits, spawnEffect)
+newInstance = function(initialSpawnDelayInSeconds, unitCreator, textPrinter, playerArmies, acuEn, spawnOutEffect, spawnEffect)
     local CommanderUpgrades = function(unit)
         local unitid = unit:GetUnitId()
         if unitid == "ual0001" then 							--Aeon Armored Command Unit
@@ -115,15 +115,11 @@ newInstance = function(initialSpawnDelayInSeconds, unitCreator, textPrinter, pla
     end
 
     local getAcuByArmyName = function(armyName)
-        local armyIndex = playerArmies.getIndexForName(armyName)
+        local CAN_BE_IDLE = true
+        local acus = GetArmyBrain(armyName):GetListOfUnits(categories.COMMAND, CAN_BE_IDLE)
+        local acu = next(acus)
 
-        for _, unit in allUnits() do
-            if EntityCategoryContains(categories.COMMAND, unit) and unit:GetArmy() == armyIndex then
-                return unit
-            end
-        end
-
-        return false
+        return acu == nil and false or acu
     end
 
     local huntingThread = function(targetArmyName, hunterArmyName)
