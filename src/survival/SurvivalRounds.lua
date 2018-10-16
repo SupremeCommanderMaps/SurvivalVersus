@@ -6,12 +6,12 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
 
     local T4_TRANSPORT_LVL1 = {
         blueprintName = "uaa0107",
-        baseHealth = 8500
+        baseHealth = 9500
     }
 
     local T4_TRANSPORT_LVL2 = {
         blueprintName = "uaa0107",
-        baseHealth = 13337,
+        baseHealth = 15000,
         speedMultiplier = 2
     }
 
