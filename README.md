@@ -42,7 +42,7 @@ many development versions of Final Rush Pro 5.10.
 
 Under development
 
-* Drowning ACUs now cause the "commander under attack" warning (thanks Speed2!)
+* Drowning ACUs now cause the "commander under attack" warning (thanks speed2!)
 * Increased satellite count by 50%
 * Increased experimental transport base HP from 8500 to 9500 and from 13337 to 15000
 
@@ -116,7 +116,7 @@ Released on 2018-08-28
 Released on 2018-08-19
 
 * Fixed paragon event to only be triggered by completed paragons
-* Added visible area around the flying paragon so all players can see what is going on (thanks Speed2!)
+* Added visible area around the flying paragon so all players can see what is going on (thanks speed2!)
 
 ### New in version 5.13
 
@@ -124,7 +124,7 @@ Released on 2018-08-18
 
 * Player nukes and T3/T4 arty are now disabled by default
 * Added option to enable or disable player nukes and T3/T4 arty
-* Building a paragon will now result in your enemy bot building one as well. Better have AA ready! (thanks Speed2!)
+* Building a paragon will now result in your enemy bot building one as well. Better have AA ready! (thanks speed2!)
 
 ### New in version 5.12
 
@@ -170,7 +170,7 @@ Released on 2018-04-15
 
 Released on 2018-03-09
 
-* Wrecks of player units now consistently stay on the map (most notably GC and Monkey wrecks no longer vanish) (thanks Speed2!)
+* Wrecks of player units now consistently stay on the map (most notably GC and Monkey wrecks no longer vanish) (thanks speed2!)
 * Added small bases on the central islands to make TAC cheese easier to detect and harder to setup
 * Added T3 mex with double yield on central islands to incentivize paying attention to them
 * Massively increased base health of each hunter to 75k
