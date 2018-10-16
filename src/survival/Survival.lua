@@ -236,7 +236,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
                 local randomEvents = import('/maps/final_rush_pro_5.v0021/src/survival/RandomEvents.lua').newInstance(
                     ScenarioInfo,
                     getEventTextPrinter(),
-                    allUnits,
                     unitSpanwerFactory,
                     import('/maps/final_rush_pro_5.v0021/src/survival/BeetleEvent.lua').newInstance(unitCreator, spawnEffect)
                 )

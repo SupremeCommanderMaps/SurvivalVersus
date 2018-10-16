@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, textPrinter, getAllUnits, survivalSpawnerFactory, beetleEvent)
+newInstance = function(ScenarioInfo, textPrinter, survivalSpawnerFactory, beetleEvent)
 
     local T3_TRANSPORT = "xea0306"
 
@@ -216,8 +216,9 @@ newInstance = function(ScenarioInfo, textPrinter, getAllUnits, survivalSpawnerFa
     local SpeedCurrentUnits = function()
         printText("Current unit speed boosted")
 
-        for _, unit in getAllUnits() do
-            if EntityCategoryContains(categories.LAND + categories.NAVAL, unit) and isSurvivalUnit(unit) then
+        local CAN_BE_IDLE = true
+        for _, armyName in {"BOTTOM_BOT", "TOP_BOT"} do
+            for _, unit in GetArmyBrain(armyName):GetListOfUnits(categories.LAND + categories.NAVAL, CAN_BE_IDLE) do
                 unit:SetSpeedMult(2)
             end
         end
