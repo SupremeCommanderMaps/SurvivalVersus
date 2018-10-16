@@ -1,7 +1,6 @@
 function newEventDispatcher()
     local callbacks = {}
 
-
     return {
         on = function(eventName, callback)
             if callbacks[eventName] == nil then
@@ -10,13 +9,13 @@ function newEventDispatcher()
 
             table.insert(callbacks[eventName], callback)
         end,
-        fire = function(eventName)
+        fire = function(eventName, ...)
             if callbacks[eventName] == nil then
                return
             end
 
             for _, callback in callbacks[eventName] do
-                callback()
+                callback(...)
             end
         end
     }
