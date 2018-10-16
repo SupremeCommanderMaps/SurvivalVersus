@@ -70,7 +70,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
     end
 
     local spawnMegaYthothaAndSattelite = function()
-        if Random(1, 3) == 1 then
+        if Random(1, 2) == 1 then
             unitSpawner.spawnUnits( {
                 "xea0002" -- Sattelite
             } )

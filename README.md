@@ -43,6 +43,7 @@ many development versions of Final Rush Pro 5.10.
 Under development
 
 * Drowning ACUs now cause the "commander under attack" warning (thanks Speed2!)
+* Increased satellite count by 50%
 
 ### New in version 5.20
 
