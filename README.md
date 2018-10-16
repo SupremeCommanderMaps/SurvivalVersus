@@ -38,6 +38,12 @@ many development versions of Final Rush Pro 5.10.
 
 ## Release notes
 
+### New in version 5.21
+
+Under development
+
+* Drowning ACUs now cause the "commander under attack" warning (thanks Speed2!)
+
 ### New in version 5.20
 
 Released on 2018-10-16

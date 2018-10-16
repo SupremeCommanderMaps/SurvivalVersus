@@ -9,8 +9,10 @@ newInstance = function(playerArmies, textPrinter)
     end
 
     local function announceDrowning(unit)
+        local armyBrain = GetArmyBrain(unit:GetArmy())
+        armyBrain:OnPlayCommanderUnderAttackVO()
         textPrinter.print(
-            GetArmyBrain(unit:GetArmy()).Nickname .. " is drowning!   ",
+            armyBrain.Nickname .. " is drowning!   ",
             {size = 17, duration = 0.9, location = "rightcenter"}
         )
     end
