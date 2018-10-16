@@ -1,4 +1,4 @@
-newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, extraUnitInfo)
+newInstance = function(unitCreator, playerArmies, getRandomPlayer, extraUnitInfo)
     local airSpawnZones = {
         BOTTOM_BOT = {
             minX = 500,
@@ -70,15 +70,11 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, getAllUnits, 
     end
 
     local getAcuByArmyName = function(armyName)
-        local armyIndex = playerArmies.getIndexForName(armyName)
+        local CAN_BE_IDLE = true
+        local acus = GetArmyBrain(armyName):GetListOfUnits(categories.COMMAND, CAN_BE_IDLE)
+        local acu = next(acus)
 
-        for _, unit in getAllUnits() do
-            if EntityCategoryContains(categories.COMMAND, unit) and unit:GetArmy() == armyIndex then
-                return unit
-            end
-        end
-
-        return false
+        return acu == nil and false or acu
     end
 
     local function issueAggresiveMoveToAcuLocationByArmyName(units, targetArmyName)

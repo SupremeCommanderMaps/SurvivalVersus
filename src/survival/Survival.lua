@@ -204,8 +204,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             playerArmies,
             getRandomPlayer,
             spawnOutEffect,
-            TransportDestinations,
-            allUnits
+            TransportDestinations
         )
 
         local SpawnMulti = ScenarioInfo.Options.opt_FinalRushUnitCount * table.getn(playerArmies.getIndexToNameMap()) / 8
