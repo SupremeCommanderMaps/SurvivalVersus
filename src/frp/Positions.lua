@@ -1,9 +1,9 @@
-local TransportDestinations = {
+TransportDestinations = {
     SouthernAttackerEnd = VECTOR3(500,80,10),
     NorthernAttackerEnd = VECTOR3(10,80,500)
 }
 
-local AttackLocations = {
+AttackLocations = {
     Team1 = {
         Player1 = VECTOR3( 305.5, 25.9844, 451.5 ),
         Player2 = VECTOR3( 375.5, 25.9844, 435.5 ),
@@ -18,7 +18,7 @@ local AttackLocations = {
     }
 }
 
-local transports = {
+transports = {
     BOTTOM_BOT = {
         spawnPosition = {
             x = 500,
@@ -35,13 +35,4 @@ local transports = {
     }
 }
 
-function newInstance()
-    return {
-        TransportDestinations = TransportDestinations,
-        AttackLocations = AttackLocations,
-        transports = transports,
-        mapCenter = VECTOR3( 255, 25.9844, 255 )
-    }
-end
-
-
+mapCenter = VECTOR3( 255, 25.9844, 255 )

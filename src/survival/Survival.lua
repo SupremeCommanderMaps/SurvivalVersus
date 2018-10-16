@@ -28,7 +28,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         spawnOutEffect
     )
 
-    local positions = import('/maps/final_rush_pro_5.v0021/src/frp/Positions.lua').newInstance()
+    local positions = import('/maps/final_rush_pro_5.v0021/src/frp/Positions.lua')
 
     local function disableWalls()
         for armyIndex in ListArmies() do
