@@ -44,7 +44,7 @@ Under development
 
 * Drowning ACUs now cause the "commander under attack" warning (thanks Speed2!)
 * Increased satellite count by 50%
-* Increased experimental transport HP from 8500 to 9500 and from 13337 to 15000
+* Increased experimental transport base HP from 8500 to 9500 and from 13337 to 15000
 
 ### New in version 5.20
 

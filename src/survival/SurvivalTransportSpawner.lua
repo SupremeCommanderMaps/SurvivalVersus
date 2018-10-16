@@ -164,12 +164,14 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
     return {
         -- transportOptions: either string blueprint name or map with blueprintName key
         spawnWithTransports = function(unitNames, transportOptions)
-            spawnUnitsForArmy(spawnUnitsFromName(unitNames, "BOTTOM_BOT"),
+            spawnUnitsForArmy(
+                spawnUnitsFromName(unitNames, "BOTTOM_BOT"),
                 "BOTTOM_BOT",
                 createTransport("BOTTOM_BOT", transportOptions)
             )
 
-            spawnUnitsForArmy(spawnUnitsFromName(unitNames, "TOP_BOT"),
+            spawnUnitsForArmy(
+                spawnUnitsFromName(unitNames, "TOP_BOT"),
                 "TOP_BOT",
                 createTransport("TOP_BOT", transportOptions)
             )
