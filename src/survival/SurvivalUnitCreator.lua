@@ -23,7 +23,7 @@ end
 
 local function setupTeamBalanceBonus(unitCreator, ScenarioInfo)
     if ScenarioInfo.Options.opt_FinalRushTeamBonusHP ~= 0 then
-        local hpMultiplier = import('/maps/final_rush_pro_5.v0020/src/survival/TeamBonusHealthMultiplier.lua').newInstance(
+        local hpMultiplier = import('/maps/final_rush_pro_5.v0021/src/survival/TeamBonusHealthMultiplier.lua').newInstance(
             ScenarioInfo.Options.opt_FinalRushTeamBonusHP
         )
 
@@ -37,7 +37,7 @@ end
 
 local function setupHealthMultiplication(unitCreator, ScenarioInfo, options)
     if ScenarioInfo.Options.opt_FinalRushHealthIncrease ~= 0 then
-        local healthMultiplier = import('/maps/final_rush_pro_5.v0020/src/survival/HealthMultiplier.lua').newInstance(
+        local healthMultiplier = import('/maps/final_rush_pro_5.v0021/src/survival/HealthMultiplier.lua').newInstance(
             ScenarioInfo.Options.opt_FinalRushHealthIncrease
         )
 
@@ -69,7 +69,7 @@ local function setupHealthMultiplication(unitCreator, ScenarioInfo, options)
 end
 
 function newUnitCreator(ScenarioInfo, options, spawnOutEffect)
-    local unitCreator = import('/maps/final_rush_pro_5.v0020/src/lib/UnitCreator.lua').newUnitCreator()
+    local unitCreator = import('/maps/final_rush_pro_5.v0021/src/lib/UnitCreator.lua').newUnitCreator()
 
     setupDisappearingWreckages(unitCreator, options)
     setupUnitTimeouts(unitCreator, spawnOutEffect)
