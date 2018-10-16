@@ -1,4 +1,4 @@
-function newInstance(getAllUnits)
+function newInstance(ScenarioInfo)
     local callbacks = {}
     local knownEntityIds = {}
 
@@ -6,6 +6,10 @@ function newInstance(getAllUnits)
         for _, callback in callbacks do
             callback(unit)
         end
+    end
+
+    local getAllUnits = function()
+        return GetUnitsInRect({x0 = 0, x1 = ScenarioInfo.size[1], y0 = 0, y1 = ScenarioInfo.size[2]})
     end
 
     local function findNewUnits()

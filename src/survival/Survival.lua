@@ -33,10 +33,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     local TransportDestinations = positions.TransportDestinations
     local AttackLocations = positions.AttackLocations
 
-    local allUnits = function()
-        return GetUnitsInRect({x0 = 0, x1 = ScenarioInfo.size[1], y0 = 0, y1 = ScenarioInfo.size[2]})
-    end
-
     local getRandomPlayer = function(team)
         local randomNumber = Random(1,4)
 
@@ -191,7 +187,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             unitCreator,
             playerArmies,
             positions,
-            import('/maps/final_rush_pro_5.v0021/src/lib/UnitCreationCallbacks.lua').newInstance(allUnits),
+            import('/maps/final_rush_pro_5.v0021/src/lib/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),
             textPrinter
         ).setUp()
     end
