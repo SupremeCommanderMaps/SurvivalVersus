@@ -1,4 +1,7 @@
 newInstance = function(unitCreator, playerArmies, getRandomPlayer, extraUnitInfo)
+    local spawnForTop = true
+    local spawnForBottom = true
+
     local airSpawnZones = {
         BOTTOM_BOT = {
             minX = 500,
@@ -118,8 +121,19 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, extraUnitInfo
         -- unitInfos is an array of unitInfo maps. They need to at least contain blueprintName.
         -- For legacy reasons the array elements can also be a string with the blueprintName.
         spawnUnits = function(unitInfos)
-            spawnUnitsForArmy(unitInfos, "TOP_BOT")
-            spawnUnitsForArmy(unitInfos, "BOTTOM_BOT")
+            if spawnForTop then
+                spawnUnitsForArmy(unitInfos, "TOP_BOT")
+            end
+
+            if spawnForBottom then
+                spawnUnitsForArmy(unitInfos, "BOTTOM_BOT")
+            end
+        end,
+        stopSpawningForTop = function()
+            spawnForTop = false
+        end,
+        stopSpawningForBottom = function()
+            spawnForBottom = false
         end
     }
 end

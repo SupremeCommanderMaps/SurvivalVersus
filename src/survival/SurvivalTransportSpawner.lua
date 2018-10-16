@@ -1,4 +1,7 @@
 newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, ScenarioFramework, spawnOutEffect, TransportDestinations)
+    local spawnForTop = true
+    local spawnForBottom = true
+
     local transportDetails = {
         BOTTOM_BOT = {
             spawnPosition = {
@@ -164,17 +167,27 @@ newInstance = function(options, unitCreator, getRandomPlayer, extraUnitInfo, Sce
     return {
         -- transportOptions: either string blueprint name or map with blueprintName key
         spawnWithTransports = function(unitNames, transportOptions)
-            spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "BOTTOM_BOT"),
-                "BOTTOM_BOT",
-                createTransport("BOTTOM_BOT", transportOptions)
-            )
+            if spawnForBottom then
+                spawnUnitsForArmy(
+                    spawnUnitsFromName(unitNames, "BOTTOM_BOT"),
+                    "BOTTOM_BOT",
+                    createTransport("BOTTOM_BOT", transportOptions)
+                )
+            end
 
-            spawnUnitsForArmy(
-                spawnUnitsFromName(unitNames, "TOP_BOT"),
-                "TOP_BOT",
-                createTransport("TOP_BOT", transportOptions)
-            )
+            if spawnForTop then
+                spawnUnitsForArmy(
+                    spawnUnitsFromName(unitNames, "TOP_BOT"),
+                    "TOP_BOT",
+                    createTransport("TOP_BOT", transportOptions)
+                )
+            end
+        end,
+        stopSpawningForTop = function()
+            spawnForTop = false
+        end,
+        stopSpawningForBottom = function()
+            spawnForBottom = false
         end
     }
 end
