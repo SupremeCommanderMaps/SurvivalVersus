@@ -23,7 +23,14 @@ function EventDispatcher:fire(eventName, ...)
     end
 
     for _, callback in pairs(self._callbacks[eventName]) do
-        callback(...)
+        callback(
+            {
+                name = eventName,
+                target = callback,
+                source = self
+            },
+            ...
+        )
     end
 end
 

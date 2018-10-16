@@ -10,8 +10,15 @@ describe("EventDispatcher", function()
         events:on("EventName", callback)
         events:fire("EventName", "first", "second")
 
-        assert.spy(callback).was.called()
-        assert.spy(callback).was_called_with("first", "second")
+        assert.spy(callback).was_called_with(
+            {
+                name = "EventName",
+                target = callback,
+                source = events
+            },
+            "first",
+            "second"
+        )
     end)
 
     it("calls all bound callbacks", function()
