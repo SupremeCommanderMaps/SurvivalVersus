@@ -30,8 +30,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
     local positions = import('/maps/final_rush_pro_5.v0021/src/frp/Positions.lua').newInstance()
 
-    local TransportDestinations = positions.TransportDestinations
-
     local function disableWalls()
         for armyIndex in ListArmies() do
             AddBuildRestriction(armyIndex, categories.WALL)
@@ -173,7 +171,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             playerArmies,
             positions,
             spawnOutEffect,
-            TransportDestinations
+            positions.TransportDestinations
         )
 
         local SpawnMulti = ScenarioInfo.Options.opt_FinalRushUnitCount * table.getn(playerArmies.getIndexToNameMap()) / 8
