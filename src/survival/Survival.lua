@@ -31,33 +31,6 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     local positions = import('/maps/final_rush_pro_5.v0021/src/frp/Positions.lua').newInstance()
 
     local TransportDestinations = positions.TransportDestinations
-    local AttackLocations = positions.AttackLocations
-
-    local getRandomPlayer = function(team)
-        local randomNumber = Random(1,4)
-
-        if team == 1 then
-            if randomNumber == 1 then
-                return AttackLocations.Team1.Player1
-            elseif randomNumber == 2 then
-                return AttackLocations.Team1.Player2
-            elseif randomNumber == 3 then
-                return AttackLocations.Team1.Player3
-            elseif randomNumber == 4 then
-                return AttackLocations.Team1.Player4
-            end
-        elseif team == 2 then
-            if randomNumber == 1 then
-                return AttackLocations.Team2.Player1
-            elseif randomNumber == 2 then
-                return AttackLocations.Team2.Player2
-            elseif randomNumber == 3 then
-                return AttackLocations.Team2.Player3
-            elseif randomNumber == 4 then
-                return AttackLocations.Team2.Player4
-            end
-        end
-    end
 
     local function disableWalls()
         for armyIndex in ListArmies() do
@@ -198,7 +171,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             ScenarioFramework,
             unitCreator,
             playerArmies,
-            getRandomPlayer,
+            positions,
             spawnOutEffect,
             TransportDestinations
         )
