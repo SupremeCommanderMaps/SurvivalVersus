@@ -7,7 +7,7 @@ describe("FinalRushOptions", function()
             local options = FinalRushOptions({}).getRawOptions()
 
             assert.are.equal(0, options.opt_gamemode)
-            assert.are.equal(50, options.opt_AutoReclaim)
+            assert.are.equal(-50, options.opt_FinalRushAutoReclaim)
             assert.are.equal(70, options.opt_FinalRushRandomEvents)
         end)
 
