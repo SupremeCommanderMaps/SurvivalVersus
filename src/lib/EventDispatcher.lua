@@ -5,11 +5,6 @@ function EventDispatcher:new()
     return setmetatable({_listeners = {}}, self)
 end
 
-local function test(self)
-    require 'pl.pretty'.dump(self._listeners)
-end
-
-
 function EventDispatcher:on(eventName, callback)
     self:_addListener(
         eventName,
