@@ -60,4 +60,16 @@ describe("EventDispatcher", function()
         assert.spy(callback).was.called(1)
     end)
 
+    it("different instances do not share callback state", function()
+        local eventsOne = EventDispatcher:new{}
+        local eventsTwo = EventDispatcher:new{}
+
+        local callback = spy.new(function() end)
+
+        eventsOne:on("EventName", callback)
+        eventsTwo:fire("EventName")
+
+        assert.spy(callback).was.called(0)
+    end)
+
 end)
