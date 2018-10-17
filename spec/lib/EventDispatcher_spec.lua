@@ -48,4 +48,16 @@ describe("EventDispatcher", function()
         assert.spy(callback).was.called(3)
     end)
 
+    it("once callbacks only get called once", function()
+        local events = EventDispatcher:new{}
+
+        local callback = spy.new(function() end)
+
+        events:once("EventName", callback)
+        events:fire("EventName")
+        events:fire("EventName")
+
+        assert.spy(callback).was.called(1)
+    end)
+
 end)
