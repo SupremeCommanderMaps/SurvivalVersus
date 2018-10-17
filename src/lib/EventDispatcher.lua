@@ -25,8 +25,6 @@ function EventDispatcher:_addListener(eventName, listener)
         self._listeners[eventName] = {}
     end
 
-    listener.isActive = true
-
     table.insert(
         self._listeners[eventName],
         listener
@@ -38,19 +36,16 @@ function EventDispatcher:fire(eventName, ...)
         return
     end
 
-    for _, listener in pairs(self._listeners[eventName]) do
-        if listener.isActive then
-            self:_callListener(listener, eventName, ...)
-        end
+    for key, listener in pairs(self._listeners[eventName]) do
+        self:_callListener(listener, eventName, ...)
 
+        if listener.callOnce then
+            table.remove(self._listeners[eventName], key)
+        end
     end
 end
 
 function EventDispatcher:_callListener(listener, eventName, ...)
-    if listener.callOnce then
-        listener.isActive = false
-    end
-
     listener.callback(
         {
             name = eventName,

@@ -72,4 +72,39 @@ describe("EventDispatcher", function()
         assert.spy(callback).was.called(0)
     end)
 
+    it("multiple callbacks", function()
+        local events = EventDispatcher:new{}
+
+        local eventOneCallback = spy.new(function() end)
+        local eventTwoCallback = spy.new(function() end)
+        local eventThreeCallback = spy.new(function() end)
+
+        events:on("EventOne", eventOneCallback)
+        events:on("EventTwo", eventTwoCallback)
+        events:on("EventThree", eventThreeCallback)
+
+        events:fire("EventTwo")
+        events:fire("EventTwo")
+        events:fire("EventThree")
+
+        assert.spy(eventOneCallback).was.called(0)
+        assert.spy(eventTwoCallback).was.called(2)
+        assert.spy(eventThreeCallback).was.called(1)
+    end)
+
+    it("binding once callbacks does not affect normal bound callbacks", function()
+        local events = EventDispatcher:new{}
+
+        local normalCallback = spy.new(function() end)
+        local onceCallback = spy.new(function() end)
+
+        events:on("EventName", normalCallback)
+        events:once("EventName", onceCallback)
+        events:fire("EventName")
+        events:fire("EventName")
+
+        assert.spy(onceCallback).was.called(1)
+        assert.spy(normalCallback).was.called(2)
+    end)
+
 end)
