@@ -2,7 +2,7 @@ function newInstance(options, textPrinter, playerArmies)
     local deathEvents = import('/maps/final_rush_pro_5.v0021/src/survival/DeathEvents.lua').newInstance(playerArmies)
     deathEvents.startMonitoring()
 
-    local finalStageWasReached = false
+    local finalStageWasCompleted = false
 
     local function teamFightIsOngoing()
         LOG("SurvivalVictory: teamFightIsOngoing")
@@ -72,7 +72,7 @@ function newInstance(options, textPrinter, playerArmies)
     return {
         finalStageComplete = function()
             LOG("SurvivalVictory: finalStageComplete")
-            finalStageWasReached = true
+            finalStageWasCompleted = true
 
             if options.isSurvivalClassic() then
                 LOG("SurvivalVictory: finalStageComplete: is classic")
@@ -95,36 +95,40 @@ function newInstance(options, textPrinter, playerArmies)
             if options.isSurvivalVersus() then
                 deathEvents.onTeamDeath(function(teamName)
                     LOG("SurvivalVictory: watchForTeamDeath")
-                    if not finalStageWasReached then
-                        if isFirstTeamDeath then
-                            isFirstTeamDeath = false
-                            textPrinter.print(
-                                teamName == "TOP" and "BOTTOM TEAM VICTORY" or "TOP TEAM VICTORY",
-                                {
-                                    duration = 8.5,
-                                    size = 30,
-                                    color = "ffffd4d4"
-                                }
-                            )
-                            textPrinter.print(
-                                "You can keep playing to try and beat the final stage",
-                                {
-                                    duration = 8.5,
-                                    size = 20,
-                                    color = "ffffd4d4"
-                                }
-                            )
-                        else
-                            textPrinter.print(
-                                "You won but did not beat the final stage",
-                                {
-                                    duration = 6,
-                                    size = 25,
-                                    color = "ffffd4d4"
-                                }
-                            )
-                            endGameAfterSeconds(7)
-                        end
+                    if finalStageWasCompleted then
+                       return
+                    end
+
+                    if isFirstTeamDeath then
+                        LOG("SurvivalVictory: partial victory")
+                        isFirstTeamDeath = false
+                        textPrinter.print(
+                            teamName == "TOP" and "BOTTOM TEAM VICTORY" or "TOP TEAM VICTORY",
+                            {
+                                duration = 8.5,
+                                size = 30,
+                                color = "ffffd4d4"
+                            }
+                        )
+                        textPrinter.print(
+                            "You can keep playing to try and beat the final stage",
+                            {
+                                duration = 8.5,
+                                size = 20,
+                                color = "ffffd4d4"
+                            }
+                        )
+                    else
+                        LOG("SurvivalVictory: You won but did not beat the final stage")
+                        textPrinter.print(
+                            "You won but did not beat the final stage",
+                            {
+                                duration = 6.5,
+                                size = 25,
+                                color = "ffffd4d4"
+                            }
+                        )
+                        endGameAfterSeconds(7)
                     end
                 end)
             end
