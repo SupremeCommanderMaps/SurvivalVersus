@@ -195,7 +195,7 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
 
         local function getEventTextPrinter()
             return ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
-                    or import('/maps/final_rush_pro_5.v0021/src/oldlib/NullTextPrinter.lua').newInstance()
+                    or vendorImport('lib/NullTextPrinter.lua').newInstance()
         end
 
         local function runRandomEvents()

@@ -10,7 +10,7 @@ newInstance = function(ScenarioInfo)
     local options = localImport('frp/FinalRushOptions.lua').newInstance(ScenarioInfo.Options)
     ScenarioInfo.Options = options.getRawOptions()
 
-    local textPrinter = import('/maps/final_rush_pro_5.v0021/src/oldlib/TextPrinter.lua').newInstance()
+    local textPrinter = vendorImport('lib/TextPrinter.lua').newInstance()
     local playerArmies = localImport('frp/PlayerArmies.lua').newInstance(ListArmies())
     local buildRestrictor = localImport('frp/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo, options)
 
