@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
+newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerArmies)
     local ScenarioFramework = import('/lua/ScenarioFramework.lua')
 
     local spawnEffect = function(unit)
@@ -22,13 +22,13 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         unit:Destroy()
     end
 
-    local unitCreator = import('/maps/final_rush_pro_5.v0021/src/survival/SurvivalUnitCreator.lua').newUnitCreator(
+    local unitCreator = localImport('survival/SurvivalUnitCreator.lua').newUnitCreator(
         ScenarioInfo,
         options,
         spawnOutEffect
     )
 
-    local positions = import('/maps/final_rush_pro_5.v0021/src/frp/Positions.lua')
+    local positions = localImport('frp/Positions.lua')
 
     local function disableWalls()
         for armyIndex in ListArmies() do
@@ -115,7 +115,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     end
 
     local function createSurvivalStructures()
-        local survivalStructures = import('/maps/final_rush_pro_5.v0021/src/survival/SurvivalStructures.lua').newInstance()
+        local survivalStructures = localImport('survival/SurvivalStructures.lua').newInstance()
 
         survivalStructures.createTopParagon("BOTTOM_BOT")
         survivalStructures.createTopOmni("HOSTILE_BOT")
@@ -125,7 +125,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         survivalStructures.createBottomOmni("HOSTILE_BOT")
         survivalStructures.createBottomRadar("FRIENDLY_BOT")
 
-        import('/maps/final_rush_pro_5.v0021/src/survival/IslandBases.lua').newInstance().spawn()
+        localImport('survival/IslandBases.lua').newInstance().spawn()
     end
 
     local setUp = function()
@@ -147,13 +147,13 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         createSurvivalStructures()
 
         if options.waterKillsAcu() then
-            import('/maps/final_rush_pro_5.v0021/src/survival/CommanderWaterPain.lua')
+            localImport('survival/CommanderWaterPain.lua')
                 .newInstance(playerArmies, textPrinter).runThread()
 
-            import('/maps/final_rush_pro_5.v0021/src/frp/HillGuards.lua').newInstance().createHillGuards()
+            localImport('frp/HillGuards.lua').newInstance().createHillGuards()
         end
 
-        import('/maps/final_rush_pro_5.v0021/src/survival/ParagonEvent.lua').newInstance(
+        localImport('survival/ParagonEvent.lua').newInstance(
             ScenarioFramework,
             unitCreator,
             playerArmies,
@@ -164,7 +164,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
     end
 
     local runBattle = function(textPrinter, playerArmies)
-        local unitSpanwerFactory = import('/maps/final_rush_pro_5.v0021/src/survival/SurvivalSpawnerFactory.lua').newInstance(
+        local unitSpanwerFactory = localImport('survival/SurvivalSpawnerFactory.lua').newInstance(
             options,
             ScenarioFramework,
             unitCreator,
@@ -177,13 +177,13 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
         local SpawnMulti = ScenarioInfo.Options.opt_FinalRushUnitCount * table.getn(playerArmies.getIndexToNameMap()) / 8
 
         local function runSurvivalRounds()
-            local rounds = import('/maps/final_rush_pro_5.v0021/src/survival/SurvivalRounds.lua').newInstance(
+            local rounds = localImport('survival/SurvivalRounds.lua').newInstance(
                 ScenarioInfo,
                 textPrinter,
                 unitSpanwerFactory,
                 options,
                 SpawnMulti,
-                import('/maps/final_rush_pro_5.v0021/src/survival/SurvivalVictory.lua').newInstance(
+                localImport('survival/SurvivalVictory.lua').newInstance(
                     options,
                     textPrinter,
                     playerArmies
@@ -200,11 +200,11 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         local function runRandomEvents()
             if ScenarioInfo.Options.opt_FinalRushRandomEvents > 0 then
-                local randomEvents = import('/maps/final_rush_pro_5.v0021/src/survival/RandomEvents.lua').newInstance(
+                local randomEvents = localImport('survival/RandomEvents.lua').newInstance(
                     ScenarioInfo,
                     getEventTextPrinter(),
                     unitSpanwerFactory,
-                    import('/maps/final_rush_pro_5.v0021/src/survival/BeetleEvent.lua').newInstance(unitCreator, spawnEffect)
+                    localImport('survival/BeetleEvent.lua').newInstance(unitCreator, spawnEffect)
                 )
 
                 randomEvents.start(
@@ -221,7 +221,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         local function runBountyHunters()
             if ScenarioInfo.Options.opt_FinalRushHunters > 0 then
-                local hunters = import('/maps/final_rush_pro_5.v0021/src/survival/Hunters.lua').newInstance(
+                local hunters = localImport('survival/Hunters.lua').newInstance(
                     ScenarioInfo.Options.opt_FinalRushSpawnDelay + ScenarioInfo.Options.opt_FinalRushHunterDelay,
                     unitCreator,
                     getEventTextPrinter(),
