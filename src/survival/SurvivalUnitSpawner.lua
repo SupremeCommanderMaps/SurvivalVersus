@@ -75,7 +75,9 @@ newInstance = function(unitCreator, playerArmies, getRandomPlayer, extraUnitInfo
     local getAcuByArmyName = function(armyName)
         local CAN_BE_IDLE = true
         local acus = GetArmyBrain(armyName):GetListOfUnits(categories.COMMAND, CAN_BE_IDLE)
-        return next(acus)
+        local acu = next(acus)
+
+        return acu == nil and false or acu[1]
     end
 
     local function issueAggresiveMoveToAcuLocationByArmyName(units, targetArmyName)

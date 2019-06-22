@@ -119,7 +119,7 @@ newInstance = function(initialSpawnDelayInSeconds, unitCreator, textPrinter, pla
         local acus = GetArmyBrain(armyName):GetListOfUnits(categories.COMMAND, CAN_BE_IDLE)
         local acu = next(acus)
 
-        return acu == nil and false or acu
+        return acu == nil and false or acu[1]
     end
 
     local huntingThread = function(targetArmyName, hunterArmyName)
