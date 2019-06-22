@@ -34,6 +34,7 @@ many development versions of Final Rush Pro 5.10.
 * Download the [latest development version of the map][download]
 * Extract the zip. The result should be a directory named `final_rush_pro_5.v0021`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
+* Clone `lib` into `vendor`
 
 
 ## Release notes
