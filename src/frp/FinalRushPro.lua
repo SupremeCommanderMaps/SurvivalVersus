@@ -84,7 +84,7 @@ newInstance = function(ScenarioInfo)
     end
 
     local function setupAllFactions()
-        local allFactions = import('/maps/final_rush_pro_5.v0021/src/oldlib/AllFactions.lua')
+        local allFactions = vendorImport('lib/AllFactions.lua')
 
         if options.allFactionsIsEnabled() then
             for armyIndex in playerArmies.getIndexToNameMap() do
