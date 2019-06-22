@@ -69,7 +69,7 @@ local function setupHealthMultiplication(unitCreator, ScenarioInfo, options)
 end
 
 function newUnitCreator(ScenarioInfo, options, spawnOutEffect)
-    local unitCreator = import('/maps/final_rush_pro_5.v0021/src/lib/UnitCreator.lua').newUnitCreator()
+    local unitCreator = import('/maps/final_rush_pro_5.v0021/src/oldlib/UnitCreator.lua').newUnitCreator()
 
     setupDisappearingWreckages(unitCreator, options)
     setupUnitTimeouts(unitCreator, spawnOutEffect)

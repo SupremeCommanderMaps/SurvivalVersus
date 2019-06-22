@@ -2,7 +2,7 @@ newInstance = function(ScenarioInfo)
     local options = import('/maps/final_rush_pro_5.v0021/src/frp/FinalRushOptions.lua').newInstance(ScenarioInfo.Options)
     ScenarioInfo.Options = options.getRawOptions()
 
-    local textPrinter = import('/maps/final_rush_pro_5.v0021/src/lib/TextPrinter.lua').newInstance()
+    local textPrinter = import('/maps/final_rush_pro_5.v0021/src/oldlib/TextPrinter.lua').newInstance()
     local playerArmies = import('/maps/final_rush_pro_5.v0021/src/frp/PlayerArmies.lua').newInstance(ListArmies())
     local buildRestrictor = import('/maps/final_rush_pro_5.v0021/src/frp/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo, options)
 
@@ -67,7 +67,7 @@ newInstance = function(ScenarioInfo)
 
     local function setupResourceDeposits()
         local resourcesSpawner = import('/maps/final_rush_pro_5.v0021/src/frp/ResourcesSpawner.lua').newInstance(
-            import('/maps/final_rush_pro_5.v0021/src/lib/ResourceCreator.lua').newInstance(),
+            import('/maps/final_rush_pro_5.v0021/src/oldlib/ResourceCreator.lua').newInstance(),
             import('/maps/final_rush_pro_5.v0021/final_rush_pro_5_tables.lua'),
             import('/lua/sim/ScenarioUtilities.lua').GetMarkers(),
             playerArmies
@@ -76,7 +76,7 @@ newInstance = function(ScenarioInfo)
     end
 
     local function setupAllFactions()
-        local allFactions = import('/maps/final_rush_pro_5.v0021/src/lib/AllFactions.lua')
+        local allFactions = import('/maps/final_rush_pro_5.v0021/src/oldlib/AllFactions.lua')
 
         if options.allFactionsIsEnabled() then
             for armyIndex in playerArmies.getIndexToNameMap() do

@@ -158,7 +158,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
             unitCreator,
             playerArmies,
             positions,
-            import('/maps/final_rush_pro_5.v0021/src/lib/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),
+            import('/maps/final_rush_pro_5.v0021/src/oldlib/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),
             textPrinter
         ).setUp()
     end
@@ -195,7 +195,7 @@ newInstance = function(ScenarioInfo, options, textPrinter, playerArmies)
 
         local function getEventTextPrinter()
             return ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
-                    or import('/maps/final_rush_pro_5.v0021/src/lib/NullTextPrinter.lua').newInstance()
+                    or import('/maps/final_rush_pro_5.v0021/src/oldlib/NullTextPrinter.lua').newInstance()
         end
 
         local function runRandomEvents()
