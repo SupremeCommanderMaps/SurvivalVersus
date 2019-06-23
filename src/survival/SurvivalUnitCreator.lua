@@ -69,7 +69,18 @@ local function setupHealthMultiplication(unitCreator, ScenarioInfo, options)
 end
 
 function newUnitCreator(ScenarioInfo, options, spawnOutEffect)
-    local unitCreator = import('/maps/final_rush_pro_5.v0021/src/oldlib/UnitCreator.lua').newUnitCreator()
+    local unitCreator = import('/maps/final_rush_pro_5.v0021/vendor/lib/UnitCreator.lua').newUnitCreator()
+
+    unitCreator.onUnitCreated(function(unit, unitInfo)
+        if unitInfo.baseHealth then
+            unit:SetMaxHealth(unitInfo.baseHealth)
+            unit:SetHealth(unit, unitInfo.baseHealth)
+        end
+
+        if unitInfo.speedMultiplier then
+            unit:SetSpeedMult(unitInfo.speedMultiplier)
+        end
+    end)
 
     setupDisappearingWreckages(unitCreator, options)
     setupUnitTimeouts(unitCreator, spawnOutEffect)
