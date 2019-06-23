@@ -7,32 +7,32 @@ newInstance = function(ScenarioInfo)
         return import('/maps/final_rush_pro_5.v0021/vendor/' .. fileName)
     end
 
-    local options = localImport('frp/FinalRushOptions.lua').newInstance(ScenarioInfo.Options)
+    local options = localImport('FinalRushOptions.lua').newInstance(ScenarioInfo.Options)
     ScenarioInfo.Options = options.getRawOptions()
 
     local textPrinter = vendorImport('lib/TextPrinter.lua').newInstance()
-    local playerArmies = localImport('frp/PlayerArmies.lua').newInstance(ListArmies())
-    local buildRestrictor = localImport('frp/BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo, options)
+    local playerArmies = localImport('PlayerArmies.lua').newInstance(ListArmies())
+    local buildRestrictor = localImport('BuildRestrictor.lua').newInstance(playerArmies, ScenarioInfo, options)
 
-    local welcomeMessages = localImport('frp/WelcomeMessages.lua').newInstance(ScenarioInfo, options, textPrinter)
+    local welcomeMessages = localImport('WelcomeMessages.lua').newInstance(ScenarioInfo, options, textPrinter)
 
     local function setupTents()
         if ScenarioInfo.Options.opt_tents > 0 then
-            localImport('frp/PrebuildTents.lua')
+            localImport('PrebuildTents.lua')
                 .newInstance(playerArmies)
                 .spawn(ScenarioInfo.Options.opt_tents)
         end
     end
 
     local function setupLighthouses()
-        localImport('frp/CivilianLighthouses.lua')
+        localImport('CivilianLighthouses.lua')
             .newInstance(textPrinter, playerArmies)
             .spawn()
     end
 
     local function restrictTechs()
         if ScenarioInfo.Options.opt_timeunlocked ~= 0 then
-            local techRestrictor = localImport('frp/TechRestrictor.lua').newInstance(
+            local techRestrictor = localImport('TechRestrictor.lua').newInstance(
                 buildRestrictor,
                 textPrinter,
                 playerArmies,
@@ -62,7 +62,7 @@ newInstance = function(ScenarioInfo)
     local function setupAutoReclaim()
         if options.getAutoReclaimPercentage() ~= 0 then
             ForkThread(
-                localImport('frp/AutoReclaim.lua').AutoReclaimThread,
+                localImport('AutoReclaim.lua').AutoReclaimThread,
                 options,
                 playerArmies
             )
@@ -74,7 +74,7 @@ newInstance = function(ScenarioInfo)
     end
 
     local function setupResourceDeposits()
-        local resourcesSpawner = localImport('frp/ResourcesSpawner.lua').newInstance(
+        local resourcesSpawner = localImport('ResourcesSpawner.lua').newInstance(
             vendorImport('lib/ResourceCreator.lua').newInstance(),
             import('/maps/final_rush_pro_5.v0021/final_rush_pro_5_tables.lua'),
             import('/lua/sim/ScenarioUtilities.lua').GetMarkers(),

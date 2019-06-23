@@ -28,7 +28,7 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
         spawnOutEffect
     )
 
-    local positions = localImport('frp/Positions.lua')
+    local positions = localImport('Positions.lua')
 
     local function disableWalls()
         for armyIndex in ListArmies() do
@@ -150,7 +150,7 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
             localImport('survival/CommanderWaterPain.lua')
                 .newInstance(playerArmies, textPrinter).runThread()
 
-            localImport('frp/HillGuards.lua').newInstance().createHillGuards()
+            localImport('HillGuards.lua').newInstance().createHillGuards()
         end
 
         localImport('survival/ParagonEvent.lua').newInstance(
