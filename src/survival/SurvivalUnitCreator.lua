@@ -69,7 +69,7 @@ local function setupHealthMultiplication(unitCreator, ScenarioInfo, options)
 end
 
 function newUnitCreator(ScenarioInfo, options, spawnOutEffect)
-    local unitCreator = import('/maps/final_rush_pro_5.v0021/vendor/lib/UnitCreator.lua').newUnitCreator()
+    local unitCreator = import('/maps/final_rush_pro_5.v0021/vendor/lib/src/UnitCreator.lua').newUnitCreator()
 
     unitCreator.onUnitCreated(function(unit, unitInfo)
         if unitInfo.baseHealth then
