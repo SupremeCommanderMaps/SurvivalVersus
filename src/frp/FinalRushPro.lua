@@ -45,7 +45,7 @@ newInstance = function(ScenarioInfo)
 
     local function setupParagonWars()
         if options.isParagonWars() then
-            localImport('paragon/ParagonWars.lua')
+            localImport('paragonWars/ParagonWars.lua')
                 .newInstance(playerArmies, textPrinter)
                 .setUp()
         end
