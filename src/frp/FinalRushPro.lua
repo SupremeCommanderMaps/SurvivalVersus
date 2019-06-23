@@ -74,8 +74,8 @@ newInstance = function(ScenarioInfo)
     end
 
     local function setupResourceDeposits()
-        local resourcesSpawner = import('/maps/final_rush_pro_5.v0021/src/frp/ResourcesSpawner.lua').newInstance(
-            import('/maps/final_rush_pro_5.v0021/src/oldlib/ResourceCreator.lua').newInstance(),
+        local resourcesSpawner = localImport('frp/ResourcesSpawner.lua').newInstance(
+            vendorImport('lib/ResourceCreator.lua').newInstance(),
             import('/maps/final_rush_pro_5.v0021/final_rush_pro_5_tables.lua'),
             import('/lua/sim/ScenarioUtilities.lua').GetMarkers(),
             playerArmies
