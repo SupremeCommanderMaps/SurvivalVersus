@@ -156,6 +156,9 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
         localImport('survival/ParagonEvent.lua').newInstance(
             ScenarioFramework,
             unitCreator,
+            import('/maps/final_rush_pro_5.v0021/vendor/lib/src/UnitRevealer.lua').newInstance(
+                playerArmies.getIndexToNameMap()
+            ),
             playerArmies,
             positions,
             import('/maps/final_rush_pro_5.v0021/vendor/lib/src/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),

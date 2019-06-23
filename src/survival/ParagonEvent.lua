@@ -1,4 +1,4 @@
-function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, unitCreation, textPrinter)
+function newInstance(ScenarioFramework, unitCreator, unitRevealer, playerArmies, positions, unitCreation, textPrinter)
     local BASE_HEALTH = 7500
     local OUTER_SHIELD_HP = 7500
     local INNER_SHIELD_HP = 10000
@@ -93,34 +93,6 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
         addSingleUseShieldToTransport(transports[1])
     end
 
-    local function revealUnitToArmy(unit, armyName)
-        local vizMarker = ScenarioFramework.CreateVisibleAreaAtUnit(18, unit, 0, GetArmyBrain(armyName))
-        vizMarker:AttachBoneTo(-1, unit, -1)
-        return vizMarker
-    end
-
-    local function destoryVizMarkersOnUnitKilled(unit, vizMarkers)
-        local onKilledFunction = unit.OnKilled
-
-        unit.OnKilled = function(self, instigator, type, overkillRatio)
-            for _, vizMarker in vizMarkers do
-                vizMarker:Destroy()
-            end
-
-            onKilledFunction(self, instigator, type, overkillRatio)
-        end
-    end
-
-    local function revealUnitToPlayers(unit)
-        local vizMarkers = {}
-
-        for armyName in playerArmies.getIndexToNameMap() do
-            table.insert(vizMarkers, revealUnitToArmy(unit, armyName))
-        end
-
-        destoryVizMarkersOnUnitKilled(unit, vizMarkers)
-    end
-
     local function onParagonBuild(paragon)
         textPrinter.print("Paragon detected! Ready AA!", {color = "ffffd4d4", size = 24})
 
@@ -134,7 +106,7 @@ function newInstance(ScenarioFramework, unitCreator, playerArmies, positions, un
         IssueMove(transports, paragon:GetPosition())
         IssueKillSelf(transports)
 
-        revealUnitToPlayers(transports[1])
+        unitRevealer.revealUnit(transports[1], 18)
     end
 
     local function isPlayerParagon(unit)
