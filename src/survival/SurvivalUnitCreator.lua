@@ -72,6 +72,8 @@ function newUnitCreator(ScenarioInfo, options, spawnOutEffect)
     local unitCreator = import('/maps/final_rush_pro_5.v0021/vendor/lib/src/UnitCreator.lua').newUnitCreator()
 
     unitCreator.onUnitCreated(function(unit, unitInfo)
+        unit:SetVeterancy(5)
+
         if unitInfo.baseHealth then
             unit:SetMaxHealth(unitInfo.baseHealth)
             unit:SetHealth(unit, unitInfo.baseHealth)
