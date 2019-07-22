@@ -1,5 +1,5 @@
 # Final Rush Pro 5
-<img align="right" src="preview.jpg" height="200px">
+<img align="right" src="preview.jpg" height="150px">
 
 A survival map for [Supreme Commander: Forged Alliance Forever][FAF]. Supports 1 up to 8 players.
 
