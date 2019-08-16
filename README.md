@@ -9,7 +9,7 @@ till the final wave. In Survival Classic mode you win by surviving all waves.
 
 If your team has no living ACUs you lose.
 
-You can [read the documentation][docs].
+You can [read the documentation][docs] and watch [a cast by Yuri](https://www.youtube.com/watch?v=OaOBy9-WNcI).
 
 [![image](https://user-images.githubusercontent.com/146040/61600959-a00c9700-ac33-11e9-9751-82bfa836b426.png)](https://www.youtube.com/watch?v=Jb15tCC7_gc)
 
