@@ -41,7 +41,7 @@ many development versions of Final Rush Pro 5.10.
 
 ### New in version 5.21
 
-Under development
+Released on 2020-05-01
 
 * Drowning ACUs now cause the "commander under attack" warning (thanks speed2!)
 * Allow first defeated team to watch the remaining team play in Survival Versus
