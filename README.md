@@ -1,9 +1,17 @@
 # Final Rush Pro 5
-<img align="right" src="preview.jpg">
+<img align="right" src="preview.jpg" height="150px">
 
-A survival map for [Supreme Commander: Forged Alliance Forever][FAF].
+A survival map for [Supreme Commander: Forged Alliance Forever][FAF]. Supports 1 up to 8 players.
 
-You can [read the documentation][docs].
+Enemy units come from the center of the map after flying in from the left or right corner. In Survival Versus
+mode (the default), you win by outlasting the enemy team, after which you can optionally continue the game
+till the final wave. In Survival Classic mode you win by surviving all waves.
+
+If your team has no living ACUs you lose.
+
+You can [read the documentation][docs] and watch [a cast by Yuri](https://www.youtube.com/watch?v=OaOBy9-WNcI).
+
+[![image](https://user-images.githubusercontent.com/146040/61600959-a00c9700-ac33-11e9-9751-82bfa836b426.png)](https://www.youtube.com/watch?v=Jb15tCC7_gc)
 
 ## Installation
 
