@@ -28,6 +28,8 @@ In Paragon Wars, the two teams fight for control over the centre of the map, whe
 
 The Normal mode allows you to play on the map without survival units being spawned.
 
+Original map created by Commander-Chronicles, TV-Nobby and Diegobah. Version 5.x by EntropyWins.
+
 For more information, see the README.md (text file) located in "Maps/final_rush_pro_5.v0021", or visit the site at https://github.com/JeroenDeDauw/FinalRushPro5]],
     norushoffsetX_ARMY_BOTTOM_LEFT=0,
     norushoffsetX_ARMY_BOTTOM_LMID=0,
