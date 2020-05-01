@@ -1,0 +1,3 @@
+[submodule "vendor/EntropyLib"]
+	path = vendor/EntropyLib
+	url = https://github.com/JeroenDeDauw/EntropyLib.git

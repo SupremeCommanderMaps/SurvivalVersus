@@ -1,4 +1,4 @@
-newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, unitAmountMultiplier, survivalVictory)
+newInstance = function(ScenarioInfo, notifier, unitSpawnerFactory, options, unitAmountMultiplier, survivalVictory)
     local Objectives = import('/lua/ScenarioFramework.lua').Objectives
 
     local T2_TRANSPORT = "ura0107"
@@ -19,14 +19,7 @@ newInstance = function(ScenarioInfo, textPrinter, unitSpawnerFactory, options, u
     local unitSpawner = unitSpawnerFactory.newUnitSpawner({hpIncrease = true})
 
     local function printMessage(message)
-        textPrinter.print(
-            message,
-            {
-                duration = 4.5,
-                size = 25,
-                color = "ffffd4d4"
-            }
-        )
+        notifier.warning(message)
     end
 
     local spawnGcAndMonkey = function()

@@ -1,6 +1,8 @@
 newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerArmies)
     local ScenarioFramework = import('/lua/ScenarioFramework.lua')
 
+    local factory = localImport('FinalFactory.lua')
+
     local spawnEffect = function(unit)
         unit:PlayUnitSound('TeleportStart')
         unit:PlayUnitAmbientSound('TeleportLoop')
@@ -156,12 +158,12 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
         localImport('survival/ParagonEvent.lua').newInstance(
             ScenarioFramework,
             unitCreator,
-            import('/maps/final_rush_pro_5.v0021/vendor/lib/src/UnitRevealer.lua').newInstance(
+            import('/maps/final_rush_pro_5.v0021/vendor/EntropyLib/src/UnitRevealer.lua').newInstance(
                 playerArmies.getIndexToNameMap()
             ),
             playerArmies,
             positions,
-            import('/maps/final_rush_pro_5.v0021/vendor/lib/src/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),
+            import('/maps/final_rush_pro_5.v0021/vendor/EntropyLib/src/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),
             textPrinter
         ).setUp()
     end
@@ -182,7 +184,7 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
         local function runSurvivalRounds()
             local rounds = localImport('survival/SurvivalRounds.lua').newInstance(
                 ScenarioInfo,
-                textPrinter,
+                factory.getNotifier(),
                 unitSpanwerFactory,
                 options,
                 SpawnMulti,
@@ -198,7 +200,7 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
 
         local function getEventTextPrinter()
             return ScenarioInfo.Options.opt_FinalRushEventNotifications == 1 and textPrinter
-                    or vendorImport('lib/src/NullTextPrinter.lua').newInstance()
+                    or vendorImport('NullTextPrinter.lua').newInstance()
         end
 
         local function runRandomEvents()

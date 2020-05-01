@@ -1,7 +1,7 @@
 newInstance = function(ScenarioInfo, options, textPrinter)
-    local WELCOME_MESSAGE_DURATION = 7
+    local WELCOME_MESSAGE_DURATION = 9
     local SETTINGS_MESSAGE_DURATION = 14
-    local BONUS_MESSAGE_DURATION = 5
+    local BONUS_MESSAGE_DURATION = 6
 
     local function newPrinter(durationInSeconds)
         local textOptions = { color = "ffb4ffd4", duration = durationInSeconds, location = "leftcenter" }
