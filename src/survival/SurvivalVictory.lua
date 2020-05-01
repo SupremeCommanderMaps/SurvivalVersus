@@ -69,6 +69,44 @@ function newInstance(options, textPrinter, playerArmies)
         endGameAfterSeconds(7)
     end
 
+    local function printPartialVictory(deathTeamName)
+        textPrinter.print(
+            deathTeamName == "TOP" and "BOTTOM TEAM VICTORY" or "TOP TEAM VICTORY",
+            {
+                duration = 10,
+                size = 30,
+                color = "ffffd4d4"
+            }
+        )
+        textPrinter.print(
+            "You can keep playing to try and beat the final stage",
+            {
+                duration = 10,
+                size = 20,
+                color = "ffffd4d4"
+            }
+        )
+    end
+
+    local function grantVisionToDefeatedTeam()
+        for topArmy in playerArmies.getTopSideArmies().getNameToIndexMap() do
+            for bottomArmy in playerArmies.getBottomSideArmies().getNameToIndexMap() do
+                SetAlliance(topArmy, bottomArmy, 'Ally')
+            end
+        end
+    end
+
+    local function printSecondTeamDefeat()
+        textPrinter.print(
+            "You won but did not beat the final stage",
+            {
+                duration = 6.5,
+                size = 25,
+                color = "ffffd4d4"
+            }
+        )
+    end
+
     return {
         finalStageComplete = function()
             LOG("SurvivalVictory: finalStageComplete")
@@ -102,32 +140,12 @@ function newInstance(options, textPrinter, playerArmies)
                     if isFirstTeamDeath then
                         LOG("SurvivalVictory: partial victory")
                         isFirstTeamDeath = false
-                        textPrinter.print(
-                            teamName == "TOP" and "BOTTOM TEAM VICTORY" or "TOP TEAM VICTORY",
-                            {
-                                duration = 8.5,
-                                size = 30,
-                                color = "ffffd4d4"
-                            }
-                        )
-                        textPrinter.print(
-                            "You can keep playing to try and beat the final stage",
-                            {
-                                duration = 8.5,
-                                size = 20,
-                                color = "ffffd4d4"
-                            }
-                        )
+
+                        printPartialVictory(teamName)
+                        grantVisionToDefeatedTeam()
                     else
                         LOG("SurvivalVictory: You won but did not beat the final stage")
-                        textPrinter.print(
-                            "You won but did not beat the final stage",
-                            {
-                                duration = 6.5,
-                                size = 25,
-                                color = "ffffd4d4"
-                            }
-                        )
+                        printSecondTeamDefeat()
                         endGameAfterSeconds(7)
                     end
                 end)

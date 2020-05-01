@@ -44,6 +44,7 @@ many development versions of Final Rush Pro 5.10.
 Under development
 
 * Drowning ACUs now cause the "commander under attack" warning (thanks speed2!)
+* Allow first defeated team to watch the remaining team play in Survival Versus
 * Increased satellite count by 50%
 * Increased experimental transport base HP from 8500 to 9500 and from 13337 to 15000
 
