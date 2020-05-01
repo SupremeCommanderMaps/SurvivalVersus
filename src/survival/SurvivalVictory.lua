@@ -1,4 +1,4 @@
-function newInstance(options, textPrinter, playerArmies)
+function newInstance(options, textPrinter, playerArmies, notifier)
     local deathEvents = import('/maps/final_rush_pro_5.v0021/src/survival/DeathEvents.lua').newInstance(playerArmies)
     deathEvents.startMonitoring()
 
@@ -70,20 +70,26 @@ function newInstance(options, textPrinter, playerArmies)
     end
 
     local function printPartialVictory(deathTeamName)
-        textPrinter.print(
-            deathTeamName == "TOP" and "BOTTOM TEAM VICTORY" or "TOP TEAM VICTORY",
+        notifier.printMultiLine(
             {
-                duration = 10,
-                size = 30,
-                color = "ffffd4d4"
-            }
-        )
-        textPrinter.print(
-            "You can keep playing to try and beat the final stage",
-            {
-                duration = 10,
-                size = 20,
-                color = "ffffd4d4"
+                {
+                    message = deathTeamName == "TOP" and "BOTTOM TEAM VICTORY" or "TOP TEAM VICTORY",
+                    indent = 100,
+                    options = {
+                        duration = 10,
+                        size = 30,
+                        color = "ffffd4d4"
+                    }
+                },
+                {
+                    message = "You can keep playing to try and beat the final stage",
+                    indent = 120,
+                    options = {
+                        duration = 10,
+                        size = 20,
+                        color = "ffffd4d4"
+                    }
+                }
             }
         )
     end

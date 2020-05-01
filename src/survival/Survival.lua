@@ -191,7 +191,8 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
                 localImport('survival/SurvivalVictory.lua').newInstance(
                     options,
                     textPrinter,
-                    playerArmies
+                    playerArmies,
+                    factory.getNotifier()
                 )
             )
 
