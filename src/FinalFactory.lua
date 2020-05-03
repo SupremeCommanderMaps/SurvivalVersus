@@ -1,6 +1,6 @@
 -- Top level factory / state holder
 
-local mapPath = '/maps/final_rush_pro_5.v0021/'
+local mapPath = '/maps/final_rush_pro_5.v0022/'
 
 local entropyLib = import(mapPath .. 'vendor/EntropyLib/src/EntropyLib.lua').newInstance(mapPath .. 'vendor/EntropyLib/')
 local notifier

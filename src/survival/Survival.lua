@@ -158,12 +158,12 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
         localImport('survival/ParagonEvent.lua').newInstance(
             ScenarioFramework,
             unitCreator,
-            import('/maps/final_rush_pro_5.v0021/vendor/EntropyLib/src/UnitRevealer.lua').newInstance(
+            import('/maps/final_rush_pro_5.v0022/vendor/EntropyLib/src/UnitRevealer.lua').newInstance(
                 playerArmies.getIndexToNameMap()
             ),
             playerArmies,
             positions,
-            import('/maps/final_rush_pro_5.v0021/vendor/EntropyLib/src/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),
+            import('/maps/final_rush_pro_5.v0022/vendor/EntropyLib/src/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),
             textPrinter
         ).setUp()
     end
