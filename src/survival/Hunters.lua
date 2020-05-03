@@ -145,7 +145,7 @@ newInstance = function(initialSpawnDelayInSeconds, unitCreator, textPrinter, pla
 
         IssueAttack(bountryHunters, targetAcu)
 
-        while not targetAcu:IsDead() do
+        while targetAcu and not targetAcu:IsDead() do
             WaitSeconds(3)
         end
 
