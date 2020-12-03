@@ -47,6 +47,12 @@ many development versions of Final Rush Pro 5.10.
 
 ## Release notes
 
+### New in version 5.22
+
+Released on 2020-12-03
+
+* Fixed issue with Hunter event
+
 ### New in version 5.21
 
 Released on 2020-05-01
