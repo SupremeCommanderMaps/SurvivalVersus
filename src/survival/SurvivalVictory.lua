@@ -1,5 +1,5 @@
 function newInstance(options, textPrinter, playerArmies, notifier)
-    local deathEvents = import('/maps/final_rush_pro_5.v0022/src/survival/DeathEvents.lua').newInstance(playerArmies)
+    local deathEvents = import('/maps/final_rush_pro_5.v0023/src/survival/DeathEvents.lua').newInstance(playerArmies)
     deathEvents.startMonitoring()
 
     local finalStageWasCompleted = false
