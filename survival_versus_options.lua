@@ -1,19 +1,6 @@
 options =
 {
     {
-        default = 1,
-        label = "Game Mode",
-        help = "Game Mode",
-        key = 'opt_gamemode',
-        pref = 'opt_gamemode',
-        values = {
-            { text = "Survival Versus", help = "Survival Versus. The team that survives the longest wins. Attacking the other team is possible, unless prevented by other options", key = 0 },
-            { text = "Survival Classic", help = "Survival Classic", key = 1 },
-            { text = "Paragon Wars", help = "Paragon Wars. Team versus team. Capture the Paragon Activator at the center of the map defended by civilians to temporarily recieve a Paragon", key = 2, },
-            { text = "Normal", help = "Normal", key = 3, },
-        },
-    },
-    {
         default = 4,
         label = "Survival Difficulty",
         help = "Survival Difficulty. Affects both survival modes. Typical games should use Easier up to Harder depending on the skill level and the desired ability to harass the other team",
@@ -286,31 +273,29 @@ options =
     {
         default = 1,
         label = "Killable Transports",
-        help = "(Survival modes only) Allow killing the transports bringing in the units",
+        help = "Allow killing the transports bringing in the units",
         key = 'opt_FinalRushKillableTransports',
         pref = 'opt_FinalRushKillableTransports',
         values = {
-            { text = "Only in Survival Versus", help = "Enabled in Survival Versus, disbabled in Survival Classic", key = 0, },
+            { text = "Enabled", help = "Enabled (transports can be killed)", key = 0, },
             { text = "Disabled", help = "Disabled (transports can not be killed)", key = 1, },
-            { text = "Enabled", help = "Enabled (transports can be killed)", key = 2, },
         },
     },
     {
-        default = 3,
+        default = 1,
         label = "ACU Hiding",
-        help = "(Survival modes only) Allow or prevent ACU hiding in the water and hills",
+        help = "Allow or prevent ACU hiding in the water and hills",
         key = 'opt_FinalRushWaterKillsACUs',
         pref = 'opt_FinalRushWaterKillsACUs',
         values = {
-            { text = "Prevent in Survival Classic", help = "ACUs can hide in Survival Versus but not in Survival Classic", key = 0, },
-            { text = "Allow hiding", help = "Disabled (ACUs can hide)", key = 1, },
-            { text = "Prevent hiding", help = "Enabled (ACUs cannot hide)", key = 2, },
+            { text = "Prevent hiding", help = "ACUs cannot hide", key = 0, },
+            { text = "Allow hiding", help = "ACUs can hide", key = 1, },
         },
     },
     {
         default = 1,
         label = "Bounty Hunter Spawn Delay",
-        help = "(Survival modes only) Time before the first Bounty Hunters start spawning. Compounds with the general Spawn Delay option. Normal difficulty is 22 minutes",
+        help = "Time before the first Bounty Hunters start spawning. Compounds with the general Spawn Delay option. Normal difficulty is 22 minutes",
         key = 'opt_FinalRushHunterDelay',
         pref = 'opt_FinalRushHunterDelay',
         values = {

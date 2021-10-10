@@ -6,9 +6,9 @@ function newInstance(options, textPrinter, playerArmies, notifier)
 
     local function teamFightIsOngoing()
         LOG("SurvivalVictory: teamFightIsOngoing")
-        if options.isSurvivalClassic() then
-           return false
-        end
+        --if options.isSurvivalClassic() then
+        --   return false
+        --end
 
         return deathEvents.topTeamIsAlive() and deathEvents.bottomTeamIsAlive()
     end
@@ -118,10 +118,11 @@ function newInstance(options, textPrinter, playerArmies, notifier)
             LOG("SurvivalVictory: finalStageComplete")
             finalStageWasCompleted = true
 
-            if options.isSurvivalClassic() then
-                LOG("SurvivalVictory: finalStageComplete: is classic")
-                printCongratsAndEndGame()
-            elseif teamFightIsOngoing() then
+            --if options.isSurvivalClassic() then
+            --    LOG("SurvivalVictory: finalStageComplete: is classic")
+            --    printCongratsAndEndGame()
+            --elseif teamFightIsOngoing() then
+            if teamFightIsOngoing() then
                 LOG("SurvivalVictory: finalStageComplete: ongoing fight")
                 printWaveContinues()
 
@@ -136,26 +137,24 @@ function newInstance(options, textPrinter, playerArmies, notifier)
         watchForTeamDeath = function()
             local isFirstTeamDeath = true
 
-            if options.isSurvivalVersus() then
-                deathEvents.onTeamDeath(function(teamName)
-                    LOG("SurvivalVictory: watchForTeamDeath")
-                    if finalStageWasCompleted then
-                       return
-                    end
+            deathEvents.onTeamDeath(function(teamName)
+                LOG("SurvivalVictory: watchForTeamDeath")
+                if finalStageWasCompleted then
+                   return
+                end
 
-                    if isFirstTeamDeath then
-                        LOG("SurvivalVictory: partial victory")
-                        isFirstTeamDeath = false
+                if isFirstTeamDeath then
+                    LOG("SurvivalVictory: partial victory")
+                    isFirstTeamDeath = false
 
-                        printPartialVictory(teamName)
-                        grantVisionToDefeatedTeam()
-                    else
-                        LOG("SurvivalVictory: You won but did not beat the final stage")
-                        printSecondTeamDefeat()
-                        endGameAfterSeconds(7)
-                    end
-                end)
-            end
+                    printPartialVictory(teamName)
+                    grantVisionToDefeatedTeam()
+                else
+                    LOG("SurvivalVictory: You won but did not beat the final stage")
+                    printSecondTeamDefeat()
+                    endGameAfterSeconds(7)
+                end
+            end)
         end
     }
 end

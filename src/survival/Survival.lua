@@ -72,17 +72,6 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
         end
     end
 
-    local function setSurvivalClassicAlliances()
-        local tblArmies = ListArmies()
-        for index in tblArmies do
-            SetAlliance(index, "FRIENDLY_BOT", 'Ally')
-
-            SetAlliance(index, "TOP_BOT", 'Enemy')
-            SetAlliance(index, "BOTTOM_BOT", 'Enemy')
-            SetAlliance(index, "HOSTILE_BOT", 'Enemy')
-        end
-    end
-
     local function colorBots()
         SetArmyColor("BOTTOM_BOT", 110, 90, 90)
         SetArmyColor("TOP_BOT", 150, 170, 150)
@@ -133,13 +122,7 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
     local setUp = function()
         disableWalls()
 
-        if options.isSurvivalVersus() then
-            setSurvivalVersusAlliances()
-        end
-
-        if options.isSurvivalClassic() then
-            setSurvivalClassicAlliances()
-        end
+        setSurvivalVersusAlliances()
 
         colorBots()
         allyBotsWithEachOther()

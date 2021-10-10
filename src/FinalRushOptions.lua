@@ -1,7 +1,3 @@
-local SURVIVAL_VERSUS = 0
-local SURVIVAL_CLASSIC = 1
-local PARAGON_WARS = 2
-
 local VERY_EASY = 1
 local EASIER = 2
 local EASY = 3
@@ -15,7 +11,6 @@ local SET_BY_PRESET = -1337
 
 local defaults = {
     RestrictedCategories = {},
-    opt_gamemode = SURVIVAL_VERSUS,
     opt_FinalRushDifficulty = NORMAL,
     opt_FinalRushTeamBonusReclaim = 0,
     opt_FinalRushTeamBonusHP = 0,
@@ -27,7 +22,7 @@ local defaults = {
     opt_t3arty = SET_BY_PRESET,
     opt_FinalRushEventNotifications = 1,
     opt_FinalRushKillableTransports = 0,
-    opt_FinalRushWaterKillsACUs = 2,
+    opt_FinalRushWaterKillsACUs = 0,
     opt_FinalRushNukesAndArty = 0,
     opt_FinalRushRandomEvents = SET_BY_PRESET,
     opt_FinalRushSpawnDelay = SET_BY_PRESET,
@@ -175,36 +170,12 @@ function newInstance(ScenarioInfoOptions)
         return rawOptions
     end
 
-    this.isSurvivalGame = function()
-        return rawOptions.opt_gamemode == SURVIVAL_VERSUS or rawOptions.opt_gamemode == SURVIVAL_CLASSIC
-    end
-
-    this.isSurvivalVersus = function()
-        return rawOptions.opt_gamemode == SURVIVAL_VERSUS
-    end
-
-    this.isSurvivalClassic = function()
-        return rawOptions.opt_gamemode == SURVIVAL_CLASSIC
-    end
-
-    this.isParagonWars = function()
-        return rawOptions.opt_gamemode == PARAGON_WARS
-    end
-
     this.canKillTransports = function()
-        if rawOptions.opt_FinalRushKillableTransports == 0 then
-            return this.isSurvivalVersus()
-        else
-            return rawOptions.opt_FinalRushKillableTransports == 2
-        end
+        return rawOptions.opt_FinalRushKillableTransports == 0
     end
 
     this.waterKillsAcu = function()
-        if rawOptions.opt_FinalRushWaterKillsACUs == 0 then
-            return this.isSurvivalClassic()
-        else
-            return rawOptions.opt_FinalRushWaterKillsACUs == 2
-        end
+        return rawOptions.opt_FinalRushWaterKillsACUs == 0
     end
 
     this.isNonDefault = function(optionName)

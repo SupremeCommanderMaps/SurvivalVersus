@@ -24,17 +24,6 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         return this
     end
 
-    local getGameMode = function()
-        local modeNames = {
-            [0] = "Survival Versus",
-            [1] = "Survival Classic",
-            [2] = "Paragon Wars",
-            [3] = "Nothing Special",
-        }
-
-        return modeNames[ScenarioInfo.Options.opt_gamemode]
-    end
-
     local getDifficuly = function()
         local difficultyNames = {
             [1] = "Very easy",
@@ -57,17 +46,9 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         )
 
         textPrinter.print(
-            string.rep(" ", 41) .. "by EntropyWins",
+            string.rep(" ", 20) .. "by EntropyWins",
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter" }
         )
-
-        printer.printBlankLine()
-
-        printer.printOption("opt_gamemode", "Game mode: " .. getGameMode())
-
-        if options.isParagonWars() then
-            printer.print("Civilian base: 100% Morgan Certified™")
-        end
 
         printer.printBlankLine()
 
@@ -150,24 +131,20 @@ newInstance = function(ScenarioInfo, options, textPrinter)
             ForkThread(function()
                 showGameVersionMessage(newPrinter(WELCOME_MESSAGE_DURATION))
 
-                if options.isSurvivalGame() then
-                    WaitSeconds(WELCOME_MESSAGE_DURATION + 0.05)
-                    showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
+                WaitSeconds(WELCOME_MESSAGE_DURATION + 0.05)
+                showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
 
-                    WaitSeconds(SETTINGS_MESSAGE_DURATION + 0.05)
-                    showTeamBonusMessage(newPrinter(BONUS_MESSAGE_DURATION))
-                end
+                WaitSeconds(SETTINGS_MESSAGE_DURATION + 0.05)
+                showTeamBonusMessage(newPrinter(BONUS_MESSAGE_DURATION))
             end)
         end,
         showSettings = function()
-            if options.isSurvivalGame() then
-                ForkThread(function()
-                    showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
+            ForkThread(function()
+                showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
 
-                    WaitSeconds(SETTINGS_MESSAGE_DURATION + 0.05)
-                    showTeamBonusMessage(newPrinter(BONUS_MESSAGE_DURATION))
-                end)
-            end
+                WaitSeconds(SETTINGS_MESSAGE_DURATION + 0.05)
+                showTeamBonusMessage(newPrinter(BONUS_MESSAGE_DURATION))
+            end)
         end
     }
 end

@@ -43,20 +43,10 @@ newInstance = function(ScenarioInfo)
         end
     end
 
-    local function setupParagonWars()
-        if options.isParagonWars() then
-            localImport('paragonWars/ParagonWars.lua')
-                .newInstance(playerArmies, textPrinter)
-                .setUp()
-        end
-    end
-
-    local function setupServival()
-        if options.isSurvivalGame() then
-            localImport('survival/Survival.lua')
-                .newInstance(ScenarioInfo, localImport, options, textPrinter, playerArmies)
-                .start()
-        end
+    local function setupSurvival()
+        localImport('survival/Survival.lua')
+            .newInstance(ScenarioInfo, localImport, options, textPrinter, playerArmies)
+            .start()
     end
 
     local function setupAutoReclaim()
@@ -100,8 +90,7 @@ newInstance = function(ScenarioInfo)
             setupTents()
             setupLighthouses()
             restrictTechs()
-            setupParagonWars()
-            setupServival()
+            setupSurvival()
             setupAutoReclaim()
             showWelcomeMessage()
             setupAllFactions()

@@ -52,6 +52,9 @@ many development versions of Survival Versus v24.
 Under development
 
 * Changed map name to "Survival Versus" since people do not understand that `Final Rush Pro 5.11` is older than `Final Rush Pro 5 v23`
+* Removed Paragon Wars game mode
+* Removed Survival Classic game mode
+* Removed Game Mode lobby option
 
 ### New in version 5.23
 
