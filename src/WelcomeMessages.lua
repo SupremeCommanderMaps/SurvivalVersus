@@ -36,7 +36,7 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     end
 
     local getDifficuly = function()
-        local difficulyNames = {
+        local difficultyNames = {
             [1] = "Very easy",
             [2] = "Easier",
             [3] = "Easy",
@@ -47,17 +47,17 @@ newInstance = function(ScenarioInfo, options, textPrinter)
             [8] = "Insane",
         }
 
-        return difficulyNames[ScenarioInfo.Options.opt_FinalRushDifficulty]
+        return difficultyNames[ScenarioInfo.Options.opt_FinalRushDifficulty]
     end
 
     local function showGameVersionMessage(printer)
         textPrinter.print(
-            string.rep(" ", 12) .. "Welcome to Final Rush Pro 5.21",
+            string.rep(" ", 12) .. "Welcome to Survival Versus v" .. ScenarioInfo.map_version,
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter", size = 35 }
         )
 
         textPrinter.print(
-            string.rep(" ", 41) .. "Version 5.x by EntropyWins",
+            string.rep(" ", 41) .. "by EntropyWins",
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter" }
         )
 

@@ -1,4 +1,4 @@
-# Final Rush Pro 5
+# Survival versus
 <img align="right" src="preview.jpg" height="150px">
 
 A survival map for [Supreme Commander: Forged Alliance Forever][FAF]. Supports 1 up to 8 players.
@@ -18,7 +18,7 @@ You can [read the documentation][docs] and watch [a cast by Yuri](https://www.yo
 *FAF Map Vault*
 
 The easiest way to install the map is to get it via the [Forged Alliance Forever][FAF] map vault.
-The name of the map there is **Final Rush Pro 5**.
+The name of the map there is **Survival Versus**. Older versions are available as Final Rush Pro 5.
 
 Note: you do not need to have the FinalRushPro3 mod like you did with version 4 of this map.
 Furthermore since the Auto Reclaim option has been fixed, you probably want to use that instead
@@ -27,7 +27,7 @@ of the Vampire mod.
 *From a Friend*
 
 If the map vault does not work for you and a friend has the map, ask them to send you a copy
-of their `final_rush_pro_5.v0023` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
+of their `survival_versus.v0024` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
 Then place that copy into the `Maps` directory.
 
 *Manual Installation*
@@ -36,16 +36,22 @@ You can download the latest development version of the map from GitHub.
 
 Beware that these versions are not the same as the ones typically hosted on the Forged Alliance Forever lobby.
 If not everyone is using the same version of the map, you will get a desync. When using development versions the
-advertised version of the map, ie Final Rush Pro 5.10, is in itself not sufficient to check, as there will be
-many development versions of Final Rush Pro 5.10.
+advertised version of the map, ie Survival Versus v24, is in itself not sufficient to check, as there will be
+many development versions of Survival Versus v24.
 
 * Download the [latest development version of the map][download]
-* Extract the zip. The result should be a directory named `final_rush_pro_5.v0023`
+* Extract the zip. The result should be a directory named `survival_versus.v0024`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 * Clone `lib` into `vendor`
 
 
 ## Release notes
+
+### New in version 24
+
+Under development
+
+* Changed map name to "Survival Versus" since people do not understand that `Final Rush Pro 5.11` is older than `Final Rush Pro 5 v23`
 
 ### New in version 5.23
 

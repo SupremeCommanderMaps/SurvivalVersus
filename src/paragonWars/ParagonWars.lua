@@ -59,7 +59,7 @@ newInstance = function(playerArmies, textPrinter)
         y = 255
     }
 
-    local baseSpawner = import('/maps/final_rush_pro_5.v0023/vendor/EntropyLib/src/BaseSpanwer.lua').newInstance(mapCenter, "TOP_BOT")
+    local baseSpawner = import('/maps/survival_versus.v0024/vendor/EntropyLib/src/BaseSpanwer.lua').newInstance(mapCenter, "TOP_BOT")
 
     local createParagonActivator = function()
         local paragonActivator = baseSpawner.spawnCentralStructure("uac1901")

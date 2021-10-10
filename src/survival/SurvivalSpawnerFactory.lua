@@ -1,8 +1,8 @@
 newInstance = function(options, ScenarioFramework, unitCreator, playerArmies, positions,
                         spawnOutEffect, TransportDestinations)
 
-    local transportSpawnerClass = import('/maps/final_rush_pro_5.v0023/src/survival/SurvivalTransportSpawner.lua')
-    local unitSpawnerClass = import('/maps/final_rush_pro_5.v0023/src/survival/SurvivalUnitSpawner.lua')
+    local transportSpawnerClass = import('/maps/survival_versus.v0024/src/survival/SurvivalTransportSpawner.lua')
+    local unitSpawnerClass = import('/maps/survival_versus.v0024/src/survival/SurvivalUnitSpawner.lua')
 
     local AttackLocations = positions.AttackLocations
 

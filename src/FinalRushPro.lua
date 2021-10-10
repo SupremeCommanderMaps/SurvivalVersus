@@ -1,10 +1,10 @@
 newInstance = function(ScenarioInfo)
     local function localImport(fileName)
-        return import('/maps/final_rush_pro_5.v0023/src/' .. fileName)
+        return import('/maps/survival_versus.v0024/src/' .. fileName)
     end
 
     local function vendorImport(fileName)
-        return import('/maps/final_rush_pro_5.v0023/vendor/EntropyLib/src/' .. fileName)
+        return import('/maps/survival_versus.v0024/vendor/EntropyLib/src/' .. fileName)
     end
 
     local options = localImport('FinalRushOptions.lua').newInstance(ScenarioInfo.Options)
@@ -76,7 +76,7 @@ newInstance = function(ScenarioInfo)
     local function setupResourceDeposits()
         local resourcesSpawner = localImport('ResourcesSpawner.lua').newInstance(
             vendorImport('ResourceCreator.lua').newInstance(),
-            import('/maps/final_rush_pro_5.v0023/final_rush_pro_5_tables.lua'),
+            import('/maps/survival_versus.v0024/survival_versus_tables.lua'),
             import('/lua/sim/ScenarioUtilities.lua').GetMarkers(),
             playerArmies
         )
