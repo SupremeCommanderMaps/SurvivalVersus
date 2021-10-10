@@ -44,6 +44,20 @@ many development versions of Survival Versus v24.
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 * Clone `lib` into `vendor`
 
+## Development
+
+Testing FAF independent code is done via the [Busted unit testing framework](https://olivinelabs.com/busted/).
+Tests are placed in `spec/` and can be run via Docker Compose. They are also run by GitHub actions.
+
+Running the tests:
+
+    docker-compose run --rm app busted
+
+Getting a shell on the test environment (so you can manually execute busted):
+
+    docker-compose run --rm app sh
+
+Shortcuts available via Make, see the `Makefile`.
 
 ## Release notes
 

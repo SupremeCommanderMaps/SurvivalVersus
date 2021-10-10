@@ -2,7 +2,7 @@ version: '2'
 
 services:
   app:
-    build: .
+    image: jeroendedauw/lua-5.1-busted:latest
     volumes:
-    - ./:/usr/src/app
+      - ./:/usr/src/app
     working_dir: /usr/src/app
