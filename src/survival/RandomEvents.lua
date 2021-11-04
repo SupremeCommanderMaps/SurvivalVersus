@@ -4,7 +4,7 @@ newInstance = function(ScenarioInfo, textPrinter, survivalSpawnerFactory, beetle
 
     local EXPERIMENTAL_TRANSPORT = {
         blueprintName = "uaa0107",
-        baseHealth = 8500
+        baseHealth = 15000
     }
 
     local survivalUnitSpawner = survivalSpawnerFactory.newUnitSpawner({hpIncrease = true})

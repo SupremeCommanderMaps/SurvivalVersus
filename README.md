@@ -63,13 +63,14 @@ Shortcuts available via Make, see the `Makefile`.
 
 ### New in version 25
 
-Released on 2021-11-
+Released on 2021-11-04
 
-* 
+* Increased level 2 experimental transport HP from 15000 to 20000
+* Increased random event experimental transport HP from 9500 to 15000
 
 ### New in version 24
 
-Released on 2021-11-4
+Released on 2021-11-04
 
 * Changed map name to "Survival Versus" since people do not understand that `Final Rush Pro 5.11` is older than `Final Rush Pro 5 v23`
 * Removed Paragon Wars game mode

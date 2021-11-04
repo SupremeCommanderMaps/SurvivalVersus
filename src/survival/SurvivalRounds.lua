@@ -11,7 +11,7 @@ newInstance = function(ScenarioInfo, notifier, unitSpawnerFactory, options, unit
 
     local T4_TRANSPORT_LVL2 = {
         blueprintName = "uaa0107",
-        baseHealth = 15000,
+        baseHealth = 20000,
         speedMultiplier = 2
     }
 
