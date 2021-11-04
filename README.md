@@ -27,7 +27,7 @@ of the Vampire mod.
 *From a Friend*
 
 If the map vault does not work for you and a friend has the map, ask them to send you a copy
-of their `survival_versus.v0024` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
+of their `survival_versus.v0025` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
 Then place that copy into the `Maps` directory.
 
 *Manual Installation*
@@ -40,7 +40,7 @@ advertised version of the map, ie Survival Versus v24, is in itself not sufficie
 many development versions of Survival Versus v24.
 
 * Download the [latest development version of the map][download]
-* Extract the zip. The result should be a directory named `survival_versus.v0024`
+* Extract the zip. The result should be a directory named `survival_versus.v0025`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 * Clone `lib` into `vendor`
 
@@ -61,9 +61,15 @@ Shortcuts available via Make, see the `Makefile`.
 
 ## Release notes
 
+### New in version 25
+
+Released on 2021-11-
+
+* 
+
 ### New in version 24
 
-Under development
+Released on 2021-11-4
 
 * Changed map name to "Survival Versus" since people do not understand that `Final Rush Pro 5.11` is older than `Final Rush Pro 5 v23`
 * Removed Paragon Wars game mode
