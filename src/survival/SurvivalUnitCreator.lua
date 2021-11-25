@@ -23,7 +23,7 @@ end
 
 local function setupTeamBalanceBonus(unitCreator, ScenarioInfo)
     if ScenarioInfo.Options.opt_FinalRushTeamBonusHP ~= 0 then
-        local hpMultiplier = import('/maps/survival_versus.v0025/src/survival/TeamBonusHealthMultiplier.lua').newInstance(
+        local hpMultiplier = import('/maps/survival_versus.v0026/src/survival/TeamBonusHealthMultiplier.lua').newInstance(
             ScenarioInfo.Options.opt_FinalRushTeamBonusHP
         )
 
@@ -37,7 +37,7 @@ end
 
 local function setupHealthMultiplication(unitCreator, ScenarioInfo, options)
     if ScenarioInfo.Options.opt_FinalRushHealthIncrease ~= 0 then
-        local healthMultiplier = import('/maps/survival_versus.v0025/src/survival/HealthMultiplier.lua').newInstance(
+        local healthMultiplier = import('/maps/survival_versus.v0026/src/survival/HealthMultiplier.lua').newInstance(
             ScenarioInfo.Options.opt_FinalRushHealthIncrease
         )
 
@@ -69,7 +69,7 @@ local function setupHealthMultiplication(unitCreator, ScenarioInfo, options)
 end
 
 function newUnitCreator(ScenarioInfo, options, spawnOutEffect)
-    local unitCreator = import('/maps/survival_versus.v0025/vendor/EntropyLib/src/UnitCreator.lua').newUnitCreator()
+    local unitCreator = import('/maps/survival_versus.v0026/vendor/EntropyLib/src/UnitCreator.lua').newUnitCreator()
 
     unitCreator.onUnitCreated(function(unit, unitInfo)
         unit:SetVeterancy(5)

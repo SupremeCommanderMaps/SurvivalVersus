@@ -141,12 +141,12 @@ newInstance = function(ScenarioInfo, localImport, options, textPrinter, playerAr
         localImport('survival/ParagonEvent.lua').newInstance(
             ScenarioFramework,
             unitCreator,
-            import('/maps/survival_versus.v0025/vendor/EntropyLib/src/UnitRevealer.lua').newInstance(
+            import('/maps/survival_versus.v0026/vendor/EntropyLib/src/UnitRevealer.lua').newInstance(
                 playerArmies.getIndexToNameMap()
             ),
             playerArmies,
             positions,
-            import('/maps/survival_versus.v0025/vendor/EntropyLib/src/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),
+            import('/maps/survival_versus.v0026/vendor/EntropyLib/src/UnitCreationCallbacks.lua').newInstance(ScenarioInfo),
             textPrinter
         ).setUp()
     end

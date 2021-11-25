@@ -27,7 +27,7 @@ of the Vampire mod.
 *From a Friend*
 
 If the map vault does not work for you and a friend has the map, ask them to send you a copy
-of their `survival_versus.v0025` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
+of their `survival_versus.v0026` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
 Then place that copy into the `Maps` directory.
 
 *Manual Installation*
@@ -40,7 +40,7 @@ advertised version of the map, ie Survival Versus v24, is in itself not sufficie
 many development versions of Survival Versus v24.
 
 * Download the [latest development version of the map][download]
-* Extract the zip. The result should be a directory named `survival_versus.v0025`
+* Extract the zip. The result should be a directory named `survival_versus.v0026`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 * Clone `lib` into `vendor`
 
