@@ -49,10 +49,6 @@ newInstance = function(ScenarioInfo, options, textPrinter)
             string.rep(" ", 20) .. "by EntropyWins",
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter" }
         )
-
-        printer.printBlankLine()
-
-        printer.print("Docs at bit.ly/final-rush-pro")
     end
 
     local function showGameSettingsMessage(printer)
