@@ -383,7 +383,7 @@ This version of the map includes files from the FinalRushPro3 mod, which was cre
 Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview image was created by JuiceBoy.
 
 [FAF]: http://www.faforever.com/
-[download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
-[GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
+[download]: https://github.com/JeroenDeDauw/SurvivalVersus/archive/master.zip
+[GitHub]: https://github.com/JeroenDeDauw/SurvivalVersus/
 [Busted]: http://olivinelabs.com/busted/
 [Entropy]: https://entropywins.wtf/
