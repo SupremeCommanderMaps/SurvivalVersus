@@ -9,7 +9,7 @@ till the final wave. In Survival Classic mode you win by surviving all waves.
 
 If your team has no living ACUs you lose.
 
-You can [read the documentation][docs] and watch [a cast by Yuri](https://www.youtube.com/watch?v=OaOBy9-WNcI).
+You can watch [a cast by Yuri](https://www.youtube.com/watch?v=OaOBy9-WNcI) or [playlist by EntropyWins](https://www.youtube.com/playlist?list=PLi_B_BlzbvgKCd83qLzRvnoKJJiKBIERt).
 
 [![image](https://user-images.githubusercontent.com/146040/61600959-a00c9700-ac33-11e9-9751-82bfa836b426.png)](https://www.youtube.com/watch?v=Jb15tCC7_gc)
 
@@ -370,24 +370,12 @@ Other lobby improvements:
 
 ## Updates and contributing
 
-[![Build Status](https://travis-ci.org/JeroenDeDauw/FinalRushPro5.svg?branch=master)](https://travis-ci.org/JeroenDeDauw/FinalRushPro5)
-
 You can find the latest version of the map on the [Final Rush Pro 5 GitHub project][GitHub], which is
 also the place where you can file issues, post feature request, and submit patches.
 
-### Running the tests
-
-Some of the code that does not bind to FA(F) directly is tested using the
-[Busted unit testing framework][Busted]. To run the tests on Linux, execute `busted` in the project
-root directory. To run them on Windows, well, I don't know how to work with Windows.
-
-If you have Docker and Docker Compose installed, you can run the tests with
-
-    docker-compose run --rm app busted
-
 ## Authors
 
-The authors of the original map are Commander-Chronicles, TV-Nobby and Diegobah. Fixes where later
+The authors of the original map (Final Rush Pro 4) are Commander-Chronicles, TV-Nobby and Diegobah. Fixes where later
 made by ozonex.
 
 This version of the map includes files from the FinalRushPro3 mod, which was created by CommanderChronicles.
@@ -395,7 +383,6 @@ This version of the map includes files from the FinalRushPro3 mod, which was cre
 Changes in version 5.x are by [EntropyWins][Entropy]. The version 5 preview image was created by JuiceBoy.
 
 [FAF]: http://www.faforever.com/
-[docs]: https://wiki.faforever.com/index.php?title=Final_Rush_Pro_5
 [download]: https://github.com/JeroenDeDauw/FinalRushPro5/archive/master.zip
 [GitHub]: https://github.com/JeroenDeDauw/FinalRushPro5/
 [Busted]: http://olivinelabs.com/busted/
