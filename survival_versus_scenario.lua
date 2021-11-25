@@ -1,7 +1,7 @@
 version = 3
 ScenarioInfo = {
     name="Survival Versus",
-    map_version=25,
+    map_version=26,
     description="Survive longer than the other team to win the game. Survive till the end of the final stage for full victory. https://github.com/SupremeCommanderMaps/FinalRushPro5",
     norushoffsetX_ARMY_BOTTOM_LEFT=0,
     norushoffsetX_ARMY_BOTTOM_LMID=0,
