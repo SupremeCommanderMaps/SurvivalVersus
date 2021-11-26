@@ -61,6 +61,10 @@ Shortcuts available via Make, see the `Makefile`.
 
 ## Release notes
 
+### New in version 28
+
+* Added extra spawn delay lobby options
+
 ### New in version 27
 
 Released on 2021-11-26
