@@ -401,8 +401,8 @@ options =
     },
     {
         default = 10,
-        label = "Prebuilt Tents",
-        help = "Disable or Set the number of Prebuilt Engineering Tents",
+        label = "Prebuilt Hives",
+        help = "Disable or set the number of Prebuilt Hives",
         key = 'opt_tents',
         pref = 'opt_tents',
         values = {
