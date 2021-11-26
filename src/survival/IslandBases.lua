@@ -9,8 +9,8 @@ newInstance = function()
             mex,
             function(unit)
                 unit:SetMaxHealth(13337)
-                unit:SetProductionPerSecondMass(36)
-                unit:SetCustomName("Capture for 36 mass/s")
+                unit:SetProductionPerSecondMass(42)
+                unit:SetCustomName("Capture for 42 mass/s")
             end
         )
 

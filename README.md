@@ -63,7 +63,11 @@ Shortcuts available via Make, see the `Makefile`.
 
 ### New in version 26
 
-* 
+Released on 2021-11-26
+
+* When playing with only one team, the map now correctly detects the other team as dead
+* Increased island mex income from 36 mass/s to 42 mass/s
+* Fixed lobby option description typos
 
 ### New in version 25
 
