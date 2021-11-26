@@ -4,8 +4,6 @@ newInstance = function(playerArmies)
 
     local isMonitoring
     local deadArmies = {}
-    local topTeamIsAlive = true
-    local bottomTeamIsAlive = true
 
     local function playersAreDead(playerArmyList)
         for armyIndex in playerArmyList.getIndexToNameMap() do
@@ -16,6 +14,11 @@ newInstance = function(playerArmies)
 
         return true
     end
+
+    local topTeamIsAlive = not playersAreDead(playerArmies.getTopSideArmies())
+    local bottomTeamIsAlive = not playersAreDead(playerArmies.getBottomSideArmies())
+    LOG("Top team is " .. topTeamIsAlive and "alive" or "dead")
+    LOG("Bottom team is " .. bottomTeamIsAlive and "alive" or "dead")
 
     table.insert(
         playerDeathCallbacks,
