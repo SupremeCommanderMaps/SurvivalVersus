@@ -4,7 +4,7 @@ local finalRush
 
 function OnPopulate()
 	import('/lua/sim/ScenarioUtilities.lua').InitializeArmies()
-	finalRush = import('/maps/survival_versus.v0026/src/FinalRushPro.lua').newInstance(ScenarioInfo)
+	finalRush = import('/maps/survival_versus.v0027/src/FinalRushPro.lua').newInstance(ScenarioInfo)
 	finalRush.setUp()
 	Sync.CampaignMode = true
 end

@@ -61,7 +61,7 @@ Shortcuts available via Make, see the `Makefile`.
 
 ## Release notes
 
-### New in version 26
+### New in version 27
 
 Released on 2021-11-26
 
