@@ -17,8 +17,8 @@ newInstance = function(playerArmies)
 
     local topTeamIsAlive = not playersAreDead(playerArmies.getTopSideArmies())
     local bottomTeamIsAlive = not playersAreDead(playerArmies.getBottomSideArmies())
-    LOG("Top team is " .. topTeamIsAlive and "alive" or "dead")
-    LOG("Bottom team is " .. bottomTeamIsAlive and "alive" or "dead")
+    LOG("Top team is " .. (topTeamIsAlive and "alive" or "dead" ))
+    LOG("Bottom team is " .. (bottomTeamIsAlive and "alive" or "dead"))
 
     table.insert(
         playerDeathCallbacks,
