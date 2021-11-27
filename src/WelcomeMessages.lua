@@ -39,13 +39,13 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         return difficultyNames[ScenarioInfo.Options.opt_FinalRushDifficulty]
     end
 
-    local function showGameVersionMessage(printer)
-        printer.print(
+    local function showGameVersionMessage()
+        textPrinter.print(
             string.rep(" ", 12) .. "Welcome to Survival Versus v" .. ScenarioInfo.map_version,
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter", size = 35 }
         )
 
-        printer.print(
+        textPrinter.print(
             string.rep(" ", 20) .. "by EntropyWins",
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter" }
         )
@@ -125,7 +125,7 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     return {
         startDisplay = function()
             ForkThread(function()
-                showGameVersionMessage(newPrinter(WELCOME_MESSAGE_DURATION))
+                showGameVersionMessage()
 
                 WaitSeconds(WELCOME_MESSAGE_DURATION + 0.05)
                 showGameSettingsMessage(newPrinter(SETTINGS_MESSAGE_DURATION))
