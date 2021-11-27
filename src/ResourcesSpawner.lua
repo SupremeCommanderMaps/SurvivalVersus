@@ -28,7 +28,7 @@ newInstance = function(resourceCreator, mapEditorTables, scenarioMarkers, player
         ARMY_TOP_LMID = function()
             resourceCreator.createHydro(VECTOR3(61.5, 25.9922, 140.5))
             resourceCreator.createHydro(VECTOR3(79.5, 25.9922, 122.5))
-            resourceCreator.createHydro(VECTOR3(61.5, 25.9922, 140.5))
+            resourceCreator.createHydro(VECTOR3(79.5, 25.9922, 140.5))
         end,
         ARMY_TOP_RMID = function()
             resourceCreator.createHydro(VECTOR3(122.5, 25.9922, 79.5))
