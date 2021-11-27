@@ -1,6 +1,6 @@
 newInstance = function()
-    local spawnerClass = import('/maps/survival_versus.v0027/vendor/EntropyLib/src/BaseSpanwer.lua')
-    local unitModifier = import('/maps/survival_versus.v0027/vendor/EntropyLib/src/CapturableUnitModifier.lua').newInstance()
+    local spawnerClass = import('/maps/survival_versus.v0028/vendor/EntropyLib/src/BaseSpanwer.lua')
+    local unitModifier = import('/maps/survival_versus.v0028/vendor/EntropyLib/src/CapturableUnitModifier.lua').newInstance()
 
     local function spawnCentralMex(baseSpawner)
         local mex = baseSpawner.spawnCentralStructure("uab1302") -- T3 mex
