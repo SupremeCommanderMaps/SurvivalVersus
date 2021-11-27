@@ -24,7 +24,7 @@ newInstance = function(ScenarioInfo, options, textPrinter)
         return this
     end
 
-    local getDifficuly = function()
+    local getDifficulty = function()
         local difficultyNames = {
             [1] = "Very easy",
             [2] = "Easier",
@@ -40,12 +40,12 @@ newInstance = function(ScenarioInfo, options, textPrinter)
     end
 
     local function showGameVersionMessage(printer)
-        textPrinter.print(
+        printer.print(
             string.rep(" ", 12) .. "Welcome to Survival Versus v" .. ScenarioInfo.map_version,
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter", size = 35 }
         )
 
-        textPrinter.print(
+        printer.print(
             string.rep(" ", 20) .. "by EntropyWins",
             { color = "ffafdde4", duration = WELCOME_MESSAGE_DURATION, location = "leftcenter" }
         )
@@ -72,7 +72,7 @@ newInstance = function(ScenarioInfo, options, textPrinter)
 
         printer.printBlankLine()
 
-        printer.printOption("opt_FinalRushDifficulty", "Difficulty preset: " .. getDifficuly())
+        printer.printOption("opt_FinalRushDifficulty", "Difficulty preset: " .. getDifficulty())
         printer.printOption("opt_FinalRushEscalationSpeed", "Escalation speed: " .. ScenarioInfo.Options.opt_FinalRushEscalationSpeed / 60 .. " minutes/stage")
         printer.printOption("opt_FinalRushUnitCount", "Unit count: " .. ScenarioInfo.Options.opt_FinalRushUnitCount * 100 .. "%")
         printer.printOption("opt_FinalRushHealthIncrease", "Health increase: " .. ScenarioInfo.Options.opt_FinalRushHealthIncrease * 100 .. "% every 100 seconds")
