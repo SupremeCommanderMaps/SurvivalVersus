@@ -27,7 +27,7 @@ of the Vampire mod.
 *From a Friend*
 
 If the map vault does not work for you and a friend has the map, ask them to send you a copy
-of their `survival_versus.v0026` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
+of their `survival_versus.v0030` in `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`.
 Then place that copy into the `Maps` directory.
 
 *Manual Installation*
@@ -40,7 +40,7 @@ advertised version of the map, ie Survival Versus v24, is in itself not sufficie
 many development versions of Survival Versus v24.
 
 * Download the [latest development version of the map][download]
-* Extract the zip. The result should be a directory named `survival_versus.v0026`
+* Extract the zip. The result should be a directory named `survival_versus.v0030`
 * Place the directory into `Documents\My Games\Gas Powered Games\Supreme Commander Forged Alliance\Maps`
 * Clone `lib` into `vendor`
 
@@ -61,9 +61,20 @@ Shortcuts available via Make, see the `Makefile`.
 
 ## Release notes
 
-### New in version 28
+### New in version 30
+
+Released on 2023-09-23
+
+* Fixed land being flattened when SurvivalStructures spawn
+* Remade the old preview.jpg
+* Added Preview_Gimp.xcf for updating preview.jpg open with Gimp.
+
+### New in version 29
+
+Released on 2022-05-24
 
 * Added extra spawn delay lobby options
+* Improved lobby preview image
 
 ### New in version 27
 

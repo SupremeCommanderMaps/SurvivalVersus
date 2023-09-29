@@ -11,6 +11,10 @@ newInstance = function()
     local T3RADAR = "uab3104"
     local T1RADAR = "uab3101"
 
+    local ScenarioUtils = import('/lua/sim/ScenarioUtilities.lua')
+    local topPos = ScenarioUtils.MarkerToPosition("SurvivalStructuresTop")
+    local bottomPos = ScenarioUtils.MarkerToPosition("SurvivalStructuresBottom")
+
     local function configureOmni(omni)
         makeInvincible(omni)
         omni:SetIntelRadius('Vision', 500)
@@ -27,22 +31,22 @@ newInstance = function()
 
     return {
         createTopParagon = function(owningArmyName)
-            makeInvincible(CreateUnitHPR(PARAGON, owningArmyName, 0, 0, 0, 0, 0, 0))
+            makeInvincible(CreateUnitHPR(PARAGON, owningArmyName, topPos[1], topPos[2], topPos[3], 0, 0, 0))
         end,
         createBottomParagon = function(owningArmyName)
-            makeInvincible(CreateUnitHPR(PARAGON, owningArmyName, 512, 0, 512, 0, 0, 0))
+            makeInvincible(CreateUnitHPR(PARAGON, owningArmyName, bottomPos[1], bottomPos[2], bottomPos[3], 0, 0, 0))
         end,
         createTopRadar = function(owningArmyName)
-            configureRadar(CreateUnitHPR(T1RADAR, owningArmyName, 0, 0, 0, 0, 0, 0))
+            configureRadar(CreateUnitHPR(T1RADAR, owningArmyName, topPos[1], topPos[2], topPos[3], 0, 0, 0))
         end,
         createBottomRadar = function(owningArmyName)
-            configureRadar(CreateUnitHPR(T1RADAR, owningArmyName, 512, 0, 512, 0, 0, 0))
+            configureRadar(CreateUnitHPR(T1RADAR, owningArmyName, bottomPos[1], bottomPos[2], bottomPos[3], 0, 0, 0))
         end,
         createTopOmni = function(owningArmyName)
-            configureOmni(CreateUnitHPR(T3RADAR, owningArmyName, 0, 0, 0, 0, 0, 0))
+            configureOmni(CreateUnitHPR(T3RADAR, owningArmyName, topPos[1], topPos[2], topPos[3], 0, 0, 0))
         end,
         createBottomOmni = function(owningArmyName)
-            configureOmni(CreateUnitHPR(T3RADAR, owningArmyName, 512, 0, 512, 0, 0, 0))
+            configureOmni(CreateUnitHPR(T3RADAR, owningArmyName, bottomPos[1], bottomPos[2], bottomPos[3], 0, 0, 0))
         end
     }
 end

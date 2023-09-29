@@ -1,50 +1,29 @@
-version = 3
+version = 3 -- Lua Version. Dont touch this
 ScenarioInfo = {
-    name="Survival Versus",
-    map_version=28,
-    description="Survive longer than the other team to win the game. Survive till the end of the final stage for full victory. https://github.com/SupremeCommanderMaps/SurvivalVersus",
-    norushoffsetX_ARMY_BOTTOM_LEFT=0,
-    norushoffsetX_ARMY_BOTTOM_LMID=0,
-    norushoffsetX_ARMY_BOTTOM_RMID=0,
-    norushoffsetX_ARMY_BOTTOM_RIGHT=0,
-    norushoffsetX_ARMY_TOP_RIGHT=0,
-    norushoffsetX_ARMY_TOP_RMID=0,
-    norushoffsetX_ARMY_TOP_LMID=0,
-    norushoffsetX_ARMY_TOP_LEFT=0,
-    norushoffsetY_ARMY_BOTTOM_LEFT=0,
-    norushoffsetY_ARMY_BOTTOM_LMID=0,
-    norushoffsetY_ARMY_BOTTOM_RMID=0,
-    norushoffsetY_ARMY_BOTTOM_RIGHT=0,
-    norushoffsetY_ARMY_TOP_RIGHT=0,
-    norushoffsetY_ARMY_TOP_RMID=0,
-    norushoffsetY_ARMY_TOP_LMID=0,
-    norushoffsetY_ARMY_TOP_LEFT=0,
-    norushradius=110,
-    map="/maps/survival_versus.v0028/survival_versus.scmap",
-    preview="/maps/survival_versus.v0028/preview.jpg",
-    save="/maps/survival_versus.v0028/survival_versus_save.lua",
-    script="/maps/survival_versus.v0028/survival_versus_script.lua",
-    size={ 512, 512 },
-    starts=true,
-    type="skirmish",
-    Configurations={
-        standard={
-            customprops={ ExtraArmies="BOTTOM_BOT TOP_BOT HOSTILE_BOT FRIENDLY_BOT" },
-            teams={
+    name = "Survival Versus",
+    description = "Survive longer than the other team to win the game. Survive till the end of the final stage for full victory. https://github.com/SupremeCommanderMaps/SurvivalVersus",
+    preview = '/maps/survival_versus.V0030/preview.jpg',
+    map_version = 30,
+    AdaptiveMap = true,
+    type = 'skirmish',
+    starts = true,
+    size = {512, 512},
+    reclaim = {0, 0},
+    map = '/maps/survival_versus.V0030/survival_versus.scmap',
+    save = '/maps/survival_versus.V0030/survival_versus_save.lua',
+    script = '/maps/survival_versus.V0030/survival_versus_script.lua',
+    norushradius = 110,
+    Configurations = {
+        ['standard'] = {
+            teams = {
                 {
-                    armies={
-                        "ARMY_BOTTOM_LEFT",
-                        "ARMY_BOTTOM_LMID",
-                        "ARMY_BOTTOM_RMID",
-                        "ARMY_BOTTOM_RIGHT",
-                        "ARMY_TOP_RIGHT",
-                        "ARMY_TOP_RMID",
-                        "ARMY_TOP_LMID",
-                        "ARMY_TOP_LEFT"
-                    },
-                    name="FFA"
-                }
-            }
-        }
-    }
+                    name = 'FFA',
+                    armies = {'ARMY_BOTTOM_LEFT', 'ARMY_BOTTOM_LMID', 'ARMY_BOTTOM_RMID', 'ARMY_BOTTOM_RIGHT', 'ARMY_TOP_RIGHT', 'ARMY_TOP_RMID', 'ARMY_TOP_LMID', 'ARMY_TOP_LEFT'}
+                },
+            },
+            customprops = {
+                ['ExtraArmies'] = STRING( 'BOTTOM_BOT TOP_BOT HOSTILE_BOT FRIENDLY_BOT' ),
+            },
+        },
+    },
 }

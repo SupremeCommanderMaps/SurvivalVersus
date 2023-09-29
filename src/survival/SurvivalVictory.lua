@@ -1,5 +1,5 @@
 function newInstance(options, textPrinter, playerArmies, notifier)
-    local deathEvents = import('/maps/survival_versus.v0028/src/survival/DeathEvents.lua').newInstance(playerArmies)
+    local deathEvents = import('/maps/survival_versus.v0030/src/survival/DeathEvents.lua').newInstance(playerArmies)
     deathEvents.startMonitoring()
 
     local finalStageWasCompleted = false
